@@ -1,21 +1,41 @@
 package bridgeconstructor;
 
+import java.io.File;
+
 public class Materials {
-	int steelPrice;
+	float steelPrice;
+	float woodPrice;
+	float rockPrice;
+	float concretePrice;
 	
-	public Materials(){
-		steelPrice = 50;
+	
+	private void initMaterials(File filMat){
+		// TODO lecture du fichier xml pour initialiser les prix
+		
+		// TODO supprimer solution temporaire init prix
+		steelPrice= 50;
+		woodPrice= 10;
+		rockPrice= 35;
+		concretePrice= 25;
 	}
 	
-	public int getSteelPrice() {
+	public Materials(){
+		initMaterials(new File("test.xml"));
+	}
+	
+	public float getSteelPrice() {
 		return steelPrice;
 	}
 	
-	public int getRockPrice() {
-		return 35;
+	public float getConcretePrice() {
+		return concretePrice;
 	}
 	
-	public int getWoodPrice() {
-		return 10;
+	public float getRockPrice() {
+		return rockPrice;
+	}
+	
+	public float getWoodPrice() {
+		return woodPrice;
 	}
 }
