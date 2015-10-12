@@ -8,6 +8,7 @@ public class Materials {
 	float woodPrice;
 	float rockPrice;
 	float concretePrice;
+	float cordPrice;
 	
 	
 	private void initMaterials(File filMat){
@@ -18,6 +19,7 @@ public class Materials {
 		woodPrice= 10;
 		rockPrice= 35;
 		concretePrice= 25;
+		cordPrice= 12;
 	}
 	
 	public Materials(){
