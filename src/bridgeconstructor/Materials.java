@@ -1,15 +1,21 @@
 package bridgeconstructor;
 
 public class Materials {
-	public static int getSteelPrice() {
-		return 50;
+	int steelPrice;
+	
+	public Materials(){
+		steelPrice = 50;
 	}
 	
-	public static int getRockPrice() {
+	public int getSteelPrice() {
+		return steelPrice;
+	}
+	
+	public int getRockPrice() {
 		return 35;
 	}
 	
-	public static int getWoodPrice() {
+	public int getWoodPrice() {
 		return 10;
 	}
 }
