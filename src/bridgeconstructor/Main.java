@@ -3,8 +3,9 @@ package bridgeconstructor;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Bridge B = new Bridge();
+		// TODO Auto-generated code, ou un truc dans ce genre, je suis pas sûr.
+		
+		System.out.println("Il était une fois...");
 		
 	}
 
