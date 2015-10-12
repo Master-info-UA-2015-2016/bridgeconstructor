@@ -6,5 +6,9 @@ package bridgeconstructor;
  *
  */
 public class Bridge {
-
+	private String materiel;
+	
+	public Bridge() {
+		
+	}
 }
