@@ -14,6 +14,9 @@ public class Bridge {
 	private Materials material;
 	private float price;
 	
+	/**
+	 * Constructeur de Bridge
+	 */
 	public Bridge() {
 		
 	}
