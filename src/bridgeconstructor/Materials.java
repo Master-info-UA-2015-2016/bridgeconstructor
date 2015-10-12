@@ -38,4 +38,6 @@ public class Materials {
 	public float getWoodPrice() {
 		return woodPrice;
 	}
+	
+	// TODO toString
 }
