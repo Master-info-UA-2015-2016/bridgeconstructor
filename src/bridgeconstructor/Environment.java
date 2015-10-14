@@ -85,11 +85,11 @@ public class Environment {
 	public String toString() {
 		return "ENVIRONMENT :\n" +
 				"\tNaval Traffic = " + naval_traffic +
-				"\tRailway Traffic = " + railway_traffic +
-				"\tPedestrian Traffic = " + pedestrian_traffic +
-				"\tRoad Traffic = " + road_traffic +
-				"\tStorm = " + storm +
-				"\tFire = " + fire +
-				"\tFlood = " + flood;
+				",\tRailway Traffic = " + railway_traffic +
+				",\tPedestrian Traffic = " + pedestrian_traffic +
+				",\tRoad Traffic = " + road_traffic +
+				",\tStorm = " + storm +
+				",\tFire = " + fire +
+				",\tFlood = " + flood;
 	}
 }

@@ -89,10 +89,10 @@ public class Bridge {
 		//TODO toString Material
 		return "HEIGHT = " + height +
 				"\tWIDTH = " + width +
-				"\tLENGTH = " + length +
-				"\tTYPE = " + type +
-				"\tMATERIALS = --- "+
-				"\tPRICE = " + price;
+				",\tLENGTH = " + length +
+				",\tTYPE = " + type +
+				",\tMATERIALS = --- "+
+				",\tPRICE = " + price;
 	}
 	
 }
