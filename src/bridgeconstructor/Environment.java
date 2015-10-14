@@ -104,7 +104,7 @@ public class Environment {
 				",\tRailway Traffic = s" + railway_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
-				",\tStorm = " + storm +
+				",\nStorm = " + storm +
 				",\tFire = " + fire +
 				",\tFlood = " + flood);
 	}
