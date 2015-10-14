@@ -24,6 +24,19 @@ public class Environment {
 	public static void addNavalTraffic(){
 		naval_traffic= true;
 	}
+
+	public static void addRaiwayTraffic(){
+		railway_traffic= true;
+	}
+
+	public static void addPedestrianTraffic(){
+		pedestrian_traffic= true;
+	}
+
+	public static void addRoadTraffic(){
+		road_traffic= true;
+	}
+	
 	
 	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;
@@ -85,15 +98,14 @@ public class Environment {
 		return flood;
 	}
 	
-	@Override
-	public String toString() {
-		return "ENVIRONMENT :\n" +
+	public static void display() {
+		System.out.println("L'ENVIRONMENT :\n" +
 				"\tNaval Traffic = " + naval_traffic +
-				",\tRailway Traffic = " + railway_traffic +
+				",\tRailway Traffic = s" + railway_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
 				",\tStorm = " + storm +
 				",\tFire = " + fire +
-				",\tFlood = " + flood;
+				",\tFlood = " + flood);
 	}
 }

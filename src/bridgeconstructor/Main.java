@@ -19,10 +19,12 @@ public class Main {
 		System.out.println("Le prix du bois : " + materiaux.getWoodPrice());
 		System.out.println("Le prix du béton : " + materiaux.getConcretePrice());
 	
-		Environment E = new Environment();
+//		Environment E = new Environment();
+		Environment.addPedestrianTraffic();
+		
 		Bridge B = new Bridge();
 		
-		System.out.println("L'Environnement : " + E.toString());
+		Environment.display();
 		System.out.println("Le Pont : " + B.toString());
 		
 		new GraphicInterface();
