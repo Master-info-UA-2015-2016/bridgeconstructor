@@ -7,15 +7,15 @@ package bridgeconstructor;
  */
 public class Environment {
 	// Traffic
-	private static boolean naval_traffic;
-	private static boolean railway_traffic;
-	private static boolean pedestrian_traffic;
-	private static boolean road_traffic;
+	private static boolean naval_traffic = true;
+	private static boolean railway_traffic = true;
+	private static boolean pedestrian_traffic = true;
+	private static boolean road_traffic = true;
 	
 	// Risques Météorologiques
-	private static boolean storm;
-	private static boolean fire;
-	private static boolean flood;
+	private static boolean storm = false;
+	private static boolean fire = false;
+	private static boolean flood = false;
 	
 	// private Materials Sol;
 	
@@ -32,6 +32,7 @@ public class Environment {
 	public static void setPedestrian_traffic(boolean pedestrian_traffic) {
 		Environment.pedestrian_traffic = pedestrian_traffic;
 	}
+	
 	public static void setRoad_traffic(boolean road_traffic) {
 		Environment.road_traffic = road_traffic;
 	}
@@ -47,6 +48,37 @@ public class Environment {
 	
 	public static void setFlood(boolean flood) {
 		Environment.flood = flood;
+	}
+	
+	// GETTERS
+	//		GETTERS Traffic
+	public static boolean isNaval_traffic() {
+		return naval_traffic;
+	}
+	
+	public static boolean isRailway_traffic() {
+		return railway_traffic;
+	}
+	
+	public static boolean isPedestrian_traffic() {
+		return pedestrian_traffic;
+	}
+	
+	public static boolean isRoad_traffic() {
+		return road_traffic;
+	}
+	
+	//		GETTERS Risques Météorologiques
+	public static boolean isStorm() {
+		return storm;
+	}
+	
+	public static boolean isFire() {
+		return fire;
+	}
+	
+	public static boolean isFlood() {
+		return flood;
 	}
 	
 	@Override
