@@ -1,22 +1,63 @@
 package bridgeconstructor;
 
 /**
- * La classe sera instanciée puis remplie par l'utilisateur
+ * La classe n'a pas besoin d'être instancié car unique
+ * Elle sera remplie par l'utilisateur
  * en fonction de sa base de faits
  */
 public class Environment {
-	//TODO Finir Remplir Classe
 	// Traffic
-	private boolean naval_traffic;
-	private boolean railway_traffic;
-	private boolean	pedestrian_traffic;
-	private boolean road_traffic;
+	private static boolean naval_traffic;
+	private static boolean railway_traffic;
+	private static boolean pedestrian_traffic;
+	private static boolean road_traffic;
 	
 	// Risques Météorologiques
-	private boolean storm;
-	private boolean fire;
-	private boolean flood;
+	private static boolean storm;
+	private static boolean fire;
+	private static boolean flood;
 	
-	public Environment() {}
+	// private Materials Sol;
 	
+	//	SETTERS
+	//		SETTERS Traffic
+	public static void setNaval_traffic(boolean naval_traffic) {
+		Environment.naval_traffic = naval_traffic;
+	}
+	
+	public static void setRailway_traffic(boolean railway_traffic) {
+		Environment.railway_traffic = railway_traffic;
+	}
+	
+	public static void setPedestrian_traffic(boolean pedestrian_traffic) {
+		Environment.pedestrian_traffic = pedestrian_traffic;
+	}
+	public static void setRoad_traffic(boolean road_traffic) {
+		Environment.road_traffic = road_traffic;
+	}
+	
+	//		SETTERS Risques Météorologiques
+	public static void setStorm(boolean storm) {
+		Environment.storm = storm;
+	}
+	
+	public static void setFire(boolean fire) {
+		Environment.fire = fire;
+	}
+	
+	public static void setFlood(boolean flood) {
+		Environment.flood = flood;
+	}
+	
+	@Override
+	public String toString() {
+		return "ENVIRONMENT :\n" +
+				"\tNaval Traffic = " + naval_traffic +
+				"\tRailway Traffic = " + railway_traffic +
+				"\tPedestrian Traffic = " + pedestrian_traffic +
+				"\tRoad Traffic = " + road_traffic +
+				"\tStorm = " + storm +
+				"\tFire = " + fire +
+				"\tFlood = " + flood;
+	}
 }
