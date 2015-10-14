@@ -7,8 +7,9 @@ package bridgeconstructor;
 public class Bridge {
 	//TODO remplir la classe
 	
-	private float height;
-	private float width;
+	private float minHeight;
+	private float minWidth;
+	private float maxWidth;
 	private float length;
 	private String type;
 	private Materials material;
@@ -18,6 +19,7 @@ public class Bridge {
 	 * Constructeur par défaut de Bridge
 	 */
 	public Bridge() {
+<<<<<<< Upstream, based on branch 'master' of https://github.com/flodavid/bridgeconstructor
 		height = 0;
 		width = 0;
 		length = 0;
@@ -33,6 +35,14 @@ public class Bridge {
 		this.type = type;
 		this.material = material;
 		this.price = price;
+=======
+		minHeight= 0;
+		minWidth= 0;
+		maxWidth= -1;
+		length= 0;
+		
+		
+>>>>>>> 0d005b6 ajout de commentaires et modif attributs Bridge
 	}
 
 	//	SETTERS
@@ -87,12 +97,22 @@ public class Bridge {
 	
 	public String toString() {
 		//TODO toString Material
+<<<<<<< Upstream, based on branch 'master' of https://github.com/flodavid/bridgeconstructor
 		return "HEIGHT = " + height +
 				"\tWIDTH = " + width +
 				",\tLENGTH = " + length +
 				",\tTYPE = " + type +
 				",\tMATERIALS = --- "+
 				",\tPRICE = " + price;
+=======
+		return "min HEIGHT = " + minHeight +
+			"\tmin WIDTH = " + minWidth +
+			"\tmax WIDTH = " + maxWidth +
+			"LENGTH = " + length +
+			"TYPE = " + type +
+			"MATERIALS = --- "+
+			"PRICE = " + price;
+>>>>>>> 0d005b6 ajout de commentaires et modif attributs Bridge
 	}
 	
 }
