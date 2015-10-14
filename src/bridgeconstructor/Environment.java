@@ -7,10 +7,10 @@ package bridgeconstructor;
  */
 public class Environment {
 	// Traffic
-	private static boolean naval_traffic = true;
-	private static boolean railway_traffic = true;
-	private static boolean pedestrian_traffic = true;
-	private static boolean road_traffic = true;
+	private static boolean naval_traffic = false;
+	private static boolean railway_traffic = false;
+	private static boolean pedestrian_traffic = false;
+	private static boolean road_traffic = false;
 	
 	// Risques Météorologiques
 	private static boolean storm = false;
@@ -21,6 +21,10 @@ public class Environment {
 	
 	//	SETTERS
 	//		SETTERS Traffic
+	public static void addNavalTraffic(){
+		naval_traffic= true;
+	}
+	
 	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;
 	}
