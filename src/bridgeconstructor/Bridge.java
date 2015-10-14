@@ -19,39 +19,36 @@ public class Bridge {
 	 * Constructeur par défaut de Bridge
 	 */
 	public Bridge() {
-<<<<<<< Upstream, based on branch 'master' of https://github.com/flodavid/bridgeconstructor
-		height = 0;
-		width = 0;
-		length = 0;
+		minHeight= 0;
+		minWidth= 0;
+		maxWidth= -1;
+		length= 0;
 		type = "";
 		material = new Materials();
 		price = 0;
 	}
 	
-	public Bridge(float height, float width, float length, String type, Materials material, float price) {
-		this.height = height;
-		this.width = width;
+	public Bridge(float height, float minWidth, float maxWidth, float length, String type, Materials material, float price) {
+		this.minHeight = height;
+		this.minWidth = minWidth;
+		this.minWidth = maxWidth;
 		this.length = length;
 		this.type = type;
 		this.material = material;
 		this.price = price;
-=======
-		minHeight= 0;
-		minWidth= 0;
-		maxWidth= -1;
-		length= 0;
-		
-		
->>>>>>> 0d005b6 ajout de commentaires et modif attributs Bridge
 	}
 
 	//	SETTERS
 	public void setHeight(float height) {
-		this.height = height;
+		this.minHeight = height;
 	}
 	
-	public void setWidth(float width) {
-		this.width = width;
+	public void setMinWidth(float width) {
+		this.minWidth = width;
+	}
+	
+	public void setMaxWidth(float width) {
+		this.maxWidth = width;
 	}
 	
 	public void setLength(float length) {
@@ -72,11 +69,15 @@ public class Bridge {
 	
 	// GETTERS
 	public float getHeight() {
-		return height;
+		return minHeight;
 	}
 	
-	public float getWidth() {
-		return width;
+	public float getMinWidth() {
+		return minWidth;
+	}
+
+	public float getMaxWidth() {
+		return maxWidth;
 	}
 	
 	public float getLength() {
@@ -97,22 +98,13 @@ public class Bridge {
 	
 	public String toString() {
 		//TODO toString Material
-<<<<<<< Upstream, based on branch 'master' of https://github.com/flodavid/bridgeconstructor
-		return "HEIGHT = " + height +
-				"\tWIDTH = " + width +
-				",\tLENGTH = " + length +
-				",\tTYPE = " + type +
-				",\tMATERIALS = --- "+
-				",\tPRICE = " + price;
-=======
 		return "min HEIGHT = " + minHeight +
-			"\tmin WIDTH = " + minWidth +
-			"\tmax WIDTH = " + maxWidth +
-			"LENGTH = " + length +
-			"TYPE = " + type +
-			"MATERIALS = --- "+
-			"PRICE = " + price;
->>>>>>> 0d005b6 ajout de commentaires et modif attributs Bridge
+			",\tmin WIDTH = " + minWidth +
+			",\tmax WIDTH = " + maxWidth +
+			",\tLENGTH = " + length +
+			",\tTYPE = " + type +
+			",\tMATERIALS = --- "+
+			",\tPRICE = " + price;
 	}
 	
 }
