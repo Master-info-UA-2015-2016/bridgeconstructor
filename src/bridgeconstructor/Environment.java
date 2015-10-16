@@ -19,6 +19,7 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 //	}
 
 	protected static void createFB(){
+		// TODO (pour que tu voies) Tu n'utilises pas ta base de fait
 		FB = new FactsBase();
 		
 		FB.addFact("Traffic naval", naval_traffic);
@@ -108,7 +109,7 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 	}
 	
 	public static void display() {
-		System.out.println("L'ENVIRONMENT :" +
+		System.out.println("ENVIRONMENT :" +
 				"\tNaval Traffic = " + naval_traffic +
 				",\tRailway Traffic = " + railway_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +

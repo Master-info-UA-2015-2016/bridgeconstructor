@@ -18,12 +18,6 @@ public class Main {
 		System.out.println("Le prix de l'acier : " + materiaux.getSteelPrice());
 		System.out.println("Le prix du bois : " + materiaux.getWoodPrice());
 		System.out.println("Le prix du béton : " + materiaux.getConcretePrice());
-	
-		
-		Bridge B = new Bridge();
-		
-		Environment.display();
-		System.out.println("Le Pont : " + B.toString());
 		
 		new GraphicInterface();
 	}

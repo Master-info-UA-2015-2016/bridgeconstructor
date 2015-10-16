@@ -38,6 +38,8 @@ public class Bridge {
 		this.type = type;
 		this.material = material;
 		this.price = price;
+		
+		System.out.println("BRIDE : " + this.toString());
 	}
 
 	//	SETTERS
