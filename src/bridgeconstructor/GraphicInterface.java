@@ -239,5 +239,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		storm_box.setSelected(false);
 		height_field.setValue(0);
 		length_field.setValue(0);
+		
+		Environment.display();
 	}	
 }
