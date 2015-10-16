@@ -9,7 +9,7 @@ import expertsystem.*;
  * Elle sera remplie par l'utilisateur
  * en fonction de sa base de faits
  */
-public class Environment {
+public class Environment /*implements FactsClass je n'ai pas réussi à utiliser static avec une interface*/ {
 	//Faits
 //	private static RulesBase RB;
 	private static FactsBase FB;
@@ -18,7 +18,7 @@ public class Environment {
 //		RB = new RulesBase();
 //	}
 
-	private static void createFB(){
+	protected static void createFB(){
 		FB = new FactsBase();
 		
 		FB.addFact("Traffic naval", naval_traffic);
@@ -46,22 +46,22 @@ public class Environment {
 	
 	//	SETTERS
 	//		SETTERS Traffic
-//	public static void addNavalTraffic(){
-//		naval_traffic= true;
-//	}
-//
-//	public static void addRaiwayTraffic(){
-//		railway_traffic= true;
-//	}
-//
-//	public static void addPedestrianTraffic(){
-//		pedestrian_traffic= true;
-//	}
-//
-//	public static void addRoadTraffic(){
-//		road_traffic= true;
-//	}
-//	
+	public static void switchNavalTraffic(){
+		naval_traffic= true;
+	}
+
+	public static void addRaiwayTraffic(){
+		railway_traffic= true;
+	}
+
+	public static void addPedestrianTraffic(){
+		pedestrian_traffic= true;
+	}
+
+	public static void addRoadTraffic(){
+		road_traffic= true;
+	}
+	
 	
 	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;

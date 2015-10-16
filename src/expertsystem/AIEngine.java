@@ -1,4 +1,4 @@
-package bridgeconstructor;
+package expertsystem;
 
 /**
  * La classe utilisera les règles ainsi que la base de faits
@@ -6,8 +6,7 @@ package bridgeconstructor;
  */
 
 public class AIEngine {
-	private boolean[] BF;
-	//TODO remplir la classe
+	private Word[] BF;
 	
 	/**
 	 * On sature la BF (version de base, on boucle sur BR (sans ordre partiel))
@@ -22,7 +21,7 @@ public class AIEngine {
 	 * VA(m, r)  affirmation ou négation du mot m dans Ant.(r), r € BR
 	 * VC(m,r) affirmation ou négation du mot m dans Cons.(r), r € BR
 	 */
-	private void BFSaturation(/*Rule*/int[] BR/*(Environnment)*/, /*Fait*/int[] Ant) {
+	private void BFSaturation(/*Rule*/int[] BR/*(Environnment)*/, /*Fait*/Word[] Ant) {
 		boolean inf= true;
 		int nbInf= 0;
 		
@@ -30,15 +29,16 @@ public class AIEngine {
 			inf= false;
 			for (/*Rule*/int rule : BR){
 				boolean dec= true;
-				for (/*Fait*/int m : Ant){
+				for (/*Fait*/Word word : Ant){
 					while(dec){
-						if ( ( BF.contient(m) && VF(m) != VA(m,r) )|| !BF.contient(m) )
+						if ( ( BF.contains(word) && VF(word) != VA(word,r) )|| !BF.contains(word) )
 							dec= false;
 					}
 					
 					if (dec){
-						for ()
-						
+						for (){
+							
+						}
 						
 					}
 					

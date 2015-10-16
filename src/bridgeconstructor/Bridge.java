@@ -1,5 +1,7 @@
 package bridgeconstructor;
 
+import expertsystem.AIEngine;
+
 /**
  * La classe sera instanciée algorithmiquement grâce à
  * @see AIEngine puis affiché à l'utilisateur

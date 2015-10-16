@@ -16,9 +16,8 @@ class Fact{
 public class FactsBase {
 	List<Fact> facts;
 	
-	public FactsBase(){
-
-	}
+//	public FactsBase(){
+//	}
 	
 	/**
 	 * Ajoute un fait dans la base de faits
