@@ -55,6 +55,7 @@ public class AIEngine {
 					
 			}
 		}
+//		TODO retour et conclusion pour utilisateur (en passant par bridge-constructor)
 	}
 	
 	
