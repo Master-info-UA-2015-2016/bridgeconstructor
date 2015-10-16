@@ -1,6 +1,14 @@
 package expertsystem;
 
+import java.util.List;
+
 public class Rule {
-	private Variable[] ant;
+	private List<Word> ant;
+	private List<Word> cons;
+
+	public List<Word> getConsequences() {
+
+		return cons;
+	}
 	
 }
