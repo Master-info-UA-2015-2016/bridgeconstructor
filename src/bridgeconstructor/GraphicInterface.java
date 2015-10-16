@@ -1,10 +1,12 @@
 package bridgeconstructor;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,8 +20,14 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private static String title = "Bridge Constructor";
+	
+	// Layout
+	private GridLayout grid_layout;
 	private BoxLayout box_layout;
-	private JPanel panneau;
+	// Panel
+	private JPanel choose_panel;
+	private JPanel down_panel;
+	private JPanel main_panel;
 	// Traffic Box
 	private JCheckBox naval_box;
 	private JCheckBox railway_box;
@@ -29,6 +37,8 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	private JCheckBox storm_box;
 	private JCheckBox fire_box;
 	private JCheckBox flood_box;
+	// Bouton
+	private JButton button;
 	
 	public GraphicInterface() {
 		super(title);
@@ -37,17 +47,20 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		buildEvents();
 		
 		this.setResizable(true);
-		this.setSize(400, 400);
 		this.setLocationRelativeTo(null);
-		
+		this.pack();
 		this.setVisible(true);
 	}
 	
 	private void buildComposants() {
-		panneau = new JPanel();
-			panneau.setBackground(Color.GRAY);
-		box_layout = new BoxLayout(panneau, BoxLayout.Y_AXIS);
+		// Layout
+		grid_layout = new GridLayout(4, 4);
+		box_layout = new BoxLayout(main_panel, BoxLayout.X_AXIS);
+		choose_panel = new JPanel();
+		down_panel = new JPanel();
+		main_panel = new JPanel();
 		
+			
 		// Traffic box
 		naval_box = new JCheckBox("Traffic Naval");
 		railway_box = new JCheckBox("Traffic Ferroviaire");
@@ -57,18 +70,27 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		storm_box =  new JCheckBox("Tempête");
 		fire_box = new JCheckBox("Incendie");
 		flood_box = new JCheckBox("Inondation");
+		
+		// Bouton
+		button = new JButton("Tout est fait !");
 	}
 	
 	private void buildInterface() {
-		panneau.setLayout(box_layout);
-		panneau.add(naval_box);
-		panneau.add(railway_box);
-		panneau.add(pedestrian_box);
-		panneau.add(road_box);
-		panneau.add(storm_box);
-		panneau.add(fire_box);
-		panneau.add(flood_box);
-		this.setContentPane(panneau);
+		choose_panel.setLayout(grid_layout);
+			choose_panel.add(naval_box);
+			choose_panel.add(railway_box);
+			choose_panel.add(pedestrian_box);
+			choose_panel.add(road_box);
+			choose_panel.add(storm_box);
+			choose_panel.add(fire_box);
+			choose_panel.add(flood_box);
+			
+		down_panel.add(button);
+		
+		main_panel.add(choose_panel);
+		main_panel.add(down_panel);
+		
+		this.setContentPane(main_panel);
 	}
 	
 	private void buildEvents() {
@@ -79,28 +101,39 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		this.storm_box.addActionListener(this);
 		this.fire_box.addActionListener(this);
 		this.flood_box.addActionListener(this);
+		this.button.addActionListener(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JCheckBox B = (JCheckBox) e.getSource();
-		if(B == naval_box)
-			Environment.setNaval_traffic(B.isSelected());
-		if(B == railway_box)
-			Environment.setRailway_traffic(B.isSelected());
-		if(B == pedestrian_box)
-			Environment.setPedestrian_traffic(B.isSelected());
-		if(B == road_box)
-			Environment.setRoad_traffic(B.isSelected());
-		if(B == storm_box)
-			Environment.setStorm(B.isSelected());
-		if(B == fire_box)
-			Environment.setFire(B.isSelected());
-		if(B == flood_box)
-			Environment.setFlood(B.isSelected());
-		Environment.display();
+		JCheckBox CBB;
+		JButton B;
+		if(e.getSource().getClass() == JButton.class) {
+			B = (JButton) e.getSource();
+			if(B == button)
+				System.out.println("En attente...");
+		} else if(e.getSource().getClass() == JCheckBox.class) {
+			CBB = (JCheckBox) e.getSource();
+			if(CBB == naval_box)
+				Environment.setNaval_traffic(CBB.isSelected());
+			if(CBB == railway_box)
+				Environment.setRailway_traffic(CBB.isSelected());
+			if(CBB == pedestrian_box)
+				Environment.setPedestrian_traffic(CBB.isSelected());
+			if(CBB == road_box)
+				Environment.setRoad_traffic(CBB.isSelected());
+			if(CBB == storm_box)
+				Environment.setStorm(CBB.isSelected());
+			if(CBB == fire_box)
+				Environment.setFire(CBB.isSelected());
+			if(CBB == flood_box)
+				Environment.setFlood(CBB.isSelected());
+			Environment.display();
+		}
 	}
+	
+	
 
 }
