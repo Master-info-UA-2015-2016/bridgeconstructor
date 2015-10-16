@@ -6,7 +6,7 @@ package bridgeconstructor;
  */
 
 public class AIEngine {
-//	private /*Classe BF*/ BF;
+	private boolean[] BF;
 	//TODO remplir la classe
 	
 	/**
@@ -36,8 +36,8 @@ public class AIEngine {
 							dec= false;
 					}
 					
-					if (   /*A FINIR*/         ){
-						
+					if (dec){
+						for ()
 						
 						
 					}

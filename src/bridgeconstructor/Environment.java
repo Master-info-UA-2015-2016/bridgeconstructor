@@ -1,11 +1,36 @@
 package bridgeconstructor;
 
+import expertsystem.*;
+
+//package expertsystem;
+
 /**
  * La classe n'a pas besoin d'être instancié car unique
  * Elle sera remplie par l'utilisateur
  * en fonction de sa base de faits
  */
 public class Environment {
+	//Faits
+//	private static RulesBase RB;
+	private static FactsBase FB;
+	
+//	private static void createRB(){
+//		RB = new RulesBase();
+//	}
+
+	private static void createFB(){
+		FB = new FactsBase();
+		
+		FB.addFact("Traffic naval", naval_traffic);
+		FB.addFact("Traffic ferroviaire", railway_traffic);
+		FB.addFact("Traffic routier", pedestrian_traffic);
+		FB.addFact("Traffic pédestre", road_traffic);
+		
+		FB.addFact("Risque d'ouragan", storm);
+		FB.addFact("Risque d'incendie", fire);
+		FB.addFact("Risque d'inondation", flood);
+	}
+	
 	// Traffic
 	private static boolean naval_traffic = false;
 	private static boolean railway_traffic = false;
@@ -21,22 +46,22 @@ public class Environment {
 	
 	//	SETTERS
 	//		SETTERS Traffic
-	public static void addNavalTraffic(){
-		naval_traffic= true;
-	}
-
-	public static void addRaiwayTraffic(){
-		railway_traffic= true;
-	}
-
-	public static void addPedestrianTraffic(){
-		pedestrian_traffic= true;
-	}
-
-	public static void addRoadTraffic(){
-		road_traffic= true;
-	}
-	
+//	public static void addNavalTraffic(){
+//		naval_traffic= true;
+//	}
+//
+//	public static void addRaiwayTraffic(){
+//		railway_traffic= true;
+//	}
+//
+//	public static void addPedestrianTraffic(){
+//		pedestrian_traffic= true;
+//	}
+//
+//	public static void addRoadTraffic(){
+//		road_traffic= true;
+//	}
+//	
 	
 	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;
