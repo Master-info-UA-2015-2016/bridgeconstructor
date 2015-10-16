@@ -1,14 +1,19 @@
 package bridgeconstructor;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -25,9 +30,12 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	private GridLayout grid_layout;
 	private BoxLayout box_layout;
 	// Panel
-	private JPanel choose_panel;
+	private JPanel up_panel;
+	private JPanel center_panel;
 	private JPanel down_panel;
-	private JPanel main_panel;
+	private Container main_panel;
+	// Label
+	private JLabel order;
 	// Traffic Box
 	private JCheckBox naval_box;
 	private JCheckBox railway_box;
@@ -55,12 +63,14 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	private void buildComposants() {
 		// Layout
 		grid_layout = new GridLayout(4, 4);
-		box_layout = new BoxLayout(main_panel, BoxLayout.X_AXIS);
-		choose_panel = new JPanel();
-		down_panel = new JPanel();
-		main_panel = new JPanel();
+		box_layout = new BoxLayout(main_panel, BoxLayout.Y_AXIS);
 		
-			
+		// Panel
+		up_panel = new JPanel();
+		center_panel = new JPanel();
+		down_panel = new JPanel();
+		// Label
+		order = new JLabel("Veuillez sélectionner les caractéristiques de l'environnement");
 		// Traffic box
 		naval_box = new JCheckBox("Traffic Naval");
 		railway_box = new JCheckBox("Traffic Ferroviaire");
@@ -76,19 +86,26 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	}
 	
 	private void buildInterface() {
-		choose_panel.setLayout(grid_layout);
-			choose_panel.add(naval_box);
-			choose_panel.add(railway_box);
-			choose_panel.add(pedestrian_box);
-			choose_panel.add(road_box);
-			choose_panel.add(storm_box);
-			choose_panel.add(fire_box);
-			choose_panel.add(flood_box);
+		up_panel.add(order);
+		
+		center_panel.setLayout(grid_layout);
+			center_panel.add(naval_box);
+			center_panel.add(railway_box);
+			center_panel.add(pedestrian_box);
+			center_panel.add(road_box);
+			center_panel.add(storm_box);
+			center_panel.add(fire_box);
+			center_panel.add(flood_box);
+			center_panel.add(Box.createRigidArea(new Dimension(0, 5)));
+			center_panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 			
 		down_panel.add(button);
-		
-		main_panel.add(choose_panel);
-		main_panel.add(down_panel);
+
+		//Put everything together, using the content pane's BorderLayout.
+		main_panel = getContentPane();
+		main_panel.add(up_panel, BorderLayout.PAGE_START);
+		main_panel.add(center_panel, BorderLayout.CENTER);
+		main_panel.add(down_panel, BorderLayout.PAGE_END);
 		
 		this.setContentPane(main_panel);
 	}
