@@ -86,34 +86,21 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JCheckBox B = (JCheckBox) e.getSource();
-		if(B == naval_box) {
+		if(B == naval_box)
 			Environment.setNaval_traffic(B.isSelected());
-			return;
-		}
-		if(B == railway_box) {
+		if(B == railway_box)
 			Environment.setRailway_traffic(B.isSelected());
-			return;
-		}
-		if(B == pedestrian_box) {
+		if(B == pedestrian_box)
 			Environment.setPedestrian_traffic(B.isSelected());
-			return;
-		}
-		if(B == road_box) {
+		if(B == road_box)
 			Environment.setRoad_traffic(B.isSelected());
-			return;
-		}
-		if(B == storm_box) {
-			Environment.setRoad_traffic(B.isSelected());
-			return;
-		}
-		if(B == fire_box) {
+		if(B == storm_box)
+			Environment.setStorm(B.isSelected());
+		if(B == fire_box)
 			Environment.setFire(B.isSelected());
-			return;
-		}
-		if(B == flood_box) {
+		if(B == flood_box)
 			Environment.setFlood(B.isSelected());
-			return;
-		}
+		Environment.display();
 	}
 
 }

@@ -101,7 +101,7 @@ public class Environment {
 	public static void display() {
 		System.out.println("L'ENVIRONMENT :" +
 				"\tNaval Traffic = " + naval_traffic +
-				",\tRailway Traffic = s" + railway_traffic +
+				",\tRailway Traffic = " + railway_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
 				",\tStorm = " + storm +
