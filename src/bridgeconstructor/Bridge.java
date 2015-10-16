@@ -28,6 +28,8 @@ public class Bridge {
 		type = "";
 		material = new Materials();
 		price = 0;
+		
+		System.out.println("BRIDGE : " + this.toString());
 	}
 	
 	public Bridge(float height, float minWidth, float maxWidth, float length, String type, Materials material, float price) {
@@ -38,8 +40,6 @@ public class Bridge {
 		this.type = type;
 		this.material = material;
 		this.price = price;
-		
-		System.out.println("BRIDE : " + this.toString());
 	}
 
 	//	SETTERS
@@ -106,7 +106,7 @@ public class Bridge {
 			",\tmin WIDTH = " + minWidth +
 			",\tmax WIDTH = " + maxWidth +
 			",\tLENGTH = " + length +
-			",\tTYPE = " + type +
+			",\tTYPE = \"" + type + "\"" +
 			",\tMATERIALS = --- "+
 			",\tPRICE = " + price;
 	}

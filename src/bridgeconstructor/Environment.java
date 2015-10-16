@@ -43,11 +43,26 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 	private static boolean fire = false;
 	private static boolean flood = false;
 	
+	// Entre les deux points
+	private static float length = 0;
+	private static float height = 0;
+	
 	// private Materials Sol;
 	
-//	SETTERS
-	//		Setters Traffic
+	public static void reset() {
+		naval_traffic = false;
+		railway_traffic = false;
+		pedestrian_traffic = false;
+		road_traffic = false;
+		storm = false;
+		fire = false;
+		flood = false;
+		length = 0;
+		height = 0;
+	}
 	
+//	SETTERS
+	//	SETTERS Traffic
 	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;
 	}
@@ -64,7 +79,7 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 		Environment.road_traffic = road_traffic;
 	}
 	
-	//		SETTERS Risques Météorologiques
+	//	SETTERS Risques Météorologiques
 	public static void setStorm(boolean storm) {
 		Environment.storm = storm;
 	}
@@ -77,8 +92,17 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 		Environment.flood = flood;
 	}
 	
+	// 	SETTERS Autre
+	public static void setLength(float length) {
+		Environment.length = length;
+	}
+	
+	public static void setHeight(float height) {
+		Environment.height = height;
+	}
+
 // GETTERS
-	//		Getters Traffic
+	//	GETTERS Traffic
 	public static boolean isNaval_traffic() {
 		return naval_traffic;
 	}
@@ -95,7 +119,7 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 		return road_traffic;
 	}
 	
-	//		GETTERS Risques Météorologiques
+	//	GETTERS Risques Météorologiques
 	public static boolean isStorm() {
 		return storm;
 	}
@@ -108,6 +132,15 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 		return flood;
 	}
 	
+	//GETTERS Autre
+	public static float getHeight() {
+		return height;
+	}
+	
+	public static float getLength() {
+		return length;
+	}
+	
 	public static void display() {
 		System.out.println("ENVIRONMENT :" +
 				"\tNaval Traffic = " + naval_traffic +
@@ -116,6 +149,8 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 				",\tRoad Traffic = " + road_traffic +
 				",\tStorm = " + storm +
 				",\tFire = " + fire +
-				",\tFlood = " + flood);
+				",\tFlood = " + flood +
+				",\tHeight = " + height +
+				",\tLength = " + length);
 	}
 }

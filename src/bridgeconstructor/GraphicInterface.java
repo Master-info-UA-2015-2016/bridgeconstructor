@@ -6,11 +6,15 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,7 +25,7 @@ import javax.swing.border.EtchedBorder;
  * L'interface Graphique est construite à partir de cette classe
  *
  */
-public class GraphicInterface extends JFrame implements ActionListener {
+public class GraphicInterface extends JFrame implements ActionListener, PropertyChangeListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -32,6 +36,9 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	private JPanel center_panel;
 		private JPanel traffic_panel;
 		private JPanel meteo_panel;
+		private JPanel other_panel;
+			private JPanel label_panel;
+			private JPanel field_panel;
 	private JPanel down_panel;
 	private Container main_panel;
 	// Label
@@ -39,16 +46,25 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	// Traffic
 	private JLabel traffic;
 	private JCheckBox naval_box;
-	private JCheckBox railway_box;
 	private JCheckBox pedestrian_box;
+	private JCheckBox railway_box;
 	private JCheckBox road_box;
-	// Risques Météorologiques Box
+	// Risques Météorologiques
 	private JLabel meteo;
-	private JCheckBox storm_box;
 	private JCheckBox fire_box;
 	private JCheckBox flood_box;
+	private JCheckBox storm_box;
+	// Autre
+	private JLabel other;
+	private JLabel height;
+	private JLabel length;
+	private JFormattedTextField height_field;
+	private JFormattedTextField length_field;
+	private NumberFormat format;
 	// Bouton
-	private JButton button;
+	private JButton quit_button;
+	private JButton reset_button;
+	private JButton confirm_button;
 	
 	public GraphicInterface() {
 		super(title);
@@ -56,7 +72,7 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		buildInterface();
 		buildEvents();
 		
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.pack();
 		this.setVisible(true);
@@ -64,12 +80,16 @@ public class GraphicInterface extends JFrame implements ActionListener {
 	
 	private void buildComposants() {
 		// Panel
+		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
 		center_panel = new JPanel();
 			center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.Y_AXIS));
 			traffic_panel = new JPanel(new GridLayout(2, 2));
 			meteo_panel = new JPanel(new GridLayout(2, 2));
-		down_panel = new JPanel();
+			other_panel = new JPanel(new GridLayout(1,1));
+				label_panel = new JPanel(new GridLayout(0, 1));
+				field_panel = new JPanel(new GridLayout(0, 1));
+		down_panel = new JPanel(new BorderLayout());
 		// Label
 		order = new JLabel("Veuillez sélectionner les caractéristiques de l'environnement :");
 		// Traffic box
@@ -79,19 +99,30 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		pedestrian_box = new JCheckBox("Traffic Piéton");
 		road_box = new JCheckBox("Traffic Routier");
 		// Risques Météorologies Box
-		meteo = new JLabel("Météo : ");
+		meteo = new JLabel("Météo :");
 		storm_box =  new JCheckBox("Tempête");
 		fire_box = new JCheckBox("Incendie");
 		flood_box = new JCheckBox("Inondation");
-		
+		// Autre
+		other = new JLabel("Autre :");
+		format = NumberFormat.getNumberInstance();
+		height = new JLabel("Hauteur (m) :");
+		height_field = new JFormattedTextField(format);
+			height_field.setColumns(10);
+			height_field.setValue(Environment.getHeight());
+		length = new JLabel("Longueur (m) :");
+		length_field = new JFormattedTextField(format);
+			length_field.setColumns(10);
+			length_field.setValue(Environment.getLength());
 		// Bouton
-		button = new JButton("Tout est fait !");
+		quit_button = new JButton("Quitter");
+		reset_button = new JButton("Reintialiser");
+		confirm_button = new JButton("Tout est fait !");
 	}
 	
 	private void buildInterface() {
 		up_panel.add(order);
 		
-		//center_panel.setLayout(grid_layout);
 		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		// Traffic Panel Choice
 		traffic_panel.setBorder(raisedetched);
@@ -104,21 +135,34 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		meteo_panel.add(storm_box);
 		meteo_panel.add(fire_box);
 		meteo_panel.add(flood_box);
+		// Other Panel TextField
+		label_panel.add(height);
+		label_panel.add(length);
+		field_panel.add(height_field);
+		field_panel.add(length_field);
+		other_panel.setBorder(raisedetched);
+		other_panel.add(label_panel, BorderLayout.CENTER);
+		other_panel.add(field_panel, BorderLayout.LINE_END);
 		center_panel.add(traffic);
 			traffic.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(traffic_panel);
 		center_panel.add(meteo);
 			meteo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(meteo_panel);
+		center_panel.add(other);
+			other.setAlignmentX(Component.CENTER_ALIGNMENT);
+		center_panel.add(other_panel);
 			
-		down_panel.add(button);
-
-		main_panel = getContentPane();
+		down_panel.add(quit_button, BorderLayout.WEST);
+		down_panel.add(reset_button, BorderLayout.CENTER);
+		down_panel.add(confirm_button, BorderLayout.EAST);
+		
 		main_panel.add(up_panel, BorderLayout.PAGE_START);
 		main_panel.add(center_panel, BorderLayout.CENTER);
 		main_panel.add(down_panel, BorderLayout.PAGE_END);
 		
 		this.setContentPane(main_panel);
+		this.reset();
 	}
 	
 	private void buildEvents() {
@@ -129,10 +173,13 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		this.storm_box.addActionListener(this);
 		this.fire_box.addActionListener(this);
 		this.flood_box.addActionListener(this);
-		this.button.addActionListener(this);
+		this.height_field.addPropertyChangeListener("value", this);
+		this.length_field.addPropertyChangeListener("value", this);
+		this.quit_button.addActionListener(this);
+		this.reset_button.addActionListener(this);
+		this.confirm_button.addActionListener(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -140,9 +187,13 @@ public class GraphicInterface extends JFrame implements ActionListener {
 		JButton B;
 		if(e.getSource().getClass() == JButton.class) {
 			B = (JButton) e.getSource();
-			if(B == button) {
+			if(B == quit_button) {
+				this.dispose();
+			} else if(B == reset_button) {
+				this.reset();
+			} else if(B == confirm_button) {
 				// TODO On fait quoi une fois que l'utilisateur a terminé son choix ? (Je connais la réponse, peut-être)
-				System.out.println("En attente...");
+				// Environment est fini (d'après l'utilisateur), il veut donc desormais des informations sur son pont.
 				new Bridge();
 				this.dispose();
 			}
@@ -165,7 +216,28 @@ public class GraphicInterface extends JFrame implements ActionListener {
 			Environment.display();
 		}
 	}
-	
-	
 
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		Object source = evt.getSource();
+		if(source == height_field) {
+			Environment.setHeight(((Number)height_field.getValue()).floatValue());
+		} else if(source == length_field) {
+			Environment.setLength(((Number)length_field.getValue()).floatValue());
+		}
+		Environment.display();
+	}
+
+	private void reset() {
+		Environment.reset();
+		naval_box.setSelected(false);
+		pedestrian_box.setSelected(false);
+		railway_box.setSelected(false);
+		road_box.setSelected(false);
+		fire_box.setSelected(false);
+		flood_box.setSelected(false);
+		storm_box.setSelected(false);
+		height_field.setValue(0);
+		length_field.setValue(0);
+	}	
 }
