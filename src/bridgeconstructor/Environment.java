@@ -44,24 +44,8 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 	
 	// private Materials Sol;
 	
-	//	SETTERS
-	//		SETTERS Traffic
-	public static void switchNavalTraffic(){
-		naval_traffic= true;
-	}
-
-	public static void addRaiwayTraffic(){
-		railway_traffic= true;
-	}
-
-	public static void addPedestrianTraffic(){
-		pedestrian_traffic= true;
-	}
-
-	public static void addRoadTraffic(){
-		road_traffic= true;
-	}
-	
+//	SETTERS
+	//		Setters Traffic
 	
 	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;
@@ -92,8 +76,8 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 		Environment.flood = flood;
 	}
 	
-	// GETTERS
-	//		GETTERS Traffic
+// GETTERS
+	//		Getters Traffic
 	public static boolean isNaval_traffic() {
 		return naval_traffic;
 	}
