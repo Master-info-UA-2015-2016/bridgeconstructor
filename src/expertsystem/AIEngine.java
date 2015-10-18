@@ -16,16 +16,16 @@ public class AIEngine {
 	 * TODO WARNING l'algo semble ne pas prendre en compte les OU dans les conditions des règles
 	 * @author Florian
 	 * 
-	 * @param BR ensemble de règles (Environnment)
+	 * @param BR ensemble de règles
 	 * @param demandables ensemble de faits
-	 * @param BF ensemble de faits initiaux
+	 * @param BF ensemble de faits initiaux (Environnment)
 	 * 
 	 * TODO à implémenter : VF, VA et VC
 	 * VF(f) valeur de f dans BF
 	 * VA(m, r)  affirmation ou négation du mot m dans Ant.(r), r € BR TODO demander (a Ugo ?) ce que c'est, si ce n'est pas un boolean (car on le compare à VF(m) )
 	 * VC(m,r) affirmation ou négation du mot m dans Cons.(r), r € BR
 	 */
-	private void ForwardChaining(/*RulesBase?*/List<Rule> BR) {
+	private void forwardChaining(/*RulesBase?*/List<Rule> BR) {
 		boolean inf= true;	// sert pour savoir si on a fait une inférence durant le cycle
 		int nbInf= 0;
 		
@@ -66,11 +66,4 @@ public class AIEngine {
 //		TODO retour et conclusion pour utilisateur (en passant par bridge-constructor)
 	}
 	
-	
-	
-	public boolean forwardChaining(){
-		
-		
-		return true;
-	}
 }
