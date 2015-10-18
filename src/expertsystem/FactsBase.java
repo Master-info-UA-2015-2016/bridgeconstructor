@@ -1,5 +1,6 @@
 package expertsystem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,13 @@ import java.util.List;
 //		value= factVal;
 //	}
 //}
-
+/**
+ * 
+ * 
+ * @author florian
+ * 
+ * TODO ajouter fonction qui recherche dans la base de faits quels ponts sont constructibles ou ajouter dans une liste de resultat les ponts possibles 
+ */
 public class FactsBase {
 	List<Word> facts;
 	// TODO ? créer une liste de noms et une liste de faits (sans noms ?), pour la recherche des faits
@@ -23,8 +30,23 @@ public class FactsBase {
 	/**
 	 * TODO constructeur FactsBase, peut-on créer une List<> vide avec new?
 	 */
-//	public FactsBase(){
-//	}
+	public FactsBase(){
+		facts= new ArrayList<Word>();
+	}
+	
+	public String toString(){
+		String chaine= "Base de faits : \n";
+		for (Word fact : facts){
+			chaine += "\t "+ fact.toString() +"\n";
+		}
+		
+		return chaine;
+	}
+	
+	public void show(){
+		System.out.println(this.toString());
+		System.out.println("------------------------------------------");
+	}
 	
 	/**
 	 * Ajoute un fait -une affirmation/négation- dans la base de faits, à partir de son nom et de sa valeur

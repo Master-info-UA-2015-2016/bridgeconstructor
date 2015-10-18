@@ -43,11 +43,11 @@ public class Comparison implements Word{
 	 * Retour sous forme de chaine de la classe
 	 */
 	public String toString(){
-		if (op==Operators.inf)	return var.getName() +" < "+ valCondition ;
-		else if (op==Operators.sup)	return var.getName() +" > "+ valCondition ;
-		else if (op==Operators.equal)	return var.getName() +" = "+ valCondition ;
-		else if (op==Operators.sup_equal)	return var.getName() +" >= "+ valCondition ;
-		else if (op==Operators.inf_equal)	return var.getName() +" <= "+ valCondition ;
+		if (op==Operators.inf)	return var.getName() +"("+ var.val() +") < "+ valCondition ;
+		else if (op==Operators.sup)	return var.getName() +"("+ var.val() +") > "+ valCondition ;
+		else if (op==Operators.equal)	return var.getName() +"("+ var.val() +") = "+ valCondition ;
+		else if (op==Operators.sup_equal)	return var.getName() +"("+ var.val() +") >= "+ valCondition ;
+		else if (op==Operators.inf_equal)	return var.getName() +"("+ var.val() +") <= "+ valCondition ;
 		
 		return "ERROR_OP";
 	}
