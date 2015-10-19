@@ -159,6 +159,8 @@ public class Environment {
 			FB.addFact("flood", flood);
 			FB.addFact("storm", storm);
 		// 		Autre
+			FB.addFact("min_length", Operators.equal, length);
+			FB.addFact("min_height", Operators.equal, height);
 		// TODO length & height
 	}
 }

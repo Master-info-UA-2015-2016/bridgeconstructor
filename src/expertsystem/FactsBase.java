@@ -61,7 +61,7 @@ public class FactsBase {
 	 * @param factName nom du nouveau fait
 	 * @param factVal valeur (vrai ou faux) du nouveau fait
 	 */
-	public void addFact(String name,/*Variable var,*/ Operators op, int valCondition){
+	public void addFact(String name,/*Variable var,*/ Operators op, float valCondition){
 		facts.add(new Comparison(name, op, valCondition));
 	}
 

@@ -4,7 +4,7 @@ public class Comparison implements Word{
 //	protected Variable var;
 	private String name;
 	private Operators op;
-	private int valCondition;
+	private float valCondition;
 	
 	/**
 	 * Constructeur
@@ -15,7 +15,7 @@ public class Comparison implements Word{
 	 * @param _op
 	 * @param _valCondition
 	 */
-	public Comparison(String varName, /*int varValue,*/ Operators _op, int _valCondition){
+	public Comparison(String varName, /*int varValue,*/ Operators _op, float _valCondition){
 //		var= new Variable(varName, varValue);
 		name= varName;
 		op= _op;
