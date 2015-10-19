@@ -1,6 +1,11 @@
-package expertsystem;
+package expertsystem.deprecated;
 
-
+/**
+ * 
+ * 
+ * @author florian
+ * @deprecated
+ */
 public class Variable {
 	private String name;
 	private int value;

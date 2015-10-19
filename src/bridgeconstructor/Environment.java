@@ -8,9 +8,6 @@ import expertsystem.*;
  * en fonction de sa base de faits
  */
 public class Environment {
-	//Faits
-	private static FactsBase FB = new FactsBase();
-	
 	// Traffic
 	private static boolean naval_traffic = false;
 	private static boolean railway_traffic = false;
@@ -29,7 +26,6 @@ public class Environment {
 	// private Materials Sol;
 	
 	public static void reset() {
-		FB.clear();
 		naval_traffic = false;
 		railway_traffic = false;
 		pedestrian_traffic = false;
@@ -82,10 +78,6 @@ public class Environment {
 	}
 
 // GETTERS
-	//	GETTERS Base de Faits
-	public static FactsBase getFB() {
-		return FB;
-	}
 	
 	//	GETTERS Traffic
 	public static boolean isNaval_traffic() {
@@ -146,7 +138,9 @@ public class Environment {
 	 * Saturation de la base de faits
 	 * {@link FactsBase}
 	 */
-	public static void saturateFactsBase() {
+	public static FactsBase getFactsBase() {
+		FactsBase FB = new FactsBase();
+		
 		System.out.println("Saturation de la base de faits");
 		// Ajout des faits
 		//		Traffic
@@ -162,5 +156,6 @@ public class Environment {
 			FB.addFact("min_length", Operators.equal, length);
 			FB.addFact("min_height", Operators.equal, height);
 		// TODO length & height
+		return FB;
 	}
 }
