@@ -9,7 +9,7 @@ public class Main {
 		FactsBase FB= new FactsBase();
 		
 //		BASE DE FAITS
-		Word taille= new Comparison("Taille pont", 20, Operators.inf_equal, 35);
+		Word taille= new Comparison("Taille pont", /*20,*/ Operators.inf_equal, 35);
 		Word cars= new Affirmation("Présence traffic routier", false);
 		FB.addFact(taille);
 		FB.addFact(cars);
@@ -32,6 +32,11 @@ public class Main {
 		
 		System.out.println(BR1);
 //		OTHER
+		AIEngine moteur= new AIEngine(BR1);
+		moteur.forwardChaining(FB);
+
+		System.out.println(FB);
+		
 		
 	}
 

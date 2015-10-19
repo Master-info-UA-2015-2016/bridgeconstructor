@@ -1,9 +1,10 @@
 package expertsystem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class RulesBase {
+public class RulesBase implements Iterable{
 	List<Rule> rules;
 	
 	/**
@@ -56,6 +57,20 @@ public class RulesBase {
 	 */
 	public boolean contains(Rule rule){
 		return rules.contains(rule);
+	}
+
+	/**
+	 * Supprime une règle est dans la base de règles
+	 * @return vrai si le fait est présent
+	 * 
+	 * TODO vérifier l'exécution
+	 */
+	public boolean tryRemove(Rule rule){
+		return rules.remove(rule);
+	}
+	
+	public Iterator<Rule> iterator() {
+		return rules.iterator();
 	}
 	
 }

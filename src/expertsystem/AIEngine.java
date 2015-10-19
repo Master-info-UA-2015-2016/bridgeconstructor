@@ -8,9 +8,9 @@ import java.util.List;
  */
 
 public class AIEngine {
-	private /*RulesBase?*/List<Rule> BR;
+	private RulesBase BR;
 	
-	public AIEngine(/*RulesBase?*/List<Rule> _BR){
+	public AIEngine(RulesBase _BR){
 		BR= _BR;
 	}
 	
@@ -53,7 +53,7 @@ public class AIEngine {
 						for (Word wCons : rule.getConsequences() ){
 							BF.addFact(wCons);
 //							TODO BF.add({VC(m,r), m})   Je n'ai pas vraiment compris :( 
-							BR.remove(rule); /* Une règle se déclenche au plus une fois */
+							BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
 							
 							inf= true;
 							++nbInf;
