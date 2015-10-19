@@ -36,9 +36,11 @@ public class AIEngine {
 		
 		while(inf){
 			inf= false;
+			// on fait une copue de la BR pour faire les itérations dessus, et ainsi pouvoir modifier la BR pendant le parcours de sa copie
+			RulesBase BRcpy= new RulesBase(BR);
 			
 			/* On en peut pas supprimer une règle si on a un itérateur dessus */
-			for ( Rule rule : BR){
+			for ( Rule rule : BRcpy){
 				System.out.println("Debut boucle sur une regle");
 				
 //				/*Antécédants des règles*/
@@ -66,11 +68,7 @@ public class AIEngine {
 					++nbInf;
 					//TODO this.Mémoriser(r,nbInf) /* Pour l'explication TODO ???*/ 
 
-					System.out.println("avant suppression rule");
-//					BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
-					Affirmation dummy= new Affirmation("dummy", true);
-					rule.addAnt(dummy); // revient à supprimer la règle, car la condition n'est jamais rempli, TODO améliorer
-					System.out.println("après suppression rule");
+					BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
 				}
 				
 			}

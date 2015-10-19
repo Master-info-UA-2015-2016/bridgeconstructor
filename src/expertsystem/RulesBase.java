@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class RulesBase implements Iterable<Rule>{
-	List<Rule> rules;
+	protected List<Rule> rules;
 	
 	/**
 	 * Constructeur par défaut de {@link RulesBase}
@@ -13,6 +13,15 @@ public class RulesBase implements Iterable<Rule>{
 	public RulesBase(){
 		rules= new ArrayList<Rule>();
 	}
+	
+
+	/**
+	 * Constructeur par recopie {@link RulesBase}
+	 */
+	public RulesBase(RulesBase other){
+		rules= new ArrayList<Rule>(other.rules);
+	}
+	
 	
 	/**
 	 * Constructeur de {@link RulesBase}

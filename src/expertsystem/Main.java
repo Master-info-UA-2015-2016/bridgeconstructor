@@ -11,17 +11,17 @@ public class Main {
 //		BASE DE FAITS
 		Word taille= new Comparison("Taille pont", /*20,*/ Operators.inf_equal, 35);
 		Word cars= new Affirmation("Présence traffic routier", false);
-//		FB.addFact(taille);
-		FB.addFact(cars);
+		FB.addFact(taille);
+//		FB.addFact(cars);
 		
 		System.out.println(FB);
 		
 //		BASE DE REGLES
 		ArrayList<Word> listAnt= new ArrayList<Word>();
-		listAnt.add(cars);
+		listAnt.add(taille);
 		
 		ArrayList<Word> listCons= new ArrayList<Word>();
-		listCons.add(taille);
+		listCons.add(cars);
 		
 		
 //		Rule taille_cars= new Rule(listAnt, listCons);
