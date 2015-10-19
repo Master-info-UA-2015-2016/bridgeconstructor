@@ -19,6 +19,7 @@ public class Main {
 		System.out.println("Le prix du bois : " + materiaux.getWoodPrice());
 		System.out.println("Le prix du béton : " + materiaux.getConcretePrice());
 		
-		new GraphicInterface();
+		/*GraphicInterface configWindow= */new GraphicInterface();
+		
 	}
 }

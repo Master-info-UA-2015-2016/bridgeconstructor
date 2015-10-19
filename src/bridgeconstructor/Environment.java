@@ -144,18 +144,20 @@ public class Environment {
 		System.out.println("Saturation de la base de faits");
 		// Ajout des faits
 		//		Traffic
-			FB.addFact("naval_traffic", naval_traffic);
-			FB.addFact("pedestrian_traffic", pedestrian_traffic);
-			FB.addFact("railway_traffic", railway_traffic);
-			FB.addFact("road_traffic", road_traffic);
+			FB.addFact("naval traffic", naval_traffic);
+			FB.addFact("pedestrian traffic", pedestrian_traffic);
+			FB.addFact("railway traffic", railway_traffic);
+			FB.addFact("road traffic", road_traffic);
 		//		Risques Météorologiques
 			FB.addFact("fire", fire);
 			FB.addFact("flood", flood);
 			FB.addFact("storm", storm);
 		// 		Autre
-			FB.addFact("min_length", Operators.equal, length);
-			FB.addFact("min_height", Operators.equal, height);
+			FB.addFact("min length", Operators.equal, length);
+			FB.addFact("min height", Operators.equal, height);
+
 		// TODO length & height
+			
 		return FB;
 	}
 }

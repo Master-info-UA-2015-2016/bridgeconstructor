@@ -1,4 +1,4 @@
-package expertsystem;
+package expertsystem.deprecated;
 
 /**
  * Interface pour les classe définissant les Bases de fait

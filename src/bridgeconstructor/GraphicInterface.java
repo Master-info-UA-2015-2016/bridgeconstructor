@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,6 +21,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+
+import expertsystem.AIEngine;
+import expertsystem.Affirmation;
+import expertsystem.FactsBase;
+import expertsystem.RulesBase;
+import expertsystem.Word;
 
 /**
  * L'interface Graphique est construite à partir de cette classe
@@ -175,6 +182,8 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		this.flood_box.addActionListener(this);
 		this.height_field.addPropertyChangeListener("value", this);
 		this.length_field.addPropertyChangeListener("value", this);
+
+		// Boutons
 		this.quit_button.addActionListener(this);
 		this.reset_button.addActionListener(this);
 		this.confirm_button.addActionListener(this);
@@ -191,11 +200,10 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 				this.dispose();
 			} else if(B == reset_button) {
 				this.reset();
-			} else if(B == confirm_button) {
-				// TODO et après saturation ?
-				Environment.saturateFactsBase();
-				System.out.println(Environment.getFB());
+			} else if(B == confirm_button) {				
 				this.dispose();
+				
+				launchForwardChaining();
 			}
 		} else if(e.getSource().getClass() == JCheckBox.class) {
 			CBB = (JCheckBox) e.getSource();
@@ -241,5 +249,32 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		length_field.setValue(0);
 		
 		Environment.display();
-	}	
+	}
+	
+	// private ou public ? void ou boolean ?
+	private void launchForwardChaining(){
+		FactsBase FB= Environment.getFactsBase();
+		System.out.println(FB);
+		
+		
+//		BASE DE REGLES
+		ArrayList<Word> listAnt= new ArrayList<Word>();
+			Affirmation fire= new Affirmation("fire", true);
+		listAnt.add(fire);
+		
+		ArrayList<Word> listCons= new ArrayList<Word>();
+			Affirmation rail= new Affirmation("railway traffic", false);
+		listCons.add(rail);
+				
+		RulesBase BR1= new RulesBase();
+		BR1.addRule(listAnt, listCons);
+		
+		System.out.println(BR1);
+//		OTHER
+		AIEngine moteur= new AIEngine(BR1);
+		FB= moteur.forwardChaining(FB);
+
+		System.out.println(FB);
+				
+	}
 }
