@@ -18,6 +18,23 @@ public class Rule {
 		consequences= new ArrayList<Word>(cons);
 	}
 	
+	public String toString(){
+		String chain= new String("SI ");
+		for (Word ant : antecedents){
+			chain+= ant.toString() +" ET ";
+		}
+		chain+= "(dernier ET à supprimer, revoir algo)";
+		chain+= " ALORS ";
+		
+		for (Word cons : consequences){
+			chain+= cons.toString() +" ET ";
+		}
+		chain+= "(dernier ET à supprimer, revoir algo)";
+		chain+= ".";
+		
+		return chain;
+	}
+	
 	// ajouter si ET ou OU
 	public void addAnt(Word ant){
 		antecedents.add(ant);

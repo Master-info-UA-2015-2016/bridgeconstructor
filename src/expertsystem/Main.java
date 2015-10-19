@@ -1,5 +1,6 @@
 package expertsystem;
 
+import java.util.ArrayList;
 
 public class Main {
 
@@ -16,7 +17,22 @@ public class Main {
 		FB.show();
 		
 //		BASE DE REGLES
-		List<Rule> BR;
+		ArrayList<Word> listAnt= new ArrayList<Word>();
+		listAnt.add(cars);
+		
+
+		ArrayList<Word> listCons= new ArrayList<Word>();
+		listCons.add(taille);
+		
+//		Rule taille_cars= new Rule(listAnt, listCons);
+		
+		RulesBase BR1= new RulesBase();
+		BR1.addRule(listAnt, listCons);
+//		BR1.addRule(taille_cars);
+		
+		BR1.show();
+		
+//		OTHER
 		
 	}
 

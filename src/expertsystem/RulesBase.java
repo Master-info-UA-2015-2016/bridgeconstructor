@@ -12,7 +12,7 @@ public class RulesBase {
 	}
 	
 	public String toString(){
-		String chaine= "Base de faits : \n";
+		String chaine= "Base de règles : \n";
 		for (Rule rule : rules){
 			chaine += "\t "+ rule.toString() +"\n";
 		}
@@ -26,47 +26,32 @@ public class RulesBase {
 	}
 	
 	/**
-	 * Ajoute un fait -une affirmation/négation- dans la base de faits, à partir de son nom et de sa valeur
+	 * Ajoute une règle dans la BR
 	 * @author florian
 	 * 
-	 * @param factName nom du nouveau fait
-	 * @param factVal valeur (vrai ou faux) du nouveau fait
 	 */
-	public void add(List<Word> ant, List<Word> cons){
+	public void addRule(List<Word> ant, List<Word> cons){
 		rules.add(new Rule(ant, cons));
 	}
 	
 	/**
-	 * Ajoute un fait -comparaison- dans la base de faits, à partir de son nom et de sa valeur
+	 * Ajoute une règle dans la BR
 	 * @author florian
 	 * 
-	 * @param factName nom du nouveau fait
-	 * @param factVal valeur (vrai ou faux) du nouveau fait
 	 */
-	public void addFact(Variable var, Operators op, int valCondition){
-		rules.add(new Comparison(var, op, valCondition));
-	}
-
-	/**
-	 * Ajoute un fait, déja existant, dans la base de faits
-	 * @author florian
-	 * 
-	 * @param factName nom du nouveau fait
-	 * @param factVal valeur (vrai ou faux) du nouveau fait
-	 */
-	public void addFact(Word fact){
-		rules.add(fact);
+	public void addRule(Rule r){
+		rules.add(r);
 	}
 	
+	
 	/**
-	 * Vérifie si un fait est dans la base de faits
-	 * TODO PEUT ETRE ne vérifier que les noms ?
-	 * TODO OBLIGATOIRE, si x < 5 VRAI, alors v < 7 est VRAI,
-	 * 		donc il faut modifier la fonction pour l'appliquer sur les "comparisons",
-	 *  	modifier Comparison.equals() suffit ?
+	 * Vérifie si une règle est dans la base de règles
 	 * @return vrai si le fait est présent
+	 * 
+	 * TODO vérifier : mm chose que pour les fait pour les </<= et >/>= ? 
 	 */
-	public boolean contains(Word fact){
-		return rules.contains(fact);
+	public boolean contains(Rule rule){
+		return rules.contains(rule);
 	}
+	
 }
