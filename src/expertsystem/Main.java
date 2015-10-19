@@ -14,7 +14,7 @@ public class Main {
 		FB.addFact(taille);
 		FB.addFact(cars);
 		
-		FB.show();
+		System.out.println(FB);
 		
 //		BASE DE REGLES
 		ArrayList<Word> listAnt= new ArrayList<Word>();

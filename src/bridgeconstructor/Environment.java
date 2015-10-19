@@ -153,4 +153,10 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 				",\tHeight = " + height +
 				",\tLength = " + length);
 	}
+	
+	public static FactsBase saturateFactsBase() {
+		FactsBase FB = new FactsBase();
+		
+		return FB;
+	}
 }

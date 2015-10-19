@@ -43,11 +43,6 @@ public class FactsBase {
 		return chaine;
 	}
 	
-	public void show(){
-		System.out.println(this.toString());
-		System.out.println("------------------------------------------");
-	}
-	
 	/**
 	 * Ajoute un fait -une affirmation/négation- dans la base de faits, à partir de son nom et de sa valeur
 	 * @author florian
