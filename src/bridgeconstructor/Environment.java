@@ -82,6 +82,11 @@ public class Environment {
 	}
 
 // GETTERS
+	//	GETTERS Base de Faits
+	public static FactsBase getFB() {
+		return FB;
+	}
+	
 	//	GETTERS Traffic
 	public static boolean isNaval_traffic() {
 		return naval_traffic;
@@ -121,6 +126,9 @@ public class Environment {
 		return length;
 	}
 	
+	/**
+	 * Affichage du contenu de la classe (Un toString() static)
+	 */
 	public static void display() {
 		System.out.println("ENVIRONMENT :" +
 				"\tNaval Traffic = " + naval_traffic +
@@ -136,6 +144,7 @@ public class Environment {
 	
 	/**
 	 * Saturation de la base de faits
+	 * {@link FactsBase}
 	 */
 	public static void saturateFactsBase() {
 		System.out.println("Saturation de la base de faits");

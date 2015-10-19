@@ -192,9 +192,9 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 			} else if(B == reset_button) {
 				this.reset();
 			} else if(B == confirm_button) {
-				// TODO On fait quoi une fois que l'utilisateur a terminé son choix ? (Je connais la réponse, peut-être)
-				// Environment est fini (d'après l'utilisateur), il veut donc desormais des informations sur son pont.
+				// TODO et après saturation ?
 				Environment.saturateFactsBase();
+				System.out.println(Environment.getFB());
 				this.dispose();
 			}
 		} else if(e.getSource().getClass() == JCheckBox.class) {
