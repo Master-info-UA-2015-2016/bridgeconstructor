@@ -11,7 +11,7 @@ public class Main {
 //		BASE DE FAITS
 		Word taille= new Comparison("Taille pont", /*20,*/ Operators.inf_equal, 35);
 		Word cars= new Affirmation("Présence traffic routier", false);
-		FB.addFact(taille);
+//		FB.addFact(taille);
 		FB.addFact(cars);
 		
 		System.out.println(FB);
@@ -33,7 +33,7 @@ public class Main {
 		System.out.println(BR1);
 //		OTHER
 		AIEngine moteur= new AIEngine(BR1);
-		moteur.forwardChaining(FB);
+		FB= moteur.forwardChaining(FB);
 
 		System.out.println(FB);
 		
