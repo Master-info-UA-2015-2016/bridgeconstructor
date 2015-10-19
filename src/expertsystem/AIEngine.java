@@ -8,7 +8,11 @@ import java.util.List;
  */
 
 public class AIEngine {
-	private FactsBase BF;
+	private /*RulesBase?*/List<Rule> BR;
+	
+	public AIEngine(/*RulesBase?*/List<Rule> _BR){
+		BR= _BR;
+	}
 	
 	/**
 	 * On sature la BF (version de base, on boucle sur BR (sans ordre partiel))
@@ -25,7 +29,7 @@ public class AIEngine {
 	 * VA(m, r)  affirmation ou négation du mot m dans Ant.(r), r € BR TODO demander (a Ugo ?) ce que c'est, si ce n'est pas un boolean (car on le compare à VF(m) )
 	 * VC(m,r) affirmation ou négation du mot m dans Cons.(r), r € BR
 	 */
-	private void forwardChaining(/*RulesBase?*/List<Rule> BR) {
+	public void forwardChaining(FactsBase BF) {
 		boolean inf= true;	// sert pour savoir si on a fait une inférence durant le cycle
 		int nbInf= 0;
 		
@@ -38,8 +42,8 @@ public class AIEngine {
 					while(dec){
 						// TODO OBLIGATOIRE, corriger contains pour comparaison
 						// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
-						if ( ( BF.contains(wAnt) // && /*valeur de f dans BF*/VF(f)!=/*Est-ce que ce ne serait pas == ? (erreur sur poly prof ?)*/ /*VA(wAnt,r)*/wAnt.isTrue() )
-								) || !BF.contains(wAnt) )
+						if ( ( BF.contains(wAnt) // && /*valeur de f dans BF*/VF(f)!=/*Est-ce que ce ne serait pas == ? (erreur sur poly prof ?)*/ /*VA(wAnt,r)*/wAnt.isTrue() || !BF.contains(wAnt) ))
+								) ) 
 							dec= false;
 					}
 					

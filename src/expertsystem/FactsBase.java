@@ -28,7 +28,7 @@ public class FactsBase {
 	// TODO ? créer une liste de noms et une liste de faits (sans noms ?), pour la recherche des faits
 	
 	/**
-	 * TODO constructeur FactsBase, peut-on créer une List<> vide avec new?
+	 * Constructeur base de faits
 	 */
 	public FactsBase(){
 		facts= new ArrayList<Word>();
