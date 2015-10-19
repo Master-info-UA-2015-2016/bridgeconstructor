@@ -18,7 +18,7 @@ public class Bridge {
 	private float price;
 	
 	/**
-	 * Constructeur par défaut de Bridge
+	 * Constructeur par défaut de {@link Bridge}
 	 */
 	public Bridge() {
 		minHeight= 0;

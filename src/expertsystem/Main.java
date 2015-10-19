@@ -20,9 +20,9 @@ public class Main {
 		ArrayList<Word> listAnt= new ArrayList<Word>();
 		listAnt.add(cars);
 		
-
 		ArrayList<Word> listCons= new ArrayList<Word>();
 		listCons.add(taille);
+		
 		
 //		Rule taille_cars= new Rule(listAnt, listCons);
 		
@@ -30,8 +30,7 @@ public class Main {
 		BR1.addRule(listAnt, listCons);
 //		BR1.addRule(taille_cars);
 		
-		BR1.show();
-		
+		System.out.println(BR1);
 //		OTHER
 		
 	}
