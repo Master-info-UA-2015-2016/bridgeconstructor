@@ -35,7 +35,7 @@ public class AIEngine {
 		
 		while(inf){
 			inf= false;
-			for (Rule rule : BR){
+			for ( Rule rule : BR){
 				boolean dec= true;
 //				/*Antécédants des règles*/,
 				for (Word wAnt : rule.getAntecedants()){

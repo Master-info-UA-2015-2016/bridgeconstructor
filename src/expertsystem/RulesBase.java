@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class RulesBase implements Iterable{
+public class RulesBase implements Iterable<Rule>{
 	List<Rule> rules;
 	
 	/**
