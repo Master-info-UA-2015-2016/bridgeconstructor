@@ -13,26 +13,27 @@ public class Rule {
 	private List<Word> antecedents;
 	private List<Word> consequences;
 	
-	public Rule(Collection<Word> ants, Collection<Word> cons){
-		antecedents= new ArrayList<Word>(ants);
-		consequences= new ArrayList<Word>(cons);
+	public Rule(Collection<Word> antecedents, Collection<Word> consequences){
+		this.antecedents= new ArrayList<Word>(antecedents);
+		this.consequences= new ArrayList<Word>(consequences);
 	}
 	
 	public String toString(){
-		String chain= new String("SI ");
-		for (Word ant : antecedents){
-			chain+= ant.toString() +" ET ";
+		String s= "SI ";
+		for (int i=0 ; i<antecedents.size() ; i++) {
+			if(i > 0) s+= " ET ";
+			Word antecedent = antecedents.get(i);
+			s+= antecedent.toString();
 		}
-		chain+= "(dernier ET à supprimer, revoir algo)";
-		chain+= " ALORS ";
-		
-		for (Word cons : consequences){
-			chain+= cons.toString() +" ET ";
+		s+= " ALORS ";
+		for (int i=0 ; i<consequences.size() ; i++) {
+			if(i > 0) s+= " ET ";
+			Word consequence = consequences.get(i);
+			s+= consequence.toString();
 		}
-		chain+= "(dernier ET à supprimer, revoir algo)";
-		chain+= ".";
+		s+= ".";
 		
-		return chain;
+		return s;
 	}
 	
 	// ajouter si ET ou OU
