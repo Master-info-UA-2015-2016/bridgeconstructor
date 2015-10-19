@@ -89,6 +89,13 @@ public class FactsBase {
 	}
 	
 	/**
+	 * Vide la base de faits
+	 */
+	public void clear() {
+		this.facts.clear();
+	}
+	
+	/**
 	 * TODO vérifier Utile ? 
 	 * @param fact
 	 * @return

@@ -2,35 +2,14 @@ package bridgeconstructor;
 
 import expertsystem.*;
 
-//package expertsystem;
-
 /**
  * La classe n'a pas besoin d'être instancié car unique
  * Elle sera remplie par l'utilisateur
  * en fonction de sa base de faits
  */
-public class Environment /*implements FactsClass je n'ai pas réussi à utiliser static avec une interface*/ {
+public class Environment {
 	//Faits
-//	private static RulesBase RB;
-	private static FactsBase FB;
-	
-//	private static void createRB(){
-//		RB = new RulesBase();
-//	}
-
-	protected static void createFB(){
-		// TODO (pour que tu voies) Tu n'utilises pas ta base de fait
-		FB = new FactsBase();
-		
-		FB.addFact("Traffic naval", naval_traffic);
-		FB.addFact("Traffic ferroviaire", railway_traffic);
-		FB.addFact("Traffic routier", pedestrian_traffic);
-		FB.addFact("Traffic pédestre", road_traffic);
-		
-		FB.addFact("Risque d'ouragan", storm);
-		FB.addFact("Risque d'incendie", fire);
-		FB.addFact("Risque d'inondation", flood);
-	}
+	private static FactsBase FB = new FactsBase();
 	
 	// Traffic
 	private static boolean naval_traffic = false;
@@ -50,6 +29,7 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 	// private Materials Sol;
 	
 	public static void reset() {
+		FB.clear();
 		naval_traffic = false;
 		railway_traffic = false;
 		pedestrian_traffic = false;
@@ -154,9 +134,22 @@ public class Environment /*implements FactsClass je n'ai pas réussi à utiliser
 				",\tLength = " + length);
 	}
 	
-	public static FactsBase saturateFactsBase() {
-		FactsBase FB = new FactsBase();
-		
-		return FB;
+	/**
+	 * Saturation de la base de faits
+	 */
+	public static void saturateFactsBase() {
+		System.out.println("Saturation de la base de faits");
+		// Ajout des faits
+		//		Traffic
+			FB.addFact("naval_traffic", naval_traffic);
+			FB.addFact("pedestrian_traffic", pedestrian_traffic);
+			FB.addFact("railway_traffic", railway_traffic);
+			FB.addFact("road_traffic", road_traffic);
+		//		Risques Météorologiques
+			FB.addFact("fire", fire);
+			FB.addFact("flood", flood);
+			FB.addFact("storm", storm);
+		// 		Autre
+		// TODO length & height
 	}
 }

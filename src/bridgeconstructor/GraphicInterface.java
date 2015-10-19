@@ -194,7 +194,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 			} else if(B == confirm_button) {
 				// TODO On fait quoi une fois que l'utilisateur a terminé son choix ? (Je connais la réponse, peut-être)
 				// Environment est fini (d'après l'utilisateur), il veut donc desormais des informations sur son pont.
-				new Bridge();
+				Environment.saturateFactsBase();
 				this.dispose();
 			}
 		} else if(e.getSource().getClass() == JCheckBox.class) {
