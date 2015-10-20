@@ -1,7 +1,6 @@
 package expertsystem;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * La classe utilisera les règles ainsi que la base de faits
