@@ -50,11 +50,11 @@ public class AIEngine {
 
 				// TODO OBLIGATOIRE, corriger contains() pour comparaison
 				// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
-				for (Word wAnt : rule.getAntecedants()){ // pas optimal, car on continue de vérifier, même si dec est déjà à faux
+				// pas optimal, car on continue de vérifier, même si dec est déjà à faux
+				for (Word wAnt : rule.getAntecedants()){ 
 //					Word wAnt= iter.next();
 					System.out.println("Parcours les antécédents");
-					if ( ( !BF.contains(wAnt) // && /*valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/wAnt.isTrue() || !BF.contains(wAnt) ))
-							) ) 
+					if ( !BF.contains(wAnt) )// && /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/wAnt.isTrue() || !BF.contains(wAnt) ))
 						dec= false;
 				}
 				if (dec){
@@ -62,7 +62,6 @@ public class AIEngine {
 //						/*Conséquences des règles*/,
 					for (Word wCons : rule.getConsequences() ){
 						BF.addFact(wCons);
-//						TODO BF.add({VC(m,r), m})   Je n'ai pas vraiment compris :( 
 					}
 					inf= true;
 					++nbInf;
