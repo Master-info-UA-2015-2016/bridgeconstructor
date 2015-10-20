@@ -221,7 +221,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 				Environment.setFire(CBB.isSelected());
 			else if(CBB == flood_box)
 				Environment.setFlood(CBB.isSelected());
-			Environment.display();
+			Environment.print();
 		}
 	}
 
@@ -233,7 +233,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		} else if(source == length_field) {
 			Environment.setLength(((Number)length_field.getValue()).floatValue());
 		}
-		Environment.display();
+		Environment.print();
 	}
 
 	private void reset() {
@@ -248,7 +248,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		height_field.setValue(0);
 		length_field.setValue(0);
 		
-		Environment.display();
+		Environment.print();
 	}
 	
 	// private ou public ? void ou boolean ?

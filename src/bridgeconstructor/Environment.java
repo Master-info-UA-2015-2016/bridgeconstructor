@@ -121,7 +121,7 @@ public class Environment {
 	/**
 	 * Affichage du contenu de la classe (Un toString() static)
 	 */
-	public static void display() {
+	public static void print() {
 		System.out.println("ENVIRONMENT :" +
 				"\tNaval Traffic = " + naval_traffic +
 				",\tRailway Traffic = " + railway_traffic +
