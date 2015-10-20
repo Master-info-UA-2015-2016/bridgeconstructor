@@ -11,7 +11,7 @@ public class Main {
 //		BASE DE FAITS
 		Word taille= new Comparison("Taille pont", /*20,*/ Operators.inf_equal, 35);
 		Word cars= new Affirmation("Présence traffic routier", false);
-		FB.addFact(taille);
+		FB.add(taille);
 //		FB.addFact(cars);
 		
 		System.out.println(FB);

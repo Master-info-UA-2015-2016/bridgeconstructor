@@ -18,6 +18,7 @@ public class Affirmation extends Word {
 	}
 	
 	public boolean equals(Word other) {
+		System.out.println("Compare Aff avec Word : ");
 		return false;
 	}
 	

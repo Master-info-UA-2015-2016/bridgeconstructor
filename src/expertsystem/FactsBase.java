@@ -89,9 +89,33 @@ public class FactsBase extends ArrayList<Word> {
 	 *  	modifier Comparison.equals() suffit ?
 	 * @return vrai si le fait est présent
 	 */
-//	public boolean contains(Word fact){
+	public boolean contains(Word fact){
+		System.out.println("recherche si BF contient Word : "+ fact);
+		for (Word w : this){
+			if (w.getName().equals(fact.getName()))
+				return true;
+		}
+		return false;
+		
+//		return facts.contains(fact);
+	}
+	
+//	public boolean contains(Comparison fact){
+//		System.out.println("recherche si BF contient Comp : "+ fact);
 //		for (Word w : this){
-//			if (w.equals(fact))
+//			if (w.getName().equals(fact.getName()))
+//				return true;
+//		}
+//		System.out.println("NON ne contient pas");
+//		return false;
+//		
+////		return facts.contains(fact);
+//	}
+//	
+//	public boolean contains(Affirmation fact){
+//		System.out.println("recherche si BF contient Aff : "+ fact);
+//		for (Word w : this){
+//			if (w.getName().equals(fact.getName()))
 //				return true;
 //		}
 //		return false;

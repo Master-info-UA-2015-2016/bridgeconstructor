@@ -98,6 +98,7 @@ public class Comparison extends Word{
 	}
 
 	public boolean equals(Word other) {
+		System.out.println("Compare Comp avec Word : ");
 		return false;
 	}
 	
