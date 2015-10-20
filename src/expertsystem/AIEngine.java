@@ -36,12 +36,11 @@ public class AIEngine {
 		
 		while(inf){
 			inf= false;
-			// on fait une copue de la BR pour faire les itérations dessus, et ainsi pouvoir modifier la BR pendant le parcours de sa copie
+			// on fait une copie de la BR pour faire les itérations dessus, et ainsi pouvoir modifier la BR pendant le parcours de sa copie
 			RulesBase BRcpy= new RulesBase(BR);
 			
 			/* On en peut pas supprimer une règle si on a un itérateur dessus */
 			for ( Rule rule : BRcpy){
-				System.out.println("Debut boucle sur une regle");
 				
 //				/*Antécédants des règles*/
 				boolean dec= true;
@@ -53,7 +52,8 @@ public class AIEngine {
 				// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
 				for (Word wAnt : rule.getAntecedants()){ // pas optimal, car on continue de vérifier, même si dec est déjà à faux
 //					Word wAnt= iter.next();
-					if ( ( !BF.contains(wAnt) // && /*valeur de f dans BF*/VF(f)!=/*Est-ce que ce ne serait pas == ? (erreur sur poly prof ?)*/ /*VA(wAnt,r)*/wAnt.isTrue() || !BF.contains(wAnt) ))
+					System.out.println("Parcours les antécédents");
+					if ( ( !BF.contains(wAnt) // && /*valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/wAnt.isTrue() || !BF.contains(wAnt) ))
 							) ) 
 						dec= false;
 				}

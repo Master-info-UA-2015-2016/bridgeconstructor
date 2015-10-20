@@ -200,10 +200,10 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 				this.dispose();
 			} else if(B == reset_button) {
 				this.reset();
-			} else if(B == confirm_button) {				
+			} else if(B == confirm_button) {
 				this.dispose();
-				
 				launchForwardChaining();
+				// TODO afficher le pont & le prix sélectionné
 			}
 		} else if(e.getSource().getClass() == JCheckBox.class) {
 			CBB = (JCheckBox) e.getSource();
