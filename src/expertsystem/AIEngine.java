@@ -93,12 +93,12 @@ public class AIEngine {
 	}
 	
 	/**
-	 * Chaînage Arrière
+	 * Chaînage Arrière - Procédure DEMO
 	 * @param A : But récursivement établi (b dans l'exemple)
 	 * @param FB : La Base de Faits
-	 * @return FactsBase : 
+	 * @return boolean 
 	 */
-	public FactsBase backwardChaining(Affirmation A, FactsBase FB) {
+	public boolean DEMO(Affirmation A, FactsBase FB) {
 		// La procédure devrait s'appeler DEMO...
 		RulesBase RB = new RulesBase(BR);
 		
@@ -120,7 +120,7 @@ public class AIEngine {
 		if(dem == true)
 			FB.add(A);
 		// return dem ?
-		return FB;
+		return dem;
 	}
 
 }
