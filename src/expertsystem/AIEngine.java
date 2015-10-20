@@ -69,8 +69,13 @@ public class AIEngine {
 				for (Word wAnt : rule.getAntecedants()){ 
 //					Word wAnt= iter.next();
 					System.out.println("Parcours les antécédents");
-					if ( !BF.contains(wAnt) )// && /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/wAnt.isTrue() || !BF.contains(wAnt) ))
+					try {
+						if ( BF.contains(wAnt) )//&& BF.getVal(wAnt.getName()s) != wAnt. ) || !BF.contains(wAnt) ))// /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/wAnt.isTrue())
+							dec= false;
+					}
+					catch (Exception e){
 						dec= false;
+					}
 				}
 				if (dec){
 //						Je prend tout les conséquence de la regle en cours

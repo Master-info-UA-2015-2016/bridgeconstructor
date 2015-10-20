@@ -9,10 +9,9 @@ public abstract class Word {
 	
 	public abstract String toString();
 //	public boolean isTrue(); TODO reimplémenter, modifier à cause de isTrue de Comparison
-	public boolean equals(Word other){
-		System.out.println("Comparaison avec un mot");
-		return super.equals(other);
-	};
+	public abstract boolean equals(Word other);
+	
+	public abstract String getVal();
 
 	
 	public String getName(){

@@ -1,7 +1,7 @@
 package expertsystem;
 
 public class Comparison extends Word{
-	private Operators op;
+	private Operator op;
 	private float valCondition;
 	
 	/**
@@ -13,7 +13,7 @@ public class Comparison extends Word{
 	 * @param _op
 	 * @param _valCondition
 	 */
-	public Comparison(String varName, Operators _op, float _valCondition){
+	public Comparison(String varName, Operator _op, float _valCondition){
 		super(varName);
 		op= _op;
 		valCondition= _valCondition;		
@@ -43,13 +43,7 @@ public class Comparison extends Word{
 	 * Retour sous forme de chaine de la classe
 	 */
 	public String toString(){
-		if (op==Operators.inf)	return name + /*+"("+ var.val() +")*/" < "+ valCondition ;
-		else if (op==Operators.sup)	return name + " > "+ valCondition ;
-		else if (op==Operators.equal)	return name + " = "+ valCondition ;
-		else if (op==Operators.sup_equal)	return name + " >= "+ valCondition ;
-		else if (op==Operators.inf_equal)	return name + " <= "+ valCondition ;
-		
-		return "ERROR_OP";
+		return name + op + valCondition ;
 	}
 	
 	/**
@@ -105,5 +99,9 @@ public class Comparison extends Word{
 	public boolean equals(Comparison other){
 		System.out.println("Comparaison entre 2 comparisons");
 		return (name == other.name && op == other.op && valCondition == other.valCondition);
+	}
+
+	public String getVal() {
+		return ""+ op + valCondition;
 	}
 }

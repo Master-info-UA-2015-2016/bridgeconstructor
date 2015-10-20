@@ -66,7 +66,7 @@ public class FactsBase extends ArrayList<Word> {
 	 * @param factName nom du nouveau fait
 	 * @param factVal valeur (vrai ou faux) du nouveau fait
 	 */
-	public void addFact(String name,/*Variable var,*/ Operators op, float valCondition){
+	public void addFact(String name,/*Variable var,*/ Operator op, float valCondition){
 		this.add(new Comparison(name, op, valCondition));
 	}
 

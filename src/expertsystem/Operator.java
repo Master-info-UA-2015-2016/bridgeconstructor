@@ -2,10 +2,12 @@ package expertsystem;
 
 public class Operator {
 	String chaine;
-	Operators op;
 	
-	public Operator(Operators op, String chaine){
+	public Operator(String chaine){
 		this.chaine = chaine;
-		this.op= op;
+	}
+	
+	public String toString(){
+		return chaine;
 	}
 }

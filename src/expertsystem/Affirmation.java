@@ -27,4 +27,8 @@ public class Affirmation extends Word {
 		return (name == other.name && val == other.val);
 	}
 
+	public String getVal() {
+		return ""+ val;
+	}
+
 }
