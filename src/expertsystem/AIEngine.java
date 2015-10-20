@@ -60,7 +60,7 @@ public class AIEngine {
 //						Je prend tout les conséquence de la regle en cours
 //						/*Conséquences des règles*/,
 					for (Word wCons : rule.getConsequences() ){
-						BF.addFact(wCons);
+						BF.add(wCons);
 					}
 					inf= true;
 					++nbInf;

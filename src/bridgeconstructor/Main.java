@@ -20,10 +20,10 @@ public class Main {
 		Affirmation a1= new Affirmation("fire", true);
 		Affirmation a2= new Affirmation("fire", true);
 		
-		BF.addFact(a1);
+		BF.add(a1);
 		
 		System.out.println("test : "+ a1 +" egal "+ a2 +" ? "+ a1.equals(a2) );
-		System.out.println("test : "+ BF +" contient "+ a1 +" ? "+ BF.contains(a1) );
+		System.out.println("test : "+ BF +" contient "+ a2 +" ? "+ BF.contains(a2) );
 
 //###################
 //		Fin Tests
