@@ -66,16 +66,14 @@ public class AIEngine {
 				// TODO OBLIGATOIRE, corriger contains() pour comparaison
 				// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
 				// pas optimal, car on continue de vérifier, même si dec est déjà à faux
+				System.out.println("Parcours des antécédents");
 				for (Word wAnt : rule.getAntecedants()){ 
 //					Word wAnt= iter.next();
-					System.out.println("Parcours les antécédents");
-					try {
-						if ( BF.contains(wAnt) )//&& BF.getVal(wAnt.getName()s) != wAnt. ) || !BF.contains(wAnt) ))// /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/wAnt.isTrue())
-							dec= false;
-					}
-					catch (Exception e){
+					
+					Word tmp= BF.contains(wAnt);
+					if ( tmp == null || tmp.getVal() != wAnt.getVal() ) // /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/
 						dec= false;
-					}
+					
 				}
 				if (dec){
 //						Je prend tout les conséquence de la regle en cours
@@ -109,7 +107,7 @@ public class AIEngine {
 		
 		boolean dem = false;
 		// 1er cas évident :
-		if(FB.contains(A)) dem = true;
+		if(FB.contains(A) != null) dem = true;
 		// 2eme cas : rechercher si b déductible à partir de BR U BF
 		for(Rule R : RB.rules) {
 			while(dem == false) {
