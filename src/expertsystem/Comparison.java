@@ -1,8 +1,6 @@
 package expertsystem;
 
-public class Comparison implements Word{
-//	protected Variable var;
-	private String name;
+public class Comparison extends Word{
 	private Operators op;
 	private float valCondition;
 	
@@ -15,9 +13,8 @@ public class Comparison implements Word{
 	 * @param _op
 	 * @param _valCondition
 	 */
-	public Comparison(String varName, /*int varValue,*/ Operators _op, float _valCondition){
-//		var= new Variable(varName, varValue);
-		name= varName;
+	public Comparison(String varName, Operators _op, float _valCondition){
+		super(varName);
 		op= _op;
 		valCondition= _valCondition;		
 	}
@@ -41,10 +38,6 @@ public class Comparison implements Word{
 //	#########################
 //	######	Getters	#########
 //	#########################
-	
-	public String getName(){
-		return name;
-	}
 	
 	/**
 	 * Retour sous forme de chaine de la classe

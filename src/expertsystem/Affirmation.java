@@ -1,18 +1,17 @@
 package expertsystem;
 
-public class Affirmation implements Word {
-	String sentence;
+public class Affirmation extends Word {
 	boolean val;
 
 	public Affirmation(String affirmation, boolean isTrue){
-		sentence= affirmation;
+		super(affirmation);
 		val= isTrue;
 	}
 	
 	public String toString(){
 		if (val)
-			return sentence;
-		else return "NON "+ sentence;
+			return name;
+		else return "NON "+ name;
 	}
 	public boolean isTrue() {
 		return val;
@@ -24,7 +23,7 @@ public class Affirmation implements Word {
 	
 	public boolean equals(Affirmation other) {
 		System.out.println("Comparaison entre 2 affirmations");
-		return (sentence == other.sentence && val == other.val);
+		return (name == other.name && val == other.val);
 	}
 
 }
