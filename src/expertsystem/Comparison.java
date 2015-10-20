@@ -103,4 +103,13 @@ public class Comparison implements Word{
 //			Cas par défaut
 		return false; 
 	}
+
+	public boolean equals(Word other) {
+		return false;
+	}
+	
+	public boolean equals(Comparison other){
+		System.out.println("Comparaison entre 2 comparisons");
+		return (name == other.name && op == other.op && valCondition == other.valCondition);
+	}
 }

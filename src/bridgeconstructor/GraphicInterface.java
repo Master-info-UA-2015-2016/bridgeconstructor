@@ -263,7 +263,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		listAnt.add(fire);
 		
 		ArrayList<Word> listCons= new ArrayList<Word>();
-			Affirmation rail= new Affirmation("railway traffic", false);
+			Affirmation rail= new Affirmation("TRAINS ?", false);
 		listCons.add(rail);
 				
 		RulesBase BR1= new RulesBase();

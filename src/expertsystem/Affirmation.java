@@ -17,5 +17,14 @@ public class Affirmation implements Word {
 	public boolean isTrue() {
 		return val;
 	}
+	
+	public boolean equals(Word other) {
+		return false;
+	}
+	
+	public boolean equals(Affirmation other) {
+		System.out.println("Comparaison entre 2 affirmations");
+		return (sentence == other.sentence && val == other.val);
+	}
 
 }
