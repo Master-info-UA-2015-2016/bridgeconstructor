@@ -1,6 +1,6 @@
 package expertsystem;
 
-import java.util.Iterator;
+import java.util.List;
 
 /**
  * La classe utilisera les règles ainsi que la base de faits
@@ -12,6 +12,22 @@ public class AIEngine {
 	
 	public AIEngine(RulesBase _BR){
 		BR= _BR;
+	}
+	
+	/**
+	 * Procédure VERIF
+	 * @param W : ensemble de buts à vérifier tous
+	 * @param FB : {@link FactsBase}
+	 * @return boolean
+	 */
+	private boolean VERIF(List<Word> WList, FactsBase FB) {
+		boolean ver = true;
+		for(Word W : WList) {
+			while(ver == true)
+				//ver = DEMO(b, BF);
+				ver = (true || false);
+		}
+		return ver;
 	}
 	
 	/**
@@ -74,6 +90,37 @@ public class AIEngine {
 		System.out.println("Nb inférence chainage avant : "+ nbInf);
 //		TODO retour et conclusion pour utilisateur (en passant par bridge-constructor)	
 		return BF;
+	}
+	
+	/**
+	 * Chaînage Arrière
+	 * @param A : But récursivement établi (b dans l'exemple)
+	 * @param FB : La Base de Faits
+	 * @return FactsBase : 
+	 */
+	public FactsBase backwardChaining(Affirmation A, FactsBase FB) {
+		// La procédure devrait s'appeler DEMO...
+		RulesBase RB = new RulesBase(BR);
+		
+		boolean dem = false;
+		// 1er cas évident :
+		if(FB.contains(A)) dem = true;
+		// 2eme cas : rechercher si b déductible à partir de BR U BF
+		for(Rule R : RB.rules) {
+			while(dem == false) {
+				// dem = VERIF(Antécédent(r), BF);
+			}
+		}
+		// 3ème cas : sinon voir si b est demandable
+		if(dem == false /* && B appartient à demandable*/ ) {
+			// Poser la question b ?
+			// dem = reponse(b)				VRAI, FAUX, ou inconnu
+		}
+		// Dans tous les cas mémoriser et ajouter à la BF
+		if(dem == true)
+			FB.add(A);
+		// return dem ?
+		return FB;
 	}
 
 }
