@@ -23,7 +23,8 @@ public class Main {
 		BF.add(a1);
 		
 		System.out.println("test : "+ a1 +" egal "+ a2 +" ? "+ a1.equals(a2) );
-		System.out.println("test : "+ BF +" contient "+ a2 +" ? "+ BF.contains(a2) );
+		boolean contains= BF.contains(a2) != null;
+		System.out.println("test : "+ BF +" contient "+ a2 +" ? "+ contains);
 
 //###################
 //		Fin Tests

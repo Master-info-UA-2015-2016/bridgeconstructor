@@ -71,7 +71,7 @@ public class AIEngine {
 //					Word wAnt= iter.next();
 					
 					Word tmp= BF.contains(wAnt);
-					if ( tmp == null || tmp.getVal() != wAnt.getVal() ) // /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/
+					if ( tmp == null || ! (tmp.getVal()).equals(wAnt.getVal()) ) // /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/
 						dec= false;
 					
 				}

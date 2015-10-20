@@ -90,7 +90,7 @@ public class FactsBase extends ArrayList<Word> {
 	 * @return vrai si le fait est présent
 	 */
 	public Word contains(Word fact){
-		System.out.println("recherche si BF contient Word : "+ fact);
+		System.out.println("recherche si BF contient Word : "+ fact +" de valeur : "+ fact.getVal());
 		for (Word w : this){
 			// On vérifie que l
 			if (w.getName().equals(fact.getName()) /* && w.getVal() == fact.getVal()*/ )
