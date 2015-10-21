@@ -134,15 +134,14 @@ public class AIEngine {
 		// 3ème cas : sinon voir si b est demandable
 		if(dem == false && FB.isFactDemandable(W)) {
 						// Si b est demandable
+			// Poser la question b ?
+			// dem = reponse(b)				VRAI, FAUX, ou inconnu
 			Word fact= FB.contains(W);
 			if (fact != null){
 				// Alors fact n'est pas inconnu, on test si il est vrai
 				dem = (W.getVal() == fact.getVal() );
 			}
 			else dem= false; 
-				
-			// Poser la question b ?
-			// dem = reponse(b)				VRAI, FAUX, ou inconnu
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF
 		if(dem == true)
