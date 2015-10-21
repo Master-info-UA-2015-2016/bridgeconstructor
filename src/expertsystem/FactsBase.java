@@ -1,7 +1,6 @@
 package expertsystem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Créer un fichier pour la classe Fact (les faits ?)
@@ -100,6 +99,18 @@ public class FactsBase extends ArrayList<Word> {
 		return null;
 		
 //		return facts.contains(fact);
+	}
+	
+	/**
+	 * Teste si le fait F est demandable
+	 * @param F : Word
+	 * @return boolean
+	 */
+	public boolean isFactDemandable(Word F) {
+		for (Word fact : this){
+			if(fact.equals(F)) return true;
+		}
+		return false;
 	}
 	
 //	public boolean contains(Comparison fact){

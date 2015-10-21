@@ -23,9 +23,8 @@ public class AIEngine {
 	private boolean VERIF(List<Word> WList, FactsBase FB) {
 		boolean ver = true;
 		for(Word W : WList) {
-			while(ver == true)
-				//ver = DEMO(b, BF);
-				ver = (true || false);
+			ver = backwardChaining(W, FB);
+			if(ver == false) break;	
 		}
 		return ver;
 	}
@@ -96,32 +95,58 @@ public class AIEngine {
 	}
 	
 	/**
+	 * Retourne une base de règles, ces dernières ayant toutes pour conséquences au moins le fait A
+	 * @param A : Fait
+	 * @return RulesBase
+	 */
+	private RulesBase getRulesWithConsequent(Word A) {
+		RulesBase RB = new RulesBase(BR);
+		for(int i = 0 ; i < RB.rules.size() ; i++) {
+			Rule R = RB.rules.get(i);
+			boolean b = false;
+			for(Word W : R.getConsequences())
+				if(W.equals(A)) 
+					b = true;
+			if(!b)
+				RB.rules.remove(i);
+		}
+		return RB;
+	}
+	
+	/**
 	 * Chaînage Arrière - Procédure DEMO
 	 * @param A : But récursivement établi (b dans l'exemple)
 	 * @param FB : La Base de Faits
 	 * @return boolean 
 	 */
-	public boolean DEMO(Affirmation A, FactsBase FB) {
+	public boolean backwardChaining(Word W, FactsBase FB) {
 		// La procédure devrait s'appeler DEMO...
 		RulesBase RB = new RulesBase(BR);
 		
 		boolean dem = false;
 		// 1er cas évident :
-		if(FB.contains(A) != null) dem = true;
+		if(FB.contains(W) != null) dem = true;
 		// 2eme cas : rechercher si b déductible à partir de BR U BF
-		for(Rule R : RB.rules) {
-			//while(dem == false) On devrait s'arrêter dès dem == true
-				// dem = VERIF(Antécédent(R), BF);
-			
+		for(Rule R : getRulesWithConsequent(W)) {	// non optimisé
+			dem = VERIF(R.getAntecedants(), FB);
+			if(dem) break;
 		}
 		// 3ème cas : sinon voir si b est demandable
-		if(dem == false /* && B appartient à demandable*/ ) {
+		if(dem == false && FB.isFactDemandable(W)) {
+						// Si b est demandable
+			Word fact= FB.contains(W);
+			if (fact != null){
+				// Alors fact n'est pas inconnu, on test si il est vrai
+				dem = (W.getVal() == fact.getVal() );
+			}
+			else dem= false; 
+				
 			// Poser la question b ?
 			// dem = reponse(b)				VRAI, FAUX, ou inconnu
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF
 		if(dem == true)
-			FB.add(A);
+			FB.add(W);
 		// return dem ?
 		return dem;
 	}
