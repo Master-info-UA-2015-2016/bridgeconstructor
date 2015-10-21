@@ -121,8 +121,6 @@ public class AIEngine {
 	 */
 	public boolean backwardChaining(Word W, FactsBase FB) {
 		// La procédure devrait s'appeler DEMO...
-		RulesBase RB = new RulesBase(BR);
-		
 		boolean dem = false;
 		// 1er cas évident :
 		if(FB.contains(W) != null) dem = true;
