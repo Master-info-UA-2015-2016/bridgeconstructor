@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<bridge_rules>
+	<bridge_rule>
+		<antecedents>
+			<antecedent name="fire" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence name="train" value="false" />
+		</consequences>
+	</bridge_rule>
+
+</bridge_rules>

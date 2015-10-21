@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -21,6 +22,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+
+import org.xml.sax.SAXException;
 
 import expertsystem.AIEngine;
 import expertsystem.Affirmation;
@@ -266,10 +269,28 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 			Affirmation rail= new Affirmation("TRAINS ?", false);
 		listCons.add(rail);
 				
-		RulesBase BR1= new RulesBase();
-		BR1.addRule(listAnt, listCons);
+//		TEST
+		
+//		try {
+//			BridgeRules.initRulesBase("/home/florian/git/bridgeconstructor/bin/ressources/bridge_rules.xml");
+//		} catch (SAXException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		BridgeRules.initFromXML("/home/florian/git/bridgeconstructor/bin/ressources/bridge_rules.xml");
+		
+//		FIN TEST
+		
+//		RulesBase BR1= new RulesBase();
+//		BR1.addRule(listAnt, listCons);
 		
 //		RulesBase BR1= BridgeRules.initRulesBase("~/git/bridgeconstructor/ressources/bridge_rules.xml");
+		
+		RulesBase BR1= BridgeRules.initRulesBase();
 		
 		System.out.println(BR1);
 //		OTHER
