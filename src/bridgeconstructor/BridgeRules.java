@@ -3,16 +3,6 @@ package bridgeconstructor;
 import java.util.ArrayList;
 
 //Pour lecture XML
-//import javax.swing.text.Document;
-//import javax.swing.text.Element;
-//import javax.xml.parsers.DocumentBuilder;
-//import javax.xml.parsers.DocumentBuilderFactory;
-//import javax.xml.parsers.SAXParser;
-//import javax.xml.stream.XMLInputFactory;
-//import javax.xml.stream.XMLStreamConstants;
-//import javax.xml.stream.XMLStreamException;
-//import javax.xml.stream.XMLStreamReader;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -25,18 +15,7 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 
-//import org.xml.sax.InputSource;
-//import org.xml.sax.SAXException;
-//import org.xml.sax.XMLReader;
-//import org.xml.sax.helpers.XMLReaderFactory;
-//import com.sun.org.apache.xerces.internal.parsers.XMLParser;
-
 import java.io.*;
-//import org.jdom.*;
-//import org.jdom.input.*;
-//import org.jdom.filter.*;
-//import java.util.List;
-//import java.util.Iterator;
 
 
 import expertsystem.Affirmation;
@@ -109,7 +88,7 @@ public class BridgeRules {
 
 			
 			System.out.println("----------------------------");
-			System.out.println("Parcour des règles");
+			System.out.println("Parcours des règles");
 //			BOUCLE sur les Règles
 			for (int i = 0; i < rules.getLength(); ++i) {
 				Node rule = rules.item(i);
@@ -176,63 +155,4 @@ public class BridgeRules {
 //		return bridge_rules;
 	}
 	
-	/**
-	 * trop compliqué
-	 * 
-	 * @param filename
-	 * @return
-	 * @throws SAXException
-	 * @throws IOException
-	 */
-//	public static RulesBase initRulesBase(String filename) throws SAXException, IOException{
-////		XMLParser parser;
-////		SAXParser saxpars;
-//		
-////		XMLReader xr = XMLReaderFactory.createXMLReader();
-//		
-//		InputStream is = new FileInputStream(filename);
-//		XMLInputFactory factory = XMLInputFactory.newInstance();
-//		XMLStreamReader reader;
-//		try {
-//			reader = factory.createXMLStreamReader(is);
-//
-////	    	FileReader r = new FileReader(filename);
-////			xr.parse(new InputSource(r));
-//			try{
-//				while (reader.hasNext()){
-//				   if(reader.getEventType()==XMLStreamConstants.START_ELEMENT)
-//				   {
-//						if(reader.hasText() )
-//					    {
-//					        System.out.println(reader.getText());
-//					    }
-//					    reader.next();
-//				   }
-//				}
-//			}catch (Exception e){
-//				System.out.println("Impossible de parcourir le fichier XML");
-//				e.printStackTrace();
-//			}
-//
-//		} catch (XMLStreamException e1) {
-//			e1.printStackTrace();
-//		}
-//		
-////		org.jdom.Document document;
-////		Element racine;
-////		
-////	    SAXBuilder sxb = new SAXBuilder();
-////	    try
-////	    {
-////	       //On crée un nouveau document JDOM avec en argument le fichier XML
-////	       //Le parsing est terminé ;)
-////	       document = sxb.build(new File(filename));
-////	    }
-////	    catch(Exception e){}
-//
-//	    //On initialise un nouvel élément racine avec l'élément racine du document.
-////	    racine = document.getRootElement();
-//
-//	    return bridge_rules;
-//	}
 }
