@@ -1,6 +1,7 @@
 package bridgeconstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Pour lecture XML
 import org.w3c.dom.Node;
@@ -19,6 +20,8 @@ import java.io.*;
 
 
 import expertsystem.Affirmation;
+import expertsystem.Comparison;
+import expertsystem.Operator;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 
@@ -69,10 +72,50 @@ public class BridgeRules {
 //	    return bridge_rules;
 //	}
 	
+	public static void parseToList(Node node, List<Word> list){
+//		System.out.println("\t\tCurrent Element :" + consequence.getNodeName());
+		if (node.getNodeType() == Node.ELEMENT_NODE) {
+			Element eElement = (Element) node;
+			
+			String nameAnt= eElement.getAttribute("name");
+			String type= eElement.getAttribute("type");
+			
+			if (type.equals("comparison") ) {
+				Comparison comp= new Comparison(nameAnt,
+						new Operator(eElement.getAttribute("comparison")),
+						Float.parseFloat(eElement.getAttribute("value")) );
+				
+				list.add(comp);
+			}
+			else if (type.equals("affirmation")){
+				Affirmation aff;
+				if(eElement.getAttribute("value").equals("true")){
+					aff= new Affirmation(nameAnt, true);
+				}
+				else aff= new Affirmation(nameAnt, false);
+					
+				list.add(aff);
+			}
+			else System.err.println("Type du mot incorrect");
+		}
+	}
+	
+	public static ArrayList<Word> parseNodeListToList(NodeList nodeList){
+		ArrayList<Word> list= new ArrayList<Word>(); // déclaration de la liste de mots à créer
+		
+//		System.out.println("\n\tParcours des mots");
+		for (int j = 0; j < nodeList.getLength(); ++j) {
+			Node consequence = nodeList.item(j);
+			
+			parseToList(consequence, list);
+		}
+		
+		return list;
+	}
+	
 	public static void initFromXML(String filename){
 		
 		try {
-	
 			File fXmlFile = new File(filename);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -85,7 +128,6 @@ public class BridgeRules {
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 					
 			NodeList rules = ((org.w3c.dom.Document) doc).getElementsByTagName("bridge_rule");
-
 			
 			System.out.println("----------------------------");
 			System.out.println("Parcours des règles");
@@ -94,57 +136,14 @@ public class BridgeRules {
 				Node rule = rules.item(i);
 				
 				NodeList antecedents= ((org.w3c.dom.Element)rule).getElementsByTagName("antecedent");
-				ArrayList<Word> listAnt= new ArrayList<Word>(); // déclaration de la liste d'antécédents à créer
-				
-				System.out.println("\tParcours des antecedents");
-				for (int j = 0; j < antecedents.getLength(); ++j) {
-					Node antecedent = antecedents.item(j);
-				
-				//		BOUCLE sur les Antécédents					
-//					System.out.println("\t\tCurrent Element :" + antecedent.getNodeName());
-					if (antecedent.getNodeType() == Node.ELEMENT_NODE) {		
-						Element eElement = (Element) antecedent;
-						
-//						TODO ajouter gestion des Comparaisons
-						String nameAnt= eElement.getAttribute("name");
-						Affirmation aff;
-						if(eElement.getAttribute("value").equals(true)){
-							aff= new Affirmation(nameAnt, true);
-						}
-						else aff= new Affirmation(nameAnt, false);
-							
-						listAnt.add(aff);
-//						System.out.println("\t\tAntecedant name : " + eElement.getAttribute("name") + ", value : " + eElement.getAttribute("value"));
-					}
-				}
+				ArrayList<Word> listAnt= parseNodeListToList(antecedents);
 				
 				NodeList consequences= ((org.w3c.dom.Element)rule).getElementsByTagName("consequence");
-				ArrayList<Word> listCons= new ArrayList<Word>(); // déclaration de la liste d'antécédents à créer
-				
-//				System.out.println("\n\tParcours des consequences");
-				for (int j = 0; j < consequences.getLength(); ++j) {
-					Node consequence = consequences.item(j);
-
-				//		BOUCLE sur les Consequences
-//					System.out.println("\t\tCurrent Element :" + consequence.getNodeName());
-					if (consequence.getNodeType() == Node.ELEMENT_NODE) {		
-						Element eElement = (Element) consequence;
-						
-						String nameAnt= eElement.getAttribute("name");
-						Affirmation aff;
-						if(eElement.getAttribute("value").equals(true)){
-							aff= new Affirmation(nameAnt, true);
-						}
-						else aff= new Affirmation(nameAnt, false);
-							
-						listCons.add(aff);
-//						System.out.println("\t\tConsequence name : " + eElement.getAttribute("name") + ", value : " + eElement.getAttribute("value"));
-					}
-				}
+				ArrayList<Word> listCons= parseNodeListToList(consequences);
 
 				bridge_rules.addRule(listAnt, listCons);
 				System.out.println("Règle ajoutée : BR maj");
-				System.out.println(bridge_rules);
+					System.out.println(bridge_rules);
 			}
 	    } catch (Exception e) {
 	    	e.printStackTrace();

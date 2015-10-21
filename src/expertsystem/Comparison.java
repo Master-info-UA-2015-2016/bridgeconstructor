@@ -43,7 +43,7 @@ public class Comparison extends Word{
 	 * Retour sous forme de chaine de la classe
 	 */
 	public String toString(){
-		return name + op + valCondition ;
+		return name +" "+ op +" "+ valCondition ;
 	}
 	
 	/**

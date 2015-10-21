@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <bridge_rules>
+	
 	<bridge_rule>
 		<antecedents>
-			<antecedent name="fire" value="true" />
+			<antecedent type="affirmation" name="fire" value="true" />
 		</antecedents>
-		<consequences>
-			<consequence name="train" value="false" />
+		<consequences><!-- Voir si il fait faire une comparaison ( materials = (String) wood ) -->
+			<consequence type="affirmation" name="wood" value="false" />
 		</consequences>
 	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="wind" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="solid" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="salt water" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="oxydable" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="mountain" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="wind" value="true" />
+			<consequence type="affirmation" name="pont élevé" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="pont élevé" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="solid" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="nombre voies" sign=">=" value="3" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="solid" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+<!-- Regle vide 	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="" name="" value="" />
+		</antecedents>
+		<consequences>
+			<consequence type="" name="" value="" />
+		</consequences>
+	</bridge_rule>
+ -->
 
 </bridge_rules>
