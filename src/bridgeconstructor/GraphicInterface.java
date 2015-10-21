@@ -269,6 +269,8 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		RulesBase BR1= new RulesBase();
 		BR1.addRule(listAnt, listCons);
 		
+//		RulesBase BR1= BridgeRules.initRulesBase("~/git/bridgeconstructor/ressources/bridge_rules.xml");
+		
 		System.out.println(BR1);
 //		OTHER
 		AIEngine moteur= new AIEngine(BR1);
