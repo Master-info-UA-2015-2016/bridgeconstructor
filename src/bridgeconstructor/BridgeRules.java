@@ -29,7 +29,7 @@ import expertsystem.Word;
 public class BridgeRules {
 	private static RulesBase bridge_rules;
 	
-	public static RulesBase initRulesBase() {
+	public static RulesBase initRulesBase(String filename) {
 		bridge_rules = new RulesBase();
 		
 //		// TODO Création de tous les antécédents
@@ -56,7 +56,7 @@ public class BridgeRules {
 //		BR1.addRule(listAnt, listCons);
 		System.out.println("Base de Règles Initiale : " + bridge_rules);
 		
-		BridgeRules.initFromXML("/home/florian/git/bridgeconstructor/bin/ressources/bridge_rules.xml");
+		BridgeRules.initFromXML(filename);
 		
 		return bridge_rules;
 	}
@@ -82,7 +82,7 @@ public class BridgeRules {
 			
 			if (type.equals("comparison") ) {
 				Comparison comp= new Comparison(nameAnt,
-						new Operator(eElement.getAttribute("comparison")),
+						new Operator(eElement.getAttribute("operator")),
 						Float.parseFloat(eElement.getAttribute("value")) );
 				
 				list.add(comp);
@@ -142,8 +142,8 @@ public class BridgeRules {
 				ArrayList<Word> listCons= parseNodeListToList(consequences);
 
 				bridge_rules.addRule(listAnt, listCons);
-				System.out.println("Règle ajoutée : BR maj");
-					System.out.println(bridge_rules);
+//				System.out.println("Règle ajoutée : BR maj");
+//					System.out.println(bridge_rules);
 			}
 	    } catch (Exception e) {
 	    	e.printStackTrace();

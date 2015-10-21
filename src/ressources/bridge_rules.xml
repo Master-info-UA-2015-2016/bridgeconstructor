@@ -50,20 +50,32 @@
 	
 	<bridge_rule>
 		<antecedents>
-			<antecedent type="comparison" name="nombre voies" sign=">=" value="3" />
+			<antecedent type="comparison" name="nombre voies" operator=">=" value="3" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="solid" value="false" />
 		</consequences>
 	</bridge_rule>
 	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="length" operator="&lt;" value="25" />
+			<antecedent type="comparison" name="daily pedestrian traffic" operator=">" value="50" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="wood" value="true" />
+		</consequences>
+	</bridge_rule>
+	
 <!-- Regle vide 	
 	<bridge_rule>
 		<antecedents>
-			<antecedent type="" name="" value="" />
+			<antecedent type="affirmation" name="" value="" />
+			<antecedent type="comparison" name="" operator="" value="" />
 		</antecedents>
 		<consequences>
-			<consequence type="" name="" value="" />
+			<consequence type="affirmation" name="" value="" />
+			<consequence type="comparison" name="" operator="" value="" />
 		</consequences>
 	</bridge_rule>
  -->

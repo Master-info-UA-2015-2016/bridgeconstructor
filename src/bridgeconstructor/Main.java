@@ -16,15 +16,6 @@ public class Main {
 //###################
 //		Tests
 //##################
-		FactsBase BF= new FactsBase();
-		Affirmation a1= new Affirmation("fire", true);
-		Affirmation a2= new Affirmation("fire", true);
-		
-		BF.add(a1);
-		
-		System.out.println("test : "+ a1 +" egal "+ a2 +" ? "+ a1.equals(a2) );
-		boolean contains= BF.contains(a2) != null;
-		System.out.println("test : "+ BF +" contient "+ a2 +" ? "+ contains);
 
 //###################
 //		Fin Tests

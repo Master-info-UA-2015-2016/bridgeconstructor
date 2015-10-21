@@ -27,7 +27,9 @@ import org.xml.sax.SAXException;
 
 import expertsystem.AIEngine;
 import expertsystem.Affirmation;
+import expertsystem.Comparison;
 import expertsystem.FactsBase;
+import expertsystem.Operators;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 
@@ -261,37 +263,21 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 		
 		
 //		BASE DE REGLES
-		ArrayList<Word> listAnt= new ArrayList<Word>();
-			Affirmation fire= new Affirmation("fire", true);
-		listAnt.add(fire);
-		
-		ArrayList<Word> listCons= new ArrayList<Word>();
-			Affirmation rail= new Affirmation("TRAINS ?", false);
-		listCons.add(rail);
-				
-//		TEST
-		
-//		try {
-//			BridgeRules.initRulesBase("/home/florian/git/bridgeconstructor/bin/ressources/bridge_rules.xml");
-//		} catch (SAXException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-//		BridgeRules.initFromXML("/home/florian/git/bridgeconstructor/bin/ressources/bridge_rules.xml");
-		
-//		FIN TEST
-		
+//		ArrayList<Word> listAnt= new ArrayList<Word>();
+//			Affirmation fire= new Affirmation("fire", true);
+//			Comparison taille= new Comparison("length", Operators.inf, 25);
+//		listAnt.add(fire);
+//		listAnt.add(taille);
+//		
+//		ArrayList<Word> listCons= new ArrayList<Word>();
+//			Affirmation rail= new Affirmation("TRAINS ?", false);
+//		listCons.add(rail);
+//				
 //		RulesBase BR1= new RulesBase();
 //		BR1.addRule(listAnt, listCons);
 		
-//		RulesBase BR1= BridgeRules.initRulesBase("~/git/bridgeconstructor/ressources/bridge_rules.xml");
-		
-		RulesBase BR1= BridgeRules.initRulesBase();
-		
+		RulesBase BR1= BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");
+				
 		System.out.println(BR1);
 //		OTHER
 		AIEngine moteur= new AIEngine(BR1);
