@@ -110,9 +110,9 @@ public class AIEngine {
 		if(FB.contains(A) != null) dem = true;
 		// 2eme cas : rechercher si b déductible à partir de BR U BF
 		for(Rule R : RB.rules) {
-			while(dem == false) {
-				// dem = VERIF(Antécédent(r), BF);
-			}
+			//while(dem == false) On devrait s'arrêter dès dem == true
+				// dem = VERIF(Antécédent(R), BF);
+			
 		}
 		// 3ème cas : sinon voir si b est demandable
 		if(dem == false /* && B appartient à demandable*/ ) {
