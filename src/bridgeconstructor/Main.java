@@ -1,8 +1,5 @@
 package bridgeconstructor;
 
-import expertsystem.Affirmation;
-import expertsystem.FactsBase;
-
 public class Main {
 
 	public enum types {Mobile, Suspendu, haubants, arcs_boutants};

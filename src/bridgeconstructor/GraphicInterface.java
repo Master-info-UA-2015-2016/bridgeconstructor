@@ -8,9 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,15 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-import org.xml.sax.SAXException;
-
 import expertsystem.AIEngine;
-import expertsystem.Affirmation;
-import expertsystem.Comparison;
 import expertsystem.FactsBase;
-import expertsystem.Operators;
 import expertsystem.RulesBase;
-import expertsystem.Word;
 
 /**
  * L'interface Graphique est construite à partir de cette classe

@@ -1,23 +1,17 @@
 package bridgeconstructor;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 //Pour lecture XML
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-import java.io.File;
-
-
-import java.io.*;
-
 
 import expertsystem.Affirmation;
 import expertsystem.Comparison;
@@ -51,8 +45,7 @@ public class BridgeRules {
 //			ArrayList<Word> listCons= new ArrayList<Word>();
 //				Affirmation rail= new Affirmation("TRAINS ?", false);
 //			listCons.add(rail);
-				
-		RulesBase BR1= new RulesBase();
+		
 //		BR1.addRule(listAnt, listCons);
 		System.out.println("Base de Règles Initiale : " + bridge_rules);
 		
