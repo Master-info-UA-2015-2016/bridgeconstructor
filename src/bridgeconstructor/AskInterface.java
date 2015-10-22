@@ -218,7 +218,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Environment.setFire(CBB.isSelected());
 			else if(CBB == flood_box)
 				Environment.setFlood(CBB.isSelected());
-			Environment.print();
+			
+//			Environment.print();
 		}
 	}
 
@@ -253,23 +254,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		FactsBase FB= Environment.getFactsBase();
 		System.out.println(FB);
 		
-		
 //		BASE DE REGLES
-//		ArrayList<Word> listAnt= new ArrayList<Word>();
-//			Affirmation fire= new Affirmation("fire", true);
-//			Comparison taille= new Comparison("length", Operators.inf, 25);
-//		listAnt.add(fire);
-//		listAnt.add(taille);
-//		
-//		ArrayList<Word> listCons= new ArrayList<Word>();
-//			Affirmation rail= new Affirmation("TRAINS ?", false);
-//		listCons.add(rail);
-//				
-//		RulesBase BR1= new RulesBase();
-//		BR1.addRule(listAnt, listCons);
 		
 		RulesBase BR1= BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");
-				
+		
 		System.out.println(BR1);
 //		OTHER
 		AIEngine moteur= new AIEngine(BR1);
