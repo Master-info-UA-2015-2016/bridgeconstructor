@@ -18,22 +18,6 @@ public class Comparison extends Word{
 		op= _op;
 		valCondition= _valCondition;		
 	}
-
-	/**
-	 * Constructeur avec variable déjà existante
-	 * @author florian
-	 * 
-	 * @param varName
-	 * @param varValue
-	 * @param _op
-	 * @param _valCondition
-	 * @deprecated
-	 */
-//	public Comparison(Variable _var, Operators _op, int _valCondition){
-//		var= _var;
-//		op= _op;
-//		valCondition= _valCondition;		
-//	}
 	
 //	#########################
 //	######	Getters	#########
@@ -91,14 +75,20 @@ public class Comparison extends Word{
 		return false; 
 	}
 
-	public boolean equals(Word other) {
-		System.out.println("Compare Comp avec Word : ");
+	public boolean respect(Word other) {
+		System.out.println("Verifie si Comp respecte Word");
 		return false;
 	}
 	
-	public boolean equals(Comparison other){
-		System.out.println("Comparaison entre 2 comparisons");
-		return (name == other.name && op == other.op && valCondition == other.valCondition);
+	public boolean respect(Comparison other){
+		System.out.println("Verifie si Comp repecte autre Comp");
+		if (name == other.name){
+			if ( ( (op == new Operator("<")) && (other.op == new Operator(">")) )|| ((op == new Operator(">")) && (other.op == new Operator("<")) ))
+				return false;
+			else
+				return (op == other.op && valCondition == other.valCondition);
+		}
+		else return false;
 	}
 
 	public String getVal() {
