@@ -2,6 +2,7 @@
 
 <bridge_rules>
 	
+	<!-- Règle : SI l'environnement est sensible aux incendie ALORS le pont ne sera pas en bois -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="fire" value="true" />
@@ -11,6 +12,7 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- Règle : SI l'environnemen est sensible aux vents ALORS le pont sera solide -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="wind" value="true" />
@@ -20,6 +22,7 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- Règle : SI l'eau est salée ALORS le pont sera en matériaux non oxydable -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="salt water" value="true" />
@@ -29,6 +32,8 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- Règle : SI l'environnement est montagneux ALORS l'environnement est sensible aux vents
+												   ET le pont sera élevé -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="mountain" value="true" />
@@ -39,6 +44,7 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- Règle : SI le pont est elevé ALORS le pont sera solide -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="pont élevé" value="true" />
@@ -48,15 +54,18 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- Règle : SI le nombre de voies est supérieur ou égal à 3 ALORS le pont sera solide -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="nombre voies" operator=">=" value="3" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="solid" value="false" />
+			<consequence type="affirmation" name="solid" value="true" />
 		</consequences>
 	</bridge_rule>
 	
+	<!-- Règle : SI la longueur est inférieur à 25 ET le nombre quotidien de passage pédestre est supérieur à 50
+									ALORS le pont sera en bois -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="length" operator="&lt;" value="25" />
