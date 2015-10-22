@@ -10,7 +10,7 @@ public class Main {
 //		contenant chaque matériau utilisable pour ce type de ponts ?
 //		on supprime le matériau utilisable ou le Bridge entier si il n'est plus envisagé ?
 		
-		/*GraphicInterface configWindow= */new GraphicInterface();
+		/*GraphicInterface configWindow= */new AskInterface();
 		
 	}
 }

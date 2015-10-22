@@ -29,7 +29,7 @@ import expertsystem.RulesBase;
  * L'interface Graphique est construite à partir de cette classe
  *
  */
-public class GraphicInterface extends JFrame implements ActionListener, PropertyChangeListener {
+public class AskInterface extends JFrame implements ActionListener, PropertyChangeListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -70,7 +70,7 @@ public class GraphicInterface extends JFrame implements ActionListener, Property
 	private JButton reset_button;
 	private JButton confirm_button;
 	
-	public GraphicInterface() {
+	public AskInterface() {
 		super(title);
 		buildComposants();
 		buildInterface();
