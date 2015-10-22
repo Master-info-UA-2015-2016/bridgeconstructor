@@ -12,7 +12,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- Règle : SI l'environnemen est sensible aux vents ALORS le pont sera solide -->
+	<!-- Règle : SI l'environnement est sensible aux vents ALORS le pont sera solide -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="wind" value="true" />
