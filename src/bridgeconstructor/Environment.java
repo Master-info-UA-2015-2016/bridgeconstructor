@@ -13,6 +13,7 @@ public class Environment {
 	private static boolean railway_traffic = false;
 	private static boolean pedestrian_traffic = false;
 	private static boolean road_traffic = false;
+	private static int density = 0;					// Passage de véhicules par jour
 	
 	// Risques Météorologiques
 	private static boolean storm = false;
@@ -33,6 +34,7 @@ public class Environment {
 		railway_traffic = false;
 		pedestrian_traffic = false;
 		road_traffic = false;
+		density = 0;
 		storm = false;
 		wood = false;
 		water = false;
@@ -57,6 +59,10 @@ public class Environment {
 	
 	public static void setRoad_traffic(boolean road_traffic) {
 		Environment.road_traffic = road_traffic;
+	}
+	
+	public static void setDensity(int density) {
+		Environment.density = density;
 	}
 	
 	//	SETTERS Risques Météorologiques
@@ -105,6 +111,10 @@ public class Environment {
 		return road_traffic;
 	}
 	
+	public static int getDensity() {
+		return density;
+	}
+	
 	//	GETTERS Risques Météorologiques
 	public static boolean isStorm() {
 		return storm;
@@ -142,6 +152,7 @@ public class Environment {
 				",\tRailway Traffic = " + railway_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
+				",\tDensity = " + density +
 				",\tStorm = " + storm +
 				",\tWood = " + wood +
 				",\tWater = " + water +
@@ -164,11 +175,12 @@ public class Environment {
 			FB.addFact("pedestrian traffic", pedestrian_traffic);
 			FB.addFact("railway traffic", railway_traffic);
 			FB.addFact("road traffic", road_traffic);
+			FB.addFact("density", Operators.equal, density);
 		//		Risques Météorologiques
 			FB.addFact("storm", storm);
 		//		Terrains
 			FB.addFact("water", water);
-			FB.addFact("woord", wood);
+			FB.addFact("wood", wood);
 			FB.addFact("mountain", mountain);
 		// 		Autre
 			FB.addFact("min length", Operators.equal, length);

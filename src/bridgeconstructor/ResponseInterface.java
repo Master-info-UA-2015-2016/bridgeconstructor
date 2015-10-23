@@ -6,10 +6,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class ResponseInterface extends JFrame implements ActionListener, PropertyChangeListener {
 	private static final long serialVersionUID = 1L;
 	private static String title = "Bridge Constructor - Response";
+	
+	// Label
+	private JLabel order;
 	
 	public ResponseInterface() {
 		super(title);
@@ -24,11 +28,12 @@ public class ResponseInterface extends JFrame implements ActionListener, Propert
 	}
 	
 	private void buildComposants() {
+		order = new JLabel("Voici les caractéristiques du pont : ");
 		
 	}
 	
 	private void buildInterface() {
-		
+		this.setContentPane(order);
 	}
 	
 	private void buildEvents() {

@@ -93,7 +93,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		center_panel = new JPanel();
 			center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.Y_AXIS));
 			traffic_panel = new JPanel(new GridLayout(2, 2));
-			meteo_panel = new JPanel(new GridLayout(2, 2));
+			meteo_panel = new JPanel(new GridLayout(0, 1));
 			ground_panel = new JPanel(new GridLayout(2, 2));
 			other_panel = new JPanel(new GridLayout(1,1));
 				label_panel = new JPanel(new GridLayout(0, 1));
