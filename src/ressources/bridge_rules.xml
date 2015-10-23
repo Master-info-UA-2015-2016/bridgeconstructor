@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
+<!-- Variables utilisée :
+	environnement : fire, wind, water
+	traffics possibles : naval_traffic, pedestrian_traffic, rail_traffic, road_traffic
+	matériaux : wood, strength(résitance minimale du matériau)
+	
+	resultats (type de pont): ... 
+ -->
+
 <bridge_rules>
 	
 	<!-- Règle : SI l'environnement est sensible aux incendie ALORS le pont ne sera pas en bois -->
@@ -12,25 +20,34 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- Règle : SI l'environnement est sensible aux vents ALORS le pont sera solide -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="naval_traffic" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="water" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- Règle : SI l'environnement est sensible aux vents ALORS resistance (au moins) 110 -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="wind" value="true" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="solid" value="true" />
+			<consequence type="comparison" name="strength" operator="=" value="110" />
 		</consequences>
 	</bridge_rule>
 	
 	<!-- Règle : SI l'eau est salée ALORS le pont sera en matériaux non oxydable -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="salt water" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="oxydable" value="false" />
-		</consequences>
-	</bridge_rule>
+<!-- 	<bridge_rule> -->
+<!-- 		<antecedents> -->
+<!-- 			<antecedent type="affirmation" name="salt water" value="true" /> -->
+<!-- 		</antecedents> -->
+<!-- 		<consequences> -->
+<!-- 			<consequence type="affirmation" name="oxydable" value="false" /> -->
+<!-- 		</consequences> -->
+<!-- 	</bridge_rule> -->
 	
 	<!-- Règle : SI l'environnement est montagneux ALORS l'environnement est sensible aux vents
 												   ET le pont sera élevé -->
@@ -87,6 +104,67 @@
 			<consequence type="affirmation" name="high_current" value="true" />
 		</consequences>
 	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="high_current" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="comparison" name="strength" operator="" value="" />
+			<consequence type="affirmation" name="heavy" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="fire" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="steel" value="false" />
+			<consequence type="affirmation" name="wood" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	
+<!-- 	REGLES SUR LES POIDS -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="heavy" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="light" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="light" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="heavy" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="heavy" value="false" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="light" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="light" value="false" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="heavy" value="true" />
+		</consequences>
+	</bridge_rule>
+<!-- 	FIN REGLES SUR LES POIDS -->
+	
 	
 <!-- Regle vide 	
 	<bridge_rule>
