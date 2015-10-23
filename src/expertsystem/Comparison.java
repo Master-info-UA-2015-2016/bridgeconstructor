@@ -85,8 +85,9 @@ public class Comparison extends Word{
 		if (name == other.name){
 			if ( ( (op == new Operator("<")) && (other.op == new Operator(">")) )|| ((op == new Operator(">")) && (other.op == new Operator("<")) ))
 				return false;
-			else
+			else {
 				return (op == other.op && valCondition == other.valCondition);
+			}
 		}
 		else return false;
 	}

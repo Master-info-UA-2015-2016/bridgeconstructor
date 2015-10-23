@@ -76,6 +76,18 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- SI Montagne et Eau (ajouter variable ??) ALORS courant_fort -->	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="mountain" value="true" />
+			<antecedent type="affirmation" name="water" value="true" />
+<!-- 			<antecedent type="comparison" name="" operator="" value="" /> -->
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="high_current" value="true" />
+		</consequences>
+	</bridge_rule>
+	
 <!-- Regle vide 	
 	<bridge_rule>
 		<antecedents>
