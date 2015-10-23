@@ -33,7 +33,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 
 	private static final long serialVersionUID = 1L;
 	
-	private static String title = "Bridge Constructor";
+	private static String title = "Bridge Constructor - Ask";
 	
 	// Panel
 	private JPanel up_panel;
@@ -264,6 +264,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		FB= moteur.forwardChaining(FB);
 
 		System.out.println(FB);
+		new ResponseInterface();
 				
 	}
 }
