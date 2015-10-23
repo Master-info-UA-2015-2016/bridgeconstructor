@@ -62,7 +62,7 @@ public class BridgeRules {
 		}
 	}
 
-	public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCOns) {
+	public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
 		ArrayList<Word> list = new ArrayList<Word>(); // déclaration de la liste
 														// de mots à créer
 
