@@ -40,6 +40,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JPanel center_panel;
 		private JPanel traffic_panel;
 		private JPanel meteo_panel;
+		private JPanel ground_panel;
 		private JPanel other_panel;
 			private JPanel label_panel;
 			private JPanel field_panel;
@@ -55,9 +56,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JCheckBox road_box;
 	// Risques Météorologiques
 	private JLabel meteo;
-	private JCheckBox fire_box;
-	private JCheckBox flood_box;
 	private JCheckBox storm_box;
+	// Terrain
+	private JLabel ground;
+	private JCheckBox wood_box;
+	private JCheckBox water_box;
+	private JCheckBox mountain_box;
 	// Autre
 	private JLabel other;
 	private JLabel height;
@@ -90,6 +94,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.Y_AXIS));
 			traffic_panel = new JPanel(new GridLayout(2, 2));
 			meteo_panel = new JPanel(new GridLayout(2, 2));
+			ground_panel = new JPanel(new GridLayout(2, 2));
 			other_panel = new JPanel(new GridLayout(1,1));
 				label_panel = new JPanel(new GridLayout(0, 1));
 				field_panel = new JPanel(new GridLayout(0, 1));
@@ -105,8 +110,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Risques Météorologies Box
 		meteo = new JLabel("Météo :");
 		storm_box =  new JCheckBox("Tempête");
-		fire_box = new JCheckBox("Incendie");
-		flood_box = new JCheckBox("Inondation");
+		// Terrains
+		ground = new JLabel("Terrain : ");
+		wood_box = new JCheckBox("Bois");
+		water_box = new JCheckBox("Eau");
+		mountain_box = new JCheckBox("Montagne");
 		// Autre
 		other = new JLabel("Autre :");
 		format = NumberFormat.getNumberInstance();
@@ -137,8 +145,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Meteo Panel Choice
 		meteo_panel.setBorder(raisedetched);
 		meteo_panel.add(storm_box);
-		meteo_panel.add(fire_box);
-		meteo_panel.add(flood_box);
+		// Terrain Panel Choice
+		ground_panel.setBorder(raisedetched);
+		ground_panel.add(water_box);
+		ground_panel.add(wood_box);
+		ground_panel.add(mountain_box);
 		// Other Panel TextField
 		label_panel.add(height);
 		label_panel.add(length);
@@ -147,12 +158,16 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		other_panel.setBorder(raisedetched);
 		other_panel.add(label_panel, BorderLayout.CENTER);
 		other_panel.add(field_panel, BorderLayout.LINE_END);
+		
 		center_panel.add(traffic);
 			traffic.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(traffic_panel);
 		center_panel.add(meteo);
 			meteo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(meteo_panel);
+		center_panel.add(ground);
+			ground.setAlignmentX(Component.CENTER_ALIGNMENT);
+		center_panel.add(ground_panel);
 		center_panel.add(other);
 			other.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(other_panel);
@@ -175,8 +190,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.pedestrian_box.addActionListener(this);
 		this.road_box.addActionListener(this);
 		this.storm_box.addActionListener(this);
-		this.fire_box.addActionListener(this);
-		this.flood_box.addActionListener(this);
+		this.wood_box.addActionListener(this);
+		this.mountain_box.addActionListener(this);
+		this.water_box.addActionListener(this);
 		this.height_field.addPropertyChangeListener("value", this);
 		this.length_field.addPropertyChangeListener("value", this);
 
@@ -200,7 +216,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			} else if(B == confirm_button) {
 				this.dispose();
 				launchForwardChaining();
-				// TODO afficher le pont & le prix sélectionné
 			}
 		} else if(e.getSource().getClass() == JCheckBox.class) {
 			CBB = (JCheckBox) e.getSource();
@@ -214,12 +229,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Environment.setRoad_traffic(CBB.isSelected());
 			else if(CBB == storm_box)
 				Environment.setStorm(CBB.isSelected());
-			else if(CBB == fire_box)
-				Environment.setFire(CBB.isSelected());
-			else if(CBB == flood_box)
-				Environment.setFlood(CBB.isSelected());
-			
-//			Environment.print();
+			else if(CBB == water_box)
+				Environment.setWater(CBB.isSelected());
+			else if(CBB == wood_box)
+				Environment.setWood(CBB.isSelected());
+			else if(CBB == mountain_box)
+				Environment.setMountain(CBB.isSelected());
 		}
 	}
 
@@ -240,13 +255,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		pedestrian_box.setSelected(false);
 		railway_box.setSelected(false);
 		road_box.setSelected(false);
-		fire_box.setSelected(false);
-		flood_box.setSelected(false);
 		storm_box.setSelected(false);
+		water_box.setSelected(false);
+		wood_box.setSelected(false);
+		mountain_box.setSelected(false);
 		height_field.setValue(0);
 		length_field.setValue(0);
-		
-		Environment.print();
 	}
 	
 	// private ou public ? void ou boolean ?
@@ -264,7 +278,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		FB= moteur.forwardChaining(FB);
 
 		System.out.println(FB);
+		// TODO afficher le pont & le prix sélectionné
 		new ResponseInterface();
-				
 	}
 }

@@ -16,8 +16,11 @@ public class Environment {
 	
 	// Risques Météorologiques
 	private static boolean storm = false;
-	private static boolean fire = false;
-	private static boolean flood = false;
+	
+	// Terrain
+	private static boolean wood = false;
+	private static boolean water = false;
+	private static boolean mountain = false;
 	
 	// Entre les deux points
 	private static float length = 0;
@@ -31,8 +34,9 @@ public class Environment {
 		pedestrian_traffic = false;
 		road_traffic = false;
 		storm = false;
-		fire = false;
-		flood = false;
+		wood = false;
+		water = false;
+		mountain = false;
 		length = 0;
 		height = 0;
 	}
@@ -60,12 +64,17 @@ public class Environment {
 		Environment.storm = storm;
 	}
 	
-	public static void setFire(boolean fire) {
-		Environment.fire = fire;
+	//	SETTERS Terrain 
+	public static void setWood(boolean wood) {
+		Environment.wood = wood;
 	}
 	
-	public static void setFlood(boolean flood) {
-		Environment.flood = flood;
+	public static void setWater(boolean water) {
+		Environment.water = water;
+	}
+	
+	public static void setMountain(boolean mountain) {
+		Environment.mountain = mountain;
 	}
 	
 	// 	SETTERS Autre
@@ -101,12 +110,18 @@ public class Environment {
 		return storm;
 	}
 	
-	public static boolean isFire() {
-		return fire;
+	//	GETTERS Terrains
+	
+	public static boolean isWood() {
+		return wood;
 	}
 	
-	public static boolean isFlood() {
-		return flood;
+	public static boolean isWater() {
+		return water;
+	}
+	
+	public static boolean isMountain() {
+		return mountain;
 	}
 	
 	//GETTERS Autre
@@ -128,8 +143,9 @@ public class Environment {
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
 				",\tStorm = " + storm +
-				",\tFire = " + fire +
-				",\tFlood = " + flood +
+				",\tWood = " + wood +
+				",\tWater = " + water +
+				",\tMountain = " + mountain +
 				",\tHeight = " + height +
 				",\tLength = " + length);
 	}
@@ -149,14 +165,14 @@ public class Environment {
 			FB.addFact("railway traffic", railway_traffic);
 			FB.addFact("road traffic", road_traffic);
 		//		Risques Météorologiques
-			FB.addFact("fire", fire);
-			FB.addFact("flood", flood);
 			FB.addFact("storm", storm);
+		//		Terrains
+			FB.addFact("water", water);
+			FB.addFact("woord", wood);
+			FB.addFact("mountain", mountain);
 		// 		Autre
 			FB.addFact("min length", Operators.equal, length);
 			FB.addFact("min height", Operators.equal, height);
-
-		// TODO length & height
 			
 		return FB;
 	}
