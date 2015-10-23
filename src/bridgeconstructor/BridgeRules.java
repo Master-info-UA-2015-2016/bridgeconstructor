@@ -35,26 +35,26 @@ public class BridgeRules {
 		if (node.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) node;
 			
-			String nameAnt= eElement.getAttribute("name");
+			String name= eElement.getAttribute("name");
 			String type= eElement.getAttribute("type");
 			
 			if (type.equals("comparison") ) {
 				Operator op= new Operator(eElement.getAttribute("operator"));
 				if (!isCons || op.equals("=")){
-					Comparison comp= new Comparison(nameAnt,
+					Comparison comp= new Comparison(name,
 						op ,
 						Float.parseFloat(eElement.getAttribute("value")) );
 					list.add(comp);
 				}
 //				TODO ajouter des exceptions, ici si l'opérateur est != de '=', on ne peut pas ajouter de conséquence 
-				else System.err.println("impossible d'ajouter une comparaison (opérateur différent de '=') en conséquence");
+				else System.err.println("impossible d'ajouter la comparaison "+ name +"(opérateur différent de '=') en conséquence");
 			}
 			else if (type.equals("affirmation")){
 				Affirmation aff;
 				if(eElement.getAttribute("value").equals("true")){
-					aff= new Affirmation(nameAnt, true);
+					aff= new Affirmation(name, true);
 				}
-				else aff= new Affirmation(nameAnt, false);
+				else aff= new Affirmation(name, false);
 					
 				list.add(aff);
 			}
