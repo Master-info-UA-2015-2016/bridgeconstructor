@@ -177,12 +177,11 @@
 	<!-- 14. SI traffic train    ET distance > 40    ALORS NON Bois -->
 		<bridge_rule>
 		<antecedents>
-			<antecedent type="affirmation" name="rail traffic" value="" />
+			<antecedent type="affirmation" name="rail traffic" value="false" />
 			<antecedent type="comparison" name="length" operator=">" value="40" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="" value="" />
-			<consequence type="comparison" name="" operator="" value="" />
+			<consequence type="affirmation" name="wood" value="false" />
 		</consequences>
 	</bridge_rule>
 
@@ -193,7 +192,7 @@
 			<antecedent type="comparison" name="lane number" operator=">=" value="3" />
 		</antecedents>
 		<consequences>
-			<consequence type="comparison" name="resistance" operator="=" value="180" />
+			<consequence type="comparison" name="resistance" value="180" />
 		</consequences>
 	</bridge_rule>	
 	

@@ -40,14 +40,19 @@ public class BridgeRules {
 			String type = eElement.getAttribute("type");
 
 			if (type.equals("comparison")) {
-				Operator op = new Operator(eElement.getAttribute("operator"));
-				if (isCons && op.equals("="))
-					// TODO ajouter des exceptions, ici si l'opérateur est différent de '=' ,
-						// on ne peut pas ajouter de conséquence
-					System.err.println("impossible d'ajouter la comparaison " + name
-							+ "(opérateur différent de '=') en conséquence");
-				else {
-					Comparison comp = new Comparison(name, op, Float.parseFloat(eElement.getAttribute("value")));
+				String op = eElement.getAttribute("operator");
+				if (isCons && (!op.equals("=") && !op.equals(""))) {
+					System.err.println("op.equals('=') ?" + op.equals("=") + " et !op.equals('=') ?" + !op.equals("="));
+					System.err.println("op.equals('=') ?" + op.equals("") + " et !op.equals('=') ?" + !op.equals(""));
+					System.err.println("isCons ?"+ isCons);
+					// TODO ajouter des exceptions, ici si l'opérateur est
+					// différent de '=' ,
+					// on ne peut pas ajouter de conséquence
+					System.err.println("impossible d'ajouter la comparaison -" + name
+							+ "- comme conséquence (opérateur différent de '=')");
+				} else {
+					Comparison comp = new Comparison(name, new Operator("="), // une conséquence est forcément une égalité
+							Float.parseFloat(eElement.getAttribute("value")));
 					list.add(comp);
 				}
 			} else if (type.equals("affirmation")) {
@@ -90,12 +95,12 @@ public class BridgeRules {
 			// http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 			doc.getDocumentElement().normalize();
 
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+//			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
 			NodeList rules = ((org.w3c.dom.Document) doc).getElementsByTagName("bridge_rule");
 
 			System.out.println("----------------------------");
-			System.out.println("Parcours des règles");
+			System.out.println("Ajout des règles à partir du fichier");
 			// BOUCLE sur les Règles
 			for (int i = 0; i < rules.getLength(); ++i) {
 				Node rule = rules.item(i);
