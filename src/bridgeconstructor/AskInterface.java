@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.Border;
@@ -257,7 +258,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		JButton B;
 		JMenuItem MI;
 		if(e.getSource().getClass() == JMenuItem.class) {
-			this.dispose();
+			MI = (JMenuItem) e.getSource();
+			if(MI == item_close)
+				this.dispose();
 		} else if(e.getSource().getClass() == JButton.class) {
 			B = (JButton) e.getSource();
 			if(B == quit_button) {
@@ -349,6 +352,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// TODO construction d'un pont à partir d'un fait ?
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
 		// TODO afficher le pont & le prix sélectionné
-		new ResponseInterface(LB);
+		if(LB.isEmpty())
+			new JOptionPane().showMessageDialog(null, "Bridge Constructor - Alert", "Aucun pont ne répond au critère", JOptionPane.ERROR_MESSAGE);
+		else	new ResponseInterface(LB);
 	}
 }

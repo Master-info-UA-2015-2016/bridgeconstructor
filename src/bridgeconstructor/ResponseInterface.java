@@ -20,6 +20,8 @@ public class ResponseInterface extends JFrame {
 	
 	// Panel
 	private JPanel main_panel;
+		private JPanel up_panel;
+		private JPanel list_panel;
 	// Label
 	private JLabel order;
 	// Composition de la description d'un pont
@@ -67,11 +69,15 @@ public class ResponseInterface extends JFrame {
 		
 		// Panel
 		main_panel = new JPanel();
-			main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.X_AXIS));
+			main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
+		up_panel = new JPanel();
+		list_panel = new JPanel();
+			list_panel.setLayout(new BoxLayout(list_panel, BoxLayout.X_AXIS));
 		// Label
 		if(list.size() > 1)
 			order = new JLabel("Les ponts suggérés : ");
 		else order = new JLabel("Le pont suggéré : ");
+		up_panel.add(order);
 		// Bridge
 		for(Bridge B : list) {
 			// Construction
@@ -93,13 +99,15 @@ public class ResponseInterface extends JFrame {
 			bridge_panel.add(material);
 			bridge_panel.add(price);
 			
-			main_panel.add(bridge_panel);
+			list_panel.add(bridge_panel);
 		}
 	}
 	
 	private void buildInterface() {
-		this.add(order);
-		this.add(main_panel);
+		main_panel.add(up_panel);
+		main_panel.add(list_panel);
+		
+		this.setContentPane(main_panel);
 	}
 	
 	private void buildEvents() {
