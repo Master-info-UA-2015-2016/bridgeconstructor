@@ -30,4 +30,10 @@ public class Affirmation extends Word {
 	public String getVal() {
 		return ""+ val;
 	}
+
+	public boolean sameValue(String value) {
+		System.out.println(this + " a la valeur "+ value +" ?");
+		boolean _val= Boolean.parseBoolean(value);
+		return val == _val;
+	}
 }

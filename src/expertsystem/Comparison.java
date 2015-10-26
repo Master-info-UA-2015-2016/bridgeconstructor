@@ -58,41 +58,51 @@ public class Comparison extends Word{
 	 * Retourne si la comparaison est exacte ou non
 	 * @author florian
 	 */
-	public boolean isTrue(int valeurVariable) {
-		if (op==Operators.inf){
+	public boolean isTrue(float valeurVariable) {
+		System.out.print("vrai avec : "+ valeurVariable +" ? ");
+		
+		if (op.equals(Operators.inf)){
 			if (valeurVariable < valCondition)	return true;
-		}else if (op==Operators.sup){
+		}else if (op.equals(Operators.sup)){
 			if (valeurVariable > valCondition)	return true;
-		}else if (op==Operators.equal){
+		}else if (op.equals(Operators.equal)){
 			if (valeurVariable == valCondition)	return true;
-		}else if (op==Operators.sup_equal){
+		}else if (op.equals(Operators.sup_equal)){
 			if (valeurVariable >= valCondition)	return true;
-		}else if (op==Operators.inf_equal){
+		}else if (op.equals(Operators.inf_equal)){
 			if (valeurVariable <= valCondition)	return true;
 		}
-		
 //			Cas par défaut
 		return false; 
 	}
 
-	public boolean respect(Word other) {
-		System.out.println("Verifie si Comp respecte Word");
-		return false;
-	}
+//	public boolean respect(Word other) {
+//		System.out.println("Verifie si Comp respecte Word");
+//		return false;
+//	}
 	
-	public boolean respect(Comparison other){
-		System.out.println("Verifie si Comp repecte autre Comp");
-		if (name == other.name){
-			if ( ( (op == new Operator("<")) && (other.op == new Operator(">")) )|| ((op == new Operator(">")) && (other.op == new Operator("<")) ))
-				return false;
-			else {
-				return (op == other.op && valCondition == other.valCondition);
-			}
-		}
-		else return false;
-	}
+//	public boolean respect(Comparison other){
+//		System.out.println("Verifie si Comp repecte autre Comp");
+//		if (name == other.name){
+//			if ( ( (op.equals("<")) && other.isTrue(other.valCondition))&& ((op == new Operator(">")) && (other.op == new Operator("<")) ))
+//				return false;
+//			else {
+//				return (op == other.op && valCondition == other.valCondition);
+//			}
+//		}
+//		else return false;
+//	}
 
 	public String getVal() {
-		return ""+ op + valCondition;
+		return ""+ valCondition;
 	}
+
+	public boolean sameValue(String value) {
+		float val = Float.parseFloat(value);
+		boolean same= isTrue(val);
+		System.out.println(same);
+		
+		return same;
+	}
+
 }

@@ -10,4 +10,8 @@ public class Operator {
 	public String toString(){
 		return chaine;
 	}
+	
+	public boolean equals(Operator other){
+		return chaine.equals(other.chaine);
+	}
 }

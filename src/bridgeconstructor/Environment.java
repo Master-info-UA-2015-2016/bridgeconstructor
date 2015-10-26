@@ -187,9 +187,14 @@ public class Environment {
 	 */
 	public static FactsBase getFactsBase() {
 		FactsBase FB = new FactsBase();
+		int lane_number= 2; // TODO mettre dans l'interface
+		int daily_traffic= 90; // TODO mettre dans l'interface
+
+		System.out.println("---------------------------------------");
+		System.out.println("Initialisation de la base de faits");
+		System.out.println("---------------------------------------");
 		
-		System.out.println("Saturation de la base de faits");
-		// Ajout des faits
+	/* Ajout des faits */
 		//		Traffic
 			FB.addFact("naval traffic", naval_traffic);
 			FB.addFact("pedestrian traffic", pedestrian_traffic);
@@ -203,8 +208,11 @@ public class Environment {
 			FB.addFact("wood", wood);
 			FB.addFact("mountain", mountain);
 		// 		Mesure
-			FB.addFact("min length", Operators.equal, length);
-			FB.addFact("min height", Operators.equal, height);
+			FB.addFact("length", Operators.equal, length);
+			FB.addFact("height", Operators.equal, height);
+			FB.addFact("lane number", Operators.equal, lane_number);
+			FB.addFact("resistance", Operators.equal, 0);
+			FB.addFact("daily traffic", Operators.equal, daily_traffic);
 		//		Bonus
 			FB.addFact("castle", castle);
 		return FB;

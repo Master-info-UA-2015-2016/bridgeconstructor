@@ -47,6 +47,10 @@ public class AIEngine {
 	public FactsBase forwardChaining(FactsBase BF) {
 		boolean inf= true;	// sert pour savoir si on a fait une inférence durant le cycle
 		int nbInf= 0;
+
+		System.out.println("-------------------------------------------------------");
+		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage avant   |");
+		System.out.println("-------------------------------------------------------");
 		
 		while(inf){
 			inf= false;
@@ -55,6 +59,7 @@ public class AIEngine {
 			
 			/* On en peut pas supprimer une règle si on a un itérateur dessus */
 			for ( Rule rule : BRcpy){
+				System.out.println("Recherche applicable : " + rule);
 				
 //				/*Antécédants des règles*/
 				boolean dec= true;
@@ -65,12 +70,12 @@ public class AIEngine {
 				// TODO OBLIGATOIRE, corriger contains() pour comparaison
 				// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
 				// pas optimal, car on continue de vérifier, même si dec est déjà à faux
-				// System.out.println("Parcours des antécédents");			<-	Ca salissait l'affichage, je te le laisse si t'en as besoin plus tard
+				// System.out.println("Parcours des antécédents");
 				for (Word wAnt : rule.getAntecedants()){ 
 //					Word wAnt= iter.next();
 					
 					Word tmp= BF.contains(wAnt);
-					if ( tmp == null || ! (tmp.getVal()).equals(wAnt.getVal()) ) // /*BF c valeur de f dans BF*/VF(f)!=/*VA(wAnt,r)*/
+					if ( tmp == null || ! wAnt.sameValue(tmp.getVal())/*(tmp.getVal()).equals(wAnt.getVal())*/ ) // VF(f)!=VA(wAnt,r)
 						dec= false;
 					
 				}
@@ -83,7 +88,7 @@ public class AIEngine {
 					inf= true;
 					++nbInf;
 					//TODO this.Mémoriser(r,nbInf) /* Pour l'explication TODO ???*/ 
-					System.out.println("\tApplication de la Règle : " + rule);
+					System.out.println("\tRègle appliquée");
 					BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
 				}
 				
@@ -120,6 +125,10 @@ public class AIEngine {
 	 * @return boolean 
 	 */
 	public boolean backwardChaining(Word W, FactsBase FB) {
+		System.out.println("---------------------------------------------------------");
+		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage arrière   |");
+		System.out.println("---------------------------------------------------------");
+		
 		// La procédure devrait s'appeler DEMO...
 		boolean dem = false;
 		// 1er cas évident :

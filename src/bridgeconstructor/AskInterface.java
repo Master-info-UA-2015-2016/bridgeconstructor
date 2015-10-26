@@ -23,7 +23,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
@@ -335,11 +334,17 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		AIEngine moteur= new AIEngine(BR1);
 		FB = moteur.forwardChaining(FB);
 
+		System.out.println("\n------------------------");
+		System.out.println("Résultat :");
+		System.out.println("------------------------");
 		System.out.println(FB);
 		
 		// Les affirmations finales qu'on veut : 
 		Affirmation PL = new Affirmation("drawbridge considered", true);
-		
+
+		System.out.println("------------------------");
+		System.out.println("Choix du pont :");
+		System.out.println("------------------------");
 		for(Word w : FB) {
 			if(w.getClass() == Affirmation.class)
 				if(((Affirmation)w).equals(PL)) {
@@ -353,7 +358,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
 		// TODO afficher le pont & le prix sélectionné
 		if(LB.isEmpty())
-			new JOptionPane().showMessageDialog(null, "Bridge Constructor - Alert", "Aucun pont ne répond au critère", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Bridge Constructor - Alert", "Aucun pont ne répond au critère", JOptionPane.ERROR_MESSAGE);
 		else	new ResponseInterface(LB);
 	}
 }

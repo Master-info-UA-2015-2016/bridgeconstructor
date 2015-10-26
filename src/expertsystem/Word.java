@@ -12,7 +12,7 @@ public abstract class Word {
 //	public abstract boolean equals(Word other);
 	
 	public abstract String getVal();
-
+	public abstract boolean sameValue(String value);
 	
 	public String getName(){
 		return name;
