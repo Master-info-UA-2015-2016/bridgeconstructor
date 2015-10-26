@@ -1,99 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Variables utilisée :
-	environnement : fire, wind, water
-	traffics possibles : naval_traffic, pedestrian_traffic, rail_traffic, road_traffic
-	matériaux : wood, stone, steel, concrete, min_strength(résistance minimale du matériau)
-	pont : 
+	environnement :	fire, wind, water
+	traffics possibles :	naval_traffic, pedestrian_traffic, rail_traffic, road_traffic
+	risques :	flood risk, 
+	matériaux :	wood, stone, steel, concrete, min_strength(résistance minimale du matériau)
+	pont : 		
 	
 	resultats (type de pont) ...: 
  -->
 
 <bridge_rules>
-	
-	<!-- Règle : SI l'environnement est sensible aux incendie ALORS le pont ne sera pas en bois -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="fire" value="true" />
-		</antecedents>
-		<consequences><!-- Voir si il fait faire une comparaison ( materials = (String) wood ) -->
-			<consequence type="affirmation" name="wood" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-<!-- 23. SI trafic piéton ET  longueur < 10 ALORS pont en bois(  non beton, acier) OK A REFAIRE -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="pedestrian traffic" value="true" />
-			<antecedent type="comparison" name="longueur" operator="&lt;" value="10" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="material wood" value="true" />
-		</consequences>
-	</bridge_rule>
 
-<!-- 24. SI incendie ALORS NON bois ET NON Acier -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="fire" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="material wood" value="false" />
-			<consequence type="affirmation" name="material steel" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-<!-- 25. SI hauteur >15 Alors NON pont de voûtes -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="comparison" name="height" operator=">" value="15" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge vault considered" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-<!-- 26. SI longueur > 60 Alors NON Pont suspendu. -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="comparison" name="length" operator=">" value="60" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge hanging considered" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-<!-- 27. SI longueur < 25 Alors NON pont à hauban -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="comparison" name="length" operator="&lt;" value="25" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge shroud considered" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-<!-- 28. SI longueur > 50 ET  hauteur > 40 Alors NON pont à poutre -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="comparison" name="length" operator=">" value="50" />
-			<antecedent type="comparison" name="height" operator=">" value="40" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge beam considered" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-<!--29.  SI Vent Alors NON pont suspendu -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="wind" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge suspended considered" value="" />
-		</consequences>
-	</bridge_rule>
-	
+	<!-- 1. SI trafic maritime, ALORS hauteur > 15 -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="naval_traffic" value="true" />
@@ -103,7 +22,42 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- Règle : SI l'environnement est sensible aux vents ALORS resistance (au moins) 110 -->
+	<!-- 2.	SI Montagne et Eau (ajouter variable ??) ALORS courant_fort -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="water" value="true" />
+			<antecedent type="affirmation" name="mountain" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="high current" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 3.	SI Eau et (variable ??)  ALORS risque_inondation -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="water" value="true" />
+<!-- 		TODO	Ajouter une comparaison avec une variable ? -->
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="flood risk" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 4. SI la région est exposée aux incendies, ALORS matériaux NON bois -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="fire" value="true" />
+		</antecedents>
+		<consequences><!-- Voir si il fait faire une comparaison ( materials = (String) wood ) -->
+			<consequence type="affirmation" name="wood" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 5. SI la région est sujette aux passages militaires, ALORS matériaux solides (NON fragile ?) -->
+	<!-- 6. SI le courant_fort ALORS Solidité = 285 ET matériaux lourds -->
+	
+	<!-- 7. SI risque_tempete, ALORS resistance (au moins) 110 -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="wind" value="true" />
@@ -122,38 +76,38 @@
 <!-- 			<consequence type="affirmation" name="oxydable" value="false" /> -->
 <!-- 		</consequences> -->
 <!-- 	</bridge_rule> -->
+		
+	<!-- 17. SI nbvoies >= 3 ALORS Pont solide -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="lane number" operator=">=" value="3" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="solid" value="true" />
+		</consequences>
+	</bridge_rule>	
 	
-	<!-- Règle : SI l'environnement est montagneux ALORS l'environnement est sensible aux vents
-												   ET le pont sera élevé -->
+	<!-- 18. SI montagne ALORS Vent ET hauteur = 35 -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="mountain" value="true" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="wind" value="true" />
-			<consequence type="affirmation" name="pont élevé" value="true" />
+			<consequence type="comparison" name="height" operator="=" value="35" />
 		</consequences>
 	</bridge_rule>
 	
-	<!-- Règle : SI le pont est elevé ALORS le pont sera solide -->
+	<!--19. SI hauteur >50 ALORS Acier -->
 	<bridge_rule>
 		<antecedents>
-			<antecedent type="affirmation" name="pont élevé" value="true" />
+			<antecedent type="comparison" name="height" operator=">" value="50" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="solid" value="true" />
+			<consequence type="affirmation" name="steel" value="true" />
 		</consequences>
 	</bridge_rule>
-	
-	<!-- Règle : SI le nombre de voies est supérieur ou égal à 3 ALORS le pont sera solide -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="comparison" name="nombre voies" operator=">=" value="3" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="solid" value="true" />
-		</consequences>
-	</bridge_rule>
+
 	
 	<!-- Règle : SI la longueur est inférieur à 25 ET le nombre quotidien de passage pédestre est supérieur à 50
 									ALORS le pont sera en bois -->
@@ -239,6 +193,80 @@
 		</consequences>
 	</bridge_rule>
 <!-- 	FIN REGLES SUR LES POIDS -->
+
+<!-- 23. SI trafic piéton ET  longueur < 10 ALORS pont en bois(  non beton, acier) OK A REFAIRE -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="pedestrian traffic" value="true" />
+			<antecedent type="comparison" name="longueur" operator="&lt;" value="10" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="material wood" value="true" />
+		</consequences>
+	</bridge_rule>
+
+<!-- 24. SI incendie ALORS NON bois ET NON Acier -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="fire" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="material wood" value="false" />
+			<consequence type="affirmation" name="material steel" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+<!-- 25. SI hauteur >15 Alors NON pont de voûtes -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="height" operator=">" value="15" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge vault considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+<!-- 26. SI longueur > 60 Alors NON Pont suspendu. -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="length" operator=">" value="60" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge hanging considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+<!-- 27. SI longueur < 25 Alors NON pont à hauban -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="length" operator="&lt;" value="25" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge shroud considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+<!-- 28. SI longueur > 50 ET  hauteur > 40 Alors NON pont à poutre -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="comparison" name="length" operator=">" value="50" />
+			<antecedent type="comparison" name="height" operator=">" value="40" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge beam considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+<!--29.  SI Vent Alors NON pont suspendu -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="wind" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge suspended considered" value="" />
+		</consequences>
+	</bridge_rule>
+	
 
 <!-- 	REGLE MATERIAUX -> PONT -->
 	<!-- 30 : SI pont en bois ALORS pont en arc envisagé -->
