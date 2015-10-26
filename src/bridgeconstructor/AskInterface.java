@@ -344,7 +344,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			if(w.getClass() == Affirmation.class)
 				if(((Affirmation)w).equals(PL)) {
 					System.out.println("PONT LEVIS ! ");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "pont-levis", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont-Levis", Material.Wood, 1));
 				}
 		}
 		
