@@ -4,13 +4,26 @@
 	environnement :	fire, wind, water
 	traffics possibles :	naval_traffic, pedestrian_traffic, rail_traffic, road_traffic
 	risques :	flood risk, 
-	matériaux :	wood, stone, steel, concrete, min_strength(résistance minimale du matériau)
+	matériaux :	wood, stone, steel, concrete, minimal strength, heavy, light
 	pont : 		
 	
 	resultats (type de pont) ...: 
  -->
 
 <bridge_rules>
+	
+<!-- Regle vide 	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="" value="" />
+			<antecedent type="comparison" name="" operator="" value="" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="" value="" />
+			<consequence type="comparison" name="" operator="" value="" />
+		</consequences>
+	</bridge_rule>
+ -->
 
 	<!-- 1. SI trafic maritime, ALORS hauteur > 15 -->
 	<bridge_rule>
@@ -27,6 +40,7 @@
 		<antecedents>
 			<antecedent type="affirmation" name="water" value="true" />
 			<antecedent type="affirmation" name="mountain" value="true" />
+<!-- 			<antecedent type="comparison" name="" operator="" value="" /> -->
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="high current" value="true" />
@@ -55,18 +69,38 @@
 	</bridge_rule>
 	
 	<!-- 5. SI la région est sujette aux passages militaires, ALORS matériaux solides (NON fragile ?) -->
+<!-- 	<bridge_rule> -->
+<!-- 		<antecedents> -->
+<!-- 			<antecedent type="affirmation" name="" value="" /> -->
+<!-- 			<antecedent type="comparison" name="" operator="" value="" /> -->
+<!-- 		</antecedents> -->
+<!-- 		<consequences> -->
+<!-- 			<consequence type="affirmation" name="" value="" /> -->
+<!-- 			<consequence type="comparison" name="" operator="" value="" /> -->
+<!-- 		</consequences> -->
+<!-- 	</bridge_rule> -->
+
 	<!-- 6. SI le courant_fort ALORS Solidité = 285 ET matériaux lourds -->
-	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="high current" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="heavy" value="true" />
+			<consequence type="comparison" name="minimal strength" operator="=" value="285" />
+		</consequences>
+	</bridge_rule>
+		
 	<!-- 7. SI risque_tempete, ALORS resistance (au moins) 110 -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="wind" value="true" />
 		</antecedents>
 		<consequences>
-			<consequence type="comparison" name="min_strength" operator="=" value="110" />
+			<consequence type="comparison" name="minimal strength" operator="=" value="110" />
 		</consequences>
 	</bridge_rule>
-	
+		
 	<!-- Règle : SI l'eau est salée ALORS le pont sera en matériaux non oxydable -->
 <!-- 	<bridge_rule> -->
 <!-- 		<antecedents> -->
@@ -77,7 +111,25 @@
 <!-- 		</consequences> -->
 <!-- 	</bridge_rule> -->
 		
-	<!-- 17. SI nbvoies >= 3 ALORS Pont solide -->
+	<!-- 9. SI château ALORS pont-levis -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="castle" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="drawbridge considered" value="true" />
+		</consequences>
+	</bridge_rule>
+
+
+	<!-- 10.	SI Pont mobile, ALORS poids limité (quels paramètres). -->
+	<!-- 11.	<!-- Règle : SI la longueur est inférieur à 25 ET le nombre quotidien de passage pédestre est supérieur à 50 ALORS pont en bois --> -->
+	<!-- 12.	SI si trafic piéton dans des arbres ET Pont NON solide  ALORS Pont de singe. -->
+	<!-- 13.	SI densite > 50 ET traffic routier  ALORS NON Bois -->
+	<!-- 14.	SI traffic train  ALORS NON Bois -->
+	<!-- 15.	SI campagne ALORS Pont sans éclairage. (UTILE ? influe sur les couts ?) -->
+		
+	<!-- 16. SI nbvoies >= 3 ALORS Pont solide -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="lane number" operator=">=" value="3" />
@@ -87,7 +139,7 @@
 		</consequences>
 	</bridge_rule>	
 	
-	<!-- 18. SI montagne ALORS Vent ET hauteur = 35 -->
+	<!-- 17. SI montagne ALORS Vent ET hauteur = 35 -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="mountain" value="true" />
@@ -98,7 +150,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!--19. SI hauteur >50 ALORS Acier -->
+	<!--18. SI hauteur >50 ALORS Acier -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="height" operator=">" value="50" />
@@ -107,105 +159,23 @@
 			<consequence type="affirmation" name="steel" value="true" />
 		</consequences>
 	</bridge_rule>
-
 	
-	<!-- Règle : SI la longueur est inférieur à 25 ET le nombre quotidien de passage pédestre est supérieur à 50
-									ALORS le pont sera en bois -->
+	<!--23. SI NON rail traffic ET NON road traffic ET daily traffic < 200 ET longueur < 15 ALORS pont en bois(  non beton, acier ?)  -->
 	<bridge_rule>
 		<antecedents>
-			<antecedent type="comparison" name="length" operator="&lt;" value="25" />
-			<antecedent type="comparison" name="daily pedestrian traffic" operator=">" value="50" />
+			<antecedent type="affirmation" name="road traffic" value="false" />
+			<antecedent type="affirmation" name="rail traffic " value="false" />
+			<antecedent type="comparison" name="length" operator="&lt;" value="15" />
+			<antecedent type="comparison" name="daily traffic" operator="&lt;" value="200" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="wood" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-	<!-- SI Montagne et Eau (ajouter variable ??) ALORS courant_fort -->	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="mountain" value="true" />
-			<antecedent type="affirmation" name="water" value="true" />
-<!-- 			<antecedent type="comparison" name="" operator="" value="" /> -->
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="high_current" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-<!-- 	SI le courant_fort Alors Solidité = 285 ET matériaux lourds -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="high_current" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="comparison" name="min_strength" operator="=" value="285" />
-			<consequence type="affirmation" name="heavy" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="fire" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="steel" value="false" />
-			<consequence type="affirmation" name="wood" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-	
-<!-- 	REGLES SUR LES POIDS -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="heavy" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="light" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="light" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="heavy" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="heavy" value="false" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="light" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="light" value="false" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="heavy" value="true" />
-		</consequences>
-	</bridge_rule>
-<!-- 	FIN REGLES SUR LES POIDS -->
-
-<!-- 23. SI trafic piéton ET  longueur < 10 ALORS pont en bois(  non beton, acier) OK A REFAIRE -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="pedestrian traffic" value="true" />
-			<antecedent type="comparison" name="longueur" operator="&lt;" value="10" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="material wood" value="true" />
+<!-- 			<consequence type="affirmation" name="concrete" value="false" /> -->
+<!-- 			<consequence type="affirmation" name="steel" value="false" /> -->
 		</consequences>
 	</bridge_rule>
 
-<!-- 24. SI incendie ALORS NON bois ET NON Acier -->
+	<!-- 24. SI incendie ALORS NON bois ET NON Acier -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="fire" value="true" />
@@ -216,7 +186,7 @@
 		</consequences>
 	</bridge_rule>
 	
-<!-- 25. SI hauteur >15 Alors NON pont de voûtes -->
+	<!-- 25. SI hauteur >15 Alors NON pont de voûtes -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="height" operator=">" value="15" />
@@ -226,7 +196,7 @@
 		</consequences>
 	</bridge_rule>
 	
-<!-- 26. SI longueur > 60 Alors NON Pont suspendu. -->
+	<!-- 26. SI longueur > 60 Alors NON Pont suspendu. -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="length" operator=">" value="60" />
@@ -236,7 +206,7 @@
 		</consequences>
 	</bridge_rule>
 	
-<!-- 27. SI longueur < 25 Alors NON pont à hauban -->
+	<!-- 27. SI longueur < 25 Alors NON pont à hauban -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="length" operator="&lt;" value="25" />
@@ -246,7 +216,7 @@
 		</consequences>
 	</bridge_rule>
 	
-<!-- 28. SI longueur > 50 ET  hauteur > 40 Alors NON pont à poutre -->
+	<!-- 28. SI longueur > 50 ET  hauteur > 40 Alors NON pont à poutre -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="comparison" name="length" operator=">" value="50" />
@@ -257,7 +227,7 @@
 		</consequences>
 	</bridge_rule>
 	
-<!--29.  SI Vent Alors NON pont suspendu -->
+	<!--29.  SI Vent Alors NON pont suspendu -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="wind" value="true" />
@@ -368,16 +338,7 @@
 			<consequence type="affirmation" name="bridge shroud considered" value="true" />
 		</consequences>
 	</bridge_rule>
-	
-	<!-- 40 : SI château ALORS pont levis -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="castle" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="drawbridge considered" value="true" />
-		</consequences>
-	</bridge_rule>
+
 	
 <!-- 	FIN REGLE MATERIAUX -> PONT -->
 	
@@ -393,5 +354,44 @@
 		</consequences>
 	</bridge_rule>
  -->
+ 
+ 	
+<!-- 	REGLES SUR LES POIDS, pour cohérence -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="heavy" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="light" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="light" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="heavy" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="heavy" value="false" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="light" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="light" value="false" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="heavy" value="true" />
+		</consequences>
+	</bridge_rule>
+<!-- 	FIN REGLES SUR LES POIDS -->
 
 </bridge_rules>
