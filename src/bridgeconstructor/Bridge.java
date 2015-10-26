@@ -9,12 +9,20 @@ import expertsystem.AIEngine;
 public class Bridge {
 	//TODO remplir la classe
 	
+	public enum Material {
+		Steel,
+		Wood,
+		Rock,
+		Concrete,
+		Cord
+	}
+	
 	private float minHeight;
 	private float minWidth;
 	private float maxWidth;
 	private float length;
 	private String type;
-	private Materials material;
+	private Material material;
 	private float price;
 	
 	/**
@@ -26,13 +34,13 @@ public class Bridge {
 		maxWidth= -1;
 		length= 0;
 		type = "";
-		material = new Materials();
+		material = null;
 		price = 0;
 		
 		System.out.println("BRIDGE : " + this.toString());
 	}
 	
-	public Bridge(float height, float minWidth, float maxWidth, float length, String type, Materials material, float price) {
+	public Bridge(float height, float minWidth, float maxWidth, float length, String type, Material material, float price) {
 		this.minHeight = height;
 		this.minWidth = minWidth;
 		this.minWidth = maxWidth;
@@ -63,7 +71,7 @@ public class Bridge {
 		this.type = type;
 	}
 	
-	public void setMaterial(Materials material) {
+	public void setMaterial(Material material) {
 		this.material = material;
 	}
 	
@@ -92,7 +100,7 @@ public class Bridge {
 		return type;
 	}
 	
-	public Materials getMaterial() {
+	public Material getMaterial() {
 		return material;
 	}
 	
@@ -107,7 +115,7 @@ public class Bridge {
 			",\tmax WIDTH = " + maxWidth +
 			",\tLENGTH = " + length +
 			",\tTYPE = \"" + type + "\"" +
-			",\tMATERIALS = --- "+
+			",\tMATERIAL = " + material +
 			",\tPRICE = " + price;
 	}
 	

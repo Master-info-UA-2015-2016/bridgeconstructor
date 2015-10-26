@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,9 +22,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import bridgeconstructor.Bridge.Material;
 import expertsystem.AIEngine;
 import expertsystem.Affirmation;
 import expertsystem.FactsBase;
@@ -317,9 +320,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	
 	// private ou public ? void ou boolean ?
 	private void launchForwardChaining(){
+		ArrayList<Bridge> LB = new ArrayList<>();
 		FactsBase FB = Environment.getFactsBase();
 		System.out.println(FB);
-		
 //		BASE DE REGLES
 		
 		RulesBase BR1= BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");		
@@ -336,14 +339,16 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		
 		for(Word w : FB) {
 			if(w.getClass() == Affirmation.class)
-				if(((Affirmation)w).equals(PL))
+				if(((Affirmation)w).equals(PL)) {
 					System.out.println("PONT LEVIS ! ");
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "pont-levis", Material.Wood, 1));
+				}
 		}
 		
 		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
 		// TODO construction d'un pont à partir d'un fait ?
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
 		// TODO afficher le pont & le prix sélectionné
-		new ResponseInterface();
+		new ResponseInterface(LB);
 	}
 }
