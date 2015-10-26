@@ -40,7 +40,6 @@ public class BridgeRules {
 			
 			if (type.equals("comparison") ) {
 				Operator op= new Operator(eElement.getAttribute("operator"));
-				System.out.println(op);
 				if (!isCons || op.equals("=")){
 					Comparison comp= new Comparison(name,
 						op ,

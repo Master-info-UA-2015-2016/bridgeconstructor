@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,18 @@ public class ResponseInterface extends JFrame implements ActionListener, Propert
 	private JLabel order;
 	
 	public ResponseInterface() {
+		super(title);
+		buildComposants();
+		buildInterface();
+		buildEvents();
+		
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.pack();
+		this.setVisible(true);
+	}
+	
+	public ResponseInterface(List<Bridge> LB) {
 		super(title);
 		buildComposants();
 		buildInterface();

@@ -24,11 +24,10 @@ public class Affirmation extends Word {
 	
 	public boolean equals(Affirmation other) {
 		System.out.println("Comparaison entre 2 affirmations");
-		return (name == other.name && val == other.val);
+		return (name.equals(other.name) && val == other.val);
 	}
 
 	public String getVal() {
 		return ""+ val;
 	}
-
 }

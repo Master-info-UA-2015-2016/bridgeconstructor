@@ -13,9 +13,9 @@ public class Environment {
 	private static boolean railway_traffic = false;
 	private static boolean pedestrian_traffic = false;
 	private static boolean road_traffic = false;
-	private static int density = 0;					// Passage de véhicules par jour
+	private static float density = 0;					// Passage de véhicules par jour
 	
-	// Risques Météorologiques
+	// Météo
 	private static boolean storm = false;
 	
 	// Terrain
@@ -23,24 +23,33 @@ public class Environment {
 	private static boolean water = false;
 	private static boolean mountain = false;
 	
-	// Entre les deux points
+	// Mesure
 	private static float length = 0;
 	private static float height = 0;
+	
+	// Bonus
+	private static boolean castle = false;
 	
 	// private Materials Sol;
 	
 	public static void reset() {
+		// Traffic
 		naval_traffic = false;
 		railway_traffic = false;
 		pedestrian_traffic = false;
 		road_traffic = false;
 		density = 0;
+		// Météo
 		storm = false;
+		// Terrain
 		wood = false;
 		water = false;
 		mountain = false;
+		// Mesures
 		length = 0;
 		height = 0;
+		// Bonus
+		castle = false;
 	}
 	
 //	SETTERS
@@ -61,11 +70,11 @@ public class Environment {
 		Environment.road_traffic = road_traffic;
 	}
 	
-	public static void setDensity(int density) {
+	public static void setDensity(float density) {
 		Environment.density = density;
 	}
 	
-	//	SETTERS Risques Météorologiques
+	//	SETTERS Météo
 	public static void setStorm(boolean storm) {
 		Environment.storm = storm;
 	}
@@ -83,13 +92,18 @@ public class Environment {
 		Environment.mountain = mountain;
 	}
 	
-	// 	SETTERS Autre
+	// 	SETTERS Mesures
 	public static void setLength(float length) {
 		Environment.length = length;
 	}
 	
 	public static void setHeight(float height) {
 		Environment.height = height;
+	}
+	
+	// 	SETTERS Bonus
+	public static void setCastle(boolean castle) {
+		Environment.castle = castle;
 	}
 
 // GETTERS
@@ -111,11 +125,11 @@ public class Environment {
 		return road_traffic;
 	}
 	
-	public static int getDensity() {
+	public static float getDensity() {
 		return density;
 	}
 	
-	//	GETTERS Risques Météorologiques
+	//	GETTERS Météo
 	public static boolean isStorm() {
 		return storm;
 	}
@@ -134,13 +148,18 @@ public class Environment {
 		return mountain;
 	}
 	
-	//GETTERS Autre
+	//	GETTERS Mesures
 	public static float getHeight() {
 		return height;
 	}
 	
 	public static float getLength() {
 		return length;
+	}
+	
+	//	GETTERS Bonus
+	public static boolean getCastle() {
+		return castle;
 	}
 	
 	/**
@@ -158,7 +177,8 @@ public class Environment {
 				",\tWater = " + water +
 				",\tMountain = " + mountain +
 				",\tHeight = " + height +
-				",\tLength = " + length);
+				",\tLength = " + length +
+				",\tCaslte = " + castle);
 	}
 	
 	/**
@@ -176,16 +196,17 @@ public class Environment {
 			FB.addFact("railway traffic", railway_traffic);
 			FB.addFact("road traffic", road_traffic);
 			FB.addFact("density", Operators.equal, density);
-		//		Risques Météorologiques
+		//		Météo
 			FB.addFact("storm", storm);
 		//		Terrains
 			FB.addFact("water", water);
 			FB.addFact("wood", wood);
 			FB.addFact("mountain", mountain);
-		// 		Autre
+		// 		Mesure
 			FB.addFact("min length", Operators.equal, length);
 			FB.addFact("min height", Operators.equal, height);
-			
+		//		Bonus
+			FB.addFact("castle", castle);
 		return FB;
 	}
 }

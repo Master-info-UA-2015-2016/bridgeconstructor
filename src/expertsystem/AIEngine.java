@@ -65,7 +65,7 @@ public class AIEngine {
 				// TODO OBLIGATOIRE, corriger contains() pour comparaison
 				// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
 				// pas optimal, car on continue de vérifier, même si dec est déjà à faux
-				System.out.println("Parcours des antécédents");
+				// System.out.println("Parcours des antécédents");			<-	Ca salissait l'affichage, je te le laisse si t'en as besoin plus tard
 				for (Word wAnt : rule.getAntecedants()){ 
 //					Word wAnt= iter.next();
 					
@@ -83,7 +83,7 @@ public class AIEngine {
 					inf= true;
 					++nbInf;
 					//TODO this.Mémoriser(r,nbInf) /* Pour l'explication TODO ???*/ 
-
+					System.out.println("\tApplication de la Règle : " + rule);
 					BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
 				}
 				

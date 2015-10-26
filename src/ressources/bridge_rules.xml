@@ -261,7 +261,17 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 32 : SI pont en acier ALORS pont à voûtes envisagé-->
+	<!-- 32 : SI pont en pierre ALORS pont à voûtes envisagé -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material stone" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge vault considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 33 : SI pont en acier ALORS pont à voûtes envisagé-->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material steel" value="true" />
@@ -271,7 +281,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 33 : SI pont en acier ALORS pont en arc envisagé -->
+	<!-- 34 : SI pont en acier ALORS pont en arc envisagé -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material steel" value="true" />
@@ -281,7 +291,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 34 : SI pont en acier ALORS pont à hauban  -->
+	<!-- 35 : SI pont en acier ALORS pont à hauban  -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material steel" value="true" />
@@ -291,7 +301,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 35 : SI pont en acier ALORS pont suspendu envisagé   -->
+	<!-- 36 : SI pont en acier ALORS pont suspendu envisagé   -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material steel" value="true" />
@@ -301,7 +311,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 36 : SI pont en béton ALORS pont poutre envisagé  -->
+	<!-- 37 : SI pont en béton ALORS pont poutre envisagé  -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material concrete" value="true" />
@@ -311,7 +321,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 37 : SI pont en béton ALORS pont suspendu envisagé -->
+	<!-- 38 : SI pont en béton ALORS pont suspendu envisagé -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material concrete" value="true" />
@@ -321,13 +331,23 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 38 : SI pont en béton ALORS pont à hauban -->
+	<!-- 39 : SI pont en béton ALORS pont à hauban -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="material concrete" value="true" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="bridge shroud considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 40 : SI château ALORS pont levis -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="castle" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="drawbridge considered" value="true" />
 		</consequences>
 	</bridge_rule>
 	
