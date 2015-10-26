@@ -40,10 +40,11 @@ public class BridgeRules {
 			
 			if (type.equals("comparison") ) {
 				Operator op= new Operator(eElement.getAttribute("operator"));
+				System.out.println(op);
 				if (!isCons || op.equals("=")){
 					Comparison comp= new Comparison(name,
 						op ,
-						Float.parseFloat(eElement.getAttribute("value")) );
+						Float.parseFloat(eElement.getAttribute("value")));
 					list.add(comp);
 				}
 //				TODO ajouter des exceptions, ici si l'opérateur est != de '=', on ne peut pas ajouter de conséquence 
