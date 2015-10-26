@@ -165,7 +165,73 @@
 		</consequences>
 	</bridge_rule>
 <!-- 	FIN REGLES SUR LES POIDS -->
+
+
+
+
+
+<!-- SI pont en béton ALORS pont poutre envisagé 
+SSI pont en béton ALORS pont suspendu envisagé 
+SI pont en béton ALORS pont à hauban -->
+	<!-- 30 : SI pont en bois ALORS pont en arc envisagé -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material wood" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge arc considered" value="true" />
+		</consequences>
+	</bridge_rule>
 	
+	<!-- 31 : SI pont en bois ALORS  pont poutre envisagé  -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material wood" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge beam considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 32 : SI pont en acier ALORS pont à voûtes envisagé-->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material steel" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge vault considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 33 : SI pont en acier ALORS pont en arc envisagé -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material steel" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge arc considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 34 : SI pont en acier ALORS pont à hauban  -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material steel" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge shroud considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- 35 : SI pont en acier ALORS pont suspendu envisagé   -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="material steel" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge shroud considered" value="true" />
+		</consequences>
+	</bridge_rule>
 	
 <!-- Regle vide 	
 	<bridge_rule>
