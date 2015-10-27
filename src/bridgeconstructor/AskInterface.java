@@ -113,7 +113,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			file = new JMenu("Fichier");
 				item_close = new JMenuItem("Quitter");
 			show = new JMenu("Afficher");
-				item_show_rules = new JMenuItem("Afficher la base de règles");
+				item_show_rules = new JMenuItem("Base de règles");
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
@@ -363,6 +363,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				}
 		}
 		
+		
+		
 		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
 		// TODO construction d'un pont à partir d'un fait ?
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
@@ -384,7 +386,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		RulesBase BR = BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
-		boolean b = moteur.backwardChaining(PL, FB);
-				
+		boolean b = moteur.backwardChaining(PL, FB);	
 	}
 }

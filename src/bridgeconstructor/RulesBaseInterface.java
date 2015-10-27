@@ -1,9 +1,10 @@
 package bridgeconstructor;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -13,9 +14,10 @@ import javax.swing.JScrollPane;
 
 import expertsystem.Rule;
 import expertsystem.RulesBase;
-import expertsystem.Word;
 
-public class RulesBaseInterface extends JFrame implements ActionListener{
+public class RulesBaseInterface extends JFrame implements MouseListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static String title = "Base de Règles";
 	
@@ -34,7 +36,6 @@ public class RulesBaseInterface extends JFrame implements ActionListener{
 		buildInterface();
 		buildEvents();
 		
-		//this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.pack();
 		this.setVisible(true);
@@ -44,7 +45,12 @@ public class RulesBaseInterface extends JFrame implements ActionListener{
 		main_panel = new JPanel();
 			main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
 			scroll_pane = new JScrollPane(main_panel);
-			
+		
+		rule = new JLabel("<html><u>bridge_rules.xml\n</u><html>");
+		rule.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			main_panel.add(rule);
+			rule.addMouseListener(this);
+			rule.setForeground(Color.BLUE);
 		for(Rule R : RB.getRules()) {
 			System.out.println(R);
 			StringBuilder s = new StringBuilder(R.toString());
@@ -60,11 +66,37 @@ public class RulesBaseInterface extends JFrame implements ActionListener{
 	private void buildEvents() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
+		try {
+			Runtime.getRuntime().exec("gedit ./bin/ressources/bridge_rules.xml");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
