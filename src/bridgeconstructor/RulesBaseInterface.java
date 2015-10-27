@@ -20,6 +20,8 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	private static final long serialVersionUID = 1L;
 
 	private static String title = "Base de Règles";
+	private static String file_path = "./bin/ressources/bridge_rules.xml";
+	
 	
 	private RulesBase RB;
 	
@@ -30,7 +32,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	public RulesBaseInterface() {
 		super(title);
 		
-		RB = BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");
+		RB = BridgeRules.initRulesBase(file_path);
 		
 		buildComposants();
 		buildInterface();
@@ -70,7 +72,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		try {
-			Runtime.getRuntime().exec("gedit ./bin/ressources/bridge_rules.xml");
+			Runtime.getRuntime().exec("gedit " + file_path);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
