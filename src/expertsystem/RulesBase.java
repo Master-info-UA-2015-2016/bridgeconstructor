@@ -13,7 +13,6 @@ public class RulesBase implements Iterable<Rule>{
 	public RulesBase(){
 		rules= new ArrayList<Rule>();
 	}
-	
 
 	/**
 	 * Constructeur par recopie {@link RulesBase}
@@ -22,13 +21,16 @@ public class RulesBase implements Iterable<Rule>{
 		rules= new ArrayList<Rule>(other.rules);
 	}
 	
-	
 	/**
 	 * Constructeur de {@link RulesBase}
 	 * @param rules : List de {@link Rule}
 	 */
 	public RulesBase(List<Rule> rules) {
 		this.rules = rules;
+	}
+	
+	public List<Rule> getRules() {
+		return this.rules;
 	}
 	
 	public String toString(){

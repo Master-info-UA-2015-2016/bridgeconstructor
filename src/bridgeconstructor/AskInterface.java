@@ -49,6 +49,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JMenuBar menuBar;
 		private JMenu file;
 			private JMenuItem item_close;
+		private JMenu show;
+			private JMenuItem item_show_rules;
 	// Panel
 	private JPanel up_panel;
 	private JPanel center_panel;
@@ -110,6 +112,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		menuBar = new JMenuBar();
 			file = new JMenu("Fichier");
 				item_close = new JMenuItem("Quitter");
+			show = new JMenu("Afficher");
+				item_show_rules = new JMenuItem("Afficher la base de règles");
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
@@ -166,7 +170,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		
 		// Menu
 		file.add(item_close);
+		show.add(item_show_rules);
 		menuBar.add(file);
+		menuBar.add(show);
 		setJMenuBar(menuBar);
 		
 		up_panel.add(order);
@@ -227,7 +233,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	}
 	
 	private void buildEvents() {
+		// Menu
 		item_close.addActionListener(this);		
+		item_show_rules.addActionListener(this);
 		
 		// CheckBox
 		this.naval_box.addActionListener(this);
@@ -239,6 +247,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.mountain_box.addActionListener(this);
 		this.water_box.addActionListener(this);
 		this.castle_box.addActionListener(this);
+		
 		// TextField
 		this.height_field.addPropertyChangeListener("value", this);
 		this.length_field.addPropertyChangeListener("value", this);
@@ -260,6 +269,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			MI = (JMenuItem) e.getSource();
 			if(MI == item_close)
 				this.dispose();
+			else if(MI == item_show_rules)
+				new RulesBaseInterface();
 		} else if(e.getSource().getClass() == JButton.class) {
 			B = (JButton) e.getSource();
 			if(B == quit_button) {
@@ -267,7 +278,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			} else if(B == reset_button) {
 				this.reset();
 			} else if(B == confirm_button) {
-				this.dispose();
 				launchForwardChaining();
 			}
 		} else if(e.getSource().getClass() == JCheckBox.class) {
@@ -358,7 +368,23 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
 		// TODO afficher le pont & le prix sélectionné
 		if(LB.isEmpty())
-			JOptionPane.showMessageDialog(null, "Bridge Constructor - Alert", "Aucun pont ne répond au critère", JOptionPane.ERROR_MESSAGE);
-		else	new ResponseInterface(LB);
+			JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
+		else {
+			new ResponseInterface(LB);
+			this.dispose();
+		}
+	}
+	
+	private void launchBackwardChaining() {
+		// Word
+		Affirmation PL = new Affirmation("drawbridge considered", true);
+		// Base de Faits
+		FactsBase FB = Environment.getFactsBase();
+		// Base de Règles
+		RulesBase BR = BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");
+		// OTHER
+		AIEngine moteur = new AIEngine(BR);
+		boolean b = moteur.backwardChaining(PL, FB);
+				
 	}
 }
