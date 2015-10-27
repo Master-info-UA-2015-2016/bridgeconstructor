@@ -55,7 +55,7 @@ public class AIEngine {
 			// on fait une copie de la BR, on peut alors la modifier pendant le parcours de sa copie
 			RulesBase BRcpy= new RulesBase(BR);
 			
-			for ( Rule rule : BRcpy){ // parcours de toutes les règles de la copies, parcours en largeur TODO ?
+			for ( Rule rule : BRcpy){ // parcours de toutes les règles de la copies => Parcours en Largeur
 				System.out.println("Recherche applicable : " + rule);
 				
 //				/*Antécédants des règles*/

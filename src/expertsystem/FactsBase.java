@@ -82,10 +82,7 @@ public class FactsBase extends ArrayList<Word> {
 	
 	/**
 	 * Vérifie si un fait est dans la base de faits
-	 * TODO PEUT ETRE ne vérifier que les noms ?
-	 * TODO OBLIGATOIRE, si x < 5 VRAI, alors v < 7 est VRAI,
-	 * 		donc il faut modifier la fonction pour l'appliquer sur les "comparisons",
-	 *  	modifier Comparison.equals() suffit ?
+	 * @author florian
 	 * @return vrai si le fait est présent
 	 */
 	public Word contains(Word fact){
@@ -135,21 +132,5 @@ public class FactsBase extends ArrayList<Word> {
 //		
 ////		return facts.contains(fact);
 //	}
-	
-	/**
-	 * Vide la base de faits
-	 */
-//	public void clear() {
-//		super.clear();
-//	}
-	
-	/**
-	 * TODO vérifier Utile ? 
-	 * @param fact
-	 * @return
-	 */
-//	public boolean isTrue(Word fact){
-//		return false;
-	// }
 
 }
