@@ -32,20 +32,18 @@ public class AIEngine {
 	/**
 	 * On sature la BF (version de base, on boucle sur BR (sans ordre partiel))
 	 * On vérifie que l'on fait au moins une inférence par cycle, sinon arrêt
-	 * TODO WARNING l'algo semble ne pas prendre en compte les OU dans les conditions des règles
 	 * @author Florian
 	 * 
 	 * @param BR ensemble de règles
 	 * @param demandables ensemble de faits
 	 * @param BF ensemble de faits initiaux (Environnment)
 	 * 
-	 * TODO à implémenter : VF, VA et VC
 	 * VF(f) valeur de f dans BF
-	 * VA(m, r)  affirmation ou négation du mot m dans Ant.(r), r € BR TODO demander (a Ugo ?) ce que c'est, si ce n'est pas un boolean (car on le compare à VF(m) )
+	 * VA(m, r)  affirmation ou négation du mot m dans Ant.(r), r € BR
 	 * VC(m,r) affirmation ou négation du mot m dans Cons.(r), r € BR
 	 */
 	public FactsBase forwardChaining(FactsBase BF) {
-		boolean inf= true;	// sert pour savoir si on a fait une inférence durant le cycle
+		boolean inf= true;	// pour savoir si on a fait une inférence durant le cycle
 		int nbInf= 0;
 
 		System.out.println("-------------------------------------------------------");
@@ -54,11 +52,10 @@ public class AIEngine {
 		
 		while(inf){
 			inf= false;
-			// on fait une copie de la BR pour faire les itérations dessus, et ainsi pouvoir modifier la BR pendant le parcours de sa copie
+			// on fait une copie de la BR, on peut alors la modifier pendant le parcours de sa copie
 			RulesBase BRcpy= new RulesBase(BR);
 			
-			/* On en peut pas supprimer une règle si on a un itérateur dessus */
-			for ( Rule rule : BRcpy){
+			for ( Rule rule : BRcpy){ // parcours de toutes les règles de la copies, parcours en largeur TODO ?
 				System.out.println("Recherche applicable : " + rule);
 				
 //				/*Antécédants des règles*/
@@ -66,10 +63,8 @@ public class AIEngine {
 
 //				Iterator<Word> iter= rule.getAntecedants().iterator();
 //				while ( iter.hasNext() && dec ){
-
-				// TODO OBLIGATOIRE, corriger contains() pour comparaison
-				// TODO vérifier, je suppose que c'est ==, donc contains retourne vraie SSI mm nom et mm valeur
 				// pas optimal, car on continue de vérifier, même si dec est déjà à faux
+				
 				// System.out.println("Parcours des antécédents");
 				for (Word wAnt : rule.getAntecedants()){ 
 //					Word wAnt= iter.next();
@@ -80,14 +75,13 @@ public class AIEngine {
 					
 				}
 				if (dec){
-//						Je prend tout les conséquence de la regle en cours
-//						/*Conséquences des règles*/,
-					for (Word wCons : rule.getConsequences() ){
+//					On ajoute toutes les conséquences de la règle
+					for (Word wCons : rule.getConsequences() ) {
 						BF.add(wCons);
 					}
 					inf= true;
 					++nbInf;
-					//TODO this.Mémoriser(r,nbInf) /* Pour l'explication TODO ???*/ 
+					//TODO this.Mémoriser(r,nbInf) /* Pour l'explication ???*/ 
 					System.out.println("\tRègle appliquée");
 					BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
 				}
@@ -95,7 +89,6 @@ public class AIEngine {
 			}
 		}
 		System.out.println("Nb inférence chainage avant : "+ nbInf);
-//		TODO retour et conclusion pour utilisateur (en passant par bridge-constructor)	
 		return BF;
 	}
 	
