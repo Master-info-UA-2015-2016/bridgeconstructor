@@ -117,7 +117,7 @@ public class AIEngine {
 	 * @param FB : La Base de Faits
 	 * @return boolean 
 	 */
-	public boolean backwardChaining(Word W, FactsBase FB) {
+	public boolean backwardChaining(Word goal, FactsBase FB) {
 		System.out.println("---------------------------------------------------------");
 		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage arrière   |");
 		System.out.println("---------------------------------------------------------");
@@ -125,27 +125,29 @@ public class AIEngine {
 		// La procédure devrait s'appeler DEMO...
 		boolean dem = false;
 		// 1er cas évident :
-		if(FB.contains(W) != null) dem = true;
+		if(FB.contains(goal) != null) dem = true;
+        
 		// 2eme cas : rechercher si b déductible à partir de BR U BF
-		for(Rule R : getRulesWithConsequent(W)) {	// non optimisé
+		for(Rule R : getRulesWithConsequent(goal)) {	// non optimisé
 			dem = VERIF(R.getAntecedants(), FB);
 			if(dem) break;
 		}
+        
 		// 3ème cas : sinon voir si b est demandable
-		if(dem == false && FB.isFactDemandable(W)) {
+		if(dem == false && FB.isFactDemandable(goal)) {
 						// Si b est demandable
 			// Poser la question b ?
 			// dem = reponse(b)				VRAI, FAUX, ou inconnu
-			Word fact= FB.contains(W);
+			Word fact= FB.contains(goal);
 			if (fact != null){
 				// Alors fact n'est pas inconnu, on test si il est vrai
-				dem = (W.getVal() == fact.getVal() );
+				dem = ( (goal.getVal()).equals( fact.getVal() ) );
 			}
 			else dem= false; 
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF
 		if(dem == true)
-			FB.add(W);
+			FB.add(goal);
 		// return dem ?
 		return dem;
 	}
