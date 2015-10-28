@@ -336,11 +336,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		FactsBase FB = Environment.getFactsBase();
 		System.out.println(FB);
 //		BASE DE REGLES
-		
-                // Eclipse
-//		RulesBase BR1= BridgeRules.initRulesBase("./ressources/bridge_rules.xml");
-                // NetBeans
-		RulesBase BR1= BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
+		RulesBase BR1;	
+        BR1 = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
 		System.out.println(BR1);
 		
 //		OTHER
@@ -352,8 +349,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("------------------------");
 		System.out.println(FB);
 		
-		// Les affirmations finales qu'on veut : 
-		Affirmation PL = new Affirmation("drawbridge considered", true);
+		Affirmation PL;
+        PL = new Affirmation("drawbridge considered", true);
 
 		System.out.println("------------------------");
 		System.out.println("Choix du pont :");
@@ -375,8 +372,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		if(LB.isEmpty())
 			JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 		else {
-			new ResponseInterface(LB);
-			this.dispose();
+			ResponseInterface RI= new ResponseInterface(LB);
+            RI.toFront();
+            this.setVisible(false);
+//			this.dispose();
 		}
 	}
 	
@@ -386,7 +385,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Base de Faits
 		FactsBase FB = Environment.getFactsBase();
 		// Base de Règles
-		RulesBase BR = BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");
+		RulesBase BR = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
 		boolean b = moteur.backwardChaining(PL, FB);	

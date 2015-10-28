@@ -1,5 +1,6 @@
 package expertsystem;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,6 +42,7 @@ public class AIEngine {
 	 * VF(f) valeur de f dans BF
 	 * VA(m, r)  affirmation ou négation du mot m dans Ant.(r), r € BR
 	 * VC(m,r) affirmation ou négation du mot m dans Cons.(r), r € BR
+     * @return la base de faits avec le chainage avant appliqué
 	 */
 	public FactsBase forwardChaining(FactsBase BF) {
 		boolean inf= true;	// pour savoir si on a fait une inférence durant le cycle
@@ -61,21 +63,15 @@ public class AIEngine {
 //				/*Antécédants des règles*/
 				boolean dec= true;
 
-//				Iterator<Word> iter= rule.getAntecedants().iterator();
-//				while ( iter.hasNext() && dec ){
-				// pas optimal, car on continue de vérifier, même si dec est déjà à faux
-				
-				// System.out.println("Parcours des antécédents");
-				for (Word wAnt : rule.getAntecedants()){ 
-//					Word wAnt= iter.next();
-					
-					Word tmp= BF.contains(wAnt);
-					if ( tmp == null || ! wAnt.sameValue(tmp.getVal())/*(tmp.getVal()).equals(wAnt.getVal())*/ ) // VF(f)!=VA(wAnt,r)
-						dec= false;
-					
-				}
+                for (Iterator<Word> it = rule.getAntecedants().iterator() ; it.hasNext() && dec;) {
+                    Word wAnt = it.next();
+                    Word tmp= BF.contains(wAnt);
+                    if ( tmp == null || ! wAnt.sameValue(tmp.getVal())/*(tmp.getVal()).equals(wAnt.getVal())*/ ) // VF(f)!=VA(wAnt,r)
+                        dec= false;
+                }
+                
 				if (dec){
-//					On ajoute toutes les conséquences de la règle
+//					On ajoute toutes les conséquences de la règle car elle est vraie
 					for (Word wCons : rule.getConsequences() ) {
 						BF.add(wCons);
 					}
@@ -83,7 +79,7 @@ public class AIEngine {
 					++nbInf;
 					//TODO this.Mémoriser(r,nbInf) /* Pour l'explication ???*/ 
 					System.out.println("\tRègle appliquée");
-					BR.tryRemove(rule); /* Une règle se déclenche au plus une fois */
+					BR.remove(rule); /* Une règle se déclenche au plus une fois */
 				}
 				
 			}
@@ -94,26 +90,26 @@ public class AIEngine {
 	
 	/**
 	 * Retourne une base de règles, ces dernières ayant toutes pour conséquences au moins le fait A
-	 * @param A : Fait
+	 * @param fact : Fait
 	 * @return RulesBase
 	 */
-	private RulesBase getRulesWithConsequent(Word A) {
+	private RulesBase getRulesWithConsequent(Word fact) {
 		RulesBase RB = new RulesBase(BR);
-		for(int i = 0 ; i < RB.rules.size() ; i++) {
-			Rule R = RB.rules.get(i);
+		for(int i = 0 ; i < RB.size() ; ++i) {
+			Rule R = RB.get(i);
 			boolean b = false;
 			for(Word W : R.getConsequences())
-				if(W.equals(A)) 
+				if(W.equals(fact)) 
 					b = true;
 			if(!b)
-				RB.rules.remove(i);
+				RB.remove(i);
 		}
 		return RB;
 	}
 	
 	/**
 	 * Chaînage Arrière - Procédure DEMO
-	 * @param A : But récursivement établi (b dans l'exemple)
+	 * @param goal : But récursivement établi (b dans l'exemple)
 	 * @param FB : La Base de Faits
 	 * @return boolean 
 	 */

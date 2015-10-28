@@ -19,11 +19,11 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private static String title = "Base de Règles";
-	private static String file_path = "./bin/ressources/bridge_rules.xml";
+	private static final String title = "Base de Règles";
+	private static final String file_path = "./bin/ressources/bridge_rules.xml";
 	
 	
-	private RulesBase RB;
+	private final RulesBase RB;
 	
 	private JPanel main_panel;
 		private JScrollPane scroll_pane;
@@ -43,6 +43,13 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		this.setVisible(true);
 	}
 	
+    @Override
+    public void dispose(){
+        this.getParent().setVisible(true);
+		this.setVisible(false);
+        super.dispose();
+    }
+    
 	private void buildComposants() {
 		main_panel = new JPanel();
 			main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
@@ -53,12 +60,12 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 			main_panel.add(rule);
 			rule.addMouseListener(this);
 			rule.setForeground(Color.BLUE);
-		for(Rule R : RB.getRules()) {
-			System.out.println(R);
-			StringBuilder s = new StringBuilder(R.toString());
-			rule = new JLabel(s.toString());
-			main_panel.add(rule);
-		}
+        for (Rule R : RB) {
+            System.out.println(R);
+            String s = R.toString();
+            rule = new JLabel(s);
+            main_panel.add(rule);
+        }
 	}
 	
 	private void buildInterface() {
