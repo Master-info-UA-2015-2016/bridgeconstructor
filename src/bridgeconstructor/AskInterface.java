@@ -41,7 +41,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 
 	private static final long serialVersionUID = 1L;
 	
-	private static String title = "Bridge Constructor - Ask";
+	private static final String title = "Bridge Constructor - Ask";
 	
 	private NumberFormat format;
 	
@@ -332,12 +332,15 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	
 	// private ou public ? void ou boolean ?
 	private void launchForwardChaining(){
-		ArrayList<Bridge> LB = new ArrayList<>();
+		ArrayList<Bridge> LB = new ArrayList<Bridge>();
 		FactsBase FB = Environment.getFactsBase();
 		System.out.println(FB);
 //		BASE DE REGLES
 		
-		RulesBase BR1= BridgeRules.initRulesBase("./bin/ressources/bridge_rules.xml");		
+                // Eclipse
+//		RulesBase BR1= BridgeRules.initRulesBase("./ressources/bridge_rules.xml");
+                // NetBeans
+		RulesBase BR1= BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
 		System.out.println(BR1);
 		
 //		OTHER
