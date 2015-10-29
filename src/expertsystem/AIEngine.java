@@ -20,21 +20,6 @@ public class AIEngine {
 	}
 	
 	/**
-	 * Procédure VERIF
-	 * @param W : ensemble de buts à vérifier tous
-	 * @param FB : {@link FactsBase}
-	 * @return boolean
-	 */
-	private boolean VERIF(List<Word> WList, FactsBase FB) {
-		boolean ver = true;
-		for(Word W : WList) {
-			ver = backwardChaining(W, FB);
-			if(ver == false) break;	
-		}
-		return ver;
-	}
-	
-	/**
 	 * On sature la BF (version de base, on boucle sur BR (sans ordre partiel))
 	 * On vérifie que l'on fait au moins une inférence par cycle, sinon arrêt
 	 * @author Florian
@@ -111,6 +96,21 @@ public class AIEngine {
 	}
 	
 	/**
+	 * Procédure VERIF
+	 * @param W : ensemble de buts à vérifier tous
+	 * @param FB : {@link FactsBase}
+	 * @return boolean
+	 */
+	private boolean VERIF(List<Word> WList, FactsBase FB) {
+		boolean ver = true;
+		for(Word W : WList) {
+			if(ver == false) break;	
+			ver = backwardChaining(W, FB);
+		}
+		return ver;
+	}
+	
+	/**
 	 * Chaînage Arrière - Procédure DEMO
 	 * @param goal : But récursivement établi (b dans l'exemple)
 	 * @param FB : La Base de Faits
@@ -120,8 +120,7 @@ public class AIEngine {
 		System.out.println("---------------------------------------------------------");
 		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage arrière   |");
 		System.out.println("---------------------------------------------------------");
-		
-		// La procédure devrait s'appeler DEMO...
+
 		boolean dem = false;
 		// 1er cas évident :
 		if(FB.contains(goal) != null) dem = true;

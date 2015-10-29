@@ -10,6 +10,8 @@ import java.util.List;
 public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
 //	protected List<Rule> rules;
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Constructeur par défaut de {@link RulesBase}
 	 */

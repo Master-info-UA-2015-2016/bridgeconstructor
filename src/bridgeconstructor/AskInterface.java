@@ -402,6 +402,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 //            this.setVisible(false);
 //			this.dispose();
 		}
+		
+		launchBackwardChaining();
 	}
 	
 	private void launchBackwardChaining() {
