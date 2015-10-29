@@ -163,7 +163,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		storm_box =  new JCheckBox("Tempête");
 		// Terrains
 		ground = new JLabel("Terrain : ");
-		wood_box = new JCheckBox("Bois");
+		wood_box = new JCheckBox("Forêt");
 		water_box = new JCheckBox("Eau");
 		mountain_box = new JCheckBox("Montagne");
 		// Mesure
