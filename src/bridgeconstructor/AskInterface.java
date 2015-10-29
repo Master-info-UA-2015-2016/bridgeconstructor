@@ -433,6 +433,17 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
-		boolean b = moteur.backwardChaining("water", FB);
+        String goalName= "use wood";
+		boolean found = moteur.backwardChaining(goalName, FB);
+        
+        if (found){
+            System.out.println("la valeur de "+ goalName +" a été trouvée");
+            System.out.println("\n"+
+                    FB);
+        }
+        else {
+             System.out.println("\n"+
+                    "Impossible de déduire "+ goalName);
+        }
 	}
 }

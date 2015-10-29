@@ -106,11 +106,11 @@ public class AIEngine {
     }
     
     private Word response(String goal){
-            System.out.println("\n Connaissez vous la valeur de : "+ goal);
+            System.out.println("\n Veuillez entrer vous la valeur de : "+ goal);
             Scanner sc; sc= new Scanner(System.in);           
             String answerValue= sc.next();
             
-            System.out.println("\tEst-ce que "+ answerValue +"est correcte ? Y/N");
+            System.out.println("\tEst-ce que '"+ answerValue +"' est correcte ? true/false");
             boolean answer= sc.nextBoolean();
             if (answer){
                 try{
@@ -162,11 +162,16 @@ public class AIEngine {
             dem = true;
         }
         else {
-            System.out.println("la BF ne contient pas : "+ goal);
+            // 2e cas : rechercher si b est déductible à partir de BR u BF
+            System.out.println("\tla BF ne contient pas : "+ goal +" recherche de sa valeur à partir des règles");
             
             for (Iterator<Rule> it = getRulesWithConsequent(goal).iterator(); it.hasNext() && dem;) {
                 Rule R = it.next();
                 dem = VERIF(R.getAntecedants(), FB);
+                if (dem){
+                    // TODO ajouter la valeur de goal dans la BF avec l'instance goalFact,
+//                        récuperer sa valeur dans les conséquences de R
+                }
             }
         }
             
@@ -177,8 +182,11 @@ public class AIEngine {
                 // Demande à l'utilisateur s'il connait la valeur de goal :
 
             goalFact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
-                
-                
+            if (goalFact != null) {
+                System.out.println("le fait est ajouté à la base de faits");
+                FB.add(goalFact);
+            }
+                           
         /// OLD
 //			Word fact= FB.contains(goal);
 //			if (fact != null){
@@ -189,9 +197,13 @@ public class AIEngine {
             
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF
-		if(dem == true && goalFact != null)
-			FB.add(goalFact);
-		// return dem ?
+            // TODO PROBLEME (flo) : si 1er cas, alors DEJA dans la BF
+        
+//		if(dem == true) {
+//            System.out.println("ajout de "+ goalFact +" à la FB");
+//			FB.add(goalFact);
+//        }
+            
 		return dem;
 	}
 
