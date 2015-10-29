@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+/**
+ *
+ * @author Florian
+ */
 public class ResponseInterface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static String title = "Bridge Constructor - Response";
@@ -33,7 +37,10 @@ public class ResponseInterface extends JFrame {
 		private JLabel material;
 		private JLabel price;
 	
-	public ResponseInterface() {
+    /**
+     *
+     */
+    public ResponseInterface() {
 		super(title);
 		
 		list = new ArrayList<Bridge>();
@@ -48,7 +55,11 @@ public class ResponseInterface extends JFrame {
 		this.setVisible(true);
 	}
 	
-	public ResponseInterface(List<Bridge> LB) {
+    /**
+     *
+     * @param LB
+     */
+    public ResponseInterface(List<Bridge> LB) {
 		super(title);
 		
 		list = LB;

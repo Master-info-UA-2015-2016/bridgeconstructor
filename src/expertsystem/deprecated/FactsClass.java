@@ -7,5 +7,9 @@ package expertsystem.deprecated;
  * Inutilisé pour l'instant car on ne peut pas définir static ici ?
  */
 public interface FactsClass {
-	void createFB();
+
+    /**
+     *
+     */
+    void createFB();
 }

@@ -15,6 +15,10 @@ import javax.swing.JScrollPane;
 import expertsystem.Rule;
 import expertsystem.RulesBase;
 
+/**
+ *
+ * @author Florian
+ */
 public class RulesBaseInterface extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +33,10 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		private JScrollPane scroll_pane;
 		private JLabel rule;
 	
-	public RulesBaseInterface() {
+    /**
+     *
+     */
+    public RulesBaseInterface() {
 		super(title);
 		
 		RB = BridgeRules.initRulesBase(file_path);
@@ -43,6 +50,9 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		this.setVisible(true);
 	}
 	
+    /**
+     *
+     */
     @Override
     public void dispose(){
         this.getParent().setVisible(true);
@@ -76,7 +86,11 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
-	@Override
+    /**
+     *
+     * @param e
+     */
+    @Override
 	public void mouseClicked(MouseEvent e) {
 		try {
 			Runtime.getRuntime().exec("gedit " + file_path);
@@ -85,25 +99,41 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param e
+     */
+    @Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+    /**
+     *
+     * @param e
+     */
+    @Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+    /**
+     *
+     * @param e
+     */
+    @Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+    /**
+     *
+     * @param e
+     */
+    @Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		

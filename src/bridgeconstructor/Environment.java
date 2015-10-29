@@ -32,6 +32,10 @@ public class Environment {
 	
 	// private Materials Sol;
 	
+    /**
+     *
+     */
+    	
 	public static void reset() {
 		// Traffic
 		naval_traffic = false;
@@ -54,111 +58,217 @@ public class Environment {
 	
 //	SETTERS
 	//	SETTERS Traffic
-	public static void setNaval_traffic(boolean naval_traffic) {
+
+    /**
+     *
+     * @param naval_traffic
+     */
+    	public static void setNaval_traffic(boolean naval_traffic) {
 		Environment.naval_traffic = naval_traffic;
 	}
 	
-	public static void setRailway_traffic(boolean railway_traffic) {
+    /**
+     *
+     * @param railway_traffic
+     */
+    public static void setRailway_traffic(boolean railway_traffic) {
 		Environment.railway_traffic = railway_traffic;
 	}
 	
-	public static void setPedestrian_traffic(boolean pedestrian_traffic) {
+    /**
+     *
+     * @param pedestrian_traffic
+     */
+    public static void setPedestrian_traffic(boolean pedestrian_traffic) {
 		Environment.pedestrian_traffic = pedestrian_traffic;
 	}
 	
-	public static void setRoad_traffic(boolean road_traffic) {
+    /**
+     *
+     * @param road_traffic
+     */
+    public static void setRoad_traffic(boolean road_traffic) {
 		Environment.road_traffic = road_traffic;
 	}
 	
-	public static void setDensity(float density) {
+    /**
+     *
+     * @param density
+     */
+    public static void setDensity(float density) {
 		Environment.density = density;
 	}
 	
 	//	SETTERS Météo
-	public static void setStorm(boolean storm) {
+
+    /**
+     *
+     * @param storm
+     */
+    	public static void setStorm(boolean storm) {
 		Environment.storm = storm;
 	}
 	
 	//	SETTERS Terrain 
-	public static void setWood(boolean wood) {
+
+    /**
+     *
+     * @param wood
+     */
+    	public static void setWood(boolean wood) {
 		Environment.wood = wood;
 	}
 	
-	public static void setWater(boolean water) {
+    /**
+     *
+     * @param water
+     */
+    public static void setWater(boolean water) {
 		Environment.water = water;
 	}
 	
-	public static void setMountain(boolean mountain) {
+    /**
+     *
+     * @param mountain
+     */
+    public static void setMountain(boolean mountain) {
 		Environment.mountain = mountain;
 	}
 	
 	// 	SETTERS Mesures
-	public static void setLength(float length) {
+
+    /**
+     *
+     * @param length
+     */
+    	public static void setLength(float length) {
 		Environment.length = length;
 	}
 	
-	public static void setHeight(float height) {
+    /**
+     *
+     * @param height
+     */
+    public static void setHeight(float height) {
 		Environment.height = height;
 	}
 	
 	// 	SETTERS Bonus
-	public static void setCastle(boolean castle) {
+
+    /**
+     *
+     * @param castle
+     */
+    	public static void setCastle(boolean castle) {
 		Environment.castle = castle;
 	}
 
 // GETTERS
 	
 	//	GETTERS Traffic
-	public static boolean isNaval_traffic() {
+
+    /**
+     *
+     * @return
+     */
+    	public static boolean isNaval_traffic() {
 		return naval_traffic;
 	}
 	
-	public static boolean isRailway_traffic() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isRailway_traffic() {
 		return railway_traffic;
 	}
 	
-	public static boolean isPedestrian_traffic() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isPedestrian_traffic() {
 		return pedestrian_traffic;
 	}
 	
-	public static boolean isRoad_traffic() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isRoad_traffic() {
 		return road_traffic;
 	}
 	
-	public static float getDensity() {
+    /**
+     *
+     * @return
+     */
+    public static float getDensity() {
 		return density;
 	}
 	
 	//	GETTERS Météo
-	public static boolean isStorm() {
+
+    /**
+     *
+     * @return
+     */
+    	public static boolean isStorm() {
 		return storm;
 	}
 	
 	//	GETTERS Terrains
 	
+    /**
+     *
+     * @return
+     */
+    	
 	public static boolean isWood() {
 		return wood;
 	}
 	
-	public static boolean isWater() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isWater() {
 		return water;
 	}
 	
-	public static boolean isMountain() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isMountain() {
 		return mountain;
 	}
 	
 	//	GETTERS Mesures
-	public static float getHeight() {
+
+    /**
+     *
+     * @return
+     */
+    	public static float getHeight() {
 		return height;
 	}
 	
-	public static float getLength() {
+    /**
+     *
+     * @return
+     */
+    public static float getLength() {
 		return length;
 	}
 	
 	//	GETTERS Bonus
-	public static boolean getCastle() {
+
+    /**
+     *
+     * @return
+     */
+    	public static boolean getCastle() {
 		return castle;
 	}
 	
@@ -184,6 +294,7 @@ public class Environment {
 	/**
 	 * Saturation de la base de faits
 	 * {@link FactsBase}
+     * @return 
 	 */
 	public static FactsBase getFactsBase() {
 		FactsBase FB = new FactsBase();

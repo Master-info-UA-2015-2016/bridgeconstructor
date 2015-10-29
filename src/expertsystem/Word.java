@@ -1,20 +1,50 @@
 package expertsystem;
 
+/**
+ *
+ * @author Florian
+ */
 public abstract class Word {
-	protected String name;
 
-	public Word(String _name){
+    /**
+     *
+     */
+    protected String name;
+
+    /**
+     *
+     * @param _name
+     */
+    public Word(String _name){
 		name= _name;
 	}
 	
-	public abstract String toString();
+    /**
+     *
+     * @return
+     */
+    public abstract String toString();
 //	public boolean isTrue(); TODO reimplémenter, modifier à cause de isTrue de Comparison
 //	public abstract boolean equals(Word other);
 	
-	public abstract String getVal();
-	public abstract boolean sameValue(String value);
+    /**
+     *
+     * @return
+     */
+    public abstract String getVal();
+
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public abstract boolean sameValue(String value);
 	
-	public String getName(){
+    /**
+     *
+     * @return
+     */
+    public String getName(){
 		return name;
 	}
 }

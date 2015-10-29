@@ -1,17 +1,34 @@
 package expertsystem;
 
+/**
+ *
+ * @author Florian
+ */
 public class Operator {
 	String chaine;
 	
-	public Operator(String chaine){
+    /**
+     *
+     * @param chaine
+     */
+    public Operator(String chaine){
 		this.chaine = chaine;
 	}
 	
-	public String toString(){
+    /**
+     *
+     * @return
+     */
+    public String toString(){
 		return chaine;
 	}
 	
-	public boolean equals(Operator other){
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public boolean equals(Operator other){
 		return chaine.equals(other.chaine);
 	}
 }

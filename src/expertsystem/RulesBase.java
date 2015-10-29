@@ -3,6 +3,10 @@ package expertsystem;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Florian
+ */
 public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
 //	protected List<Rule> rules;
 	
@@ -33,6 +37,11 @@ public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
 //		return this.rules;
 //	}
 	
+    /**
+     *
+     * @return
+     */
+    	
     @Override
 	public String toString(){
 		String chaine= "Base de règles : \n";

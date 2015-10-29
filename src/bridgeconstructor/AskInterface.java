@@ -97,7 +97,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JButton reset_button;
 	private JButton confirm_button;
 	
-	public AskInterface() {
+    /**
+     *
+     */
+    public AskInterface() {
 		super(title);
 		buildComposants();
 		buildInterface();
@@ -274,7 +277,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	@Override
+    /**
+     *
+     * @param e
+     */
+    @Override
 	public void actionPerformed(ActionEvent e) {
 		JCheckBox CB;
 		JButton B;
@@ -317,7 +324,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param evt
+     */
+    @Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
 		if(source == height_field)

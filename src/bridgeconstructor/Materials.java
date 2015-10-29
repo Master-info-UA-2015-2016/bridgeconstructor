@@ -2,6 +2,10 @@ package bridgeconstructor;
 
 import java.io.File;
 
+/**
+ *
+ * @author Florian
+ */
 public class Materials {
 	
 	float steelPrice;
@@ -22,11 +26,22 @@ public class Materials {
 		cordPrice= 12;
 	}
 	
-	public Materials(){
+    /**
+     *
+     */
+    public Materials(){
 		initMaterials(new File("test.xml"));
 	}
 	
-	public Materials(float steel_price, float wood_price, float rock_price, float concrete_price, float cord_price) {
+    /**
+     *
+     * @param steel_price
+     * @param wood_price
+     * @param rock_price
+     * @param concrete_price
+     * @param cord_price
+     */
+    public Materials(float steel_price, float wood_price, float rock_price, float concrete_price, float cord_price) {
 		this.steelPrice = steel_price;
 		this.woodPrice = wood_price;
 		this.rockPrice = rock_price;
@@ -34,19 +49,35 @@ public class Materials {
 		this.cordPrice = cord_price;
 	}
 	
-	public float getSteelPrice() {
+    /**
+     *
+     * @return
+     */
+    public float getSteelPrice() {
 		return steelPrice;
 	}
 	
-	public float getConcretePrice() {
+    /**
+     *
+     * @return
+     */
+    public float getConcretePrice() {
 		return concretePrice;
 	}
 	
-	public float getRockPrice() {
+    /**
+     *
+     * @return
+     */
+    public float getRockPrice() {
 		return rockPrice;
 	}
 	
-	public float getWoodPrice() {
+    /**
+     *
+     * @return
+     */
+    public float getWoodPrice() {
 		return woodPrice;
 	}
 

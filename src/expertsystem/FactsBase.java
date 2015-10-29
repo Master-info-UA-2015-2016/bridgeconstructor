@@ -32,6 +32,7 @@ public class FactsBase extends ArrayList<Word> {
 
 	/**
 	 * Constructeur base de faits
+     * @return 
 	 */
 //	public FactsBase(){
 ////		facts= new ArrayList<Word>();
@@ -61,9 +62,9 @@ public class FactsBase extends ArrayList<Word> {
 	/**
 	 * Ajoute un fait -comparaison- dans la base de faits, à partir de son nom et de sa valeur
 	 * @author florian
-	 * 
-	 * @param factName nom du nouveau fait
-	 * @param factVal valeur (vrai ou faux) du nouveau fait
+     * @param name
+     * @param op
+     * @param valCondition
 	 */
 	public void addFact(String name, Operator op, float valCondition){
 		this.add(new Comparison(name, op, valCondition));
@@ -83,6 +84,7 @@ public class FactsBase extends ArrayList<Word> {
 	/**
 	 * Vérifie si un fait est dans la base de faits
 	 * @author florian
+     * @param fact
 	 * @return vrai si le fait est présent
 	 */
 	public Word contains(Word fact){

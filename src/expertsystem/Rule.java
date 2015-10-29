@@ -9,16 +9,31 @@ import java.util.List;
  * @author Florian
  * TODO comment implémenter les OU / ET, + parenthèses ? Doit ressembler aux opérations mathématiques ?
  */
+
+/**
+ *
+ * @author Florian
+ */
+
 public class Rule {
 	private List<Word> antecedents;
 	private List<Word> consequences;
 	
-	public Rule(Collection<Word> antecedents, Collection<Word> consequences){
+    /**
+     *
+     * @param antecedents
+     * @param consequences
+     */
+    public Rule(Collection<Word> antecedents, Collection<Word> consequences){
 		this.antecedents= new ArrayList<Word>(antecedents);
 		this.consequences= new ArrayList<Word>(consequences);
 	}
 	
-	public String toString(){
+    /**
+     *
+     * @return
+     */
+    public String toString(){
 		String s= "SI ";
 		for (int i=0 ; i<antecedents.size() ; i++) {
 			if(i > 0) s+= " ET ";
@@ -37,19 +52,36 @@ public class Rule {
 	}
 	
 	// ajouter si ET ou OU
-	public void addAnt(Word ant){
+
+    /**
+     *
+     * @param ant
+     */
+    	public void addAnt(Word ant){
 		antecedents.add(ant);
 	}
 	
-	public void addConsequences(Word cons){
+    /**
+     *
+     * @param cons
+     */
+    public void addConsequences(Word cons){
 		consequences.add(cons);
 	}
 
-	public List<Word> getAntecedants() {
+    /**
+     *
+     * @return
+     */
+    public List<Word> getAntecedants() {
 		return antecedents;
 	}
 	
-	public List<Word> getConsequences() {
+    /**
+     *
+     * @return
+     */
+    public List<Word> getConsequences() {
 		return consequences;
 	}
 	

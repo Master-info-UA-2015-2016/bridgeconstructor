@@ -11,7 +11,11 @@ import java.util.List;
 public class AIEngine {
 	private RulesBase BR;
 	
-	public AIEngine(RulesBase _BR){
+    /**
+     *
+     * @param _BR
+     */
+    public AIEngine(RulesBase _BR){
 		BR= _BR;
 	}
 	
@@ -36,7 +40,6 @@ public class AIEngine {
 	 * @author Florian
 	 * 
 	 * @param BR ensemble de règles
-	 * @param demandables ensemble de faits
 	 * @param BF ensemble de faits initiaux (Environnment)
 	 * 
 	 * VF(f) valeur de f dans BF

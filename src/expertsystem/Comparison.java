@@ -1,5 +1,9 @@
 package expertsystem;
 
+/**
+ *
+ * @author Florian
+ */
 public class Comparison extends Word{
 	private Operator op;
 	private float valCondition;
@@ -25,6 +29,7 @@ public class Comparison extends Word{
 	
 	/**
 	 * Retour sous forme de chaine de la classe
+     * @return 
 	 */
 	public String toString(){
 		return name +" "+ op +" "+ valCondition ;
@@ -57,6 +62,8 @@ public class Comparison extends Word{
 	/**
 	 * Retourne si la comparaison est exacte ou non
 	 * @author florian
+     * @param valeurVariable
+     * @return 
 	 */
 	public boolean isTrue(float valeurVariable) {
 		System.out.print("vrai avec : "+ valeurVariable +" ? ");
@@ -93,11 +100,21 @@ public class Comparison extends Word{
 //		else return false;
 //	}
 
+    /**
+     *
+     * @return
+     */
+    
 	public String getVal() {
 		return ""+ valCondition;
 	}
 
-	public boolean sameValue(String value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public boolean sameValue(String value) {
 		float val = Float.parseFloat(value);
 		boolean same= isTrue(val);
 		System.out.println(same);

@@ -19,10 +19,19 @@ import expertsystem.Operator;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 
+/**
+ *
+ * @author Florian
+ */
 public class BridgeRules {
 	private static RulesBase bridge_rules;
 
-	public static RulesBase initRulesBase(String filename) {
+    /**
+     *
+     * @param filename
+     * @return
+     */
+    public static RulesBase initRulesBase(String filename) {
 		bridge_rules = new RulesBase();
 
 		BridgeRules.initFromXML(filename);
@@ -30,7 +39,13 @@ public class BridgeRules {
 		return bridge_rules;
 	}
 
-	public static void parseToList(Node node, List<Word> list, boolean isCons) {
+    /**
+     *
+     * @param node
+     * @param list
+     * @param isCons
+     */
+    public static void parseToList(Node node, List<Word> list, boolean isCons) {
 		// System.out.println("\t\tCurrent Element :" +
 		// consequence.getNodeName());
 		if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -75,7 +90,13 @@ public class BridgeRules {
 		}
 	}
 
-	public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
+    /**
+     *
+     * @param nodeList
+     * @param isCons
+     * @return
+     */
+    public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
 		ArrayList<Word> list = new ArrayList<Word>(); // déclaration de la liste
 														// de mots à créer
 
@@ -89,7 +110,11 @@ public class BridgeRules {
 		return list;
 	}
 
-	public static void initFromXML(String filename) {
+    /**
+     *
+     * @param filename
+     */
+    public static void initFromXML(String filename) {
 
 		try {
 			File fXmlFile = new File(filename);
