@@ -387,9 +387,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont-Levis", Material.Wood, 1));
 				}
 		}
-		
-		
-		
+	
 		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
 		// TODO construction d'un pont à partir d'un fait ?
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
@@ -399,11 +397,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		else {
 			ResponseInterface RI= new ResponseInterface(LB);
             RI.toFront();
-//            this.setVisible(false);
-//			this.dispose();
+            this.setVisible(false);
+			this.dispose();
 		}
 		
-		launchBackwardChaining();
+//		launchBackwardChaining();
 	}
 	
 	private void launchBackwardChaining() {
