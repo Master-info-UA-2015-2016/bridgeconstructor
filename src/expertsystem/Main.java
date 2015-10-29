@@ -2,9 +2,17 @@ package expertsystem;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Florian
+ */
 public class Main {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		
 		FactsBase FB= new FactsBase();
 		
