@@ -19,22 +19,7 @@ public class AIEngine {
     public AIEngine(RulesBase _BR){
 		BR= _BR;
 	}
-	
-	/**
-	 * Procédure VERIF
-	 * @param W : ensemble de buts à vérifier tous
-	 * @param FB : {@link FactsBase}
-	 * @return boolean
-	 */
-	private boolean VERIF(List<Word> WList, FactsBase FB) {
-		boolean ver = true;
-		for(Word word : WList) {
-			ver = backwardChaining(word.getName(), FB);
-			if(ver == false) break;	
-		}
-		return ver;
-	}
-	
+
 	/**
 	 * On sature la BF (version de base, on boucle sur BR (sans ordre partiel))
 	 * On vérifie que l'on fait au moins une inférence par cycle, sinon arrêt
@@ -157,7 +142,7 @@ public class AIEngine {
 			if(ver == false) break;
 		}
 		return ver;
-	}    
+	}
 	
 	/**
 	 * Chaînage Arrière - Procédure DEMO
