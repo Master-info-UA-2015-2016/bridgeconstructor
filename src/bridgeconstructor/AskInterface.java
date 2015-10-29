@@ -3,9 +3,11 @@ package bridgeconstructor;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Rectangle;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.GraphicsEnvironment;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
@@ -102,9 +104,21 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		buildEvents();
 		
 		this.setResizable(false);
-		this.setLocationRelativeTo(null);
-		this.pack();
+//		this.setLocationRelativeTo(null);
+//        this.setLocationByPlatform(true);
+        
+        //get local graphics environment
+        GraphicsEnvironment graphicsEnvironment=GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+        //get maximum window bounds
+        Rectangle screenSize= graphicsEnvironment.getMaximumWindowBounds();
+
+        // TODO corrigier bidouillage ?
+        this.setLocation((int)(screenSize.getWidth())/3, (int)(screenSize.getHeight())/4);
+        
 		this.setVisible(true);
+		this.pack();
+    
 	}
 	
 	private void buildComposants() {
@@ -374,7 +388,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		else {
 			ResponseInterface RI= new ResponseInterface(LB);
             RI.toFront();
-            this.setVisible(false);
+//            this.setVisible(false);
 //			this.dispose();
 		}
 	}
