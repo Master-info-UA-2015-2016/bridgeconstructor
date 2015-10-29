@@ -45,7 +45,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	
 	private static final String title = "Bridge Constructor - Ask";
 	
-	private NumberFormat format;
+	private NumberFormat float_format;
+	private NumberFormat int_format;
 	
 	// Menu
 	private JMenuBar menuBar;
@@ -73,8 +74,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JCheckBox pedestrian_box;
 	private JCheckBox railway_box;
 	private JCheckBox road_box;
-	private JLabel density;
-	private JFormattedTextField density_field;
+	private JLabel daily_traffic;
+	private JFormattedTextField daily_traffic_field;
 	// Météo
 	private JLabel meteo;
 	private JCheckBox storm_box;
@@ -87,8 +88,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JLabel measure;
 	private JLabel height;
 	private JLabel length;
+	private JLabel lane_number;
 	private JFormattedTextField height_field;
 	private JFormattedTextField length_field;
+	private JFormattedTextField lane_number_field;
+	
 	// Bonus
 	private JLabel bonus;
 	private JCheckBox castle_box;
@@ -125,6 +129,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	}
 	
 	private void buildComposants() {
+		float_format = NumberFormat.getNumberInstance();
+		int_format = NumberFormat.getIntegerInstance();
+		
 		// Menu
 		menuBar = new JMenuBar();
 			file = new JMenu("Fichier");
@@ -152,8 +159,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		railway_box = new JCheckBox("Traffic Ferroviaire");
 		pedestrian_box = new JCheckBox("Traffic Piéton");
 		road_box = new JCheckBox("Traffic Routier");
-		density = new JLabel("Densité du Traffic :");
-		density_field = new JFormattedTextField(format);
+		daily_traffic = new JLabel("Densité du Traffic :");
+		daily_traffic_field = new JFormattedTextField(int_format);
 		// Météo Box
 		meteo = new JLabel("Météo :");
 		storm_box =  new JCheckBox("Tempête");
@@ -164,15 +171,18 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		mountain_box = new JCheckBox("Montagne");
 		// Mesure
 		measure = new JLabel("Mesures :");
-		format = NumberFormat.getNumberInstance();
 		height = new JLabel("Hauteur (m) :");
-		height_field = new JFormattedTextField(format);
+		height_field = new JFormattedTextField(float_format);
 			height_field.setColumns(10);
 			height_field.setValue(Environment.getHeight());
 		length = new JLabel("Longueur (m) :");
-		length_field = new JFormattedTextField(format);
+		length_field = new JFormattedTextField(float_format);
 			length_field.setColumns(10);
 			length_field.setValue(Environment.getLength());
+		lane_number = new JLabel("Nombre de voies : ");
+		lane_number_field = new JFormattedTextField(int_format);
+			lane_number_field.setColumns(10);
+			lane_number_field.setValue(Environment.getLane_number());
 		// Bonus
 		bonus = new JLabel("Bonus :");
 		castle_box = new JCheckBox("Château");
@@ -199,8 +209,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		traffic_panel.add(road_box);
 		traffic_panel.add(railway_box);
 		traffic_panel.add(pedestrian_box);
-		traffic_panel.add(density);
-		traffic_panel.add(density_field);
+		traffic_panel.add(daily_traffic);
+		traffic_panel.add(daily_traffic_field);
 		// Meteo Panel Choice
 		meteo_panel.setBorder(raisedetched);
 		meteo_panel.add(storm_box);
@@ -212,8 +222,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Measure Panel TextField
 		label_panel.add(height);
 		label_panel.add(length);
+		label_panel.add(lane_number);
 		field_panel.add(height_field);
 		field_panel.add(length_field);
+		field_panel.add(lane_number_field);
 		measure_panel.setBorder(raisedetched);
 		measure_panel.add(label_panel, BorderLayout.CENTER);
 		measure_panel.add(field_panel, BorderLayout.LINE_END);
@@ -268,7 +280,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// TextField
 		this.height_field.addPropertyChangeListener("value", this);
 		this.length_field.addPropertyChangeListener("value", this);
-		this.density_field.addPropertyChangeListener("value", this);
+		this.daily_traffic_field.addPropertyChangeListener("value", this);
+		this.lane_number_field.addPropertyChangeListener("value", this);
 
 		// Boutons
 		this.backward_button.addActionListener(this);
@@ -335,8 +348,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			Environment.setHeight(((Number)height_field.getValue()).floatValue());
 		else if(source == length_field)
 			Environment.setLength(((Number)length_field.getValue()).floatValue());
-		else if(source == density_field)
-			Environment.setDensity(((Number)density_field.getValue()).floatValue());
+		else if(source == daily_traffic_field)
+			Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
+		else if(source == lane_number_field)
+			Environment.setLane_number(((Integer)lane_number_field.getValue()).intValue());
 	}
 
 	private void reset() {
@@ -345,13 +360,14 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		pedestrian_box.setSelected(false);
 		railway_box.setSelected(false);
 		road_box.setSelected(false);
-		density_field.setValue(0);
+		daily_traffic_field.setValue(90);
 		storm_box.setSelected(false);
 		water_box.setSelected(false);
 		wood_box.setSelected(false);
 		mountain_box.setSelected(false);
 		height_field.setValue(0);
 		length_field.setValue(0);
+		lane_number_field.setValue(2);
 		castle_box.setSelected(false);
 	}
 	
@@ -403,13 +419,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
             this.setVisible(false);
 			this.dispose();
 		}
-		
-//		launchBackwardChaining();
 	}
 	
 	private void launchBackwardChaining() {
 		// Word
-//		Affirmation PL = new Affirmation("drawbridge considered", true);
+//		Affirmation PL = new Affirmation("castle", true);
+        
 		// Base de Faits
 		FactsBase FB = Environment.getFactsBase();
 		System.out.println(FB);

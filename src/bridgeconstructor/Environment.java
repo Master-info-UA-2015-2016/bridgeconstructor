@@ -13,7 +13,7 @@ public class Environment {
 	private static boolean railway_traffic = false;
 	private static boolean pedestrian_traffic = false;
 	private static boolean road_traffic = false;
-	private static float density = 0;					// Passage de véhicules par jour
+	private static float daily_traffic = 90;					// Passage de véhicules par jour
 	
 	// Météo
 	private static boolean storm = false;
@@ -26,6 +26,7 @@ public class Environment {
 	// Mesure
 	private static float length = 0;
 	private static float height = 0;
+	private static int lane_number = 2;
 	
 	// Bonus
 	private static boolean castle = false;
@@ -42,7 +43,7 @@ public class Environment {
 		railway_traffic = false;
 		pedestrian_traffic = false;
 		road_traffic = false;
-		density = 0;
+		daily_traffic = 90;
 		// Météo
 		storm = false;
 		// Terrain
@@ -52,6 +53,7 @@ public class Environment {
 		// Mesures
 		length = 0;
 		height = 0;
+		lane_number = 2;
 		// Bonus
 		castle = false;
 	}
@@ -95,8 +97,8 @@ public class Environment {
      *
      * @param density
      */
-    public static void setDensity(float density) {
-		Environment.density = density;
+    public static void setDaily_traffic(float daily_traffic) {
+		Environment.daily_traffic = daily_traffic;
 	}
 	
 	//	SETTERS Météo
@@ -153,6 +155,14 @@ public class Environment {
 		Environment.height = height;
 	}
 	
+    /**
+     * 
+     * @param lane_number
+     */
+    public static void setLane_number(int lane_number) {
+		Environment.lane_number = lane_number;
+	}
+    
 	// 	SETTERS Bonus
 
     /**
@@ -203,8 +213,8 @@ public class Environment {
      *
      * @return
      */
-    public static float getDensity() {
-		return density;
+    public static float getDaily_traffic() {
+		return daily_traffic;
 	}
 	
 	//	GETTERS Météo
@@ -262,6 +272,14 @@ public class Environment {
 		return length;
 	}
 	
+    /**
+     * 
+     * @return
+     */
+    public static int getLane_number() {
+		return lane_number;
+	}
+    
 	//	GETTERS Bonus
 
     /**
@@ -281,14 +299,15 @@ public class Environment {
 				",\tRailway Traffic = " + railway_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
-				",\tDensity = " + density +
+				",\tDaily Traffic = " + daily_traffic +
 				",\tStorm = " + storm +
 				",\tWood = " + wood +
 				",\tWater = " + water +
 				",\tMountain = " + mountain +
 				",\tHeight = " + height +
 				",\tLength = " + length +
-				",\tCaslte = " + castle);
+				",\tLane Number = " + lane_number +
+				",\tCastle = " + castle);
 	}
 	
 	/**
@@ -298,8 +317,6 @@ public class Environment {
 	 */
 	public static FactsBase getFactsBase() {
 		FactsBase FB = new FactsBase();
-		int lane_number= 2; // TODO mettre dans l'interface
-		int daily_traffic= 90; // TODO mettre dans l'interface
 
 		System.out.println("---------------------------------------");
 		System.out.println("Initialisation de la base de faits");
@@ -311,7 +328,7 @@ public class Environment {
 			FB.addFact("pedestrian traffic", pedestrian_traffic);
 			FB.addFact("railway traffic", railway_traffic);
 			FB.addFact("road traffic", road_traffic);
-			FB.addFact("density", Operators.equal, density);
+			FB.addFact("daily traffic", Operators.equal, daily_traffic);
 		//		Météo
 			FB.addFact("storm", storm);
 		//		Terrains
@@ -323,7 +340,6 @@ public class Environment {
 			FB.addFact("height", Operators.equal, height);
 			FB.addFact("lane number", Operators.equal, lane_number);
 			FB.addFact("resistance", Operators.equal, 0);
-			FB.addFact("daily traffic", Operators.equal, daily_traffic);
 		//		Bonus
 			FB.addFact("castle", castle);
 		return FB;
