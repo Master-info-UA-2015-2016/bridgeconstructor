@@ -416,11 +416,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
             this.setVisible(false);
 			this.dispose();
 		}
-<<<<<<< HEAD
-=======
-		
-//		launchBackwardChaining();
->>>>>>> branch 'master' of https://github.com/flodavid/bridgeconstructor
 	}
 	
 	private void launchBackwardChaining() {
