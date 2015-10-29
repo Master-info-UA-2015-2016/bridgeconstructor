@@ -140,21 +140,6 @@ public class AIEngine {
     }
 	
 	/**
-	 * Procédure VERIF
-	 * @param W : ensemble de buts à vérifier tous
-	 * @param FB : {@link FactsBase}
-	 * @return boolean
-	 */
-	private boolean VERIF(List<Word> WList, FactsBase FB) {
-		boolean ver = true;
-		for(Word W : WList) {
-			if(ver == false) break;	
-			ver = backwardChaining(W, FB);
-		}
-		return ver;
-	}
-	
-	/**
 	 * Chaînage Arrière - Procédure DEMO
 	 * @param goal : But récursivement établi (b dans l'exemple)
 	 * @param FB : La Base de Faits
