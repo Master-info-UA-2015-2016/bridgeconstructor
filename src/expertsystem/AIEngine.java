@@ -170,6 +170,8 @@ public class AIEngine {
                 dem = VERIF(R.getAntecedants(), FB);
                 if (dem){
                     List<Word> conseq= R.getConsequences();
+                    for(Word W : conseq)
+                    	FB.add(W);
                 }
             }
         }
