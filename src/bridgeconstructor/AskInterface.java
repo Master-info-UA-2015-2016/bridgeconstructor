@@ -93,7 +93,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JLabel bonus;
 	private JCheckBox castle_box;
 	// Bouton
-	private JButton quit_button;
+	private JButton backward_button;
 	private JButton reset_button;
 	private JButton confirm_button;
 	
@@ -177,7 +177,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		bonus = new JLabel("Bonus :");
 		castle_box = new JCheckBox("Château");
 		// Bouton
-		quit_button = new JButton("Quitter");
+		backward_button = new JButton("Arrière");
 		reset_button = new JButton("Reintialiser");
 		confirm_button = new JButton("Tout est fait !");
 	}
@@ -237,7 +237,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			bonus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(bonus_panel);
 			
-		down_panel.add(quit_button, BorderLayout.WEST);
+		down_panel.add(backward_button, BorderLayout.WEST);
 		down_panel.add(reset_button, BorderLayout.CENTER);
 		down_panel.add(confirm_button, BorderLayout.EAST);
 		
@@ -271,7 +271,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.density_field.addPropertyChangeListener("value", this);
 
 		// Boutons
-		this.quit_button.addActionListener(this);
+		this.backward_button.addActionListener(this);
 		this.reset_button.addActionListener(this);
 		this.confirm_button.addActionListener(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -294,8 +294,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				new RulesBaseInterface();
 		} else if(e.getSource().getClass() == JButton.class) {
 			B = (JButton) e.getSource();
-			if(B == quit_button) {
-				this.dispose();
+			if(B == backward_button) {
+				this.launchBackwardChaining();
 			} else if(B == reset_button) {
 				this.reset();
 			} else if(B == confirm_button) {
