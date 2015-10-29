@@ -358,8 +358,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	// private ou public ? void ou boolean ?
 	private void launchForwardChaining(){
 		ArrayList<Bridge> LB = new ArrayList<Bridge>();
+        
+//        BASE DE FAITS
 		FactsBase FB = Environment.getFactsBase();
 		System.out.println(FB);
+        
 //		BASE DE REGLES
 		RulesBase BR1;	
         BR1 = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
@@ -406,13 +409,18 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	
 	private void launchBackwardChaining() {
 		// Word
-		Affirmation PL = new Affirmation("drawbridge considered", true);
+//		Affirmation PL = new Affirmation("drawbridge considered", true);
 		// Base de Faits
 		FactsBase FB = Environment.getFactsBase();
+		System.out.println(FB);
+        
 		// Base de Règles
-		RulesBase BR = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");
+		RulesBase BR;	
+        BR = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
+		System.out.println(BR);
+        
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
-		boolean b = moteur.backwardChaining(PL.getName(), FB);	
+		boolean b = moteur.backwardChaining("water", FB);
 	}
 }

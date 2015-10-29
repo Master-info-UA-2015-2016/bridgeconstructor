@@ -132,10 +132,14 @@ public class AIEngine {
 	 * @return boolean
 	 */
 	private boolean VERIF(List<Word> WList, FactsBase FB) {
+		System.out.println("------------------------------------------------");
+		System.out.println("|   RECHERCHE DES BUTS, par Chainage arrière   |");
+		System.out.println("------------------------------------------------");
+		
 		boolean ver = true;
 		for(Word word : WList) {
 			ver = backwardChaining(word.getName(), FB);
-			if(ver == false) break;	
+			if(ver == false) break;
 		}
 		return ver;
 	}    
@@ -146,22 +150,26 @@ public class AIEngine {
 	 * @param FB : La Base de Faits
 	 * @return boolean 
 	 */
-	public boolean backwardChaining(String goal, FactsBase FB) {
-		System.out.println("---------------------------------------------------------");
-		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage arrière   |");
-		System.out.println("---------------------------------------------------------");
-		
+	public boolean backwardChaining(String goal, FactsBase FB) {    
+		System.out.println("Recherche de la valeur de -"+ goal +"- par chainage arrière");
+	
         Word goalFact= null;
 		// La procédure devrait s'appeler DEMO...
 		boolean dem = false;
 		// 1er cas évident :
-		if(FB.contains(goal) != null) dem = true;
-        
-        for (Iterator<Rule> it = getRulesWithConsequent(goal).iterator(); it.hasNext() && dem;) {
-            Rule R = it.next();
-            dem = VERIF(R.getAntecedants(), FB);
+		if(FB.contains(goal) != null) {
+            System.out.println("la BF contient : "+ goal);
+            dem = true;
         }
-        
+        else {
+            System.out.println("la BF ne contient pas : "+ goal);
+            
+            for (Iterator<Rule> it = getRulesWithConsequent(goal).iterator(); it.hasNext() && dem;) {
+                Rule R = it.next();
+                dem = VERIF(R.getAntecedants(), FB);
+            }
+        }
+            
 		// 3ème cas : sinon voir si b est demandable
 		if(dem == false && FB.isFactDemandable(goal)) {
 						// Si b est demandable
@@ -181,7 +189,7 @@ public class AIEngine {
             
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF
-		if(dem == true)
+		if(dem == true && goalFact != null)
 			FB.add(goalFact);
 		// return dem ?
 		return dem;
