@@ -24,7 +24,7 @@ public class Affirmation extends Word {
     public String toString(){
 		if (val)
 			return name;
-		else return "NON "+ name;
+		else return "NO "+ name;
 	}
 
     /**
