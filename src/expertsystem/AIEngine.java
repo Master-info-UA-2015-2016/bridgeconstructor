@@ -106,7 +106,7 @@ public class AIEngine {
     }
     
     private Word response(String goal){
-            System.out.println("\n Veuillez entrer vous la valeur de : "+ goal);
+            System.out.println("\n Veuillez entrer la valeur de : "+ goal);
             Scanner sc; sc= new Scanner(System.in);           
             String answerValue= sc.next();
             
@@ -169,8 +169,7 @@ public class AIEngine {
                 Rule R = it.next();
                 dem = VERIF(R.getAntecedants(), FB);
                 if (dem){
-                    // TODO ajouter la valeur de goal dans la BF avec l'instance goalFact,
-//                        récuperer sa valeur dans les conséquences de R
+                    List<Word> conseq= R.getConsequences();
                 }
             }
         }
@@ -203,7 +202,6 @@ public class AIEngine {
 //            System.out.println("ajout de "+ goalFact +" à la FB");
 //			FB.add(goalFact);
 //        }
-            
 		return dem;
 	}
 
