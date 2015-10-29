@@ -81,6 +81,25 @@ public class FactsBase extends ArrayList<Word> {
 //		this.add(fact);
 //	}
 	
+    /**
+     * Cherche si un fait du nom donné est dans la base de faits
+     * @author Florian
+     * @param factName nom du fait que l'on recherche
+     * @return le fait si on en trouve un, null sinon
+     */
+    public Word contains(String factName){
+        System.out.print("\tBF contient: "+ factName +" ? ");
+		for (Word w : this){
+			// On vérifie que l
+			if (w.getName().equals(factName) /* && w.getVal() == fact.getVal()*/ ){
+				System.out.print("=> ");
+				return w;
+			}
+		}
+		System.out.println("=> NON");
+		return null;
+    }
+    
 	/**
 	 * Vérifie si un fait est dans la base de faits
 	 * @author florian
@@ -88,28 +107,30 @@ public class FactsBase extends ArrayList<Word> {
 	 * @return vrai si le fait est présent
 	 */
 	public Word contains(Word fact){
-		System.out.print("\tBF contient: "+ fact +" ? ");
-		for (Word w : this){
-			// On vérifie que l
-			if (w.getName().equals(fact.getName()) /* && w.getVal() == fact.getVal()*/ ){
-				System.out.print("=> ");
-				return w;
-			}
-		}
-		System.out.println("=> NON");
-		return null;
+        return contains(fact.getName());
 	}
 	
 	/**
 	 * Teste si le fait F est demandable
-	 * @param F : Word
+	 * @param factName nom du fait que l'on teste
+     * TODO à revoir, je pense qu'on ne vérifie pas la bonne chose
 	 * @return boolean
 	 */
-	public boolean isFactDemandable(Word F) {
+	public boolean isFactDemandable(String factName) {
 		for (Word fact : this){
-			if(fact.equals(F)) return true;
+			if( (fact.getName()).equals(factName)) return false;
 		}
-		return false;
+		return true;
+	}
+    
+	/**
+	 * Teste si le fait F est demandable
+	 * @param fact fait à tester
+	 * @return boolean
+     * WARNING Pourrait etre récursion infinie si redéfinie dans une sous classe
+	 */
+	public boolean isFactDemandable(Word fact) {
+		return isFactDemandable(fact);
 	}
 	
 //	public boolean contains(Comparison fact){

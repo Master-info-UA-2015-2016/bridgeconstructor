@@ -2,6 +2,7 @@ package expertsystem;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * La classe utilisera les règles ainsi que la base de faits
@@ -27,8 +28,8 @@ public class AIEngine {
 	 */
 	private boolean VERIF(List<Word> WList, FactsBase FB) {
 		boolean ver = true;
-		for(Word W : WList) {
-			ver = backwardChaining(W, FB);
+		for(Word word : WList) {
+			ver = backwardChaining(word.getName(), FB);
 			if(ver == false) break;	
 		}
 		return ver;
@@ -93,22 +94,50 @@ public class AIEngine {
 	
 	/**
 	 * Retourne une base de règles, ces dernières ayant toutes pour conséquences au moins le fait A
-	 * @param fact : Fait
+	 * @param factName nom du fait
+	 * @return RulesBase
+	 */
+	private RulesBase getRulesWithConsequent(String factName) {
+		RulesBase rulesCopy = new RulesBase(BR);
+		for(int i = 0 ; i < rulesCopy.size() ; ++i) {
+			Rule R = rulesCopy.get(i);
+			boolean b = false;
+			for(Word W : R.getConsequences())
+				if((W.getName()).equals(factName)) 
+					b = true;
+			if(!b)
+				rulesCopy.remove(i);
+		}
+		return rulesCopy;
+	}
+    
+    /**
+	 * Retourne une base de règles, ces dernières ayant toutes pour conséquences au moins le fait A
+	 * @param fact fait
 	 * @return RulesBase
 	 */
 	private RulesBase getRulesWithConsequent(Word fact) {
-		RulesBase RB = new RulesBase(BR);
-		for(int i = 0 ; i < RB.size() ; ++i) {
-			Rule R = RB.get(i);
-			boolean b = false;
-			for(Word W : R.getConsequences())
-				if(W.equals(fact)) 
-					b = true;
-			if(!b)
-				RB.remove(i);
-		}
-		return RB;
-	}
+        return getRulesWithConsequent(fact.getName());
+    }
+    
+    private Word response(String goal){
+            System.out.println("\n Connaissez vous la valeur de : "+ goal);
+            Scanner sc; sc= new Scanner(System.in);           
+            String answerValue= sc.next();
+            
+            System.out.println("\tEst-ce que "+ answerValue +"est correcte ? Y/N");
+            boolean answer= sc.nextBoolean();
+            if (answer){
+                try{
+                    float res= Float.parseFloat(answerValue);
+                    return new Comparison(goal, Operators.equal, res);
+                }catch(NumberFormatException NFE){
+                    boolean res= Boolean.parseBoolean(goal);
+                    return new Affirmation(goal, res);
+                }
+            }
+            else return response(goal); // récursivité
+    }
 	
 	/**
 	 * Chaînage Arrière - Procédure DEMO
@@ -116,37 +145,43 @@ public class AIEngine {
 	 * @param FB : La Base de Faits
 	 * @return boolean 
 	 */
-	public boolean backwardChaining(Word goal, FactsBase FB) {
+	public boolean backwardChaining(String goal, FactsBase FB) {
 		System.out.println("---------------------------------------------------------");
 		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage arrière   |");
 		System.out.println("---------------------------------------------------------");
 		
+        Word goalFact= null;
 		// La procédure devrait s'appeler DEMO...
 		boolean dem = false;
 		// 1er cas évident :
 		if(FB.contains(goal) != null) dem = true;
         
-		// 2eme cas : rechercher si b déductible à partir de BR U BF
-		for(Rule R : getRulesWithConsequent(goal)) {	// non optimisé
-			dem = VERIF(R.getAntecedants(), FB);
-			if(dem) break;
-		}
+        for (Iterator<Rule> it = getRulesWithConsequent(goal).iterator(); it.hasNext() && dem;) {
+            Rule R = it.next();
+            dem = VERIF(R.getAntecedants(), FB);
+        }
         
 		// 3ème cas : sinon voir si b est demandable
 		if(dem == false && FB.isFactDemandable(goal)) {
 						// Si b est demandable
 			// Poser la question b ?
-			// dem = reponse(b)				VRAI, FAUX, ou inconnu
-			Word fact= FB.contains(goal);
-			if (fact != null){
-				// Alors fact n'est pas inconnu, on test si il est vrai
-				dem = ( (goal.getVal()).equals( fact.getVal() ) );
-			}
-			else dem= false; 
+                // Demande à l'utilisateur s'il connait la valeur de goal :
+
+            goalFact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
+                
+                
+        /// OLD
+//			Word fact= FB.contains(goal);
+//			if (fact != null){
+//				// Alors fact n'est pas inconnu, on test si il est vrai
+//				dem = ( (goal.getVal()).equals( fact.getVal() ) );
+//			}
+//			else dem= false; 
+            
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF
 		if(dem == true)
-			FB.add(goal);
+			FB.add(goalFact);
 		// return dem ?
 		return dem;
 	}

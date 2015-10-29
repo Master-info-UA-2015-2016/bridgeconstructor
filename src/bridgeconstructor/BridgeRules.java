@@ -16,6 +16,7 @@ import org.w3c.dom.NodeList;
 import expertsystem.Affirmation;
 import expertsystem.Comparison;
 import expertsystem.Operator;
+import expertsystem.Operators;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 
@@ -68,8 +69,8 @@ public class BridgeRules {
 						System.err.println("impossible d'ajouter la comparaison -" + name
 								+ "- comme conséquence (opérateur différent de '=')");
 					} else {
-						Comparison comp = new Comparison(name, new Operator("="), // une conséquence est forcément une égalité
-								value);
+                         // une conséquence est forcément une égalité
+						Comparison comp = new Comparison(name, Operators.equal, value);
 						list.add(comp);
 					}
 				} else {

@@ -413,6 +413,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		RulesBase BR = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
-		boolean b = moteur.backwardChaining(PL, FB);	
+		boolean b = moteur.backwardChaining(PL.getName(), FB);	
 	}
 }
