@@ -101,9 +101,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JButton reset_button;
 	private JButton confirm_button;
 	
-    /**
-     *
-     */
     public AskInterface() {
 		super(title);
 		buildComposants();
@@ -120,7 +117,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         //get maximum window bounds
         Rectangle screenSize= graphicsEnvironment.getMaximumWindowBounds();
 
-        // TODO corrigier bidouillage ?
+        // TODO corriger bidouillage ?
         this.setLocation((int)(screenSize.getWidth())/3, (int)(screenSize.getHeight())/4);
         
 		this.setVisible(true);
