@@ -34,6 +34,8 @@ import expertsystem.Affirmation;
 import expertsystem.FactsBase;
 import expertsystem.RulesBase;
 import expertsystem.Word;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * L'interface Graphique est construite à partir de cette classe
@@ -301,8 +303,15 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			if(MI == item_close)
 				this.dispose();
 			else if(MI == item_show_rules){
-                this.setVisible(false);
-				new RulesBaseInterface();
+                
+				RulesBaseInterface RBI= new RulesBaseInterface();
+                try {
+                    this.setVisible(false);
+                    RBI.wait();
+                    this.setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 			else if(MI == item_show_backward)
 				new BackwardInterface();

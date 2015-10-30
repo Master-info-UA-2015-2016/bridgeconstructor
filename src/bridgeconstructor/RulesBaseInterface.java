@@ -75,11 +75,30 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	private void buildInterface() {
 		setContentPane(scroll_pane);
 	}
-	
+    /** 
+     * 
+     */ 
+     @Override 
+     public void dispose(){ 
+        try{
+            this.notifyAll();
+        }catch (Exception e){
+            System.err.println("Impossible de 'notifier'");
+        }
+        
+        super.dispose(); 
+    } 
+
+    
 	private void buildEvents() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
+    /**
+     * Ouvre un fichier avec un éditeur de texte
+     * @author Jérome
+     * @param file_path nom du fichier à ouvrir
+     */
     private void openFileInNotepad(String file_path){
     	String OS = System.getProperty("os.name");
         try {
