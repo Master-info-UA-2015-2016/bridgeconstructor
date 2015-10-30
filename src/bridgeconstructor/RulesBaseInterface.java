@@ -87,7 +87,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 			if(OS.equals("Linux"))
 				Runtime.getRuntime().exec("gedit " + file_path);
 			else if(OS.startsWith("Windows"))
-				Runtime.getRuntime().exec("noteâd " + file_path);
+				Runtime.getRuntime().exec("notepad " + file_path);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
