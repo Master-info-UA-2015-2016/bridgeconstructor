@@ -311,6 +311,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                     this.setVisible(true);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    this.setVisible(true);
                 }
             }
 			else if(MI == item_show_backward)

@@ -16,8 +16,6 @@ import expertsystem.Rule;
 import expertsystem.RulesBase;
 import java.awt.Desktop;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
