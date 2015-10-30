@@ -34,15 +34,15 @@ public class Rule {
      * @return
      */
     public String toString(){
-		String s= "SI ";
+		String s= "IF ";
 		for (int i=0 ; i<antecedents.size() ; i++) {
-			if(i > 0) s+= " ET ";
+			if(i > 0) s+= " AND ";
 			Word antecedent = antecedents.get(i);
 			s+= antecedent.toString();
 		}
-		s+= " ALORS ";
+		s+= " THEN ";
 		for (int i=0 ; i<consequences.size() ; i++) {
-			if(i > 0) s+= " ET ";
+			if(i > 0) s+= " AND ";
 			Word consequence = consequences.get(i);
 			s+= consequence.toString();
 		}
