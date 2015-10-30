@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import expertsystem.AIEngine;
-import expertsystem.FactsBase;
-import expertsystem.RulesBase;
+import expertsystem.*;
 
 public class BackwardInterface extends JFrame implements ActionListener {
 	
@@ -140,12 +138,11 @@ public class BackwardInterface extends JFrame implements ActionListener {
         
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
-		boolean found = moteur.backwardChaining(goalName, FB);
+		Word found_value = moteur.backwardChaining(goalName, FB);
         
-        if (found){
-            System.out.println("la valeur de "+ goalName +" a été trouvée");
-            System.out.println("\n"+
-                    FB);
+        if (found_value != null){
+            System.out.println("La valeur de "+ goalName +" a été trouvée : ");
+            System.out.println("\t"+ found_value);
         }
         else {
              System.out.println("\n"+

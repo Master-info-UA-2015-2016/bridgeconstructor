@@ -10,7 +10,7 @@ import expertsystem.*;
 public class Environment {
 	// Traffic
 	private static boolean naval_traffic = false;
-	private static boolean railway_traffic = false;
+	private static boolean rail_traffic = false;
 	private static boolean pedestrian_traffic = false;
 	private static boolean road_traffic = false;
 	private static float daily_traffic = 90;					// Passage de véhicules par jour
@@ -40,7 +40,7 @@ public class Environment {
 	public static void reset() {
 		// Traffic
 		naval_traffic = false;
-		railway_traffic = false;
+		rail_traffic = false;
 		pedestrian_traffic = false;
 		road_traffic = false;
 		daily_traffic = 90;
@@ -71,10 +71,10 @@ public class Environment {
 	
     /**
      *
-     * @param railway_traffic
+     * @param rail_traffic
      */
-    public static void setRailway_traffic(boolean railway_traffic) {
-		Environment.railway_traffic = railway_traffic;
+    public static void setRailway_traffic(boolean rail_traffic) {
+		Environment.rail_traffic = rail_traffic;
 	}
 	
     /**
@@ -189,8 +189,8 @@ public class Environment {
      *
      * @return
      */
-    public static boolean isRailway_traffic() {
-		return railway_traffic;
+    public static boolean isRail_traffic() {
+		return rail_traffic;
 	}
 	
     /**
@@ -296,7 +296,7 @@ public class Environment {
 	public static void print() {
 		System.out.println("ENVIRONMENT :" +
 				"\tNaval Traffic = " + naval_traffic +
-				",\tRailway Traffic = " + railway_traffic +
+				",\tRailway Traffic = " + rail_traffic +
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
 				",\tDaily Traffic = " + daily_traffic +
@@ -326,7 +326,7 @@ public class Environment {
 		//		Traffic
 			FB.addFact("naval traffic", naval_traffic);
 			FB.addFact("pedestrian traffic", pedestrian_traffic);
-			FB.addFact("railway traffic", railway_traffic);
+			FB.addFact("rail traffic", rail_traffic);
 			FB.addFact("road traffic", road_traffic);
 			FB.addFact("daily traffic", Operators.equal, daily_traffic);
 		//		Météo

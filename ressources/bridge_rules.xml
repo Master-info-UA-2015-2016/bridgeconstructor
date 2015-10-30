@@ -138,7 +138,7 @@
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="road traffic" value="false" />
-			<antecedent type="affirmation" name="rail traffic " value="false" />
+			<antecedent type="affirmation" name="rail traffic" value="false" />
 			<antecedent type="comparison" name="length" operator="&lt;" value="15" />
 			<antecedent type="comparison" name="daily traffic" operator="&lt;" value="200" />
 		</antecedents>
