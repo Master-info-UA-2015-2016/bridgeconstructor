@@ -56,7 +56,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			private JMenuItem item_close;
 		private JMenu show;
 			private JMenuItem item_show_rules;
-			private JMenuItem item_show_backward;
+		private JMenuItem other_chaining;
 	// Panel
 	private JPanel up_panel;
 	private JPanel center_panel;
@@ -137,7 +137,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				item_close = new JMenuItem("Quitter");
 			show = new JMenu("Afficher");
 				item_show_rules = new JMenuItem("Base de règles");
-				item_show_backward = new JMenuItem("Chaînage arrière");
+            other_chaining = new JMenuItem("Arrière et mixte");
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
@@ -197,9 +197,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Menu
 		file.add(item_close);
 		show.add(item_show_rules);
-		show.add(item_show_backward);
 		menuBar.add(file);
 		menuBar.add(show);
+		menuBar.add(other_chaining);
 		setJMenuBar(menuBar);
 		
 		up_panel.add(order);
@@ -264,7 +264,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Menu
 		item_close.addActionListener(this);		
 		item_show_rules.addActionListener(this);
-		item_show_backward.addActionListener(this);
+		other_chaining.addActionListener(this);
 		
 		// CheckBox
 		this.naval_box.addActionListener(this);
@@ -295,14 +295,15 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
      */
     @Override
 	public void actionPerformed(ActionEvent e) {
-		JCheckBox CB;
-		JButton B;
-		JMenuItem MI;
-		if(e.getSource().getClass() == JMenuItem.class) {
-			MI = (JMenuItem) e.getSource();
-			if(MI == item_close)
+        Object source= e.getSource();
+        
+        if(source.getClass() == JMenuItem.class) {
+            if(source == other_chaining)
+                new BackwardInterface();
+            
+			if(source == item_close)
 				this.dispose();
-			else if(MI == item_show_rules){
+			else if(source == item_show_rules){
                 
 				RulesBaseInterface RBI= new RulesBaseInterface();
                 try {
@@ -314,17 +315,14 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                     this.setVisible(true);
                 }
             }
-			else if(MI == item_show_backward)
-				new BackwardInterface();
-		} else if(e.getSource().getClass() == JButton.class) {
-			B = (JButton) e.getSource();
-			if(B == reset_button) {
+		} else if(source.getClass() == JButton.class) {
+			if(source == reset_button) {
 				this.reset();
-			} else if(B == confirm_button) {
+			} else if(source == confirm_button) {
 				launchForwardChaining();
 			}
-		} else if(e.getSource().getClass() == JCheckBox.class) {
-			CB = (JCheckBox) e.getSource();
+		} else if(source.getClass() == JCheckBox.class) {
+			JCheckBox CB = (JCheckBox) source;
 			if(CB == naval_box)
 				Environment.setNaval_traffic(CB.isSelected());
 			else if(CB == railway_box)
