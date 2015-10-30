@@ -110,20 +110,16 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		buildEvents();
 		
 		this.setResizable(false);
+		this.pack();
 //		this.setLocationRelativeTo(null);
 //        this.setLocationByPlatform(true);
-        
-        //get local graphics environment
-        GraphicsEnvironment graphicsEnvironment=GraphicsEnvironment.getLocalGraphicsEnvironment();
 
-        //get maximum window bounds
-        Rectangle screenSize= graphicsEnvironment.getMaximumWindowBounds();
-
-        // TODO corriger bidouillage ?
-        this.setLocation((int)(screenSize.getWidth())/3, (int)(screenSize.getHeight())/4);
+        //get local graphics environment to get maximum window bounds
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
+						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
         
 		this.setVisible(true);
-		this.pack();
     
 	}
 	
