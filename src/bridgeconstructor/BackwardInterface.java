@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +25,8 @@ public class BackwardInterface extends JFrame implements ActionListener {
 
 	private static String title = "Bridge Constructor - Chaînage arrière";
 	
+	private String[] type = {"Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants" };
+	
 	private JPanel main_panel;
 	private JPanel up_panel;
 		private JPanel up_up_panel;
@@ -34,7 +37,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 				private JRadioButton mixt_radio;
 	private JPanel center_panel;
 		private JLabel fact;
-		private JTextField fact_field;
+		private JComboBox<String> fact_list;
 	private JPanel bottom_panel;
 		private JButton confirm;
 		
@@ -60,12 +63,13 @@ public class BackwardInterface extends JFrame implements ActionListener {
 			up_center_panel = new JPanel(new GridLayout(0, 1));
 				radio_group = new ButtonGroup();
 					backward_radio = new JRadioButton("Arrière");
+						backward_radio.setSelected(true);
 					mixt_radio = new JRadioButton("Mixte");
 				radio_group.add(backward_radio);
 			    radio_group.add(mixt_radio);
 		center_panel = new JPanel(new GridLayout(1, 1));
 			fact = new JLabel("But : ");
-			fact_field = new JTextField();
+			fact_list = new JComboBox<>(type);
 		bottom_panel = new JPanel();
 			confirm = new JButton("Confirmer");
 	}
@@ -78,7 +82,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 			up_panel.add(up_center_panel, BorderLayout.CENTER);       
 				
 			center_panel.add(fact);
-			center_panel.add(fact_field);
+			center_panel.add(fact_list);
 		
 			bottom_panel.add(confirm);
 		
@@ -93,7 +97,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		backward_radio.addActionListener(this);
 		mixt_radio.addActionListener(this);
 		
-		fact_field.addActionListener(this);
+		fact_list.addActionListener(this);
 		confirm.addActionListener(this);
 		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -110,17 +114,14 @@ public class BackwardInterface extends JFrame implements ActionListener {
 				else if(mixt_radio.isSelected())
 					launchMixtChaining();
 			}
-		} else if(O.getClass() == JTextField.class) {
-			JTextField TF = (JTextField) O;
-			if(TF == fact_field) launchBackwardChaining();
-		} else if(O.getClass() == JRadioButton.class) {
-			System.out.println(O);
+		} else if(O.getClass() == JComboBox.class) {
+			JComboBox<String> CB = (JComboBox<String>) O;
+			System.out.println(CB.getSelectedItem());
 		}
-		
 	}
 
 	private void launchBackwardChaining() {
-		String goalName = fact_field.getText();
+		String goalName = (String) fact_list.getSelectedItem();
 		if(goalName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
@@ -153,7 +154,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	}
 	
 	private void launchMixtChaining() {
-		String goalName = fact_field.getText();
+		String goalName = (String) fact_list.getSelectedItem();
 		if(goalName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
