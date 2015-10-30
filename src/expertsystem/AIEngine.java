@@ -88,7 +88,7 @@ public class AIEngine {
 			Rule R = rulesCopy.get(i);
 			boolean b = false;
 			for(Word W : R.getConsequences())
-				if((W.getName()).equals(factName)) 
+				if((W.getName()).equals(factName))
 					b = true;
 			if(!b)
 				rulesCopy.remove(i);
@@ -132,11 +132,12 @@ public class AIEngine {
 	 * @return boolean
 	 */
 	private boolean VERIF(List<Word> WList, FactsBase FB) {
-		System.out.println("------------------------------------------------");
-		System.out.println("|   RECHERCHE DES BUTS, par Chainage arrière   |");
-		System.out.println("------------------------------------------------");
+//		System.out.println("------------------------------------------------");
+//		System.out.println("|   RECHERCHE DES BUTS, par Chainage arrière   |");
+//		System.out.println("------------------------------------------------");
 		
-		boolean ver = true;
+		System.out.println("Recherche de la liste de "+ WList.size() +" buts par Chainage arrière");
+        boolean ver = true;
 		for(Word word : WList) {
 			ver = backwardChaining(word.getName(), FB);
 			if(ver == false) break;
@@ -163,18 +164,19 @@ public class AIEngine {
         }
         else {
             // 2e cas : rechercher si b est déductible à partir de BR u BF
-            System.out.println("\tla BF ne contient pas : "+ goal +" recherche de sa valeur à partir des règles");
+            System.out.println("\tla BF ne contient pas "+ goal +", recherche de sa valeur à partir des règles");
             RulesBase rules_getting_goal_in_consequence= getRulesWithConsequent(goal);
-            System.out.println("\n Règles contenant le but : "+ rules_getting_goal_in_consequence);
+            System.out.println("\n Règles contenant '"+ goal +"' : "+ rules_getting_goal_in_consequence);
             
-            for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && dem;) {
-                Rule R = it.next();
-                dem = VERIF(R.getAntecedants(), FB);
+            for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !dem;) {
+                Rule rule = it.next();
+                System.out.println("Essai pour prouver que la règle "+ rule +" est vraie");
+                dem = VERIF(rule.getAntecedants(), FB);
                 if (dem){
-                    List<Word> conseq= R.getConsequences();
+                    List<Word> conseq= rule.getConsequences();
                     for(Word W : conseq) {
-                    	FB.add(W);
-                    	System.out.println("Ajout de " + W + "dans la base de faits");
+                        FB.add(W);
+                        System.out.println("Ajout de " + W + " dans la base de faits");
                     }
                 }
             }
@@ -188,7 +190,7 @@ public class AIEngine {
 
             goalFact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
             if (goalFact != null) {
-                System.out.println("le fait est ajouté à la base de faits");
+                System.out.println("'"+ goalFact +"' ajouté à la base de faits");
                 FB.add(goalFact);
             }
                            
