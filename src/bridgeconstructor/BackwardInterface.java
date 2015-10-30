@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import expertsystem.*;
 
@@ -112,9 +111,6 @@ public class BackwardInterface extends JFrame implements ActionListener {
 				else if(mixt_radio.isSelected())
 					launchMixtChaining();
 			}
-		} else if(O.getClass() == JComboBox.class) {
-			JComboBox<String> CB = (JComboBox<String>) O;
-			System.out.println(CB.getSelectedItem());
 		}
 	}
 
