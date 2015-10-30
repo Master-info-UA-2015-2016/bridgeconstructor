@@ -122,6 +122,6 @@ public class ResponseInterface extends JFrame {
 	}
 	
 	private void buildEvents() {
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }

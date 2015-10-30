@@ -54,6 +54,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			private JMenuItem item_close;
 		private JMenu show;
 			private JMenuItem item_show_rules;
+			private JMenuItem item_show_backward;
 	// Panel
 	private JPanel up_panel;
 	private JPanel center_panel;
@@ -97,7 +98,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JLabel bonus;
 	private JCheckBox castle_box;
 	// Bouton
-	private JButton backward_button;
 	private JButton reset_button;
 	private JButton confirm_button;
 	
@@ -135,6 +135,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				item_close = new JMenuItem("Quitter");
 			show = new JMenu("Afficher");
 				item_show_rules = new JMenuItem("Base de règles");
+				item_show_backward = new JMenuItem("Chaînage arrière");
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
@@ -147,7 +148,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				label_panel = new JPanel(new GridLayout(0, 1));
 				field_panel = new JPanel(new GridLayout(0, 1));
 			bonus_panel = new JPanel();
-		down_panel = new JPanel(new BorderLayout());
+		down_panel = new JPanel();
 		// Label
 		order = new JLabel("Veuillez sélectionner les caractéristiques de l'environnement :");
 		// Traffic box
@@ -184,7 +185,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		bonus = new JLabel("Bonus :");
 		castle_box = new JCheckBox("Château");
 		// Bouton
-		backward_button = new JButton("Arrière");
 		reset_button = new JButton("Reintialiser");
 		confirm_button = new JButton("Tout est fait !");
 	}
@@ -195,6 +195,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Menu
 		file.add(item_close);
 		show.add(item_show_rules);
+		show.add(item_show_backward);
 		menuBar.add(file);
 		menuBar.add(show);
 		setJMenuBar(menuBar);
@@ -245,10 +246,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		center_panel.add(bonus);
 			bonus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(bonus_panel);
-			
-		down_panel.add(backward_button, BorderLayout.WEST);
-		down_panel.add(reset_button, BorderLayout.CENTER);
-		down_panel.add(confirm_button, BorderLayout.EAST);
+		
+		down_panel.add(reset_button);
+		down_panel.add(confirm_button);
 		
 		main_panel.add(up_panel, BorderLayout.PAGE_START);
 		main_panel.add(center_panel, BorderLayout.CENTER);
@@ -262,6 +262,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Menu
 		item_close.addActionListener(this);		
 		item_show_rules.addActionListener(this);
+		item_show_backward.addActionListener(this);
 		
 		// CheckBox
 		this.naval_box.addActionListener(this);
@@ -281,7 +282,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.lane_number_field.addPropertyChangeListener("value", this);
 
 		// Boutons
-		this.backward_button.addActionListener(this);
 		this.reset_button.addActionListener(this);
 		this.confirm_button.addActionListener(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -302,11 +302,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				this.dispose();
 			else if(MI == item_show_rules)
 				new RulesBaseInterface();
+			else if(MI == item_show_backward)
+				new BackwardInterface();
 		} else if(e.getSource().getClass() == JButton.class) {
 			B = (JButton) e.getSource();
-			if(B == backward_button) {
-				this.launchBackwardChaining();
-			} else if(B == reset_button) {
+			if(B == reset_button) {
 				this.reset();
 			} else if(B == confirm_button) {
 				launchForwardChaining();
@@ -416,34 +416,5 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
             this.setVisible(false);
 			this.dispose();
 		}
-	}
-	
-	private void launchBackwardChaining() {
-		// Word
-//		Affirmation PL = new Affirmation("castle", true);
-        
-		// Base de Faits
-		FactsBase FB = Environment.getFactsBase();
-		System.out.println(FB);
-        
-		// Base de Règles
-		RulesBase BR;	
-        BR = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
-		System.out.println(BR);
-        
-		// OTHER
-		AIEngine moteur = new AIEngine(BR);
-        String goalName= "use wood";
-		boolean found = moteur.backwardChaining(goalName, FB);
-        
-        if (found){
-            System.out.println("la valeur de "+ goalName +" a été trouvée");
-            System.out.println("\n"+
-                    FB);
-        }
-        else {
-             System.out.println("\n"+
-                    "Impossible de déduire "+ goalName);
-        }
 	}
 }
