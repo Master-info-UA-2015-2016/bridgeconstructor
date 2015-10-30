@@ -24,7 +24,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	private static final long serialVersionUID = 1L;
 
 	private static final String title = "Base de Règles";
-	private static final String file_path = "./bin/ressources/bridge_rules.xml";
+	private static final String file_path = "./ressources/bridge_rules.xml";
 	
 	
 	private final RulesBase RB;
