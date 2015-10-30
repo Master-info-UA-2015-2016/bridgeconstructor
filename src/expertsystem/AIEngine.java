@@ -164,8 +164,10 @@ public class AIEngine {
         else {
             // 2e cas : rechercher si b est déductible à partir de BR u BF
             System.out.println("\tla BF ne contient pas : "+ goal +" recherche de sa valeur à partir des règles");
+            RulesBase rules_getting_goal_in_consequence= getRulesWithConsequent(goal);
+            System.out.println("\n Règles contenant le but : "+ rules_getting_goal_in_consequence);
             
-            for (Iterator<Rule> it = getRulesWithConsequent(goal).iterator(); it.hasNext() && dem;) {
+            for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && dem;) {
                 Rule R = it.next();
                 dem = VERIF(R.getAntecedants(), FB);
                 if (dem){

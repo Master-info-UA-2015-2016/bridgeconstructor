@@ -38,6 +38,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		
 		setResizable(false);
 		setSize(150, 50);
+        pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
