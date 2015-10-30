@@ -49,16 +49,6 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		this.pack();
 		this.setVisible(true);
 	}
-	
-    /**
-     *
-     */
-    @Override
-    public void dispose(){
-        this.getParent().setVisible(true);
-		this.setVisible(false);
-        super.dispose();
-    }
     
 	private void buildComposants() {
 		main_panel = new JPanel();
@@ -92,8 +82,12 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
      */
     @Override
 	public void mouseClicked(MouseEvent e) {
+    	String OS = System.getProperty("os.name");
 		try {
-			Runtime.getRuntime().exec("gedit " + file_path);
+			if(OS.equals("Linux"))
+				Runtime.getRuntime().exec("gedit " + file_path);
+			else if(OS.startsWith("Windows"))
+				Runtime.getRuntime().exec("noteâd " + file_path);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
