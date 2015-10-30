@@ -22,7 +22,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 
 	private static String title = "Bridge Constructor - Chaînage arrière";
 	
-	private String[] type = {"Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants" };
+	private String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants" };
 	
 	private JPanel main_panel;
 	private JPanel up_panel;
@@ -114,8 +114,23 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		}
 	}
 
+	private String getCorrespondingBridge(String s) {
+		switch(s) {
+			case "Pont Mobile" :
+				// TODO on l'avait pas enlevé ?
+				return "Pont Mobile";
+			case "Pont Suspendu" :
+				return "bridge hanging considered";
+			case "Pont à Haubants" :
+				return "bridge shroud considered";
+			case "Pont à Arcs-Boutants" :
+				return "bridge arc considered";
+		}
+		return s;
+	}
+	
 	private void launchBackwardChaining() {
-		String goalName = (String) fact_list.getSelectedItem();
+		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
 		if(goalName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
@@ -147,7 +162,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	}
 	
 	private void launchMixtChaining() {
-		String goalName = (String) fact_list.getSelectedItem();
+		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
 		if(goalName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
