@@ -80,32 +80,40 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
+    private void openFileInNotepad(String file_path){
+    	String OS = System.getProperty("os.name");
+        try {
+            if(OS.equals("Linux")) Runtime.getRuntime().exec("gedit " + file_path);
+            else
+                if(OS.startsWith("Windows")) Runtime.getRuntime().exec("notepad " + file_path);
+      
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+    
     /**
      *
      * @param e
      */
     @Override
 	public void mouseClicked(MouseEvent e) {
-    	String OS = System.getProperty("os.name");
-		try {
-			if(OS.equals("Linux")) Runtime.getRuntime().exec("gedit " + file_path);
-			else if(OS.startsWith("Windows")){
-				Desktop desktop;
-                
-                try {
-                    if (Desktop.isDesktopSupported()) {
-                        desktop = Desktop.getDesktop();
+        Desktop desktop;
 
-                        File file= new File(file_path);
-                        desktop.open(file);
-                    }else Runtime.getRuntime().exec("notepad " + file_path);
-                } catch (IOException ex) {
-                    Runtime.getRuntime().exec("notepad " + file_path);
-                }
+        try {
+            if (Desktop.isDesktopSupported()) {
+                desktop = Desktop.getDesktop();
+
+                File file= new File(file_path);
+                desktop.open(file);
+            }else {
+                openFileInNotepad(file_path);
             }
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+        } catch (IOException ex) {
+            System.err.println("Erreur lors ouverture du fichier par défaut, essai avec éditeur de texte");
+            openFileInNotepad(file_path);
+        }
+        
 	}
 
     /**
