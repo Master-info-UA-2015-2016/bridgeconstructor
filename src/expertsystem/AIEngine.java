@@ -54,6 +54,7 @@ public class AIEngine {
 
                 for (Iterator<Word> it = rule.getAntecedants().iterator() ; it.hasNext() && dec;) {
                     Word wAnt = it.next();
+                    
                     Word tmp= BF.contains(wAnt);
                     if ( tmp == null || ! wAnt.sameValue(tmp.getVal())/*(tmp.getVal()).equals(wAnt.getVal())*/ ) // VF(f)!=VA(wAnt,r)
                         dec= false;
@@ -131,18 +132,17 @@ public class AIEngine {
 	 * @param FB : {@link FactsBase}
 	 * @return boolean
 	 */
-	private boolean VERIF(List<Word> WList, FactsBase FB) {
+	private boolean backwardOnList(List<Word> WList, FactsBase FB) {
 //		System.out.println("------------------------------------------------");
 //		System.out.println("|   RECHERCHE DES BUTS, par Chainage arrière   |");
 //		System.out.println("------------------------------------------------");
 		
 		System.out.println("Recherche de la liste de "+ WList.size() +" buts par Chainage arrière");
-        boolean ver = true;
 		for(Word word : WList) {
-			ver = backwardChaining(word.getName(), FB);
-			if(ver == false) break;
+			boolean ver = backwardChaining(word.getName(), FB);
+			if( !ver.sameValue(word)) return false;
 		}
-		return ver;
+		return true;
 	}
 	
 	/**
@@ -171,7 +171,7 @@ public class AIEngine {
             for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !dem;) {
                 Rule rule = it.next();
                 System.out.println("Essai pour prouver que la règle "+ rule +" est vraie");
-                dem = VERIF(rule.getAntecedants(), FB);
+                dem = backwardOnList(rule.getAntecedants(), FB);
                 if (dem){
                     List<Word> conseq= rule.getConsequences();
                     for(Word W : conseq) {
