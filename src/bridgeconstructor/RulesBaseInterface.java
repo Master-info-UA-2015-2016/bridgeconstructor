@@ -14,6 +14,10 @@ import javax.swing.JScrollPane;
 
 import expertsystem.Rule;
 import expertsystem.RulesBase;
+import java.awt.Desktop;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -84,10 +88,21 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
     	String OS = System.getProperty("os.name");
 		try {
-			if(OS.equals("Linux"))
-				Runtime.getRuntime().exec("gedit " + file_path);
-			else if(OS.startsWith("Windows"))
-				Runtime.getRuntime().exec("notepad " + file_path);
+			if(OS.equals("Linux")) Runtime.getRuntime().exec("gedit " + file_path);
+			else if(OS.startsWith("Windows")){
+				Desktop desktop;
+                
+                try {
+                    if (Desktop.isDesktopSupported()) {
+                        desktop = Desktop.getDesktop();
+
+                        File file= new File(file_path);
+                        desktop.open(file);
+                    }else Runtime.getRuntime().exec("notepad " + file_path);
+                } catch (IOException ex) {
+                    Runtime.getRuntime().exec("notepad " + file_path);
+                }
+            }
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

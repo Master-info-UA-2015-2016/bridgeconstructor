@@ -300,8 +300,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			MI = (JMenuItem) e.getSource();
 			if(MI == item_close)
 				this.dispose();
-			else if(MI == item_show_rules)
+			else if(MI == item_show_rules){
+                this.setVisible(false);
 				new RulesBaseInterface();
+            }
 			else if(MI == item_show_backward)
 				new BackwardInterface();
 		} else if(e.getSource().getClass() == JButton.class) {
