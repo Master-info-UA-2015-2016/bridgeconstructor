@@ -83,17 +83,17 @@ public class AIEngine {
 	 * @return RulesBase
 	 */
 	private RulesBase getRulesWithConsequent(String factName) {
-		RulesBase rulesCopy = new RulesBase(BR);
-		for(int i = 0 ; i < rulesCopy.size() ; ++i) {
-			Rule R = rulesCopy.get(i);
+		RulesBase getConsequent = new RulesBase();
+		for(Rule rule : BR) {
+			
 			boolean b = false;
-			for(Word W : R.getConsequences())
+			for(Word W : rule.getConsequences())
 				if((W.getName()).equals(factName))
 					b = true;
-			if(!b)
-				rulesCopy.remove(i);
+			if(b)
+				getConsequent.add(rule);
 		}
-		return rulesCopy;
+		return getConsequent;
 	}
     
     /**
