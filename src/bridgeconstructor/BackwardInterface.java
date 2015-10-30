@@ -152,6 +152,8 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		Word found_value = moteur.backwardChaining(goalName, FB);
         
         if (found_value != null){
+            JOptionPane.showMessageDialog(this, "La valeur de "+ goalName +" a été trouvée : "+
+                    "\n\t"+ found_value);
             System.out.println("La valeur de "+ goalName +" a été trouvée : ");
             System.out.println("\t"+ found_value);
         }
