@@ -139,8 +139,8 @@ public class AIEngine {
 		
 		System.out.println("Recherche de la liste de "+ WList.size() +" buts par Chainage arrière");
 		for(Word word : WList) {
-			boolean ver = backwardChaining(word.getName(), FB);
-			if( !ver.sameValue(word)) return false;
+			Word ver = backwardChaining(word.getName(), FB);
+			if( !ver.sameValue(word.getVal())) return false;
 		}
 		return true;
 	}
@@ -151,16 +151,17 @@ public class AIEngine {
 	 * @param FB : La Base de Faits
 	 * @return boolean 
 	 */
-	public boolean backwardChaining(String goal, FactsBase FB) {    
+	public Word backwardChaining(String goal, FactsBase FB) {    
 		System.out.println("Recherche de la valeur de -"+ goal +"- par chainage arrière");
 	
-        Word goalFact= null;
-		// La procédure devrait s'appeler DEMO...
-		boolean dem = false;
+        Word goal_fact;
+		boolean found = false;
+        
 		// 1er cas évident :
-		if(FB.contains(goal) != null) {
+        goal_fact= FB.contains(goal);
+		if(goal_fact != null) {
             System.out.println("la BF contient : "+ goal);
-            dem = true;
+            found = true;
         }
         else {
             // 2e cas : rechercher si b est déductible à partir de BR u BF
@@ -168,11 +169,13 @@ public class AIEngine {
             RulesBase rules_getting_goal_in_consequence= getRulesWithConsequent(goal);
             System.out.println("\n Règles contenant '"+ goal +"' : "+ rules_getting_goal_in_consequence);
             
-            for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !dem;) {
+            /* TODO attention gestion de la cohérence, si une valeur est trouvée,
+                les autres règles qui auraient puent contedire cette valeur sont ignorées */
+            for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
                 Rule rule = it.next();
                 System.out.println("Essai pour prouver que la règle "+ rule +" est vraie");
-                dem = backwardOnList(rule.getAntecedants(), FB);
-                if (dem){
+                found = backwardOnList(rule.getAntecedants(), FB);
+                if (found){
                     List<Word> conseq= rule.getConsequences();
                     for(Word W : conseq) {
                         FB.add(W);
@@ -183,34 +186,33 @@ public class AIEngine {
         }
             
 		// 3ème cas : sinon voir si b est demandable
-		if(dem == false && FB.isFactDemandable(goal)) {
+		if(!found  && FB.isFactDemandable(goal)) {
 						// Si b est demandable
 			// Poser la question b ?
                 // Demande à l'utilisateur s'il connait la valeur de goal :
 
-            goalFact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
-            if (goalFact != null) {
-                System.out.println("'"+ goalFact +"' ajouté à la base de faits");
-                FB.add(goalFact);
+            goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
+            if (goal_fact != null) {
+                System.out.println("'"+ goal_fact +"' ajouté à la base de faits");
+                FB.add(goal_fact);
             }
                            
         /// OLD
 //			Word fact= FB.contains(goal);
 //			if (fact != null){
 //				// Alors fact n'est pas inconnu, on test si il est vrai
-//				dem = ( (goal.getVal()).equals( fact.getVal() ) );
+//				found = ( (goal.getVal()).equals( fact.getVal() ) );
 //			}
-//			else dem= false; 
+//			else found= false; 
             
 		}
-		// Dans tous les cas mémoriser et ajouter à la BF
-            // TODO PROBLEME (flo) : si 1er cas, alors DEJA dans la BF
+		// Dans tous les cas mémoriser et ajouter à la BF FAUX, dans 1er cas, déjà dans BF
         
-//		if(dem == true) {
-//            System.out.println("ajout de "+ goalFact +" à la FB");
-//			FB.add(goalFact);
-//        }
-		return dem;
+		if(found == true) {
+            System.out.println("Valeur trouvée : "+ goal_fact);
+			FB.add(goal_fact);
+        }
+		return goal_fact;
 	}
 
 }
