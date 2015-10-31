@@ -39,7 +39,6 @@ import java.util.logging.Logger;
 
 /**
  * L'interface Graphique est construite à partir de cette classe
- *
  */
 public class AskInterface extends JFrame implements ActionListener, PropertyChangeListener {
 
