@@ -413,22 +413,22 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Affirmation A = (Affirmation) w;
 				if(A.equals(BA)) {
 					System.out.println("Pont en Arc");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont en Arc", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont en arc", Material.Wood, 1));
 				} else if(A.equals(BB)) {
 					System.out.println("Pont à Poutres");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à Poutres", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à poutres", Material.Wood, 1));
 				} else if(A.equals(BH)) {
 					System.out.println("Pont Suspendu");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont Suspendu", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont suspendu", Material.Wood, 1));
 				} else if(A.equals(BS)) {
 					System.out.println("Pont à hauban");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à Hauban", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à hauban", Material.Wood, 1));
 				} else if(A.equals(BV)) {
 					System.out.println("Pont à Voûtes");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à Voûtes", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à voûtes", Material.Wood, 1));
 				} else if(A.equals(DB)) {
 					System.out.println("Pont Levis !");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont-Levis", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont-levis", Material.Wood, 1));
 				}
 			}
 		}
