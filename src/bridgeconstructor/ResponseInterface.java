@@ -1,6 +1,8 @@
 package bridgeconstructor;
 
 import java.awt.Component;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,10 @@ public class ResponseInterface extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.pack();
+        //get local graphics environment to get maximum window bounds
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
+						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 		this.setVisible(true);
 	}
 	

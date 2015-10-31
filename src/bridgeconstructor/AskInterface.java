@@ -293,21 +293,22 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         Object source= e.getSource();
         
         if(source.getClass() == JMenuItem.class) {
-            if(source == other_chaining)
-                new BackwardInterface();
+            if(source == other_chaining){
+                this.setVisible(false);
+                new BackwardInterface(this);
+            }
 			if(source == item_close)
 				this.dispose();
 			else if(source == item_show_rules){
                 
-				RulesBaseInterface RBI= new RulesBaseInterface();
-                try {
+				RulesBaseInterface RBI= new RulesBaseInterface(this);
+//                try {
                     this.setVisible(false);
-                    RBI.wait();
-                    this.setVisible(true);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
-                    this.setVisible(true);
-                }
+//                    this.setVisible(true);
+//                } catch (InterruptedException ex) {
+//                    Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
+//                    this.setVisible(true);
+//                }
             }
 		} else if(source.getClass() == JButton.class) {
 			if(source == reset_button) {
@@ -442,7 +443,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		else {
 			ResponseInterface RI= new ResponseInterface(LB);
             RI.toFront();
-            this.setVisible(false);
 			this.dispose();
 		}
 	}

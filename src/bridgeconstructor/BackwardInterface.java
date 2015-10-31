@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import expertsystem.*;
+import java.awt.Component;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 
 public class BackwardInterface extends JFrame implements ActionListener {
 	
@@ -24,6 +27,8 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	
 	private String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants", "Pont-Levis" };
 	
+    Component parent;
+    
 	private JPanel main_panel;
 	private JPanel up_panel;
 		private JPanel up_up_panel;
@@ -38,8 +43,9 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private JPanel bottom_panel;
 		private JButton confirm;
 		
-	public BackwardInterface() {
+	public BackwardInterface(Component caller) {
 		super(title);
+        parent= caller;
 		
 		buildComposants();
 		buildInterface();
@@ -47,12 +53,15 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		
 		setResizable(false);
 		setSize(150, 50);
-        pack();
-		setLocationRelativeTo(null);
+        pack(); // redondant, mais utile car taille différente selon OS
+        //get local graphics environment to get maximum window bounds
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
+						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 		setVisible(true);
 	}
 
-	public void buildComposants() {
+	private void buildComposants() {
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel(new BorderLayout());
 			up_up_panel = new JPanel();
@@ -71,7 +80,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 			confirm = new JButton("Confirmer");
 	}
 	
-	public void buildInterface() {
+	private void buildInterface() {
 				up_up_panel.add(chaining_choice);
 				up_center_panel.add(backward_radio);
 				up_center_panel.add(mixt_radio);
@@ -90,7 +99,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		setContentPane(main_panel);
 	}
 	
-	public void buildEvents() {
+	private void buildEvents() {
 		backward_radio.addActionListener(this);
 		mixt_radio.addActionListener(this);
 		
@@ -113,6 +122,11 @@ public class BackwardInterface extends JFrame implements ActionListener {
 			}
 		}
 	}
+    
+    public void dispose(){
+        parent.setVisible(true);
+        super.dispose();
+    }
 
 	private String getCorrespondingBridge(String s) {
 		switch(s) {

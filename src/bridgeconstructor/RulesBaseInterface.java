@@ -14,7 +14,10 @@ import javax.swing.JScrollPane;
 
 import expertsystem.Rule;
 import expertsystem.RulesBase;
+import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.io.File;
 
 /**
@@ -28,8 +31,8 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	private static final String title = "Base de Règles";
 	private static final String file_path = "./ressources/bridge_rules.xml";
 	
-	
 	private final RulesBase RB;
+    private Component parent;
 	
 	private JPanel main_panel;
 		private JScrollPane scroll_pane;
@@ -37,18 +40,24 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	
     /**
      *
+     * @param caller composant qui a crée la RBI
      */
-    public RulesBaseInterface() {
+    public RulesBaseInterface(Component caller) {
 		super(title);
-		
+		parent= caller;
+        
 		RB = BridgeRules.initRulesBase(file_path);
 		
 		buildComposants();
 		buildInterface();
 		buildEvents();
 		
-		this.setLocationRelativeTo(null);
 		this.pack();
+        //get local graphics environment to get maximum window bounds
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
+						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
+        
 		this.setVisible(true);
 	}
     
@@ -79,7 +88,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
      @Override 
      public void dispose(){ 
         try{
-            this.notifyAll();
+            parent.setVisible(true);
         }catch (Exception e){
             System.err.println("Impossible de 'notifier'");
         }
