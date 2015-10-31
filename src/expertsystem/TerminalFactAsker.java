@@ -26,12 +26,11 @@ public class TerminalFactAsker implements FactAsker{
                     float res= Float.parseFloat(answerValue);
                     return new Comparison(factName, Operators.equal, res);
                 }catch(NumberFormatException NFE){
-                    boolean res= Boolean.parseBoolean(factName);
+                    boolean res= Boolean.parseBoolean(answerValue);
                     return new Affirmation(factName, res);
                 }
             }
             else return askFactValueToUser(factName); // récursivité TODO voir si on supprime et retourne null ?
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	
 }

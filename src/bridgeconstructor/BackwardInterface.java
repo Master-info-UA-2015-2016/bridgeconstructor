@@ -154,7 +154,8 @@ public class BackwardInterface extends JFrame implements ActionListener {
         
 		// OTHER
 		AIEngine moteur = new AIEngine(BR);
-		Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker()/* TODO TEMPORAIRE*/);
+//		Word found_value = moteur.backwardChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
+        Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker());
         
         if (found_value != null){
             JOptionPane.showMessageDialog(this, "La valeur de "+ goalName +" a été trouvée : "+
