@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 import expertsystem.*;
 
 public class BackwardInterface extends JFrame implements ActionListener {
@@ -22,7 +24,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 
 	private static String title = "Bridge Constructor - Chaînage arrière";
 	
-	private String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants" };
+	private String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants", "Pont-Levis" };
 	
 	private JPanel main_panel;
 	private JPanel up_panel;
@@ -116,15 +118,17 @@ public class BackwardInterface extends JFrame implements ActionListener {
 
 	private String getCorrespondingBridge(String s) {
 		switch(s) {
-			case "Pont Mobile" :
+			case "Pont Mobile" :		// "Pont-Mobile"
 				// TODO on l'avait pas enlevé ?
 				return "Pont Mobile";
-			case "Pont Suspendu" :
+			case "Pont Suspendu" :		// "Pont Suspendu"
 				return "bridge hanging considered";
-			case "Pont à Haubants" :
+			case "Pont à Haubants" :		// "Pont à Haubants"
 				return "bridge shroud considered";
-			case "Pont à Arcs-Boutants" :
+			case "Pont à Arcs-Boutants" :		// "Pont à Arcs-Boutants"
 				return "bridge arc considered";
+			case "Pont-Levis" :		// "Pont-Levis"
+				return "drawbridge considered";
 		}
 		return s;
 	}
