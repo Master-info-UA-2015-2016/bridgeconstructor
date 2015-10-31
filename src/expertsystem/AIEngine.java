@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @see Environment pour décider quel pont scierait à la base
  */
 
-public class AIEngine extends Interface {
+public class AIEngine {
 	private RulesBase BR;
 	
     /**
@@ -105,26 +105,6 @@ public class AIEngine extends Interface {
 	private RulesBase getRulesWithConsequent(Word fact) {
         return getRulesWithConsequent(fact.getName());
     }
-    
-    private Word response(String goal){
-            System.out.println("\n Veuillez entrer la valeur de : "+ goal);
-            Scanner sc; sc= new Scanner(System.in);           
-            String answerValue= sc.next();
-            
-            System.out.println("\tEst-ce que '"+ answerValue +"' est correcte ? true/false");
-            boolean answer= sc.nextBoolean();
-            if (answer){
-                try{
-                    float res= Float.parseFloat(answerValue);
-                    return new Comparison(goal, Operators.equal, res);
-                }catch(NumberFormatException NFE){
-                    boolean res= Boolean.parseBoolean(goal);
-                    return new Affirmation(goal, res);
-                }
-            }
-            else return response(goal); // récursivité
-    }
-	
 	
 	/**
 	 * Procédure VERIF
@@ -132,14 +112,14 @@ public class AIEngine extends Interface {
 	 * @param FB : {@link FactsBase}
 	 * @return boolean
 	 */
-	private boolean backwardOnList(List<Word> WList, FactsBase FB) {
+	private boolean backwardOnList(List<Word> WList, FactsBase FB, FactAsker asker) {
 //		System.out.println("------------------------------------------------");
 //		System.out.println("|   RECHERCHE DES BUTS, par Chainage arrière   |");
 //		System.out.println("------------------------------------------------");
 		
 		System.out.println("Recherche de la liste de "+ WList.size() +" buts par Chainage arrière");
 		for(Word word : WList) {
-			Word ver = backwardChaining(word.getName(), FB);
+			Word ver = backwardChaining(word.getName(), FB, asker);
 			if( !ver.sameValue(word.getVal())) return false;
 		}
 		return true;
@@ -149,9 +129,10 @@ public class AIEngine extends Interface {
 	 * Chaînage Arrière - Procédure DEMO
 	 * @param goal : But récursivement établi (b dans l'exemple)
 	 * @param FB : La Base de Faits
+     * @param asker classe permettant de demander les faits demandables à l'utilisateur
 	 * @return boolean 
 	 */
-	public Word backwardChaining(String goal, FactsBase FB) {    
+	public Word backwardChaining(String goal, FactsBase FB, FactAsker asker) {    
 		System.out.println("Recherche de la valeur de -"+ goal +"- par chainage arrière");
 	
         Word goal_fact;
@@ -174,7 +155,7 @@ public class AIEngine extends Interface {
             for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
                 Rule rule = it.next();
                 System.out.println("Essai pour prouver que la règle "+ rule +" est vraie");
-                found = backwardOnList(rule.getAntecedants(), FB);
+                found = backwardOnList(rule.getAntecedants(), FB, asker);
                 if (found){
                     List<Word> conseq= rule.getConsequences();
                     for(Word W : conseq) {
@@ -192,7 +173,7 @@ public class AIEngine extends Interface {
                 // Demande à l'utilisateur s'il connait la valeur de goal :
 
             //goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
-			goal_fact = askFactValueToUser(goal, null);
+			goal_fact = asker.askFactValueToUser(goal);
             if (goal_fact != null) {
                 System.out.println("'"+ goal_fact +"' ajouté à la base de faits");
                 FB.add(goal_fact);
