@@ -50,7 +50,7 @@ public class WindowFactAsker implements FactAsker{
                 float res= Float.parseFloat(answerValue);
                 return new Comparison(factName, Operators.equal, res);
             }catch(NumberFormatException NFE){
-                boolean res= Boolean.parseBoolean(factName);
+                boolean res= Boolean.parseBoolean(answerValue);
                 return new Affirmation(factName, res);
             }
 		} else return askFactValueToUser(factName);
