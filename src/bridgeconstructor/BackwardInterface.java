@@ -14,8 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
 import expertsystem.*;
 
 public class BackwardInterface extends JFrame implements ActionListener {
