@@ -83,9 +83,11 @@ public class ResponseInterface extends JFrame {
 		buildEvents();
 		
 		this.setResizable(false);
-		this.setLocationRelativeTo(null);
 		this.pack();
-		this.setVisible(true);
+        //get local graphics environment to get maximum window bounds
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
+						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 	}
 
 	private void buildComposants() {

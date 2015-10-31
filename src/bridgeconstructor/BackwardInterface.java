@@ -58,7 +58,6 @@ public class BackwardInterface extends JFrame implements ActionListener {
         Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
-		setVisible(true);
 	}
 
 	private void buildComposants() {

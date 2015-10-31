@@ -295,20 +295,15 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         if(source.getClass() == JMenuItem.class) {
             if(source == other_chaining){
                 this.setVisible(false);
-                new BackwardInterface(this);
+                BackwardInterface BI= new BackwardInterface(this);
+                BI.setVisible(true);
             }
 			if(source == item_close)
 				this.dispose();
 			else if(source == item_show_rules){
-                
 				RulesBaseInterface RBI= new RulesBaseInterface(this);
-//                try {
                     this.setVisible(false);
-//                    this.setVisible(true);
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
-//                    this.setVisible(true);
-//                }
+                    RBI.setVisible(true);
             }
 		} else if(source.getClass() == JButton.class) {
 			if(source == reset_button) {
@@ -442,7 +437,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 		else {
 			ResponseInterface RI= new ResponseInterface(LB);
-            RI.toFront();
+            RI.setVisible(true);
 			this.dispose();
 		}
 	}

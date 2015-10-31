@@ -57,8 +57,6 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
         Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
-        
-		this.setVisible(true);
 	}
     
 	private void buildComposants() {
