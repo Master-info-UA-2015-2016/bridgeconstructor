@@ -7,7 +7,7 @@ package bridgeconstructor;
 
 import expertsystem.*;
 
-//import javax.swing.JFrame;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +15,11 @@ import javax.swing.JOptionPane;
  * @author Jérome
  */
 public class WindowFactAsker implements FactAsker{
+    JFrame parent;
+    
+    public WindowFactAsker(JFrame _parent){
+        this.parent=_parent;
+    }
 	
     @Override
 	public Word askFactValueToUser(String factName/*, JFrame frame TODO (flo) pas compris l'utilité ?*/) {
@@ -22,11 +27,11 @@ public class WindowFactAsker implements FactAsker{
 		boolean answer = false;
 
 		// 1st OptionDialog
-	    String answerValue = JOptionPane.showInputDialog(null, "Veuillez saisir la valeur de " + factName + " : ", "Bridge Contructor Alert", JOptionPane.QUESTION_MESSAGE);
+	    String answerValue = JOptionPane.showInputDialog(parent, "Veuillez saisir la valeur de " + factName + " : ", "Bridge Contructor Alert", JOptionPane.QUESTION_MESSAGE);
 	    if(answerValue == null) return null;
 	    
 	    // 2nd OptionDialog
-	    int option = JOptionPane.showConfirmDialog(null, "\tEst-ce que '"+ answerValue +"' est correct ?", "Bridge Constructor Alert", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	    int option = JOptionPane.showConfirmDialog(parent, "\tEst-ce que '"+ answerValue +"' est correct ?", "Bridge Constructor Alert", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	    switch(option) {
 	    	case JOptionPane.OK_OPTION:
 	    		answer = true;
