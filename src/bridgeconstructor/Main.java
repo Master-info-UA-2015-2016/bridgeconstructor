@@ -11,7 +11,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Main {
 
-    public void setSystemLookAndFeel(){
+    public static void setSystemLookAndFeel(){
         try{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
@@ -69,6 +69,9 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+        
+        setSystemLookAndFeel();
+        
 		// TODO : lister tous les types de ponts possibles et matériaux utilisables
 		//		Créer un Bridge pour chaque ponts possible,
 		//		contenant chaque matériau utilisable pour ce type de ponts ?
