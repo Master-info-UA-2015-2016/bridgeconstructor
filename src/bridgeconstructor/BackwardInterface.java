@@ -130,6 +130,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	}
 	
 	private void launchBackwardChaining() {
+
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
 		if(goalName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);

@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @see Environment pour décider quel pont scierait à la base
  */
 
-public class AIEngine {
+public class AIEngine extends Interface {
 	private RulesBase BR;
 	
     /**
@@ -191,7 +191,8 @@ public class AIEngine {
 			// Poser la question b ?
                 // Demande à l'utilisateur s'il connait la valeur de goal :
 
-            goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
+            //goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas vraiment ici)
+			goal_fact = askFactValueToUser(goal, null);
             if (goal_fact != null) {
                 System.out.println("'"+ goal_fact +"' ajouté à la base de faits");
                 FB.add(goal_fact);
