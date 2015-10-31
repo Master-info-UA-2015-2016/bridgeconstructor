@@ -295,7 +295,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         if(source.getClass() == JMenuItem.class) {
             if(source == other_chaining)
                 new BackwardInterface();
-            
 			if(source == item_close)
 				this.dispose();
 			else if(source == item_show_rules){
@@ -395,18 +394,43 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("------------------------");
 		System.out.println(FB);
 		
-		Affirmation PL;
-        PL = new Affirmation("drawbridge considered", true);
+		
+		// Création de l'affirmation correspondant aux types de pont
+		Affirmation BA, BB, BH, BS, BV, DB;
+		BA = new Affirmation("bridge arc considered", true);		// Pont à/en arc (Bridge arc)
+		BB = new Affirmation("bridge beam considered", true);		// Pont à poutres (Bridge beam)
+		BH = new Affirmation("bridge hanging considered", true);	// Pont suspendu (Bridge hanging)
+		BS = new Affirmation("bridge shroud considered", true);		// Pont à hauban (Bridge shroud)
+		BV = new Affirmation("bridge vault considered", true);		// Pont à voûtes (Bridge vault)
+        DB = new Affirmation("drawbridge considered", true);		// Pont-levis (Drawbridge)
+        
 
 		System.out.println("------------------------");
 		System.out.println("Choix du pont :");
 		System.out.println("------------------------");
 		for(Word w : FB) {
-			if(w.getClass() == Affirmation.class)
-				if(((Affirmation)w).equals(PL)) {
-					System.out.println("PONT LEVIS ! ");
+			if(w.getClass() == Affirmation.class) {
+				Affirmation A = (Affirmation) w;
+				if(A.equals(BA)) {
+					System.out.println("Pont en Arc");
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont en Arc", Material.Wood, 1));
+				} else if(A.equals(BB)) {
+					System.out.println("Pont à Poutres");
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à Poutres", Material.Wood, 1));
+				} else if(A.equals(BH)) {
+					System.out.println("Pont Suspendu");
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont Suspendu", Material.Wood, 1));
+				} else if(A.equals(BS)) {
+					System.out.println("Pont à hauban");
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à Hauban", Material.Wood, 1));
+				} else if(A.equals(BV)) {
+					System.out.println("Pont à Voûtes");
+					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à Voûtes", Material.Wood, 1));
+				} else if(A.equals(DB)) {
+					System.out.println("Pont Levis !");
 					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont-Levis", Material.Wood, 1));
 				}
+			}
 		}
 	
 		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés

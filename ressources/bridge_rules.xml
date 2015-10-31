@@ -278,7 +278,7 @@
 			<antecedent type="affirmation" name="tempest risk" value="true" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="bridge suspended considered" value="" />
+			<consequence type="affirmation" name="bridge hanging considered" value="" />
 		</consequences>
 	</bridge_rule>
 
