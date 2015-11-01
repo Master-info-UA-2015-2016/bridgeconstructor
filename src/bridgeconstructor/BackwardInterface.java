@@ -26,7 +26,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private static final String title = "Bridge Constructor - Chaînage arrière";
     private final String rules_path;
 	
-	private final String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants", "Pont-Levis" };
+	private final String[] type = {"Pont à Arcs-Boutants", "Pont à Haubants", "Pont à Poutres", "Pont Suspendu",  "Pont-Levis" };
 	
     private FactsBase FB;
     
@@ -144,15 +144,14 @@ public class BackwardInterface extends JFrame implements ActionListener {
 
 	private String getCorrespondingBridge(String s) {
 		switch(s) {
-			case "Pont Mobile" :		// "Pont-Mobile"
-				// TODO on l'avait pas enlevé ?
-				return "Pont Mobile";
-			case "Pont Suspendu" :		// "Pont Suspendu"
-				return "bridge hanging considered";
-			case "Pont à Haubants" :		// "Pont à Haubants"
-				return "bridge shroud considered";
-			case "Pont à Arcs-Boutants" :		// "Pont à Arcs-Boutants"
+			case "Pont à Arcs-Boutants" :
 				return "bridge arc considered";
+			case "Pont à Haubants" :
+				return "bridge shroud considered";
+			case "Pont à Poutres" :
+				return "bridge beam considered";
+			case "Pont Suspendu" :
+				return "bridge hanging considered";
 			case "Pont-Levis" :		// "Pont-Levis"
 				return "drawbridge considered";
 		}
