@@ -73,7 +73,7 @@ public class Rule {
      *
      * @return
      */
-    public List<Word> getAntecedants() {
+    public List<Word> getAntecedents() {
 		return antecedents;
 	}
 	

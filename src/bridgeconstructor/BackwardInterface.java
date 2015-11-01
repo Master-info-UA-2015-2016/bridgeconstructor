@@ -23,10 +23,13 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 
-	private static String title = "Bridge Constructor - Chaînage arrière";
+	private static final String title = "Bridge Constructor - Chaînage arrière";
+    private final String rules_path;
 	
-	private String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants", "Pont-Levis" };
+	private final String[] type = { "Pont Mobile", "Pont Suspendu", "Pont à Haubants", "Pont à Arcs-Boutants", "Pont-Levis" };
 	
+    private FactsBase FB;
+    
     Component parent;
     
 	private JPanel main_panel;
@@ -43,9 +46,20 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private JPanel bottom_panel;
 		private JButton confirm;
 		
-	public BackwardInterface(Component caller) {
+        
+//###################################
+//            METHODES
+//###################################
+        
+    /**
+     * Constructeur
+     * @param caller composant graphique qui a crée la fenêtre
+     * @param rulesPath chemin du fichier xml de règles
+     */    
+	public BackwardInterface(Component caller, String rulesPath) {
 		super(title);
         parent= caller;
+        rules_path= rulesPath;
 		
 		buildComposants();
 		buildInterface();
@@ -122,6 +136,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		}
 	}
     
+    @Override
     public void dispose(){
         parent.setVisible(true);
         super.dispose();
@@ -143,50 +158,83 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		}
 		return s;
 	}
-	
-	private void launchBackwardChaining() {
-
-		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
-		if(goalName.equals("")) {
-			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		
-		System.out.println("Lancement Chaînage Arrière");
-		
+    
+    /**
+     * Initialiste la base de faits et crée un Systeme Expert
+     * @return Systeme Expert crée
+     * @author Florian
+     */
+    private AIEngine initChaining(){		
         // Base de Faits
-		FactsBase FB = Environment.getFactsBase();
+		FB = Environment.getFactsBase();
 		System.out.println(FB);
         
 		// Base de Règles
 		RulesBase BR;	
-        BR = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
+        BR = BridgeRules.initRulesBase(rules_path);	
 		System.out.println(BR);
         
-		// OTHER
-		AIEngine moteur = new AIEngine(BR);
+		return new AIEngine(BR);
+    }
+    
+    private boolean giveResultToUser(Word result){
+        if (result != null){
+            //Fenetre
+            JOptionPane.showMessageDialog(this, "La valeur de "+ result.getName() +" a été trouvée : "+
+                    "\n\t"+ result);
+            // Terminal
+            System.out.println("La valeur de "+ result.getName() +" a été trouvée : ");
+            System.out.println("\t"+ result);
+            
+            return true;
+        }
+        else {
+            // Fenetre
+            JOptionPane.showMessageDialog(null, "Impossible de déduire "+ result.getName(),
+                     "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
+            //Terminal
+             System.out.println("\n"+
+                    "Impossible de déduire "+ result.getName());
+             
+            return true;
+        }
+    }
+	
+	private void launchBackwardChaining() {
+        // On ne peut pas faire de fonction à cause de "return;"
+		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
+		if(goalName.equals("")) {
+			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+        
+		// Lancement du chainage
+		AIEngine moteur = initChaining();
+        
+		System.out.println("Lancement Chaînage Arrière");
 //		Word found_value = moteur.backwardChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
         Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker(this));
         
-        if (found_value != null){
-            JOptionPane.showMessageDialog(this, "La valeur de "+ goalName +" a été trouvée : "+
-                    "\n\t"+ found_value);
-            System.out.println("La valeur de "+ goalName +" a été trouvée : ");
-            System.out.println("\t"+ found_value);
-        }
-        else {
-             System.out.println("\n"+
-                    "Impossible de déduire "+ goalName);
-        }
+        // Recupération du résultat
+        giveResultToUser(found_value);
 	}
 	
 	private void launchMixtChaining() {
+        // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
 		if(goalName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
-		System.out.println("Lancement Chaînage Mixte");		
+        // Lancement du chainage
+		AIEngine moteur = initChaining();
+        
+		System.out.println("Lancement Chaînage Mixte");
+//		Word found_value = moteur.mixtChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
+        Word found_value = moteur.mixtChaining(goalName, FB, new WindowFactAsker(this));
+        
+        // Recupération du résultat
+        giveResultToUser(found_value);
 	}
 }
