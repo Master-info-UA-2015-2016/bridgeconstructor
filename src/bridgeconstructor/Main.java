@@ -11,6 +11,11 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Main {
 
+	
+	/**
+	 * Définit le style du système comme style pour l'application
+	 * @author Scr3amer
+	 */
     public static void setSystemLookAndFeel(){
         try{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -21,7 +26,7 @@ public class Main {
                     JOptionPane.ERROR_MESSAGE);
         } catch (UnsupportedLookAndFeelException e) {
             JOptionPane.showMessageDialog(  null,
-                    "System look and feel unsupported (weird isn't it ^^ ?)...",
+                    "System look and feel unsupported (weird isn't it ? ^^)",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException e) {
