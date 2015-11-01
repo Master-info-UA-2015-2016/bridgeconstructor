@@ -390,6 +390,34 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("------------------------");
 		System.out.println(FB);
 		
+		// Création de l'affirmation correspondant aux matériaux
+		Affirmation UCord, UConc, URock, USteel, UWood;
+		UCord = new Affirmation("use cord", true);					// Corde
+		UConc = new Affirmation("use concrete", true);				// Béton
+		URock = new Affirmation("use rock", true);					// Pierre
+		USteel = new Affirmation("use steel", true);			 	// Acier
+		UWood = new Affirmation("use wood", true);					// Bois
+		
+		System.out.println("------------------------");
+		System.out.println("Choix du matériau :");
+		System.out.println("------------------------");
+		for(Word w : FB) {
+			if(w.getClass() == Affirmation.class) {
+				Affirmation A = (Affirmation) w;
+				if(A.equals(UCord)) {
+					System.out.println("Corde");
+				} else if(A.equals(UConc)) {
+					System.out.println("Béton");
+				} else if(A.equals(URock)) {
+					System.out.println("Pierre");
+				} else if(A.equals(USteel)) {
+					System.out.println("Acier");
+				} else if(A.equals(UWood)) {
+					System.out.println("Bois");
+				}
+			}
+		}
+		
 		
 		// Création de l'affirmation correspondant aux types de pont
 		Affirmation BA, BB, BH, BS, BV, DB;
@@ -399,7 +427,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		BS = new Affirmation("bridge shroud considered", true);		// Pont à hauban (Bridge shroud)
 		BV = new Affirmation("bridge vault considered", true);		// Pont à voûtes (Bridge vault)
         DB = new Affirmation("drawbridge considered", true);		// Pont-levis (Drawbridge)
-        
 
 		System.out.println("------------------------");
 		System.out.println("Choix du pont :");

@@ -91,6 +91,15 @@
 		</consequences>
 	</bridge_rule>
 		
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="storm" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="tempest risk" value="true" />
+		</consequences>
+	</bridge_rule>
+		
 	<!-- 7. SI risque tempete, ALORS resistance (au moins) 110 -->
 	<bridge_rule>
 		<antecedents>
@@ -119,18 +128,6 @@
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="drawbridge considered" value="true" />
-		</consequences>
-	</bridge_rule>
-
-
-	<!-- 10.	SI bois dans l’environnement ET solidite < 100  ALORS Pont de singe -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="wood" value="true" />
-			<antecedent type="comparison" name="resistance" operator="&lt;" value="100" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="pont de singe" value="true" />
 		</consequences>
 	</bridge_rule>
 	
@@ -181,7 +178,7 @@
 			<antecedent type="comparison" name="length" operator=">" value="40" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="wood" value="false" />
+			<consequence type="affirmation" name="use wood" value="false" />
 		</consequences>
 	</bridge_rule>
 
@@ -202,7 +199,7 @@
 			<antecedent type="affirmation" name="mountain" value="true" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="tempest risk" value="true" />
+			<consequence type="affirmation" name="storm" value="true" />
 			<consequence type="comparison" name="height" operator="=" value="35" />
 		</consequences>
 	</bridge_rule>

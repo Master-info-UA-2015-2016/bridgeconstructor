@@ -22,7 +22,7 @@ public class WindowFactAsker implements FactAsker{
     }
 	
     @Override
-	public Word askFactValueToUser(String factName/*, JFrame frame TODO (flo) pas compris l'utilité ?*/) {
+	public Word askFactValueToUser(String factName) {
 		
 		boolean answer = false;
 
