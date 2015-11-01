@@ -2,12 +2,8 @@ package expertsystem;
 
 import java.util.Iterator;
 import java.util.List;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/flodavid/bridgeconstructor
 
 import bridgeconstructor.Environment;
-=======
->>>>>>> 5690e98 commentaire main + suppression d'imports inutiles
-
 /**
  * La classe utilisera les règles ainsi que la base de faits
  * @see Environment pour décider quel pont scierait à la base
