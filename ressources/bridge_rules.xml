@@ -331,7 +331,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 35 : SI pont en acier ALORS pont à hauban  -->
+	<!-- 35 : SI pont en acier ALORS pont à hauban envisagé -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use steel" value="true" />
@@ -371,7 +371,7 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- 39 : SI pont en béton ALORS pont à hauban -->
+	<!-- 39 : SI pont en béton ALORS pont à hauban envisagé -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use concrete" value="true" />
@@ -381,6 +381,15 @@
 		</consequences>
 	</bridge_rule>
 
+	<!-- 40 : SI pont en corde ALORS pont suspendu envisagé -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="use cord" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge hanging considered" value="true" />
+		</consequences>
+	</bridge_rule>
 	
 <!-- 	FIN REGLE MATERIAUX -> PONT -->
 	
