@@ -2,8 +2,8 @@ package expertsystem;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
-import java.util.function.Consumer;
+
+import bridgeconstructor.Environment;
 
 /**
  * La classe utilisera les règles ainsi que la base de faits
@@ -288,5 +288,26 @@ public class AIEngine {
         FB= AI_for_forward.forwardChaining(FB);
         
 		return goal_fact;
+	}
+	
+	/**
+	 * 
+	 * @param FB
+	 * @return
+	 */
+	public FactsBase purge(FactsBase FB) {
+		FactsBase base = FB;
+		
+		for(int i=0 ; i<FB.size() ; i++) {
+			Word W = FB.get(i);
+			int j=i+1;
+			while(j < FB.size())  {
+				Word Wnext = FB.get(j);
+				if(W.equals(Wnext)) {
+					FB.remove(j);
+				} else j++;
+			}
+		}
+		return base;
 	}
 }

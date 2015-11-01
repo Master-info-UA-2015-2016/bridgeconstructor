@@ -118,9 +118,9 @@ public class ResponseInterface extends JFrame {
 				        image.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 				type = new JLabel(B.getType());
 					type.setAlignmentX(Component.CENTER_ALIGNMENT);
-				height = new JLabel("Hauteur : " + B.getHeight());
-				width = new JLabel("Largeur : " + B.getMinWidth() + " - " + B.getMaxWidth());	// MIN - MAX Width
-				length = new JLabel("Longueur : " + B.getLength());
+				height = new JLabel("Hauteur : " + B.getHeight() + "m");
+				width = new JLabel("Largeur : " + B.getMinWidth() + " - " + B.getMaxWidth() + "m");	// MIN - MAX Width
+				length = new JLabel("Longueur : " + B.getLength() + "m");
 				material = new JLabel("Matériau : " + B.getMaterial());
 				price = new JLabel("Prix : " + B.getPrice());
 			// Affichage

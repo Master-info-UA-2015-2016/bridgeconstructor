@@ -369,7 +369,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		castle_box.setSelected(false);
 	}
 	
-	// private ou public ? void ou boolean ?
 	private void launchForwardChaining(){
 		ArrayList<Bridge> LB = new ArrayList<Bridge>();
         
