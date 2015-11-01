@@ -360,8 +360,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		water_box.setSelected(false);
 		wood_box.setSelected(false);
 		mountain_box.setSelected(false);
-		height_field.setValue(0);
-		length_field.setValue(0);
+		height_field.setValue(10);
+		length_field.setValue(20);
 		lane_number_field.setValue(2);
 		castle_box.setSelected(false);
 	}

@@ -24,8 +24,8 @@ public class Environment {
 	private static boolean mountain = false;
 	
 	// Mesure
-	private static float length = 0;
-	private static float height = 0;
+	private static float length = 20;
+	private static float height = 10;
 	private static int lane_number = 2;
 	
 	// Bonus
@@ -51,8 +51,8 @@ public class Environment {
 		water = false;
 		mountain = false;
 		// Mesures
-		length = 0;
-		height = 0;
+		length = 20;
+		height = 10;
 		lane_number = 2;
 		// Bonus
 		castle = false;

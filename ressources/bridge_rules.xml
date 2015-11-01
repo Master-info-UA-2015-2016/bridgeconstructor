@@ -93,7 +93,7 @@
 		
 	<bridge_rule>
 		<antecedents>
-			<antecedent type="affirmation" name="storm" value="true" />
+			<antecedent type="affirmation" name="wind" value="true" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="tempest risk" value="true" />
@@ -199,7 +199,7 @@
 			<antecedent type="affirmation" name="mountain" value="true" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="storm" value="true" />
+			<consequence type="affirmation" name="wind" value="true" />
 			<consequence type="comparison" name="height" operator="=" value="35" />
 		</consequences>
 	</bridge_rule>

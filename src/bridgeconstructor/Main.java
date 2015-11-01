@@ -47,12 +47,7 @@ public class Main {
         /**
          *
          */
-        Mobile, 
-
-        /**
-         *
-         */
-        Suspendu, 
+        suspendu, 
 
         /**
          *
@@ -62,7 +57,18 @@ public class Main {
         /**
          *
          */
-        arcs_boutants};
+        arcs_boutants,
+        
+        /**
+         * 
+         */
+    	poutres,
+    	
+    	/**
+    	 * 
+    	 */
+    	voûtes
+    	};
 	
     /**
      *
