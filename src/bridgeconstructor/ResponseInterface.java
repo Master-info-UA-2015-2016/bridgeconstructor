@@ -1,5 +1,6 @@
 package bridgeconstructor;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
@@ -23,7 +25,8 @@ public class ResponseInterface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static String title = "Bridge Constructor - Response";
 	
-	List<Bridge> list;
+	List<Bridge> listBridge;
+	List<Material> listMaterial;
 	
     private String[] imageFileNames = { "bridge_arc.png", "bridge_beam.png", "bridge_hanging.png", "bridge_shroud.png"};
     private String path = "./ressources/";
@@ -33,7 +36,9 @@ public class ResponseInterface extends JFrame {
 	// Panel
 	private JPanel main_panel;
 		private JPanel up_panel;
-		private JPanel list_panel;
+		private JScrollPane scroll_panel;
+			private JPanel list_panel;
+		private JPanel bottom_panel;
 	// Label
 	private JLabel order;
 	// Composition de la description d'un pont
@@ -43,8 +48,9 @@ public class ResponseInterface extends JFrame {
 		private JLabel height;
 		private JLabel width;	// MIN - MAX Width
 		private JLabel length;
-		private JLabel material;
 		private JLabel price;
+	// Matériau
+	private JLabel matter;
 	
     /**
      *
@@ -52,7 +58,8 @@ public class ResponseInterface extends JFrame {
     public ResponseInterface() {
 		super(title);
 		
-		list = new ArrayList<Bridge>();
+		listBridge = new ArrayList<Bridge>();
+		listMaterial = new ArrayList<Material>();
 		
 		buildComposants();
 		buildInterface();
@@ -72,11 +79,14 @@ public class ResponseInterface extends JFrame {
      *
      * @param LB
      */
-    public ResponseInterface(List<Bridge> LB) {
+    public ResponseInterface(List<Bridge> LB, List<Material> LM) {
 		super(title);
 		
-		list = LB;
-		for(Bridge B : list) System.out.println(B);
+		listBridge = LB;
+		listMaterial = LM;
+		
+		for(Bridge B : listBridge) System.out.println(B);
+		for(Material M : listMaterial) System.out.println(M);
 		
 		buildComposants();
 		buildInterface();
@@ -94,18 +104,20 @@ public class ResponseInterface extends JFrame {
 		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		
 		// Panel
-		main_panel = new JPanel();
-			main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
-		up_panel = new JPanel();
-		list_panel = new JPanel();
-			list_panel.setLayout(new BoxLayout(list_panel, BoxLayout.X_AXIS));
+		main_panel = new JPanel(new BorderLayout());
+			//main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
+			up_panel = new JPanel();
+			scroll_panel = new JScrollPane();
+				list_panel = new JPanel();
+					list_panel.setLayout(new BoxLayout(list_panel, BoxLayout.X_AXIS));
+			bottom_panel = new JPanel();
 		// Label
-		if(list.size() > 1)
+		if(listBridge.size() > 1)
 			order = new JLabel("Les ponts suggérés : ");
 		else order = new JLabel("Le pont suggéré : ");
 		up_panel.add(order);
 		// Bridge
-		for(Bridge B : list) {
+		for(Bridge B : listBridge) {
 			// Construction
 			bridge_panel = new JPanel();
 				bridge_panel.setBorder(raisedetched);
@@ -116,12 +128,11 @@ public class ResponseInterface extends JFrame {
 				        image.setHorizontalTextPosition(JLabel.CENTER);
 				        image.setHorizontalAlignment(JLabel.CENTER);
 				        image.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-				type = new JLabel(B.getType());
+				type = new JLabel(B.getStringType());
 					type.setAlignmentX(Component.CENTER_ALIGNMENT);
 				height = new JLabel("Hauteur : " + B.getHeight() + "m");
 				width = new JLabel("Largeur : " + B.getMinWidth() + " - " + B.getMaxWidth() + "m");	// MIN - MAX Width
 				length = new JLabel("Longueur : " + B.getLength() + "m");
-				material = new JLabel("Matériau : " + B.getMaterial());
 				price = new JLabel("Prix : " + B.getPrice());
 			// Affichage
 			bridge_panel.add(image);
@@ -129,16 +140,25 @@ public class ResponseInterface extends JFrame {
 			bridge_panel.add(height);
 			bridge_panel.add(width);
 			bridge_panel.add(length);
-			bridge_panel.add(material);
 			bridge_panel.add(price);
 			
 			list_panel.add(bridge_panel);
 		}
+		scroll_panel.setViewportView(list_panel);
+		String s;
+		if(listMaterial.size() > 1)
+			s = "Matériaux envisagés : ";
+		else s = "Matériau envisagé : "; 
+		for(Material M : listMaterial)
+			s += M;
+		matter = new JLabel(s);
+		bottom_panel.add(matter);
 	}
 
 	private void buildInterface() {
-		main_panel.add(up_panel);
-		main_panel.add(list_panel);
+		main_panel.add(up_panel, BorderLayout.NORTH);
+		main_panel.add(scroll_panel, BorderLayout.CENTER);
+		main_panel.add(bottom_panel, BorderLayout.SOUTH);
 		
 		this.setContentPane(main_panel);
 	}
@@ -147,15 +167,15 @@ public class ResponseInterface extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
-	private String getPath(String type) {
+	private String getPath(TypeBridge type) {
 		switch(type) {
-			case "Pont en arc" :
+			case arc :
 				return path+imageFileNames[0];
-			case "Pont à poutres" :
+			case beam :
 				return path+imageFileNames[1];
-			case "Pont suspendu" :
+			case hanging :
 				return path+imageFileNames[2];
-			case "Pont à hauban" : 
+			case shroud : 
 				return path+imageFileNames[3];
 			default :
 				return null;

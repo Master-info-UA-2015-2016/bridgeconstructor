@@ -1,6 +1,14 @@
 package bridgeconstructor;
 
-public enum Type {
+public enum TypeBridge {
+	/**
+	 * 
+	 */
+	drawbridge,
+
+	/**
+	 * 
+	 */
 	hanging,
 
 	/**

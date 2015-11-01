@@ -443,22 +443,22 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Affirmation A = (Affirmation) w;
 				if(A.equals(BA)) {
 					System.out.println("Pont en Arc");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont en arc", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.arc));
 				} else if(A.equals(BB)) {
 					System.out.println("Pont à Poutres");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à poutres", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.beam));
 				} else if(A.equals(BH)) {
 					System.out.println("Pont Suspendu");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont suspendu", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.hanging));
 				} else if(A.equals(BS)) {
 					System.out.println("Pont à hauban");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à hauban", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.shroud));
 				} else if(A.equals(BV)) {
 					System.out.println("Pont à Voûtes");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont à voûtes", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.vault));
 				} else if(A.equals(DB)) {
 					System.out.println("Pont Levis !");
-					LB.add(new Bridge(Environment.getHeight(),0 , 0, Environment.getLength(), "Pont-levis", Material.Wood, 1));
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.drawbridge));
 				}
 			}
 		}
@@ -470,7 +470,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		if(LB.isEmpty())
 			JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 		else {
-			ResponseInterface RI= new ResponseInterface(LB);
+			ResponseInterface RI= new ResponseInterface(LB, LM);
             RI.setVisible(true);
 			this.dispose();
 		}

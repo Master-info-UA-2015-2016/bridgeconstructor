@@ -9,24 +9,24 @@ import expertsystem.AIEngine;
  */
 public class Bridge {
 
-	private float minHeight;
+	private final float size_lane = (float) 2.50;
+	
+	private float height;
 	private float minWidth;
 	private float maxWidth;
 	private float length;
-	private String type;
-	private Material material;
+	private TypeBridge type;
 	private float price;
 
 	/**
 	 * Constructeur par défaut de {@link Bridge}
 	 */
 	public Bridge() {
-		minHeight = 0;
+		height = 0;
 		minWidth = 0;
 		maxWidth = -1;
 		length = 0;
-		type = "";
-		material = null;
+		type = null;
 		price = 0;
 
 		System.out.println("BRIDGE : " + this.toString());
@@ -42,17 +42,23 @@ public class Bridge {
 	 * @param material
 	 * @param price
 	 */
-	public Bridge(float height, float minWidth, float maxWidth, float length, String type, Material material,
-			float price) {
-		this.minHeight = height;
+	public Bridge(float height, float minWidth, float maxWidth, float length, TypeBridge type, float price) {
+		this.height = height;
 		this.minWidth = minWidth;
 		this.minWidth = maxWidth;
 		this.length = length;
 		this.type = type;
-		this.material = material;
 		this.price = price;
 	}
 
+	public Bridge(float height, int lane_number, float length, TypeBridge type) {
+		this.height = height;
+		this.length = length;
+		this.type = type;
+		this.minWidth = lane_number * size_lane;
+		this.maxWidth = lane_number * size_lane + (float)0.50;
+	}
+	
 	// SETTERS
 
 	/**
@@ -60,7 +66,7 @@ public class Bridge {
 	 * @param height
 	 */
 	public void setHeight(float height) {
-		this.minHeight = height;
+		this.height = height;
 	}
 
 	/**
@@ -91,16 +97,8 @@ public class Bridge {
 	 *
 	 * @param type
 	 */
-	public void setType(String type) {
+	public void setType(TypeBridge type) {
 		this.type = type;
-	}
-
-	/**
-	 *
-	 * @param material
-	 */
-	public void setMaterial(Material material) {
-		this.material = material;
 	}
 
 	/**
@@ -118,7 +116,7 @@ public class Bridge {
 	 * @return
 	 */
 	public float getHeight() {
-		return minHeight;
+		return height;
 	}
 
 	/**
@@ -149,16 +147,8 @@ public class Bridge {
 	 *
 	 * @return
 	 */
-	public String getType() {
+	public TypeBridge getType() {
 		return type;
-	}
-
-	/**
-	 *
-	 * @return
-	 */
-	public Material getMaterial() {
-		return material;
 	}
 
 	/**
@@ -170,14 +160,40 @@ public class Bridge {
 	}
 
 	/**
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public String getStringType() {
+		switch(type) {
+			case arc :
+				return "Arc-Boutants";
+			case beam :
+				return "Poutres";
+			case drawbridge :
+				return "Pont-Levis";
+			case hanging :
+				return "Suspendu";
+			case shroud :
+				return "Haubans";
+			case vault :
+				return "Voûtes";
+			default :
+				return "";
+		}
+	}
+	
+	/**
 	 *
 	 * @return
 	 */
 	public String toString() {
-		// TODO toString Material
-		return "min HEIGHT = " + minHeight + ",\tmin WIDTH = " + minWidth + ",\tmax WIDTH = " + maxWidth
-				+ ",\tLENGTH = " + length + ",\tTYPE = \"" + type + "\"" + ",\tMATERIAL = " + material + ",\tPRICE = "
-				+ price;
+		return "HEIGHT = " + height + 
+				",\tmin WIDTH = " + minWidth + 
+				",\tmax WIDTH = " + maxWidth + 
+				",\tLENGTH = " + length + 
+				",\tTYPE = \"" + type + "\"" +
+				",\tPRICE = " + price;
 	}
 
 }
