@@ -339,6 +339,8 @@ public class AIEngine {
 	 */
 	public FactsBase purge(FactsBase FB) {
 		FactsBase base = FB;
+		
+		// On supprime les doublons identiques (name & val)
 		boolean find;
 		Affirmation A;
 		Comparison C;
@@ -380,6 +382,8 @@ public class AIEngine {
 			if (!find)
 				i++;
 		}
+		// On supprime les incohérences
+		
 		return base;
 	}
 }

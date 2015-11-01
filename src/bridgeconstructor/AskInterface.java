@@ -370,6 +370,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	
 	private void launchForwardChaining(){
 		ArrayList<Bridge> LB = new ArrayList<Bridge>();
+        ArrayList<Material> LM = new ArrayList<Material>();
         
 //        BASE DE FAITS
 		FactsBase FB = Environment.getFactsBase();
@@ -407,14 +408,19 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Affirmation A = (Affirmation) w;
 				if(A.equals(UCord)) {
 					System.out.println("Corde");
+					LM.add(Material.Cord);
 				} else if(A.equals(UConc)) {
 					System.out.println("Béton");
+					LM.add(Material.Concrete);
 				} else if(A.equals(URock)) {
 					System.out.println("Pierre");
+					LM.add(Material.Stone);
 				} else if(A.equals(USteel)) {
 					System.out.println("Acier");
+					LM.add(Material.Steel);
 				} else if(A.equals(UWood)) {
 					System.out.println("Bois");
+					LM.add(Material.Wood);
 				}
 			}
 		}

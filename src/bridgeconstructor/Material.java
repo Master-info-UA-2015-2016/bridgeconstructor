@@ -14,7 +14,7 @@ public enum Material {
 	/**
 	 *
 	 */
-	Rock,
+	Stone,
 
 	/**
 	 *
