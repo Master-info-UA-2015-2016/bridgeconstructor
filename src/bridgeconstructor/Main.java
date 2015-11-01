@@ -37,36 +37,6 @@ public class Main {
 
 	/**
 	 *
-	 */
-	public enum types {
-		/**
-		 *
-		 */
-		suspendu,
-
-		/**
-		 *
-		 */
-		haubants,
-
-		/**
-		 *
-		 */
-		arcs_boutants,
-
-		/**
-		 * 
-		 */
-		poutres,
-
-		/**
-		 * 
-		 */
-		voûtes
-	};
-
-	/**
-	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

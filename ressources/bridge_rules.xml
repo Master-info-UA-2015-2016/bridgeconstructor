@@ -372,6 +372,19 @@
 		</consequences>
 	</bridge_rule>
 	
+	<!-- SI matériau Corde ALORS NON pont en arc ET NON pont à hauban ET NON pont à poutres ET NON pont à voûtes -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="use concrete" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge arc considered" value="false" />
+			<consequence type="affirmation" name="bridge beam considered" value="false" />
+			<consequence type="affirmation" name="bridge shroud considered" value="false" />
+			<consequence type="affirmation" name="bridge vault considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
 <!-- 	FIN REGLE MATERIAUX -> PONT -->
 	
 <!-- Modèle de règle	
