@@ -72,4 +72,8 @@ public class Affirmation extends Word {
 		boolean _val= Boolean.parseBoolean(value);
 		return val == _val;
 	}
+    
+    public boolean isOpposite(Affirmation A) {
+    	return (this.name.equals(A.name) && this.val != A.val);
+    }
 }

@@ -28,7 +28,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-import bridgeconstructor.Bridge.Material;
 import expertsystem.AIEngine;
 import expertsystem.Affirmation;
 import expertsystem.FactsBase;
@@ -457,12 +456,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				}
 			}
 		}
-	
-		// Purge de FB
-		FB.add(new Affirmation("bridge hanging considered", true));
-		FB = moteur.purge(FB);
-		
-		System.out.println(FB);
 		
 		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
 		// TODO construction d'un pont à partir d'un fait ?

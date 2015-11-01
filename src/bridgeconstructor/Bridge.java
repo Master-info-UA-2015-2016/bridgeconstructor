@@ -8,39 +8,6 @@ import expertsystem.AIEngine;
  * @see AIEngine puis affiché à l'utilisateur
  */
 public class Bridge {
-	// TODO remplir la classe
-
-	/**
-	 *
-	 */
-
-	public enum Material {
-
-		/**
-		 *
-		 */
-		Steel,
-
-		/**
-		 *
-		 */
-		Wood,
-
-		/**
-		 *
-		 */
-		Rock,
-
-		/**
-		 *
-		 */
-		Concrete,
-
-		/**
-		 *
-		 */
-		Cord
-	}
 
 	private float minHeight;
 	private float minWidth;

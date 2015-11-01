@@ -355,30 +355,28 @@ public class AIEngine {
 					if(base.get(j).getClass() == Affirmation.class) {
 						Affirmation ANext = (Affirmation) base.get(j);
 						if (A.equals(ANext)) {
-							System.out.println("Occurence de " + A + " trouvé (Purged)");
 							base.remove(j);
 							find = true;
 							break;
 						}
 					}
 				}
-			} else
-				// Dans le cas : Si c'est une Comparaison
-				if(W.getClass() == Comparison.class) {
-					C = (Comparison) W;
-					// int j=i+1;
-					for (int j = i + 1; j < base.size(); j++) {
-						if(base.get(j).getClass() == Comparison.class) {
-							Comparison CNext = (Comparison) base.get(j);
-							if (C.equals(CNext)) {
-								System.out.println("Occurence de " + C + "trouvé");
-								base.remove(j);
-								find = true;
-								break;
-							}
+			}
+			// Dans le cas : Si c'est une Comparaison
+			if(W.getClass() == Comparison.class) {
+				C = (Comparison) W;
+				// int j=i+1;
+				for (int j = i + 1; j < base.size(); j++) {
+					if(base.get(j).getClass() == Comparison.class) {
+						Comparison CNext = (Comparison) base.get(j);
+						if (C.equals(CNext)) {
+							base.remove(j);
+							find = true;
+							break;
 						}
 					}
 				}
+			}
 			if (!find)
 				i++;
 		}
