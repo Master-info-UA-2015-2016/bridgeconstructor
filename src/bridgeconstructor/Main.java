@@ -43,7 +43,6 @@ public class Main {
      *
      */
     public enum types { 
-
         /**
          *
          */

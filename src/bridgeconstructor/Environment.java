@@ -19,7 +19,7 @@ public class Environment {
 	private static boolean wind = false;
 	
 	// Terrain
-	private static boolean wood = false;
+	private static boolean forest = false;
 	private static boolean water = false;
 	private static boolean mountain = false;
 	
@@ -47,7 +47,7 @@ public class Environment {
 		// Météo
 		wind = false;
 		// Terrain
-		wood = false;
+		forest = false;
 		water = false;
 		mountain = false;
 		// Mesures
@@ -115,10 +115,10 @@ public class Environment {
 
     /**
      *
-     * @param wood
+     * @param forest
      */
-    	public static void setWood(boolean wood) {
-		Environment.wood = wood;
+    	public static void setForest(boolean forest) {
+		Environment.forest = forest;
 	}
 	
     /**
@@ -234,8 +234,8 @@ public class Environment {
      * @return
      */
     	
-	public static boolean isWood() {
-		return wood;
+	public static boolean isForest() {
+		return forest;
 	}
 	
     /**
@@ -301,7 +301,7 @@ public class Environment {
 				",\tRoad Traffic = " + road_traffic +
 				",\tDaily Traffic = " + daily_traffic +
 				",\tWind = " + wind +
-				",\tWood = " + wood +
+				",\tWood = " + forest +
 				",\tWater = " + water +
 				",\tMountain = " + mountain +
 				",\tHeight = " + height +
@@ -333,7 +333,7 @@ public class Environment {
 			FB.addFact("wind", wind);
 		//		Terrains
 			FB.addFact("water", water);
-			FB.addFact("wood", wood);
+			FB.addFact("forest", forest);
 			FB.addFact("mountain", mountain);
 		// 		Mesure
 			FB.addFact("length", Operators.equal, length);

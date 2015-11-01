@@ -81,7 +81,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JCheckBox wind_box;
 	// Terrain
 	private JLabel ground;
-	private JCheckBox wood_box;
+	private JCheckBox forest_box;
 	private JCheckBox water_box;
 	private JCheckBox mountain_box;
 	// Mesure
@@ -159,7 +159,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		wind_box =  new JCheckBox("Vent");
 		// Terrains
 		ground = new JLabel("Terrain : ");
-		wood_box = new JCheckBox("Forêt");
+		forest_box = new JCheckBox("Forêt");
 		water_box = new JCheckBox("Eau");
 		mountain_box = new JCheckBox("Montagne");
 		// Mesure
@@ -180,7 +180,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		bonus = new JLabel("Bonus :");
 		castle_box = new JCheckBox("Château");
 		// Bouton
-		reset_button = new JButton("Reintialiser");
+		reset_button = new JButton("Reinitialiser");
 		confirm_button = new JButton("Tout est fait !");
 	}
 	
@@ -210,7 +210,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Terrain Panel Choice
 		ground_panel.setBorder(raisedetched);
 		ground_panel.add(water_box);
-		ground_panel.add(wood_box);
+		ground_panel.add(forest_box);
 		ground_panel.add(mountain_box);
 		// Measure Panel TextField
 		label_panel.add(height);
@@ -265,7 +265,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.pedestrian_box.addActionListener(this);
 		this.road_box.addActionListener(this);
 		this.wind_box.addActionListener(this);
-		this.wood_box.addActionListener(this);
+		this.forest_box.addActionListener(this);
 		this.mountain_box.addActionListener(this);
 		this.water_box.addActionListener(this);
 		this.castle_box.addActionListener(this);
@@ -323,8 +323,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Environment.setWind(CB.isSelected());
 			else if(CB == water_box)
 				Environment.setWater(CB.isSelected());
-			else if(CB == wood_box)
-				Environment.setWood(CB.isSelected());
+			else if(CB == forest_box)
+				Environment.setForest(CB.isSelected());
 			else if(CB == mountain_box)
 				Environment.setMountain(CB.isSelected());
 			else if(CB == castle_box)
@@ -358,7 +358,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		daily_traffic_field.setValue(90);
 		wind_box.setSelected(false);
 		water_box.setSelected(false);
-		wood_box.setSelected(false);
+		forest_box.setSelected(false);
 		mountain_box.setSelected(false);
 		height_field.setValue(10);
 		length_field.setValue(20);
@@ -387,6 +387,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("Résultat :");
 		System.out.println("------------------------");
 		System.out.println(FB);
+		
+		// TODO dans le traitement, commencé par supprimer les répétitions
 		
 		// Création de l'affirmation correspondant aux matériaux
 		Affirmation UCord, UConc, URock, USteel, UWood;
