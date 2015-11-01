@@ -338,27 +338,50 @@ public class AIEngine {
 	 * @return
 	 */
 	public FactsBase purge(FactsBase FB) {
-		System.out.println("Purge");
 		FactsBase base = FB;
 		boolean find;
+		Affirmation A;
+		Comparison C;
 		int i = 0;
 		while (i < base.size()) {
-			Word W = base.get(i);
 			find = false;
-			// int j=i+1;
-			for (int j = i + 1; j < base.size(); j++) {
-				Word Wnext = base.get(j);
-				if (W.equals(Wnext)) {
-					System.out.println("Occurence de " + W + "trouvé");
-					base.remove(j);
-					find = true;
-					break;
+			Word W = base.get(i);
+			System.out.println(W);
+			// Dans le cas : Si c'est une Affirmation
+			if(W.getClass() == Affirmation.class) {
+				A = (Affirmation) W;
+				// int j=i+1;
+				for (int j = i + 1; j < base.size(); j++) {
+					if(base.get(j).getClass() == Affirmation.class) {
+						Affirmation ANext = (Affirmation) base.get(j);
+						if (A.equals(ANext)) {
+							System.out.println("Occurence de " + A + " trouvé (Purged)");
+							base.remove(j);
+							find = true;
+							break;
+						}
+					}
 				}
-			}
+			} else
+				// Dans le cas : Si c'est une Comparaison
+				if(W.getClass() == Comparison.class) {
+					C = (Comparison) W;
+					// int j=i+1;
+					for (int j = i + 1; j < base.size(); j++) {
+						if(base.get(j).getClass() == Comparison.class) {
+							Comparison CNext = (Comparison) base.get(j);
+							if (C.equals(CNext)) {
+								System.out.println("Occurence de " + C + "trouvé");
+								base.remove(j);
+								find = true;
+								break;
+							}
+						}
+					}
+				}
 			if (!find)
 				i++;
 		}
-
 		return base;
 	}
 }
