@@ -16,7 +16,7 @@ public class Environment {
 	private static float daily_traffic = 90;					// Passage de véhicules par jour
 	
 	// Météo
-	private static boolean storm = false;
+	private static boolean wind = false;
 	
 	// Terrain
 	private static boolean wood = false;
@@ -45,7 +45,7 @@ public class Environment {
 		road_traffic = false;
 		daily_traffic = 90;
 		// Météo
-		storm = false;
+		wind = false;
 		// Terrain
 		wood = false;
 		water = false;
@@ -104,11 +104,11 @@ public class Environment {
 	//	SETTERS Météo
 
     /**
-     *
-     * @param storm
+     * 
+     * @param wind
      */
-    	public static void setStorm(boolean storm) {
-		Environment.storm = storm;
+    public static void setWind(boolean wind) {
+		Environment.wind = wind;
 	}
 	
 	//	SETTERS Terrain 
@@ -220,12 +220,12 @@ public class Environment {
 	//	GETTERS Météo
 
     /**
-     *
+     * 
      * @return
      */
-    	public static boolean isStorm() {
-		return storm;
-	}
+    public static boolean isWind() {
+    	return wind;
+    }
 	
 	//	GETTERS Terrains
 	
@@ -300,7 +300,7 @@ public class Environment {
 				",\tPedestrian Traffic = " + pedestrian_traffic +
 				",\tRoad Traffic = " + road_traffic +
 				",\tDaily Traffic = " + daily_traffic +
-				",\tStorm = " + storm +
+				",\tWind = " + wind +
 				",\tWood = " + wood +
 				",\tWater = " + water +
 				",\tMountain = " + mountain +
@@ -330,7 +330,7 @@ public class Environment {
 			FB.addFact("road traffic", road_traffic);
 			FB.addFact("daily traffic", Operators.equal, daily_traffic);
 		//		Météo
-			FB.addFact("storm", storm);
+			FB.addFact("wind", wind);
 		//		Terrains
 			FB.addFact("water", water);
 			FB.addFact("wood", wood);

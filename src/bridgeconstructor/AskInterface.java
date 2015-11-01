@@ -34,8 +34,6 @@ import expertsystem.Affirmation;
 import expertsystem.FactsBase;
 import expertsystem.RulesBase;
 import expertsystem.Word;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * L'interface Graphique est construite à partir de cette classe
@@ -80,7 +78,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JFormattedTextField daily_traffic_field;
 	// Météo
 	private JLabel meteo;
-	private JCheckBox storm_box;
+	private JCheckBox wind_box;
 	// Terrain
 	private JLabel ground;
 	private JCheckBox wood_box;
@@ -158,7 +156,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		daily_traffic_field = new JFormattedTextField(int_format);
 		// Météo Box
 		meteo = new JLabel("Météo :");
-		storm_box =  new JCheckBox("Tempête");
+		wind_box =  new JCheckBox("Vent");
 		// Terrains
 		ground = new JLabel("Terrain : ");
 		wood_box = new JCheckBox("Forêt");
@@ -208,7 +206,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		traffic_panel.add(daily_traffic_field);
 		// Meteo Panel Choice
 		meteo_panel.setBorder(raisedetched);
-		meteo_panel.add(storm_box);
+		meteo_panel.add(wind_box);
 		// Terrain Panel Choice
 		ground_panel.setBorder(raisedetched);
 		ground_panel.add(water_box);
@@ -266,7 +264,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.railway_box.addActionListener(this);
 		this.pedestrian_box.addActionListener(this);
 		this.road_box.addActionListener(this);
-		this.storm_box.addActionListener(this);
+		this.wind_box.addActionListener(this);
 		this.wood_box.addActionListener(this);
 		this.mountain_box.addActionListener(this);
 		this.water_box.addActionListener(this);
@@ -321,8 +319,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				Environment.setPedestrian_traffic(CB.isSelected());
 			else if(CB == road_box)
 				Environment.setRoad_traffic(CB.isSelected());
-			else if(CB == storm_box)
-				Environment.setStorm(CB.isSelected());
+			else if(CB == wind_box)
+				Environment.setWind(CB.isSelected());
 			else if(CB == water_box)
 				Environment.setWater(CB.isSelected());
 			else if(CB == wood_box)
@@ -358,7 +356,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		railway_box.setSelected(false);
 		road_box.setSelected(false);
 		daily_traffic_field.setValue(90);
-		storm_box.setSelected(false);
+		wind_box.setSelected(false);
 		water_box.setSelected(false);
 		wood_box.setSelected(false);
 		mountain_box.setSelected(false);
