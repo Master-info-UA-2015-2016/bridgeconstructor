@@ -43,6 +43,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private static final long serialVersionUID = 1L;
 	
 	private static final String title = "Bridge Constructor - Ask";
+    private static final String rules_path = "./ressources/bridge_rules.xml";
 	
 	private NumberFormat float_format;
 	private NumberFormat int_format;
@@ -119,6 +120,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		this.setVisible(true);
     
 	}
+    
+    public String getRulesPath() { return rules_path; }
 	
 	private void buildComposants() {
 		float_format = NumberFormat.getNumberInstance();
@@ -293,7 +296,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         if(source.getClass() == JMenuItem.class) {
             if(source == other_chaining){
                 this.setVisible(false);
-                BackwardInterface BI= new BackwardInterface(this);
+                BackwardInterface BI= new BackwardInterface(this, rules_path);
                 BI.setVisible(true);
             }
 			if(source == item_close)
@@ -376,7 +379,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         
 //		BASE DE REGLES
 		RulesBase BR1;	
-        BR1 = BridgeRules.initRulesBase("./ressources/bridge_rules.xml");	
+        BR1 = BridgeRules.initRulesBase(rules_path);
 		System.out.println(BR1);
 		
 //		OTHER
