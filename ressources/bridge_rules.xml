@@ -172,18 +172,16 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- SI NON rail traffic ET NON road traffic ET daily traffic < 200 ET longueur < 15 ALORS pont en bois(  non beton, acier ?)  -->
+	<!-- SI NON Traffic ferroviaire ET Traffic routier ET Traffic piéton  ET longueur < 50 ALORS matériaux Corde  -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="road traffic" value="false" />
 			<antecedent type="affirmation" name="rail traffic" value="false" />
-			<antecedent type="comparison" name="length" operator="&lt;" value="15" />
-			<antecedent type="comparison" name="daily traffic" operator="&lt;" value="200" />
+			<antecedent type="affirmation" name="pedestrian traffic" value="true" />
+			<antecedent type="comparison" name="length" operator="&lt;" value="50" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="use wood" value="true" />
-<!-- 			<consequence type="affirmation" name="use concrete" value="false" /> -->
-<!-- 			<consequence type="affirmation" name="use steel" value="false" /> -->
+			<consequence type="affirmation" name="use cord" value="true" />
 		</consequences>
 	</bridge_rule>
 		
@@ -287,15 +285,47 @@
 		</consequences>
 	</bridge_rule>
 	
-	<!-- SI matériau Pierre ALORS NON Pont suspendu ET NON Pont à hauban ET NON Pont en arc -->
+	<!-- SI matériau Pierre ALORS NON Pont suspendu ET NON Pont à hauban -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use stone" value="true" />
 		</antecedents>
 		<consequences>
-			<consequence type="affirmation" name="bridge arc considered" value="false" />
 			<consequence type="affirmation" name="bridge hanging considered" value="false" />
 			<consequence type="affirmation" name="bridge shroud considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- SI matériau Pierre ET Longueur < 60 ALORS Pont en arc -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="use stone" value="true" />
+			<antecedent type="comparation" name="length" operator="&lt;" value="60" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge arc considered" value="true" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- SI matériau Béton ALORS NON Pont suspendu ET NON Pont à hauban -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="use concrete" value="true" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge hanging considered" value="false" />
+			<consequence type="affirmation" name="bridge shroud considered" value="false" />
+		</consequences>
+	</bridge_rule>
+	
+	<!-- SI matériau Béton ET Longueur < 60 ALORS Pont en arc -->
+	<bridge_rule>
+		<antecedents>
+			<antecedent type="affirmation" name="use concrete" value="true" />
+			<antecedent type="comparation" name="length" operator="&lt;" value="60" />
+		</antecedents>
+		<consequences>
+			<consequence type="affirmation" name="bridge arc considered" value="true" />
 		</consequences>
 	</bridge_rule>
 	
@@ -331,38 +361,8 @@
 			<consequence type="affirmation" name="bridge hanging considered" value="true" />
 		</consequences>
 	</bridge_rule>
-	
-	<!-- 37 : SI matériau Béton ALORS pont en Arc envisagé  -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="use concrete" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge arc considered" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-	<!-- 38 : SI pont en béton ALORS pont suspendu envisagé -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="use concrete" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge hanging considered" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-	<!-- 39 : SI pont en béton ALORS pont à hauban envisagé -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="use concrete" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="bridge shroud considered" value="true" />
-		</consequences>
-	</bridge_rule>
 
-	<!-- 40 : SI pont en corde ALORS pont suspendu envisagé -->
+	<!-- SI matériau Corde ALORS pont suspendu envisagé -->
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use cord" value="true" />
@@ -374,7 +374,7 @@
 	
 <!-- 	FIN REGLE MATERIAUX -> PONT -->
 	
-<!-- Regle vide 	
+<!-- Modèle de règle	
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="" value="" />
@@ -386,44 +386,5 @@
 		</consequences>
 	</bridge_rule>
  -->
- 
- 	
-<!-- 	REGLES SUR LES POIDS, pour cohérence -->
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="heavy" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="light" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="light" value="true" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="heavy" value="false" />
-		</consequences>
-	</bridge_rule>
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="heavy" value="false" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="light" value="true" />
-		</consequences>
-	</bridge_rule>
-	
-	<bridge_rule>
-		<antecedents>
-			<antecedent type="affirmation" name="light" value="false" />
-		</antecedents>
-		<consequences>
-			<consequence type="affirmation" name="heavy" value="true" />
-		</consequences>
-	</bridge_rule>
-<!-- 	FIN REGLES SUR LES POIDS -->
 
 </bridge_rules>
