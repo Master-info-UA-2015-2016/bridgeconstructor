@@ -389,7 +389,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("Résultat :");
 		System.out.println("------------------------");
 		System.out.println(FB);
-		
+
 		// TODO dans le traitement, commencé par supprimer les répétitions
 		
 		// Création de l'affirmation correspondant aux matériaux
@@ -458,6 +458,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			}
 		}
 	
+		// Purge de FB
+		FB.add(new Affirmation("bridge hanging considered", true));
+		FB = moteur.purge(FB);
+		
+		System.out.println(FB);
+		
 		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
 		// TODO construction d'un pont à partir d'un fait ?
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?

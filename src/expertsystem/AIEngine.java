@@ -295,6 +295,7 @@ public class AIEngine {
 	 * @return
 	 */
 	public FactsBase purge(FactsBase FB) {
+		System.out.println("Purge");
 		FactsBase base = FB;
 		boolean find;
 		int i=0;
@@ -305,6 +306,7 @@ public class AIEngine {
 			for(int j=i+1 ; j<base.size() ; j++) {
 				Word Wnext = base.get(j);
 				if(W.equals(Wnext)) {
+					System.out.println("Occurence de " + W + "trouvé");
 					base.remove(j);
 					find = true;
 					break;
