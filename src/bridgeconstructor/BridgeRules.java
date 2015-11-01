@@ -27,26 +27,13 @@ import expertsystem.Word;
 public class BridgeRules {
 	private static RulesBase bridge_rules;
 
-    /**
-     *
-     * @param filename
-     * @return
-     */
-    public static RulesBase initRulesBase(String filename) {
-		bridge_rules = new RulesBase();
-
-		BridgeRules.initFromXML(filename);
-
-		return bridge_rules;
-	}
-
-    /**
-     *
-     * @param node
-     * @param list
-     * @param isCons
-     */
-    public static void parseToList(Node node, List<Word> list, boolean isCons) {
+	/**
+	 *
+	 * @param node
+	 * @param list
+	 * @param isCons
+	 */
+	public static void parseToList(Node node, List<Word> list, boolean isCons) {
 		// System.out.println("\t\tCurrent Element :" +
 		// consequence.getNodeName());
 		if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -57,25 +44,26 @@ public class BridgeRules {
 
 			if (type.equals("comparison")) {
 				String opString = eElement.getAttribute("operator");
-				float value= Float.parseFloat(eElement.getAttribute("value"));
-				if (isCons){
+				float value = Float.parseFloat(eElement.getAttribute("value"));
+				if (isCons) {
 					if (!opString.equals("=") && !opString.equals("")) {
-						System.err.println("op.equals('=') ?" + opString.equals("=") + " et !op.equals('=') ?" + !opString.equals("="));
-						System.err.println("op.equals('=') ?" + opString.equals("") + " et !op.equals('=') ?" + !opString.equals(""));
-						System.err.println("isCons ?"+ isCons);
+						System.err.println("op.equals('=') ?" + opString.equals("=") + " et !op.equals('=') ?"
+								+ !opString.equals("="));
+						System.err.println("op.equals('=') ?" + opString.equals("") + " et !op.equals('=') ?"
+								+ !opString.equals(""));
+						System.err.println("isCons ?" + isCons);
 						// TODO ajouter des exceptions, ici si l'opérateur est
 						// différent de '=' ,
 						// on ne peut pas ajouter de conséquence
 						System.err.println("impossible d'ajouter la comparaison -" + name
 								+ "- comme conséquence (opérateur différent de '=')");
 					} else {
-                         // une conséquence est forcément une égalité
+						// une conséquence est forcément une égalité
 						Comparison comp = new Comparison(name, Operators.equal, value);
 						list.add(comp);
 					}
 				} else {
-					Comparison comp = new Comparison(name, new Operator(opString),
-							value);
+					Comparison comp = new Comparison(name, new Operator(opString), value);
 					list.add(comp);
 				}
 			} else if (type.equals("affirmation")) {
@@ -91,13 +79,13 @@ public class BridgeRules {
 		}
 	}
 
-    /**
-     *
-     * @param nodeList
-     * @param isCons
-     * @return
-     */
-    public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
+	/**
+	 *
+	 * @param nodeList
+	 * @param isCons
+	 * @return
+	 */
+	public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
 		ArrayList<Word> list = new ArrayList<Word>(); // déclaration de la liste
 														// de mots à créer
 
@@ -111,11 +99,11 @@ public class BridgeRules {
 		return list;
 	}
 
-    /**
-     *
-     * @param filename
-     */
-    public static void initFromXML(String filename) {
+	/**
+	 *
+	 * @param filename
+	 */
+	public static void initFromXML(String filename) {
 
 		try {
 			File fXmlFile = new File(filename);
@@ -156,6 +144,19 @@ public class BridgeRules {
 		System.out.println("---------------------------------------");
 
 		// return bridge_rules;
+	}
+
+	/**
+	 *
+	 * @param filename
+	 * @return
+	 */
+	public static RulesBase initRulesBase(String filename) {
+		bridge_rules = new RulesBase();
+
+		BridgeRules.initFromXML(filename);
+
+		return bridge_rules;
 	}
 
 }

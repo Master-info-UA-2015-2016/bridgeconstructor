@@ -154,6 +154,6 @@ public class FactsBase extends ArrayList<Word> {
 //		return false;
 //		
 ////		return facts.contains(fact);
-//	}
+	// }
 
 }

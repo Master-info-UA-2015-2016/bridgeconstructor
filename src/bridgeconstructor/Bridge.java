@@ -4,43 +4,44 @@ import expertsystem.AIEngine;
 
 /**
  * La classe sera instanciée algorithmiquement grâce à
+ * 
  * @see AIEngine puis affiché à l'utilisateur
  */
 public class Bridge {
-	//TODO remplir la classe
-	
-    /**
-     *
-     */
-    	
+	// TODO remplir la classe
+
+	/**
+	 *
+	 */
+
 	public enum Material {
 
-        /**
-         *
-         */
-        Steel,
+		/**
+		 *
+		 */
+		Steel,
 
-        /**
-         *
-         */
-        Wood,
+		/**
+		 *
+		 */
+		Wood,
 
-        /**
-         *
-         */
-        Rock,
+		/**
+		 *
+		 */
+		Rock,
 
-        /**
-         *
-         */
-        Concrete,
+		/**
+		 *
+		 */
+		Concrete,
 
-        /**
-         *
-         */
-        Cord
+		/**
+		 *
+		 */
+		Cord
 	}
-	
+
 	private float minHeight;
 	private float minWidth;
 	private float maxWidth;
@@ -48,33 +49,34 @@ public class Bridge {
 	private String type;
 	private Material material;
 	private float price;
-	
+
 	/**
 	 * Constructeur par défaut de {@link Bridge}
 	 */
 	public Bridge() {
-		minHeight= 0;
-		minWidth= 0;
-		maxWidth= -1;
-		length= 0;
+		minHeight = 0;
+		minWidth = 0;
+		maxWidth = -1;
+		length = 0;
 		type = "";
 		material = null;
 		price = 0;
-		
+
 		System.out.println("BRIDGE : " + this.toString());
 	}
-	
-    /**
-     *
-     * @param height
-     * @param minWidth
-     * @param maxWidth
-     * @param length
-     * @param type
-     * @param material
-     * @param price
-     */
-    public Bridge(float height, float minWidth, float maxWidth, float length, String type, Material material, float price) {
+
+	/**
+	 *
+	 * @param height
+	 * @param minWidth
+	 * @param maxWidth
+	 * @param length
+	 * @param type
+	 * @param material
+	 * @param price
+	 */
+	public Bridge(float height, float minWidth, float maxWidth, float length, String type, Material material,
+			float price) {
 		this.minHeight = height;
 		this.minWidth = minWidth;
 		this.minWidth = maxWidth;
@@ -84,135 +86,131 @@ public class Bridge {
 		this.price = price;
 	}
 
-	//	SETTERS
+	// SETTERS
 
-    /**
-     *
-     * @param height
-     */
-    	public void setHeight(float height) {
+	/**
+	 *
+	 * @param height
+	 */
+	public void setHeight(float height) {
 		this.minHeight = height;
 	}
-	
-    /**
-     *
-     * @param width
-     */
-    public void setMinWidth(float width) {
+
+	/**
+	 *
+	 * @param width
+	 */
+	public void setMinWidth(float width) {
 		this.minWidth = width;
 	}
-	
-    /**
-     *
-     * @param width
-     */
-    public void setMaxWidth(float width) {
+
+	/**
+	 *
+	 * @param width
+	 */
+	public void setMaxWidth(float width) {
 		this.maxWidth = width;
 	}
-	
-    /**
-     *
-     * @param length
-     */
-    public void setLength(float length) {
+
+	/**
+	 *
+	 * @param length
+	 */
+	public void setLength(float length) {
 		this.length = length;
 	}
-	
-    /**
-     *
-     * @param type
-     */
-    public void setType(String type) {
+
+	/**
+	 *
+	 * @param type
+	 */
+	public void setType(String type) {
 		this.type = type;
 	}
-	
-    /**
-     *
-     * @param material
-     */
-    public void setMaterial(Material material) {
+
+	/**
+	 *
+	 * @param material
+	 */
+	public void setMaterial(Material material) {
 		this.material = material;
 	}
-	
-    /**
-     *
-     * @param price
-     */
-    public void setPrice(float price) {
+
+	/**
+	 *
+	 * @param price
+	 */
+	public void setPrice(float price) {
 		this.price = price;
 	}
-	
+
 	// GETTERS
 
-    /**
-     *
-     * @return
-     */
-    	public float getHeight() {
+	/**
+	 *
+	 * @return
+	 */
+	public float getHeight() {
 		return minHeight;
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public float getMinWidth() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public float getMinWidth() {
 		return minWidth;
 	}
 
-    /**
-     *
-     * @return
-     */
-    public float getMaxWidth() {
+	/**
+	 *
+	 * @return
+	 */
+	public float getMaxWidth() {
 		return maxWidth;
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public float getLength() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public float getLength() {
 		return length;
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public String getType() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public String getType() {
 		return type;
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public Material getMaterial() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public Material getMaterial() {
 		return material;
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public float getPrice() {
+
+	/**
+	 *
+	 * @return
+	 */
+	public float getPrice() {
 		return price;
 	}
-	
-    /**
-     *
-     * @return
-     */
-    public String toString() {
-		//TODO toString Material
-		return "min HEIGHT = " + minHeight +
-			",\tmin WIDTH = " + minWidth +
-			",\tmax WIDTH = " + maxWidth +
-			",\tLENGTH = " + length +
-			",\tTYPE = \"" + type + "\"" +
-			",\tMATERIAL = " + material +
-			",\tPRICE = " + price;
+
+	/**
+	 *
+	 * @return
+	 */
+	public String toString() {
+		// TODO toString Material
+		return "min HEIGHT = " + minHeight + ",\tmin WIDTH = " + minWidth + ",\tmax WIDTH = " + maxWidth
+				+ ",\tLENGTH = " + length + ",\tTYPE = \"" + type + "\"" + ",\tMATERIAL = " + material + ",\tPRICE = "
+				+ price;
 	}
-	
+
 }
