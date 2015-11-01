@@ -51,7 +51,6 @@ public class Affirmation extends Word {
      * @return
      */
     public boolean equals(Affirmation other) {
-		System.out.println("Comparaison entre 2 affirmations");
 		return (name.equals(other.name) && val == other.val);
 	}
 
