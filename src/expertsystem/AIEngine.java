@@ -297,17 +297,23 @@ public class AIEngine {
 	 */
 	public FactsBase purge(FactsBase FB) {
 		FactsBase base = FB;
-		
-		for(int i=0 ; i<FB.size() ; i++) {
-			Word W = FB.get(i);
-			int j=i+1;
-			while(j < FB.size())  {
-				Word Wnext = FB.get(j);
+		boolean find;
+		int i=0;
+		while(i < base.size()) {
+			Word W = base.get(i);
+			find = false;
+			//int j=i+1;
+			for(int j=i+1 ; j<base.size() ; j++) {
+				Word Wnext = base.get(j);
 				if(W.equals(Wnext)) {
-					FB.remove(j);
-				} else j++;
+					base.remove(j);
+					find = true;
+					break;
+				}
 			}
+			if(!find) i++;
 		}
+	
 		return base;
 	}
 }

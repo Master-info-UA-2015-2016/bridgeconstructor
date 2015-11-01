@@ -300,7 +300,7 @@
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use stone" value="true" />
-			<antecedent type="comparation" name="length" operator="&lt;" value="60" />
+			<antecedent type="comparison" name="length" operator="&lt;" value="60" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="bridge arc considered" value="true" />
@@ -322,7 +322,7 @@
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use concrete" value="true" />
-			<antecedent type="comparation" name="length" operator="&lt;" value="60" />
+			<antecedent type="comparison" name="length" operator="&lt;" value="60" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="bridge arc considered" value="true" />
@@ -333,7 +333,7 @@
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use steel" value="true" />
-			<antecedent type="comparation" name="length" operator="&lt;" value="100" />
+			<antecedent type="comparison" name="length" operator="&lt;" value="100" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="bridge arc considered" value="true" />
@@ -344,8 +344,8 @@
 	<bridge_rule>
 		<antecedents>
 			<antecedent type="affirmation" name="use steel" value="true" />
-			<antecedent type="comparation" name="length" operator=">" value="50" />
-			<antecedent type="comparation" name="heigth" operator=">" value="50" />
+			<antecedent type="comparison" name="length" operator=">" value="50" />
+			<antecedent type="comparison" name="heigth" operator=">" value="50" />
 		</antecedents>
 		<consequences>
 			<consequence type="affirmation" name="bridge shroud considered" value="true" />
