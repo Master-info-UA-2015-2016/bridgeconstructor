@@ -150,7 +150,7 @@ public class ResponseInterface extends JFrame {
 			s = "Matériaux envisagés : ";
 		else s = "Matériau envisagé : "; 
 		for(Material M : listMaterial)
-			s += M;
+			s += getStringMaterial(M) + " ";
 		matter = new JLabel(s);
 		bottom_panel.add(matter);
 	}
@@ -189,5 +189,21 @@ public class ResponseInterface extends JFrame {
 	        System.err.println("Couldn't find file: " + path);
 	        return null;
 	    }
+	}
+	
+	private String getStringMaterial(Material material) {
+		switch(material) {
+			case Concrete :
+				return "Béton";
+			case Cord :
+				return "Corde";
+			case Steel :
+				return "Acier";
+			case Stone :
+				return "Pierre";
+			case Wood :
+				return "Bois";
+		}
+		return "";
 	}
 }

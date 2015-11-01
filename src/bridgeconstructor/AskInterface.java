@@ -390,7 +390,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("------------------------");
 		System.out.println(FB);
 
-		// TODO dans le traitement, commencé par supprimer les répétitions
+		// TODO dans le traitement, commencé par supprimer les répétitions moteur.purge() ?
 		
 		// Création de l'affirmation correspondant aux matériaux
 		Affirmation UCord, UConc, URock, USteel, UWood;
@@ -403,28 +403,61 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("------------------------");
 		System.out.println("Choix du matériau :");
 		System.out.println("------------------------");
-		for(Word w : FB) {
-			if(w.getClass() == Affirmation.class) {
-				Affirmation A = (Affirmation) w;
-				if(A.equals(UCord)) {
-					System.out.println("Corde");
-					LM.add(Material.Cord);
-				} else if(A.equals(UConc)) {
-					System.out.println("Béton");
-					LM.add(Material.Concrete);
-				} else if(A.equals(URock)) {
-					System.out.println("Pierre");
-					LM.add(Material.Stone);
-				} else if(A.equals(USteel)) {
-					System.out.println("Acier");
-					LM.add(Material.Steel);
-				} else if(A.equals(UWood)) {
-					System.out.println("Bois");
-					LM.add(Material.Wood);
+		// 1er cas : la base de fait spécifie de matériaux
+		if(containsMaterial(FB)) {
+			System.out.println("Matériau(x) spécifié(s)");
+			for(Word w : FB) {
+				if(w.getClass() == Affirmation.class) {
+					Affirmation A = (Affirmation) w;
+					if(A.equals(UCord)) {
+						System.out.println("Corde");
+						LM.add(Material.Cord);
+					} else if(A.equals(UConc)) {
+						System.out.println("Béton");
+						LM.add(Material.Concrete);
+					} else if(A.equals(URock)) {
+						System.out.println("Pierre");
+						LM.add(Material.Stone);
+					} else if(A.equals(USteel)) {
+						System.out.println("Acier");
+						LM.add(Material.Steel);
+					} else if(A.equals(UWood)) {
+						System.out.println("Bois");
+						LM.add(Material.Wood);
+					}
+				}
+			}
+		} else {
+			System.out.println("Pas de Matériau spécifié");
+			// 2nd cas : la bas de fait ne spécifie pas de matériaux
+			LM.add(Material.Concrete);
+			LM.add(Material.Cord);
+			LM.add(Material.Steel);
+			LM.add(Material.Stone);
+			LM.add(Material.Wood);
+			
+			for(Word w : FB) {
+				if(w.getClass() == Affirmation.class) {
+					Affirmation A = (Affirmation) w;
+					if(A.isOpposite(UCord)) {
+						System.out.println("Pas de Corde");
+						LM.remove(Material.Cord);
+					} else if(A.isOpposite(UConc)) {
+						System.out.println("Pas de Béton");
+						LM.remove(Material.Concrete);
+					} else if(A.isOpposite(URock)) {
+						System.out.println("Pas de Pierre");
+						LM.remove(Material.Stone);
+					} else if(A.isOpposite(USteel)) {
+						System.out.println("Pas d'Acier");
+						LM.remove(Material.Steel);
+					} else if(A.isOpposite(UWood)) {
+						System.out.println("Pas de Bois");
+						LM.remove(Material.Wood);
+					}
 				}
 			}
 		}
-		
 		
 		// Création de l'affirmation correspondant aux types de pont
 		Affirmation BA, BB, BH, BS, BV, DB;
@@ -474,5 +507,13 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
             RI.setVisible(true);
 			this.dispose();
 		}
+	}
+	
+	private boolean containsMaterial(FactsBase FB) {
+		boolean B = false;
+		for(Word W : FB) {
+			if(W.getName().startsWith("use") && ((Affirmation)W).isTrue()) return true;
+		}
+		return B;
 	}
 }
