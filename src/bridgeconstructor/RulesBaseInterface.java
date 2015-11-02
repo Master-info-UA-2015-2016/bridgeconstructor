@@ -19,8 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- *
- * @author Florian
+ * Classe affichant la Base de Règles
  */
 public class RulesBaseInterface extends JFrame implements MouseListener {
 

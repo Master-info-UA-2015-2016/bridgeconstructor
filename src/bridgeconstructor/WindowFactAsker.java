@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jérome
  */
 public class WindowFactAsker implements FactAsker {
 	JFrame parent;

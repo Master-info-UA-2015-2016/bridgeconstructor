@@ -35,10 +35,6 @@ public class Main {
 
 	// FIN DEFINITION DU STYLE
 
-	/**
-	 *
-	 * @param args
-	 */
 	public static void main(String[] args) {
 
 		setSystemLookAndFeel();

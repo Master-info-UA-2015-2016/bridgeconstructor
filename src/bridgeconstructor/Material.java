@@ -1,8 +1,7 @@
 package bridgeconstructor;
 
 /**
- *
- * @author Florian
+ * Enumération des Matériaux pouvant être utilisés
  */
 public enum Material {
 	/**

@@ -16,7 +16,6 @@ public final class Bridge {
 	private float maxWidth;
 	private float length;
 	private TypeBridge type;
-	private float price;
 
 	/**
 	 * Constructeur par défaut de {@link Bridge}
@@ -27,7 +26,6 @@ public final class Bridge {
 		maxWidth = -1;
 		length = 0;
 		type = null;
-		price = 0;
 
 		System.out.println("BRIDGE : " + this.toString());
 	}
@@ -41,21 +39,21 @@ public final class Bridge {
 	 * @param type
 	 * @param price
 	 */
-	public Bridge(float height, float minWidth, float maxWidth, float length, TypeBridge type, float price) {
+	public Bridge(float height, float minWidth, float maxWidth, float length, TypeBridge type) {
 		this.height = height;
 		this.minWidth = minWidth;
 		this.minWidth = maxWidth;
 		this.length = length;
 		this.type = type;
-		this.price = price;
 	}
 
     /**
-     *
-     * @param height
-     * @param lane_number
-     * @param length
-     * @param type
+     * Constructeur
+     * Le calcul de la largeur est effectuée grâce au nombre de voies
+     * @param height : Hauteur 
+     * @param lane_number : Nombre de voies
+     * @param length : Longueur
+     * @param type : Type de pont
      */
     public Bridge(float height, int lane_number, float length, TypeBridge type) {
 		this.height = height;
@@ -107,14 +105,6 @@ public final class Bridge {
 		this.type = type;
 	}
 
-	/**
-	 *
-	 * @param price
-	 */
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
 	// GETTERS
 
 	/**
@@ -158,13 +148,60 @@ public final class Bridge {
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return le prix du pont pour la Corde
 	 */
-	public float getPrice() {
+	public float getPriceCord() {
+		float price_length = length * Constante.cord_length;
+		float price_width = maxWidth * Constante.cord_width;
+		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_cord;
+		
 		return price;
 	}
-
+	
+	/**
+	 * @return le prix du pont pour le Béton
+	 */
+	public float getPriceConcrete() {
+		float price_length = length * Constante.concrete_length;
+		float price_width = maxWidth * Constante.concrete_width;
+		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_concrete;
+		
+		return price;
+	}
+	
+	/**
+	 * @return le prix du pont pour l'Acier
+	 */
+	public float getPriceSteel() {
+		float price_length = length * Constante.steel_length;
+		float price_width = maxWidth * Constante.steel_width;
+		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_steel;
+		
+		return price;
+	}
+	
+	/**
+	 * @return le prix du pont pour la Pierre
+	 */
+	public float getPriceStone() {
+		float price_length = length * Constante.stone_length;
+		float price_width = maxWidth * Constante.stone_width;
+		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_stone;
+		
+		return price;
+	}
+	
+	/**
+	 * @return le prix du pont pour le Bois
+	 */
+	public float getPriceWood() {
+		float price_length = length * Constante.wood_length;
+		float price_width = maxWidth * Constante.wood_width;
+		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_wood;
+		
+		return price;
+	}
+	
 	/**
 	 * 
 	 * @return
@@ -197,8 +234,7 @@ public final class Bridge {
 				",\tmin WIDTH = " + minWidth + 
 				",\tmax WIDTH = " + maxWidth + 
 				",\tLENGTH = " + length + 
-				",\tTYPE = \"" + type + "\"" +
-				",\tPRICE = " + price;
+				",\tTYPE = \"" + type + "\"";
 	}
 
 }

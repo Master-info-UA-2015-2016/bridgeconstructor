@@ -179,40 +179,35 @@ public class Environment {
 	// GETTERS Traffic
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si le traffic naval a été choisi, FAUX sinon
 	 */
 	public static boolean isNaval_traffic() {
 		return naval_traffic;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si le traffic ferroviaire a été choisi, FAUX sinon
 	 */
 	public static boolean isRail_traffic() {
 		return rail_traffic;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si le traffic piéton a été choisi, FAUX sinon
 	 */
 	public static boolean isPedestrian_traffic() {
 		return pedestrian_traffic;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si le traffic routier a été choisi, FAUX sinon
 	 */
 	public static boolean isRoad_traffic() {
 		return road_traffic;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return la valeur du traffic quotidien
 	 */
 	public static float getDaily_traffic() {
 		return daily_traffic;
@@ -221,8 +216,7 @@ public class Environment {
 	// GETTERS Météo
 
 	/**
-	 * 
-	 * @return
+	 * @return VRAI si l'Environnement est sensible au vent, FAUX sinon
 	 */
 	public static boolean isWind() {
 		return wind;
@@ -231,25 +225,21 @@ public class Environment {
 	// GETTERS Terrains
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si l'Environnement est forestier, FAUX sinon
 	 */
-
 	public static boolean isForest() {
 		return forest;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si l'Environnement est sensible à l'eau, FAUX sinon
 	 */
 	public static boolean isWater() {
 		return water;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si l'Environnement est montagneux, FAUX sinon
 	 */
 	public static boolean isMountain() {
 		return mountain;
@@ -258,24 +248,21 @@ public class Environment {
 	// GETTERS Mesures
 
 	/**
-	 *
-	 * @return
+	 * @return la hauteur prévue
 	 */
 	public static float getHeight() {
 		return height;
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return la longueur prévue
 	 */
 	public static float getLength() {
 		return length;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return le nombre de voies
 	 */
 	public static int getLane_number() {
 		return lane_number;
@@ -284,8 +271,7 @@ public class Environment {
 	// GETTERS Bonus
 
 	/**
-	 *
-	 * @return
+	 * @return VRAI si le sujet est un château, FAUX sinon
 	 */
 	public static boolean getCastle() {
 		return castle;
@@ -304,7 +290,6 @@ public class Environment {
 
 	/**
 	 * Saturation de la base de faits {@link FactsBase}
-	 * 
 	 * @return
 	 */
 	public static FactsBase getFactsBase() {

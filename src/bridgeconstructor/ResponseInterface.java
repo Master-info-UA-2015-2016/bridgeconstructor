@@ -139,7 +139,7 @@ public class ResponseInterface extends JFrame {
 				height = new JLabel("Hauteur : " + B.getHeight() + "m");
 				width = new JLabel("Largeur : " + B.getMinWidth() + " - " + B.getMaxWidth() + "m");	// MIN - MAX Width
 				length = new JLabel("Longueur : " + B.getLength() + "m");
-				price = new JLabel("Prix : " + B.getPrice());
+				price = new JLabel("Prix : " + getPrice(B));
 			// Affichage
 			bridge_panel.add(image);
 			bridge_panel.add(type);
@@ -212,5 +212,29 @@ public class ResponseInterface extends JFrame {
 				return "Bois";
 		}
 		return "";
+	}
+	
+	private String getPrice(Bridge B) {
+		String s = "";
+		for(Material M : listMaterial) {
+			switch(M) {
+				case Concrete :
+					s += " Béton " + B.getPriceConcrete();
+					break;
+				case Cord :
+					s += " Corde " + B.getPriceCord();
+					break;
+				case Steel :
+					s += " Acier " + B.getPriceSteel();
+					break;
+				case Stone :
+					s += " Pierre " + B.getPriceStone();
+					break;
+				case Wood :
+					s += " Bois " + B.getPriceWood();
+					break;
+			}
+		}
+		return s;
 	}
 }

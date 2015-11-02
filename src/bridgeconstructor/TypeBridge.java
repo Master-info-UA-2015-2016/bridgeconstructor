@@ -1,8 +1,7 @@
 package bridgeconstructor;
 
 /**
- *
- * @author Florian
+ * Enumération des Types de Ponts
  */
 public enum TypeBridge {
 	/**
