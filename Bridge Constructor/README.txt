@@ -6,11 +6,24 @@
 
 
 Programme d'Intelligence Artificielle pour choisir
-	le type, les matériaux, et le prix pour la construction d'un pont
-	en fonction de l'Environnement
+	le type, les matériaux, et le prix pour la construction d'un
+	pont en fonction de l'Environnement
 
 
-#####################	L'Interface		#############################
+#####################	L'Installation	############################
+
+Sous Windows :
+	- Executer le script bridge-constructor.bat
+	- Executer le fichier bridge-constructor.jar
+
+Sous Linux :
+	- Donner les droits au script bridge-constructor.sh
+	- Executer le script bridge-constructor.sh
+	-> Ultérieurement il n'est pas nécessaire de reproduire la
+dernière étape mais seulement d'exectuer bridge-constructor.jar
+
+
+#####################	La Présentation	  ###########################
 
 Interface Ask :
 	Dans cette interface, l'utilisateur sélectionne et saisie les
@@ -31,3 +44,5 @@ chaînage qu'il souhaite ainsi que le but souhaité.
  
 #####################	L'Implémentation	#########################
 
+	Les traces de l'application sont affichées (complètes ou 
+concises) dans la console.
