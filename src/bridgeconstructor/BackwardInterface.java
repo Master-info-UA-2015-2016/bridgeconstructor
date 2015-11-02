@@ -189,11 +189,11 @@ public class BackwardInterface extends JFrame implements ActionListener {
         }
         else {
             // Fenetre
-            JOptionPane.showMessageDialog(null, "Impossible de déduire "+ result.getName(),
+            JOptionPane.showMessageDialog(null, "Impossible de déduire le résultat",
                      "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
             //Terminal
-             System.out.println("\n"+
-                    "Impossible de déduire "+ result.getName());
+             System.err.println("\n"+
+                    "Impossible de déduire le résultat");
              
             return true;
         }
