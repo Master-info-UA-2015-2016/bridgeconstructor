@@ -8,11 +8,11 @@ import java.io.File;
  */
 public class Materials {
 
-	float steelPrice;
-	float woodPrice;
-	float rockPrice;
-	float concretePrice;
-	float cordPrice;
+	private float steelPrice;
+	private float woodPrice;
+	private float rockPrice;
+	private float concretePrice;
+	private float cordPrice;
 
 	/**
      *
@@ -37,20 +37,21 @@ public class Materials {
         this.cordPrice = cord_price;
 	}
 
+    /**
+     * 
+     * @add lecture du fichier xml pour initialiser les prix
+     */
     private void initMaterials(File filMat) {
-        // TODO lecture du fichier xml pour initialiser les prix
-        
-        // TODO supprimer solution temporaire init prix
-        steelPrice = 50;
-        woodPrice = 10;
-        rockPrice = 35;
-		concretePrice = 25;
-		cordPrice = 12;
+        setSteelPrice(50);
+        setWoodPrice(10);
+        setRockPrice(35);
+		setConcretePrice(25);
+		setCordPrice(12);
 	}
 
 	/**
 	 *
-	 * @return
+	 * @return prix de l'acier
 	 */
 	public float getSteelPrice() {
 		return steelPrice;
@@ -80,5 +81,45 @@ public class Materials {
 		return woodPrice;
 	}
 
-	// TODO toString
+    /**
+     * @return the cordPrice
+     */
+    public float getCordPrice() {
+        return cordPrice;
+    }
+    
+    /**
+     * @param steelPrice the steelPrice to set
+     */
+    public void setSteelPrice(float steelPrice) {
+        this.steelPrice = steelPrice;
+    }
+
+    /**
+     * @param woodPrice the woodPrice to set
+     */
+    public void setWoodPrice(float woodPrice) {
+        this.woodPrice = woodPrice;
+    }
+
+    /**
+     * @param rockPrice the rockPrice to set
+     */
+    public void setRockPrice(float rockPrice) {
+        this.rockPrice = rockPrice;
+    }
+
+    /**
+     * @param concretePrice the concretePrice to set
+     */
+    public void setConcretePrice(float concretePrice) {
+        this.concretePrice = concretePrice;
+    }
+
+    /**
+     * @param cordPrice the cordPrice to set
+     */
+    public void setCordPrice(float cordPrice) {
+        this.cordPrice = cordPrice;
+    }
 }
