@@ -67,10 +67,16 @@ public class Affirmation extends Word {
      * @param value
      * @return
      */
+    @Override
     public boolean sameValue(String value) {
-		System.out.println(this + " a la valeur "+ value +" ?");
+		System.out.print("\t"+this + " == "+ value +" ? ");
 		boolean _val= Boolean.parseBoolean(value);
-		return val == _val;
+        if (val == _val){
+            System.out.println("YES");
+            return true;
+        }
+            System.out.println("NO");
+        return false;
 	}
     
     public boolean isOpposite(Affirmation A) {

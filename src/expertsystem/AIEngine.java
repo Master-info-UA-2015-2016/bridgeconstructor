@@ -163,7 +163,7 @@ public class AIEngine {
 //		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage mixte");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, true);
-			if (ver == null || !ver.sameValue(word.getVal()))
+			if (ver == null || !word.sameValue(ver.getVal()))
 				return false;
 		}
 		return true;
