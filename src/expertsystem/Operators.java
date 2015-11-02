@@ -1,11 +1,5 @@
 package expertsystem;
 
-//public enum Operators{
-//	sup, inf, equal, sup_equal, inf_equal
-//}
-
-/* Essai avec variables static, ECHOUE*/
-
 /**
  *
  * @author Florian

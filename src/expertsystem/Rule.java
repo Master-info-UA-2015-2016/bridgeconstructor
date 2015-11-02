@@ -15,7 +15,6 @@ import java.util.List;
  *
  * @author Florian
  */
-
 public class Rule {
 	private final List<Word> antecedents;
 	private final List<Word> consequences;
