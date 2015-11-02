@@ -116,14 +116,10 @@ public class AIEngine {
 		RulesBase getAntecedent = new RulesBase();
         RB.stream().forEach((rule) -> {
             boolean b = false;
-            for (Word W : rule.getAntecedents()) {
-                if (W.equals(fact)) {
-                    b = true;
-                }
-            }
-            if (b) {
+            rule.getAntecedents().stream().filter((W) -> (W.sameValue(fact.getVal()))).forEach((_item) -> {
+            // TODO vérifier ordre de sameValue
                 getAntecedent.add(rule);
-            }
+            });
         });
 		flux.println("\n Règles contenant '" + fact + "' en prémisse : " + getAntecedent);
 		return getAntecedent;
