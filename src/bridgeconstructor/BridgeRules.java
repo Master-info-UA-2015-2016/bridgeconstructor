@@ -1,5 +1,6 @@
 package bridgeconstructor;
 
+import bridgeconstructor.Exceptions.WrongOperatorException;
 import expertsystem.Affirmation;
 import expertsystem.Comparison;
 import expertsystem.Operator;
@@ -22,46 +23,54 @@ import org.w3c.dom.NodeList;
  */
 public class BridgeRules {
 	private static RulesBase bridge_rules;
-
+    
+    /**
+     * Ajoute une comparaison dans une liste donnée
+     * @param list
+     * @param name
+     * @param opString
+     * @param value
+     * @param isCons
+     * @throws WrongOperatorException 
+     */
+    private static void addComparison(List<Word> list, String name, String opString, float value, boolean isCons) throws WrongOperatorException{
+        if (isCons) {
+            if (!opString.equals("=") && !opString.isEmpty()) {
+                System.err.println("op.equals('=') ? " + opString.equals("=") + " et op.equals('=') ? " + opString.isEmpty());
+                throw new WrongOperatorException(name, opString);
+            } else {
+                // une conséquence est forcément une égalité
+                Comparison comp = new Comparison(name, Operators.equal, value);
+                list.add(comp);
+            }
+        } else {
+            Comparison comp = new Comparison(name, new Operator(opString), value);
+            list.add(comp);
+        }
+    }
+        
 	/**
 	 *
 	 * @param node
 	 * @param list
 	 * @param isCons
 	 */
-	public static void parseToList(Node node, List<Word> list, boolean isCons) {
+	private static void parseToList(Node node, List<Word> list, boolean isCons) {
 		// System.out.println("\t\tCurrent Element :" +
 		// consequence.getNodeName());
 		if (node.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) node;
-
 			String name = eElement.getAttribute("name");
+            
 			String type = eElement.getAttribute("type");
-
 			if (type.equals("comparison")) {
 				String opString = eElement.getAttribute("operator");
 				float value = Float.parseFloat(eElement.getAttribute("value"));
-				if (isCons) {
-					if (!opString.equals("=") && !opString.isEmpty()) {
-						System.err.println("op.equals('=') ?" + opString.equals("=") + " et !op.equals('=') ?"
-								+ !opString.equals("="));
-						System.err.println("op.equals('=') ?" + opString.isEmpty() + " et !op.equals('=') ?"
-								+ !opString.isEmpty());
-						System.err.println("isCons ?" + isCons);
-						// TODO ajouter des exceptions, ici si l'opérateur est
-						// différent de '=' ,
-						// on ne peut pas ajouter de conséquence
-						System.err.println("impossible d'ajouter la comparaison -" + name
-								+ "- comme conséquence (opérateur différent de '=')");
-					} else {
-						// une conséquence est forcément une égalité
-						Comparison comp = new Comparison(name, Operators.equal, value);
-						list.add(comp);
-					}
-				} else {
-					Comparison comp = new Comparison(name, new Operator(opString), value);
-					list.add(comp);
-				}
+                try {
+                    addComparison(list, name, opString, value, isCons);
+                }catch (WrongOperatorException WOE){
+                    WOE.show();
+                }
 			} else if (type.equals("affirmation")) {
 				Affirmation aff;
 				if (eElement.getAttribute("value").equals("true")) {
@@ -83,7 +92,7 @@ public class BridgeRules {
 	 * @param isCons
 	 * @return
 	 */
-	public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
+	private static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
 		ArrayList<Word> list = new ArrayList<Word>(); // déclaration de la liste
 														// de mots à créer
 
