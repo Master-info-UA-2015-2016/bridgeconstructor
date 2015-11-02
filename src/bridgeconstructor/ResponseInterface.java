@@ -27,7 +27,7 @@ public class ResponseInterface extends JFrame {
 	List<Bridge> listBridge;
 	List<Material> listMaterial;
 	
-    private String[] imageFileNames = { "bridge_arc.png", "bridge_beam.png", "bridge_hanging.png", "bridge_shroud.png"};
+    private String[] imageFileNames = { "bridge_arc.png", "bridge_beam.png", "bridge_hanging.png", "bridge_shroud.png", "bridge_vault.png", "drawbridge.jpg"};
     private String path = "./ressources/";
 	
     private ImageIcon icon;
@@ -184,6 +184,10 @@ public class ResponseInterface extends JFrame {
 				return path+imageFileNames[2];
 			case shroud : 
 				return path+imageFileNames[3];
+			case vault : 
+				return path+imageFileNames[4];
+			case drawbridge : 
+				return path+imageFileNames[5];
 			default :
 				return null;
 		}
