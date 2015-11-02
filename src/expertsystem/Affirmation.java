@@ -100,6 +100,8 @@ public class Affirmation extends Word {
         if(other.getClass()==Affirmation.class){
             return respectValue(other.getVal());
         }
-        else return false;
+        else {
+            return false;
+        }
     }
 }

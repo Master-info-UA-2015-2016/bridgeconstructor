@@ -100,7 +100,9 @@ public class Comparison extends Word{
         if(other.getClass()==Comparison.class){
             return respectValue(other.getVal());
         }
-        else return false;
+        else {
+            return false;
+        }
     }
     
 

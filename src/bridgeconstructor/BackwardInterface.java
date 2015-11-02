@@ -31,10 +31,10 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private static final String title = "Bridge Constructor - Chaînage arrière";
     private FactsBase FB;
     private final String rules_path;
-    private boolean is_abbreviated;
+    private final boolean is_abbreviated;
 	
 	private final String[] type = {"Pont à Arcs-Boutants", "Pont à Haubants", "Pont à Poutres", "Pont Suspendu",  "Pont-Levis" };
-    private Component parent;
+    private final Component parent;
     
 	private JPanel main_panel;
 	private JPanel up_panel;
