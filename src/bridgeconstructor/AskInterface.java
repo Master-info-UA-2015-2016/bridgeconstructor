@@ -33,6 +33,7 @@ import expertsystem.Affirmation;
 import expertsystem.FactsBase;
 import expertsystem.RulesBase;
 import expertsystem.Word;
+import javax.swing.JCheckBoxMenuItem;
 
 /**
  * L'interface Graphique est construite à partir de cette classe
@@ -53,6 +54,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			private JMenuItem item_close;
 		private JMenu show;
 			private JMenuItem item_show_rules;
+            private JMenuItem item_traces;
 		private JMenuItem other_chaining;
 	// Panel
 	private JPanel up_panel;
@@ -135,8 +137,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		menuBar = new JMenuBar();
 			file = new JMenu("Fichier");
 				item_close = new JMenuItem("Quitter");
-			show = new JMenu("Afficher");
+			show = new JMenu("Afficher...");
 				item_show_rules = new JMenuItem("Base de règles");
+				item_traces= new JCheckBoxMenuItem("Traces abrégées");
+                    item_traces.setSelected(false);
             other_chaining = new JMenuItem("Arrière et mixte");
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
@@ -197,6 +201,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Menu
 		file.add(item_close);
 		show.add(item_show_rules);
+        show.add(item_traces);
 		menuBar.add(file);
 		menuBar.add(show);
 		menuBar.add(other_chaining);
@@ -300,7 +305,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         if(source.getClass() == JMenuItem.class) {
             if(source == other_chaining){
                 this.setVisible(false);
-                BackwardInterface BI= new BackwardInterface(this, rules_path);
+                BackwardInterface BI= new BackwardInterface(this, rules_path, item_traces.isSelected());
                 BI.setVisible(true);
             }
 			if(source == item_close) {
@@ -392,13 +397,13 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         BR1 = BridgeRules.initRulesBase(rules_path);
 		System.out.println(BR1);
 		
-//		OTHER
-        // TODO ajouter le choix à l'utilisateur pour les traces
-		AIEngine moteur= new AIEngine(BR1, true);
+//		CALCUL
+		AIEngine moteur= new AIEngine(BR1, item_traces.isSelected());
 		FB = moteur.forwardChaining(FB);
 
+//      RESULTAT
 		System.out.println("\n------------------------");
-		System.out.println("Résultat :");
+		System.out.println("    Résultat :");
 		System.out.println("------------------------");
 		System.out.println(FB);
 

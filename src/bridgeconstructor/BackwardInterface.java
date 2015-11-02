@@ -29,13 +29,12 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private static final String title = "Bridge Constructor - Chaînage arrière";
+    private FactsBase FB;
     private final String rules_path;
+    private boolean is_abbreviated;
 	
 	private final String[] type = {"Pont à Arcs-Boutants", "Pont à Haubants", "Pont à Poutres", "Pont Suspendu",  "Pont-Levis" };
-	
-    private FactsBase FB;
-    
-    Component parent;
+    private Component parent;
     
 	private JPanel main_panel;
 	private JPanel up_panel;
@@ -61,10 +60,11 @@ public class BackwardInterface extends JFrame implements ActionListener {
      * @param caller composant graphique qui a crée la fenêtre
      * @param rulesPath chemin du fichier xml de règles
      */    
-	public BackwardInterface(Component caller, String rulesPath) {
+	public BackwardInterface(Component caller, String rulesPath, boolean abbreviated) {
 		super(title);
         parent= caller;
         rules_path= rulesPath;
+        is_abbreviated= abbreviated;
 		
 		buildComposants();
 		buildInterface();
@@ -186,8 +186,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
         BR = BridgeRules.initRulesBase(rules_path);	
 		System.out.println(BR);
         
-        // TODO ajouter le choix à l'utilisateur pour les traces
-		return new AIEngine(BR, true);
+		return new AIEngine(BR, is_abbreviated);
     }
     
     private boolean giveResultToUser(Word result){
