@@ -23,9 +23,9 @@ public class Affirmation extends Word {
      */
     public String toString(){
 		if (val) {
-            return name;
+            return getName();
         } else {
-            return "NO "+ name;
+            return "NO "+ getName();
         }
 	}
 
@@ -53,7 +53,7 @@ public class Affirmation extends Word {
      * @return
      */
     public boolean equals(Affirmation other) {
-		return (name.equals(other.name) && val == other.val);
+		return (getName().equals(other.getName()) && val == other.val);
 	}
 
     /**
@@ -87,6 +87,6 @@ public class Affirmation extends Word {
      * @return
      */
     public boolean isOpposite(Affirmation A) {
-    	return (this.name.equals(A.name) && this.val != A.val);
+    	return (this.getName().equals(A.getName()) && this.val != A.val);
     }
 }

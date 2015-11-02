@@ -9,7 +9,7 @@ public abstract class Word {
     /**
      *
      */
-    protected String name;
+    private String name;
 
     /**
      *
@@ -23,9 +23,8 @@ public abstract class Word {
      *
      * @return
      */
+    @Override
     public abstract String toString();
-//	public boolean isTrue(); TODO reimplémenter, modifier à cause de isTrue de Comparison
-//	public abstract boolean equals(Word other);
 	
     /**
      *
@@ -39,12 +38,19 @@ public abstract class Word {
      * @return
      */
     public abstract boolean sameValue(String value);
-	
+
     /**
-     *
-     * @return
+     * @return the name
      */
-    public String getName(){
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

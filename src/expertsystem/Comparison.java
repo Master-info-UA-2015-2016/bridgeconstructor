@@ -31,7 +31,7 @@ public class Comparison extends Word{
      * @return 
 	 */
 	public String toString(){
-		return name +" "+ op +" "+ valCondition ;
+		return getName() +" "+ op +" "+ valCondition ;
 	}
 
 	/**
