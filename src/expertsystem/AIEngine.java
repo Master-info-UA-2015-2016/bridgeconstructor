@@ -3,8 +3,6 @@ package expertsystem;
 import java.util.Iterator;
 import java.util.List;
 
-import bridgeconstructor.Environment;
-
 /**
  * La classe utilisera les règles ainsi que la base de faits
  * 
@@ -44,7 +42,6 @@ public class AIEngine {
 
 		System.out.println("-------------------------------------------------------");
 		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage avant   |");
-		System.out.println("-------------------------------------------------------");
 
 		while (inf) {
 			inf = false;
@@ -96,26 +93,24 @@ public class AIEngine {
 	 *            nom du fait
 	 * @return RulesBase
 	 */
-	private RulesBase getRulesWithAntecedent(String factName) {
+	private RulesBase getRulesWithAntecedent(Word fact) {
 		RulesBase getAntecedent = new RulesBase();
 		for (Rule rule : RB) {
 
 			boolean b = false;
 			for (Word W : rule.getAntecedents())
-				if ((W.getName()).equals(factName))
-					b = true;
+                if (W.equals(fact)) b = true;// TODO à vérifier
 			if (b)
 				getAntecedent.add(rule);
 		}
+		System.out.println("\n Règles contenant '" + fact + "' en prémisse : " + getAntecedent);
 		return getAntecedent;
 	}
 
 	/**
-	 * Retourne une base de règles, ces dernières ayant toutes pour conséquences
-	 * au moins le fait A
+	 * Retourne une base des règles contenant le nom d'un fait donné en conséquence
 	 * 
-	 * @param factName
-	 *            nom du fait
+	 * @param factName nom du fait
 	 * @return RulesBase
 	 */
 	private RulesBase getRulesWithConsequent(String factName) {
@@ -123,12 +118,14 @@ public class AIEngine {
 		RB.stream().forEach((rule) -> {
 			boolean b = false;
 			for (Word W : rule.getConsequences())
-				if ((W.getName()).equals(factName))
+				if ((W.getName()).equals(factName)){
 					b = true;
+                }
 			if (b) {
 				getConsequent.add(rule);
 			}
 		});
+		System.out.println("\n Règles contenant '" + factName + "' en conséquence : " + getConsequent);
 		return getConsequent;
 	}
 
@@ -146,10 +143,27 @@ public class AIEngine {
 		// System.out.println("| RECHERCHE DES BUTS, par Chainage arrière |");
 		// System.out.println("------------------------------------------------");
 
-		System.out.println("Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
+		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
 		for (Word word : WList) {
-			Word ver = backwardChaining(word.getName(), FB, asker);
+			Word ver = backwardChaining(word.getName(), FB, asker, false);
 			if (!ver.sameValue(word.getVal()))
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Chainage mixte sur une LISTE de buts
+	 * 
+	 * @param WList ensemble de buts à vérifier tous
+	 * @param FB {@link FactsBase}
+	 * @return boolean
+	 */
+	private boolean mixtOnList(List<Word> WList, FactsBase FB, FactAsker asker) {
+//		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage mixte");
+		for (Word word : WList) {
+			Word ver = backwardChaining(word.getName(), FB, asker, true);
+			if (ver == null || !ver.sameValue(word.getVal()))
 				return false;
 		}
 		return true;
@@ -167,11 +181,12 @@ public class AIEngine {
 	 *            l'utilisateur
 	 * @return boolean
 	 */
-	public Word backwardChaining(String goal, FactsBase FB, FactAsker asker) {
-		System.out.println("Recherche de la valeur de -" + goal + "- par chainage arrière");
+	public Word backwardChaining(String goal, FactsBase FB, FactAsker asker, boolean isMixt) {
+		if (isMixt)	System.out.println("---Recherche de la valeur de -" + goal + "- par chainage mixte---");
+        else System.out.println("---Recherche de la valeur de -" + goal + "- par chainage arrière---");
 
-		Word goal_fact;
 		boolean found = false;
+		Word goal_fact;
 
 		// 1er cas évident :
 		goal_fact = FB.contains(goal);
@@ -181,75 +196,62 @@ public class AIEngine {
 		} else {
 			// 2e cas : rechercher si b est déductible à partir de BR u BF
 			System.out.println("\tla BF ne contient pas " + goal + ", recherche de sa valeur à partir des règles");
-			RulesBase rules_getting_goal_in_consequence = getRulesWithConsequent(goal);
-			System.out.println("\n Règles contenant '" + goal + "' : " + rules_getting_goal_in_consequence);
 
 			/*
 			 * TODO attention gestion de la cohérence, si une valeur est
 			 * trouvée, les autres règles qui auraient puent contedire cette
 			 * valeur sont ignorées
 			 */
+            RulesBase rules_getting_goal_in_consequence = getRulesWithConsequent(goal);
 			for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
 				Rule rule = it.next();
 				System.out.println("Essai pour prouver que la règle " + rule + " est vraie");
-				found = backwardOnList(rule.getAntecedents(), FB, asker);
+                if (isMixt) found = mixtOnList(rule.getAntecedents(), FB, asker);
+                else found = backwardOnList(rule.getAntecedents(), FB, asker);
+                
 				if (found) {
 					List<Word> conseq = rule.getConsequences();
-					for (Word W : conseq) {
-						FB.add(W);
-						System.out.println("Ajout de " + W + " dans la base de faits");
+					for (Word cons : conseq) {
+                        if ((cons.getName()).equals(goal)) goal_fact= cons;
+						FB.add(cons);
+						System.out.println("Ajout de " + cons + " dans la base de faits");
 					}
 				}
 			}
-		}
 
-		// 3ème cas : sinon voir si b est demandable
-		if (!found && FB.isFactDemandable(goal)) {
-			// Si b est demandable
-			// Poser la question b ?
-			// Demande à l'utilisateur s'il connait la valeur de goal :
-
-			// goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas
-			// vraiment ici)
-			goal_fact = asker.askFactValueToUser(goal);
-			if (goal_fact != null) {
-				System.out.println("'" + goal_fact + "' ajouté à la base de faits");
-				FB.add(goal_fact);
-			}
-
+            // 3ème cas : sinon voir si b est demandable
+            if (!found && FB.isFactDemandable(goal)) {
+                // Si b est demandable;  Poser la question b ? 
+                // Demande à l'utilisateur s'il connait la valeur de goal
+                goal_fact = asker.askFactValueToUser(goal);
+                if (goal_fact != null) {
+                    System.out.println("'" + goal_fact + "' ajouté à la base de faits");
+                    FB.add(goal_fact);
+                }
+            }
 		}
 		// Dans tous les cas mémoriser et ajouter à la BF FAUX, dans 1er cas,
 		// déjà dans BF
 
 		if (found == true) {
 			System.out.println("Valeur trouvée : " + goal_fact);
-			FB.add(goal_fact);
 		}
+        
+        // Chainage avant avec le fait trouvé si on est en chainage mixte
+        if (isMixt && goal_fact != null) forwardOnRulesWithAntecedent(goal_fact, FB);
+        
 		return goal_fact;
 	}
-
-	/**
-	 * Chainage mixte sur une LISTE de buts
-	 * 
-	 * @param WList
-	 *            ensemble de buts à vérifier tous
-	 * @param FB
-	 *            : {@link FactsBase}
-	 * @return boolean
-	 */
-	private boolean mixtOnList(List<Word> WList, FactsBase FB, FactAsker asker) {
-		// System.out.println("------------------------------------------------");
-		// System.out.println("| RECHERCHE DES BUTS, par Chainage arrière |");
-		// System.out.println("------------------------------------------------");
-
-		System.out.println("Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
-		for (Word word : WList) {
-			Word ver = mixtChaining(word.getName(), FB, asker);
-			if (!ver.sameValue(word.getVal()))
-				return false;
-		}
-		return true;
-	}
+    
+    // CHAINAGE MIXTE //
+    
+    private void forwardOnRulesWithAntecedent(Word fact, FactsBase FB) {
+		// Chainage avant sur la règle
+		RulesBase RB_of_goal_in_antecedent;
+		RB_of_goal_in_antecedent = new RulesBase(getRulesWithAntecedent(fact));
+		AIEngine AI_for_forward = new AIEngine(RB_of_goal_in_antecedent);
+		FB = AI_for_forward.forwardChaining(FB);
+    }
 
 	/**
 	 * Chaînage mixte sur UN but
@@ -263,127 +265,65 @@ public class AIEngine {
 	 *            l'utilisateur
 	 * @return boolean
 	 */
-	public Word mixtChaining(String goal, FactsBase FB, FactAsker asker) {
-		System.out.println("Recherche de la valeur de -" + goal + "- par chainage arrière");
-
-		Word goal_fact;
-		boolean found = false;
-
-		// 1er cas évident :
-		goal_fact = FB.contains(goal);
-		if (goal_fact != null) {
-			System.out.println("la BF contient : " + goal);
-			found = true;
-		} else {
-			// 2e cas : rechercher si b est déductible à partir de BR u BF
-			System.out.println("\tla BF ne contient pas " + goal + ", recherche de sa valeur à partir des règles");
-			RulesBase rules_getting_goal_in_consequence = getRulesWithConsequent(goal);
-			System.out.println("\n Règles contenant '" + goal + "' : " + rules_getting_goal_in_consequence);
-
-			/*
-			 * TODO attention gestion de la cohérence, si une valeur est
-			 * trouvée, les autres règles qui auraient puent contedire cette
-			 * valeur sont ignorées
-			 */
-			for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
-				Rule rule = it.next();
-				System.out.println("Essai pour prouver que la règle " + rule + " est vraie");
-				found = mixtOnList(rule.getAntecedents(), FB, asker);
-
-				if (found) {
-					List<Word> conseq = rule.getConsequences();
-					for (Word W : conseq) {
-						FB.add(W);
-						System.out.println("Ajout de " + W + " dans la base de faits");
-					}
-				}
-			}
-		}
-
-		// 3ème cas : sinon voir si b est demandable
-		if (!found && FB.isFactDemandable(goal)) {
-			// Si b est demandable
-			// Poser la question b ?
-			// Demande à l'utilisateur s'il connait la valeur de goal :
-
-			// goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas
-			// vraiment ici)
-			goal_fact = asker.askFactValueToUser(goal);
-			if (goal_fact != null) {
-				System.out.println("'" + goal_fact + "' ajouté à la base de faits");
-				FB.add(goal_fact);
-			}
-
-		}
-		// Dans tous les cas mémoriser et ajouter à la BF FAUX, dans 1er cas,
-		// déjà dans BF
-
-		if (found == true) {
-			System.out.println("Valeur trouvée : " + goal_fact);
-			FB.add(goal_fact);
-		}
-
-		// Chainage avant sur la règle
-		RulesBase RB_of_goal_in_antecedent;
-		RB_of_goal_in_antecedent = new RulesBase(getRulesWithAntecedent(goal));
-		AIEngine AI_for_forward = new AIEngine(RB_of_goal_in_antecedent);
-		FB = AI_for_forward.forwardChaining(FB);
-
-		return goal_fact;
-	}
-
-	/**
-	 * 
-	 * @param FB
-	 * @return
-	 */
-	public FactsBase purge(FactsBase FB) {
-		FactsBase base = FB;
-		
-		// On supprime les doublons identiques (name & val)
-		boolean find;
-		Affirmation A;
-		Comparison C;
-		int i = 0;
-		while (i < base.size()) {
-			find = false;
-			Word W = base.get(i);
-			System.out.println(W);
-			// Dans le cas : Si c'est une Affirmation
-			if(W.getClass() == Affirmation.class) {
-				A = (Affirmation) W;
-				// int j=i+1;
-				for (int j = i + 1; j < base.size(); j++) {
-					if(base.get(j).getClass() == Affirmation.class) {
-						Affirmation ANext = (Affirmation) base.get(j);
-						if (A.equals(ANext)) {
-							base.remove(j);
-							find = true;
-							break;
-						}
-					}
-				}
-			}
-			// Dans le cas : Si c'est une Comparaison
-			if(W.getClass() == Comparison.class) {
-				C = (Comparison) W;
-				// int j=i+1;
-				for (int j = i + 1; j < base.size(); j++) {
-					if(base.get(j).getClass() == Comparison.class) {
-						Comparison CNext = (Comparison) base.get(j);
-						if (C.equals(CNext)) {
-							base.remove(j);
-							find = true;
-							break;
-						}
-					}
-				}
-			}
-			if (!find)
-				i++;
-		}
-		// On supprime les incohérences
-		
-		return base;
-	}
+//	public Word mixtChaining(String goal, FactsBase FB, FactAsker asker) {
+//		System.out.println("---Recherche de la valeur de -" + goal + "- par chainage mixte---");
+//
+//		Word goal_fact;
+//		boolean found = false;
+//
+//		// 1er cas évident :
+//		goal_fact = FB.contains(goal);
+//		if (goal_fact != null) {
+//			System.out.println("la BF contient : " + goal);
+//			found = true;
+//		} else {
+//			// 2e cas : rechercher si b est déductible à partir de BR u BF
+//			System.out.println("\tla BF ne contient pas " + goal + ", recherche de sa valeur à partir des règles");
+//			RulesBase rules_getting_goal_in_consequence = getRulesWithConsequent(goal, goalFact);
+//			System.out.println("\n Règles contenant '" + goal + "' : " + rules_getting_goal_in_consequence);
+//
+//			/*
+//			 * TODO attention gestion de la cohérence, si une valeur est
+//			 * trouvée, les autres règles qui auraient puent contedire cette
+//			 * valeur sont ignorées
+//			 */
+//			for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
+//				Rule rule = it.next();
+//				System.out.println("Essai pour prouver que la règle " + rule + " est vraie");
+//				found = mixtOnList(rule.getAntecedents(), FB, asker);
+//
+//				if (found) {
+//					List<Word> conseq = rule.getConsequences();
+//					for (Word W : conseq) {
+//						FB.add(W);
+//						System.out.println("Ajout de " + W + " dans la base de faits");
+//					}
+//				}
+//			}
+//		}
+//
+//		// 3ème cas : sinon voir si b est demandable
+//		if (!found && FB.isFactDemandable(goal)) {
+//			// Si b est demandable
+//			// Poser la question b ?
+//			// Demande à l'utilisateur s'il connait la valeur de goal :
+//
+//			// goal_fact = response(goal); // VRAI, FAUX, ou inconnu (Pas
+//			// vraiment ici)
+//			goal_fact = asker.askFactValueToUser(goal);
+//			if (goal_fact != null) {
+//				System.out.println("'" + goal_fact + "' ajouté à la base de faits");
+//				FB.add(goal_fact);
+//			}
+//
+//		}
+//		// Dans tous les cas mémoriser et ajouter à la BF FAUX, dans 1er cas,
+//		// déjà dans BF
+//
+//		if (found == true) {
+//			System.out.println("Valeur trouvée : " + goal_fact);
+//		}
+//    
+//        return goal_fact;
+//	}
 }

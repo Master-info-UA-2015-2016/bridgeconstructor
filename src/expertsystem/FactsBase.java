@@ -132,6 +132,62 @@ public class FactsBase extends ArrayList<Word> {
 	public boolean isFactDemandable(Word fact) {
 		return isFactDemandable(fact);
 	}
+    
+    
+	/**
+	 * Retourne une copie de la BF sans doublons de la BF
+     * @return la copie de la BF "purgée"
+	 */
+	public FactsBase purged() {
+        FactsBase cpy= this; // TODO Jerome: pq utiliser une copie plutot que de modifier la BF ?
+		
+		// On supprime les doublons identiques (name & val)
+		boolean find;
+		Affirmation A;
+		Comparison C;
+		int i = 0;
+		while (i < cpy.size()) {
+			find = false;
+			Word W = cpy.get(i);
+			System.out.println(W);
+            
+			// Dans le cas : Si c'est une Affirmation
+			if(W.getClass() == Affirmation.class) {
+				A = (Affirmation) W;
+				// int j=i+1;
+				for (int j = i + 1; j < cpy.size(); j++) {
+					if(cpy.get(j).getClass() == Affirmation.class) {
+						Affirmation ANext = (Affirmation) cpy.get(j);
+						if (A.equals(ANext)) {
+							cpy.remove(j);
+							find = true;
+							break;
+						}
+					}
+				}
+			}
+            
+			// Dans le cas : Si c'est une Comparaison
+			if(W.getClass() == Comparison.class) {
+				C = (Comparison) W;
+				// int j=i+1;
+				for (int j = i + 1; j < cpy.size(); j++) {
+					if(cpy.get(j).getClass() == Comparison.class) {
+						Comparison CNext = (Comparison) cpy.get(j);
+						if (C.equals(CNext)) {
+							cpy.remove(j);
+							find = true;
+							break;
+						}
+					}
+				}
+			}
+			if (!find) ++i;
+		}
+		// On supprime les incohérences
+		
+		return cpy;
+	}
 	
 //	public boolean contains(Comparison fact){
 //		System.out.println("recherche si BF contient Comp : "+ fact);

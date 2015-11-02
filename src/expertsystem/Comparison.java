@@ -66,7 +66,7 @@ public class Comparison extends Word{
      * @return 
 	 */
 	public boolean isTrue(float valeurVariable) {
-		System.out.print("vrai avec : "+ valeurVariable +" ? ");
+		System.out.print("  vrai avec : "+ valeurVariable +" ? -> ");
 		
 		if (op.equals(Operators.inf)){
 			if (valeurVariable < valCondition)	return true;

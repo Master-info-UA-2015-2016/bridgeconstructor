@@ -212,7 +212,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
         
 		System.out.println("Lancement Chaînage Arrière");
 //		Word found_value = moteur.backwardChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
-        Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker(this));
+        Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker(this), false);
         
         // Recupération du résultat
         giveResultToUser(found_value);
@@ -231,7 +231,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
         
 		System.out.println("Lancement Chaînage Mixte");
 //		Word found_value = moteur.mixtChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
-        Word found_value = moteur.mixtChaining(goalName, FB, new WindowFactAsker(this));
+        Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker(this), true);
         
         // Recupération du résultat
         giveResultToUser(found_value);
