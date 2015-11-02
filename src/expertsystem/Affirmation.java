@@ -43,7 +43,7 @@ public class Affirmation extends Word {
      * @return
      */
     public boolean equals(Word other) {
-		System.out.println("Compare Aff avec Word : ");
+		AIEngine.flux.println("Compare Aff avec Word : ");
 		return false;
 	}
 	
@@ -71,13 +71,13 @@ public class Affirmation extends Word {
      */
     @Override
     public boolean sameValue(String value) {
-		System.out.print("\t"+this + " == "+ value +" ? ");
+		AIEngine.flux.print("\t"+this + " == "+ value +" ? ");
 		boolean _val= Boolean.parseBoolean(value);
         if (val == _val){
-            System.out.println("YES");
+            AIEngine.flux.println("YES");
             return true;
         }
-            System.out.println("NO");
+            AIEngine.flux.println("NO");
         return false;
 	}
     

@@ -41,7 +41,7 @@ public class Comparison extends Word{
      * @return 
 	 */
 	public boolean isTrue(float valeurVariable) {
-		System.out.print("  vrai avec : "+ valeurVariable +" ? -> ");
+		AIEngine.flux.print("  vrai avec : "+ valeurVariable +" ? -> ");
 		
 		if (op.equals(Operators.inf)){
 			if (valeurVariable < valCondition) {
@@ -85,7 +85,7 @@ public class Comparison extends Word{
     public boolean sameValue(String value) {
 		float val = Float.parseFloat(value);
 		boolean same= isTrue(val);
-		System.out.println(same);
+		AIEngine.flux.println(same);
 		
 		return same;
 	}

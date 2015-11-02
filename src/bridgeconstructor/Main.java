@@ -1,6 +1,7 @@
 package bridgeconstructor;
 
 // DEFINITION DU STYLE GENERAL DU PROGRAMME
+import java.io.PrintStream;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -39,13 +40,21 @@ public class Main {
 
 		setSystemLookAndFeel();
 
-		// TODO : lister tous les types de ponts possibles et matériaux
-		// utilisables
-		// Créer un Bridge pour chaque ponts possible,
-		// contenant chaque matériau utilisable pour ce type de ponts ?
-		// on supprime le matériau utilisable ou le Bridge entier si il n'est
-		// plus envisagé ?
-
+        // TODO : lister tous les types de ponts possibles et matériaux
+        // utilisables
+        // Créer un Bridge pour chaque ponts possible,
+        // contenant chaque matériau utilisable pour ce type de ponts ?
+        // on supprime le matériau utilisable ou le Bridge entier si il n'est
+        // plus envisagé ?
+        
+//        public void memorise(Rule r, int nbInf){
+//            if (coché){
+//                System.out.println("Règle "+ r +"appliquée.");
+//                System.out.println("Nombre d'inférences : "+ nbInf);
+//            }
+//                
+//        }
+        
 		new AskInterface();
 
 	}

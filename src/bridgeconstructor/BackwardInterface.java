@@ -186,7 +186,8 @@ public class BackwardInterface extends JFrame implements ActionListener {
         BR = BridgeRules.initRulesBase(rules_path);	
 		System.out.println(BR);
         
-		return new AIEngine(BR);
+        // TODO ajouter le choix à l'utilisateur pour les traces
+		return new AIEngine(BR, true);
     }
     
     private boolean giveResultToUser(Word result){

@@ -1,0 +1,69 @@
+-------------------------------------------------------
+|   SATURATION DE LA BASE DE FAITS : Chainage avant   |
+	BF contient: naval traffic ? => 	naval traffic == false ? NO
+	BF contient: rail traffic ? => 	rail traffic == false ? NO
+	BF contient: road traffic ? => 	road traffic == false ? NO
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: high vibration ? => NON
+	BF contient: water ? => 	water == false ? NO
+	BF contient: water ? => 	water == false ? NO
+	BF contient: flood risk ? => NON
+	BF contient: high current ? => NON
+	BF contient: forest ? => 	forest == false ? NO
+	BF contient: fire risk ? => NON
+	BF contient: wind ? => 	wind == false ? NO
+	BF contient: tempest risk ? => NON
+	BF contient: castle ? => 	castle == false ? NO
+	BF contient: road traffic ? => 	NO road traffic == false ? YES
+	BF contient: rail traffic ? => 	NO rail traffic == false ? YES
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: lane number ? =>   vrai avec : 2.0 ? -> false
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+	BF contient: length ? =>   vrai avec : 20.0 ? -> false
+	BF contient: length ? =>   vrai avec : 20.0 ? -> true
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+	BF contient: height ? =>   vrai avec : 10.0 ? -> true
+	BF contient: length ? =>   vrai avec : 20.0 ? -> true
+	BF contient: use wood ? => NON
+	BF contient: use stone ? => NON
+	BF contient: use stone ? => NON
+	BF contient: use concrete ? => NON
+	BF contient: use concrete ? => NON
+	BF contient: use steel ? => NON
+	BF contient: use steel ? => NON
+	BF contient: use steel ? => NON
+	BF contient: use cord ? => NON
+	BF contient: use cord ? => NON
+	BF contient: naval traffic ? => 	naval traffic == false ? NO
+	BF contient: rail traffic ? => 	rail traffic == false ? NO
+	BF contient: road traffic ? => 	road traffic == false ? NO
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: high vibration ? => NON
+	BF contient: water ? => 	water == false ? NO
+	BF contient: water ? => 	water == false ? NO
+	BF contient: flood risk ? => NON
+	BF contient: high current ? => NON
+	BF contient: forest ? => 	forest == false ? NO
+	BF contient: fire risk ? => NON
+	BF contient: wind ? => 	wind == false ? NO
+	BF contient: tempest risk ? => NON
+	BF contient: castle ? => 	castle == false ? NO
+	BF contient: road traffic ? => 	NO road traffic == false ? YES
+	BF contient: rail traffic ? => 	NO rail traffic == false ? YES
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: lane number ? =>   vrai avec : 2.0 ? -> false
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+	BF contient: length ? =>   vrai avec : 20.0 ? -> false
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+	BF contient: use wood ? => NON
+	BF contient: use stone ? => NON
+	BF contient: use stone ? => NON
+	BF contient: use concrete ? => NON
+	BF contient: use concrete ? => NON
+	BF contient: use steel ? => NON
+	BF contient: use steel ? => NON
+	BF contient: use steel ? => NON
+	BF contient: use cord ? => NON
+	BF contient: use cord ? => NON

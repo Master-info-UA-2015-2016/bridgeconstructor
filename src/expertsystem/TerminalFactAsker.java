@@ -19,11 +19,11 @@ public class TerminalFactAsker implements FactAsker{
      */
     @Override
     public Word askFactValueToUser(String factName) {
-        System.out.println("\n Veuillez entrer la valeur de : "+ factName);
+        AIEngine.flux.println("\n Veuillez entrer la valeur de : "+ factName);
             Scanner sc= new Scanner(System.in);           
             String answerValue= sc.next();
             
-            System.out.println("\tEst-ce que '"+ answerValue +"' est correcte ? true/false");
+            AIEngine.flux.println("\tEst-ce que '"+ answerValue +"' est correcte ? true/false");
             boolean answer= sc.nextBoolean();
             sc.close();
             if (answer){

@@ -50,15 +50,15 @@ public class FactsBase extends ArrayList<Word> {
      * @return le fait si on en trouve un, null sinon
      */
     public Word contains(String factName){
-        System.out.print("\tBF contient: "+ factName +" ? ");
+        AIEngine.flux.print("\tBF contient: "+ factName +" ? ");
 		for (Word w : this){
 			// On vérifie que l
 			if (w.getName().equals(factName) /* && w.getVal() == fact.getVal()*/ ){
-				System.out.print("=> ");
+				AIEngine.flux.print("=> ");
 				return w;
 			}
 		}
-		System.out.println("=> NON");
+		AIEngine.flux.println("=> NON");
 		return null;
     }
     
@@ -106,7 +106,7 @@ public class FactsBase extends ArrayList<Word> {
 		while (i < this.size()) {
 			find = false;
 			Word W = this.get(i);
-			System.out.println(W);
+			AIEngine.flux.println(W);
             
 			// Dans le cas : Si c'est une Affirmation
 			if(W.getClass() == Affirmation.class) {

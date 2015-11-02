@@ -15,6 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -382,6 +386,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         
 //        BASE DE FAITS
 		FactsBase FB = Environment.getFactsBase();
+
 		System.out.println(FB);
         
 //		BASE DE REGLES
@@ -390,7 +395,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println(BR1);
 		
 //		OTHER
-		AIEngine moteur= new AIEngine(BR1);
+        // TODO ajouter le choix à l'utilisateur pour les traces
+		AIEngine moteur= new AIEngine(BR1, true);
 		FB = moteur.forwardChaining(FB);
 
 		System.out.println("\n------------------------");

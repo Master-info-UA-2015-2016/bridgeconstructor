@@ -1,5 +1,9 @@
 package expertsystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import static java.lang.System.exit;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +14,9 @@ import java.util.List;
  */
 
 public class AIEngine {
+    static PrintStream flux;
+    static boolean isAbbreviated;
+       
 	private final RulesBase RB;
 
 	/**
@@ -17,8 +24,21 @@ public class AIEngine {
 	 * 
 	 * @param _RB
 	 *            base de règle du Systeme Expert
+     * @param abbreviated définit si les traces sont abbrégées ou non
 	 */
-	public AIEngine(RulesBase _RB) {
+	public AIEngine(RulesBase _RB, boolean abbreviated) {
+        isAbbreviated= abbreviated;
+        if (isAbbreviated){
+            try {
+                flux= new PrintStream(new File("./dummy.txt"));
+            }catch (FileNotFoundException e){
+                System.err.println("Impossible de créer fichier de flux");
+                exit(0);
+            }
+        }else {
+            flux= System.out;
+        }
+        
 		RB = _RB;
 	}
 
@@ -40,8 +60,8 @@ public class AIEngine {
 							// cycle
 		int nbInf = 0;
 
-		System.out.println("-------------------------------------------------------");
-		System.out.println("|   SATURATION DE LA BASE DE FAITS : Chainage avant   |");
+		flux.println("-------------------------------------------------------");
+		flux.println("|   SATURATION DE LA BASE DE FAITS : Chainage avant   |");
 
 		while (inf) {
 			inf = false;
@@ -76,8 +96,7 @@ public class AIEngine {
 					++nbInf;
 					// TODO this.Mémoriser(r,nbInf) /* Pour l'explication ???*/
 					System.out.println("\tRègle appliquée");
-					RB.remove(
-							rule); /* Une règle se déclenche au plus une fois */
+					RB.remove(rule); /* Une règle se déclenche au plus une fois */
 				}
 
 			}
@@ -107,7 +126,7 @@ public class AIEngine {
                 getAntecedent.add(rule);
             }
         });
-		System.out.println("\n Règles contenant '" + fact + "' en prémisse : " + getAntecedent);
+		flux.println("\n Règles contenant '" + fact + "' en prémisse : " + getAntecedent);
 		return getAntecedent;
 	}
 
@@ -130,7 +149,7 @@ public class AIEngine {
 				getConsequent.add(rule);
 			}
 		});
-		System.out.println("\n Règles contenant '" + factName + "' en conséquence : " + getConsequent);
+		flux.println("\n Règles contenant '" + factName + "' en conséquence : " + getConsequent);
 		return getConsequent;
 	}
 
@@ -144,11 +163,11 @@ public class AIEngine {
 	 * @return boolean
 	 */
 	private boolean backwardOnList(List<Word> WList, FactsBase FB, FactAsker asker) {
-		// System.out.println("------------------------------------------------");
-		// System.out.println("| RECHERCHE DES BUTS, par Chainage arrière |");
-		// System.out.println("------------------------------------------------");
+		// flux.println("------------------------------------------------");
+		// flux.println("| RECHERCHE DES BUTS, par Chainage arrière |");
+		// flux.println("------------------------------------------------");
 
-		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
+		flux.println("    Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, false);
 			if (!ver.sameValue(word.getVal())) {
@@ -166,7 +185,7 @@ public class AIEngine {
 	 * @return boolean
 	 */
 	private boolean mixtOnList(List<Word> WList, FactsBase FB, FactAsker asker) {
-//		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage mixte");
+//		flux.println("    Recherche de la liste de " + WList.size() + " buts par Chainage mixte");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, true);
 			if (ver == null || !word.sameValue(ver.getVal())) {
@@ -191,9 +210,9 @@ public class AIEngine {
 	 */
 	public Word backwardChaining(String goal, FactsBase FB, FactAsker asker, boolean isMixt) {
 		if (isMixt) {
-            System.out.println("---Recherche de la valeur de -" + goal + "- par chainage mixte---");
+            flux.println("---Recherche de la valeur de -" + goal + "- par chainage mixte---");
         } else {
-            System.out.println("---Recherche de la valeur de -" + goal + "- par chainage arrière---");
+            flux.println("---Recherche de la valeur de -" + goal + "- par chainage arrière---");
         }
 
 		boolean found = false;
@@ -202,11 +221,11 @@ public class AIEngine {
 		// 1er cas évident :
 		goal_fact = FB.contains(goal);
 		if (goal_fact != null) {
-			System.out.println("la BF contient : " + goal);
+			flux.println("la BF contient : " + goal);
 			found = true;
 		} else {
 			// 2e cas : rechercher si b est déductible à partir de BR u BF
-			System.out.println("\tla BF ne contient pas " + goal + ", recherche de sa valeur à partir des règles");
+			flux.println("\tla BF ne contient pas " + goal + ", recherche de sa valeur à partir des règles");
 
 			/*
 			 * TODO attention gestion de la cohérence, si une valeur est
@@ -216,7 +235,7 @@ public class AIEngine {
             RulesBase rules_getting_goal_in_consequence = getRulesWithConsequent(goal);
 			for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
 				Rule rule = it.next();
-				System.out.println("Essai pour prouver que la règle " + rule + " est vraie");
+				flux.println("Essai pour prouver que la règle " + rule + " est vraie");
                 if (isMixt) {
                     found = mixtOnList(rule.getAntecedents(), FB, asker);
                 } else {
@@ -241,7 +260,7 @@ public class AIEngine {
                 // Demande à l'utilisateur s'il connait la valeur de goal
                 goal_fact = asker.askFactValueToUser(goal);
                 if (goal_fact != null) {
-                    System.out.println("'" + goal_fact + "' ajouté à la base de faits");
+                    flux.println("'" + goal_fact + "' ajouté à la base de faits");
                     FB.add(goal_fact);
                 }
             }
@@ -250,7 +269,7 @@ public class AIEngine {
 		// déjà dans BF
 
 		if (found == true) {
-			System.out.println("Valeur trouvée : " + goal_fact);
+			flux.println("Valeur trouvée : " + goal_fact);
 		}
         
         // Chainage avant avec le fait trouvé si on est en chainage mixte
@@ -267,7 +286,7 @@ public class AIEngine {
 		// Chainage avant sur la règle
 		RulesBase RB_of_goal_in_antecedent;
 		RB_of_goal_in_antecedent = new RulesBase(getRulesWithAntecedent(fact));
-		AIEngine AI_for_forward = new AIEngine(RB_of_goal_in_antecedent);
+		AIEngine AI_for_forward = new AIEngine(RB_of_goal_in_antecedent, isAbbreviated);
 		FB = AI_for_forward.forwardChaining(FB);
     }
 }
