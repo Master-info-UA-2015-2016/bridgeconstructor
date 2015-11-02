@@ -1,10 +1,10 @@
 #####################################################################
-#	BRIDGE-CONSTRUCTOR										  		#
+#	BRIDGE-CONSTRUCTOR	- README							  		#
 #		par	DAVID Florian									  		#
 #		et		FOURMOND Jérôme								  		#
 #####################################################################
 
-Programme d'Intelligence Artificiel pour choisir
+Programme d'Intelligence Artificielle pour choisir
 	le type, les matériaux, et le prix pour la construction d'un pont
 	en fonction de l'Environnement
 
