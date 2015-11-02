@@ -33,6 +33,13 @@ import expertsystem.Affirmation;
 import expertsystem.FactsBase;
 import expertsystem.RulesBase;
 import expertsystem.Word;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBoxMenuItem;
 
 /**
@@ -52,6 +59,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JMenuBar menuBar;
 		private JMenu file;
 			private JMenuItem item_close;
+		private JMenu authors;
+			private JMenuItem author_1;
+			private JMenuItem author_2;
 		private JMenu show;
 			private JMenuItem item_show_rules;
             private JMenuItem item_traces;
@@ -137,6 +147,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		menuBar = new JMenuBar();
 			file = new JMenu("Fichier");
 				item_close = new JMenuItem("Quitter");
+			authors = new JMenu("Auteurs");
+				author_1 = new JMenuItem("Florian DAVID");
+				author_2 = new JMenuItem("Jérôme FOURMOND");
 			show = new JMenu("Afficher...");
 				item_show_rules = new JMenuItem("Base de règles");
 				item_traces= new JCheckBoxMenuItem("Traces abrégées");
@@ -200,9 +213,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		
 		// Menu
 		file.add(item_close);
+		authors.add(author_1);
+        authors.add(author_2);
 		show.add(item_show_rules);
         show.add(item_traces);
 		menuBar.add(file);
+		menuBar.add(authors);
 		menuBar.add(show);
 		menuBar.add(other_chaining);
 		setJMenuBar(menuBar);
@@ -267,7 +283,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	
 	private void buildEvents() {
 		// Menu
-		item_close.addActionListener(this);		
+		item_close.addActionListener(this);
+        author_1.addActionListener(this);
+        author_2.addActionListener(this);
 		item_show_rules.addActionListener(this);
 		other_chaining.addActionListener(this);
 		
@@ -307,9 +325,33 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                 this.setVisible(false);
                 BackwardInterface BI= new BackwardInterface(this, rules_path, item_traces.isSelected());
                 BI.setVisible(true);
-            }
-			if(source == item_close) {
+            // Envoi d'e-mail aux auteurs
+            } else if(source == author_1){
+                Desktop desktop;
+                if (Desktop.isDesktopSupported()) {
+                    desktop = Desktop.getDesktop();
+
+                    try {
+                        desktop.mail(new URI("mailto:fl.david.53@gmail.com?subject=BridgeConstructor"));
+                    } catch (IOException | URISyntaxException ex) {
+                        Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } else if(source == author_2){
+                Desktop desktop;
+                if (Desktop.isDesktopSupported()) {
+                    desktop = Desktop.getDesktop();
+
+                    try {
+                        desktop.mail(new URI("mailto:jerome@fourdmond.fr?subject=BridgeConstructor"));
+                    } catch (IOException | URISyntaxException ex) {
+                        Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+//                Fermeture fenetre
+            } else if(source == item_close) {
                 this.dispose();
+//                Montrer la base de règles
             } else if(source == item_show_rules){
 				RulesBaseInterface RBI= new RulesBaseInterface(this);
                     this.setVisible(false);
