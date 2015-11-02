@@ -1,33 +1,20 @@
 package bridgeconstructor;
 
 import java.awt.BorderLayout;
-import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.NORTH;
-import static java.awt.BorderLayout.SOUTH;
 import java.awt.Component;
 import java.awt.GraphicsEnvironment;
-import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 import java.awt.Rectangle;
-import static java.lang.System.err;
-import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
-import static javax.swing.BorderFactory.createEmptyBorder;
-import static javax.swing.BorderFactory.createEtchedBorder;
 import javax.swing.BoxLayout;
-import static javax.swing.BoxLayout.X_AXIS;
-import static javax.swing.BoxLayout.Y_AXIS;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import static javax.swing.SwingConstants.BOTTOM;
-import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-import static javax.swing.border.EtchedBorder.RAISED;
 
 /**
  *
@@ -70,8 +57,8 @@ public class ResponseInterface extends JFrame {
     public ResponseInterface() {
 		super(title);
 		
-		listBridge = new ArrayList<>();
-		listMaterial = new ArrayList<>();
+		listBridge = new ArrayList<Bridge>();
+		listMaterial = new ArrayList<Material>();
 		
 		buildComposants();
 		buildInterface();
@@ -81,7 +68,7 @@ public class ResponseInterface extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.pack();
         //get local graphics environment to get maximum window bounds
-        Rectangle screenSize= getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 		this.setVisible(true);
@@ -98,10 +85,10 @@ public class ResponseInterface extends JFrame {
 		listMaterial = LM;
 		
         listBridge.stream().forEach((B) -> {
-            out.println(B);
+            System.out.println(B);
         });
         listMaterial.stream().forEach((M) -> {
-            out.println(M);
+            System.out.println(M);
         });
 		
 		buildComposants();
@@ -111,13 +98,13 @@ public class ResponseInterface extends JFrame {
 		this.setResizable(false);
 		this.pack();
         //get local graphics environment to get maximum window bounds
-        Rectangle screenSize= getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 	}
 
 	private void buildComposants() {
-		Border raisedetched = createEtchedBorder(RAISED);
+		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
@@ -125,7 +112,7 @@ public class ResponseInterface extends JFrame {
 			up_panel = new JPanel();
 			scroll_panel = new JScrollPane();
 				list_panel = new JPanel();
-					list_panel.setLayout(new BoxLayout(list_panel, X_AXIS));
+					list_panel.setLayout(new BoxLayout(list_panel, BoxLayout.X_AXIS));
 			bottom_panel = new JPanel();
 		// Label
 		if(listBridge.size() > 1) {
@@ -139,15 +126,15 @@ public class ResponseInterface extends JFrame {
 			// Construction
 			bridge_panel = new JPanel();
 				bridge_panel.setBorder(raisedetched);
-			bridge_panel.setLayout(new BoxLayout(bridge_panel, Y_AXIS));
+			bridge_panel.setLayout(new BoxLayout(bridge_panel, BoxLayout.Y_AXIS));
 				icon = createImageIcon(getPath(B.getType()));
 				image = new JLabel(icon);
-				        image.setVerticalTextPosition(BOTTOM);
-				        image.setHorizontalTextPosition(CENTER);
-				        image.setHorizontalAlignment(CENTER);
-				        image.setBorder(createEmptyBorder(5, 5, 5, 5));
+				        image.setVerticalTextPosition(JLabel.BOTTOM);
+				        image.setHorizontalTextPosition(JLabel.CENTER);
+				        image.setHorizontalAlignment(JLabel.CENTER);
+				        image.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 				type = new JLabel(B.getStringType());
-					type.setAlignmentX(CENTER_ALIGNMENT);
+					type.setAlignmentX(Component.CENTER_ALIGNMENT);
 				height = new JLabel("Hauteur : " + B.getHeight() + "m");
 				width = new JLabel("Largeur : " + B.getMinWidth() + " - " + B.getMaxWidth() + "m");	// MIN - MAX Width
 				length = new JLabel("Longueur : " + B.getLength() + "m");
@@ -175,15 +162,15 @@ public class ResponseInterface extends JFrame {
 	}
 
 	private void buildInterface() {
-		main_panel.add(up_panel, NORTH);
-		main_panel.add(scroll_panel, CENTER);
-		main_panel.add(bottom_panel, SOUTH);
+		main_panel.add(up_panel, BorderLayout.NORTH);
+		main_panel.add(scroll_panel, BorderLayout.CENTER);
+		main_panel.add(bottom_panel, BorderLayout.SOUTH);
 		
 		this.setContentPane(main_panel);
 	}
 	
 	private void buildEvents() {
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	private String getPath(TypeBridge type) {
@@ -205,7 +192,7 @@ public class ResponseInterface extends JFrame {
 	    if (path != null) {
 	        return new ImageIcon(path);
 	    } else {
-	        err.println("Couldn't find file: " + path);
+	        System.err.println("Couldn't find file: " + path);
 	        return null;
 	    }
 	}

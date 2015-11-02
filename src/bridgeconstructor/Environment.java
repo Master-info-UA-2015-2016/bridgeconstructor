@@ -2,8 +2,6 @@ package bridgeconstructor;
 
 import expertsystem.FactsBase;
 import expertsystem.Operators;
-import static expertsystem.Operators.equal;
-import static java.lang.System.out;
 
 /**
  * La classe n'a pas besoin d'être instancié car unique Elle sera remplie par
@@ -296,7 +294,7 @@ public class Environment {
 	 * Affichage du contenu de la classe (Un toString() static)
 	 */
 	public static void print() {
-		out.println("ENVIRONMENT :" + "\tNaval Traffic = " + naval_traffic + ",\tRailway Traffic = "
+		System.out.println("ENVIRONMENT :" + "\tNaval Traffic = " + naval_traffic + ",\tRailway Traffic = "
 				+ rail_traffic + ",\tPedestrian Traffic = " + pedestrian_traffic + ",\tRoad Traffic = " + road_traffic
 				+ ",\tDaily Traffic = " + daily_traffic + ",\tWind = " + wind + ",\tWood = " + forest + ",\tWater = "
 				+ water + ",\tMountain = " + mountain + ",\tHeight = " + height + ",\tLength = " + length
@@ -311,9 +309,9 @@ public class Environment {
 	public static FactsBase getFactsBase() {
 		FactsBase FB = new FactsBase();
 
-		out.println("---------------------------------------");
-		out.println("Initialisation de la base de faits");
-		out.println("---------------------------------------");
+		System.out.println("---------------------------------------");
+		System.out.println("Initialisation de la base de faits");
+		System.out.println("---------------------------------------");
 
 		/* Ajout des faits */
 		// Traffic
@@ -321,7 +319,7 @@ public class Environment {
 		FB.addFact("pedestrian traffic", pedestrian_traffic);
 		FB.addFact("rail traffic", rail_traffic);
 		FB.addFact("road traffic", road_traffic);
-		FB.addFact("daily traffic", equal, daily_traffic);
+		FB.addFact("daily traffic", Operators.equal, daily_traffic);
 		// Météo
 		FB.addFact("wind", wind);
 		// Terrains
@@ -329,9 +327,9 @@ public class Environment {
 		FB.addFact("forest", forest);
 		FB.addFact("mountain", mountain);
 		// Mesure
-		FB.addFact("length", equal, length);
-		FB.addFact("height", equal, height);
-		FB.addFact("lane number", equal, lane_number);
+		FB.addFact("length", Operators.equal, length);
+		FB.addFact("height", Operators.equal, height);
+		FB.addFact("lane number", Operators.equal, lane_number);
 		// Bonus
 		FB.addFact("castle", castle);
 		return FB;

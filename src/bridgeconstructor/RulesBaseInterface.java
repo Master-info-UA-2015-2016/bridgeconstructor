@@ -1,30 +1,18 @@
 package bridgeconstructor;
 
-import static bridgeconstructor.BridgeRules.initRulesBase;
 import expertsystem.Rule;
 import expertsystem.RulesBase;
 import java.awt.Color;
-import static java.awt.Color.BLUE;
 import java.awt.Component;
 import java.awt.Cursor;
-import static java.awt.Cursor.HAND_CURSOR;
-import static java.awt.Cursor.getPredefinedCursor;
 import java.awt.Desktop;
-import static java.awt.Desktop.getDesktop;
-import static java.awt.Desktop.isDesktopSupported;
 import java.awt.GraphicsEnvironment;
-import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Runtime.getRuntime;
-import static java.lang.System.err;
-import static java.lang.System.getProperty;
-import static java.lang.System.out;
 import javax.swing.BoxLayout;
-import static javax.swing.BoxLayout.Y_AXIS;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,7 +44,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		super(title);
 		parent= caller;
         
-		RB = initRulesBase(file_path);
+		RB = BridgeRules.initRulesBase(file_path);
 		
 		buildComposants();
 		buildInterface();
@@ -64,23 +52,23 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 		
 		this.pack();
         //get local graphics environment to get maximum window bounds
-        Rectangle screenSize= getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 	}
     
 	private void buildComposants() {
 		main_panel = new JPanel();
-			main_panel.setLayout(new BoxLayout(main_panel, Y_AXIS));
+			main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
 			scroll_pane = new JScrollPane(main_panel);
 		
 		rule = new JLabel("<html><u>bridge_rules.xml\n</u><html>");
-		rule.setCursor(getPredefinedCursor(HAND_CURSOR));
+		rule.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			main_panel.add(rule);
 			rule.addMouseListener(this);
-			rule.setForeground(BLUE);
+			rule.setForeground(Color.BLUE);
         for (Rule R : RB) {
-            out.println(R);
+            System.out.println(R);
             String s = R.toString();
             rule = new JLabel(s);
             main_panel.add(rule);
@@ -98,7 +86,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
         try{
             parent.setVisible(true);
         }catch (Exception e){
-            err.println("Impossible de 'notifier'");
+            System.err.println("Impossible de 'notifier'");
         }
         
         super.dispose(); 
@@ -106,7 +94,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 
     
 	private void buildEvents() {
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
     /**
@@ -115,13 +103,13 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
      * @param file_path nom du fichier à ouvrir
      */
     private void openFileInNotepad(String file_path){
-    	String OS = getProperty("os.name");
+    	String OS = System.getProperty("os.name");
         try {
             if(OS.equals("Linux")) {
-                getRuntime().exec("gedit " + file_path);
+                Runtime.getRuntime().exec("gedit " + file_path);
             } else
                 if(OS.startsWith("Windows")) {
-                    getRuntime().exec("notepad " + file_path);
+                    Runtime.getRuntime().exec("notepad " + file_path);
             }
       
         } catch (IOException e1) {
@@ -138,8 +126,8 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
         Desktop desktop;
 
         try {
-            if (isDesktopSupported()) {
-                desktop = getDesktop();
+            if (Desktop.isDesktopSupported()) {
+                desktop = Desktop.getDesktop();
 
                 File file= new File(file_path);
                 desktop.open(file);
@@ -147,7 +135,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
                 openFileInNotepad(file_path);
             }
         } catch (IOException ex) {
-            err.println("Erreur lors ouverture du fichier par défaut, essai avec éditeur de texte");
+            System.err.println("Erreur lors ouverture du fichier par défaut, essai avec éditeur de texte");
             openFileInNotepad(file_path);
         }
         

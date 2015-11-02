@@ -1,81 +1,36 @@
 package bridgeconstructor;
 
-import static bridgeconstructor.BridgeRules.initRulesBase;
-import static bridgeconstructor.Environment.getFactsBase;
-import static bridgeconstructor.Environment.getLane_number;
-import static bridgeconstructor.Environment.getLength;
-import static bridgeconstructor.Environment.setCastle;
-import static bridgeconstructor.Environment.setDaily_traffic;
-import static bridgeconstructor.Environment.setForest;
-import static bridgeconstructor.Environment.setHeight;
-import static bridgeconstructor.Environment.setLane_number;
-import static bridgeconstructor.Environment.setLength;
-import static bridgeconstructor.Environment.setMountain;
-import static bridgeconstructor.Environment.setNaval_traffic;
-import static bridgeconstructor.Environment.setPedestrian_traffic;
-import static bridgeconstructor.Environment.setRailway_traffic;
-import static bridgeconstructor.Environment.setRoad_traffic;
-import static bridgeconstructor.Environment.setWater;
-import static bridgeconstructor.Environment.setWind;
-import static bridgeconstructor.Material.Concrete;
-import static bridgeconstructor.Material.Cord;
-import static bridgeconstructor.Material.Steel;
-import static bridgeconstructor.Material.Stone;
-import static bridgeconstructor.Material.Wood;
-import static bridgeconstructor.TypeBridge.arc;
-import static bridgeconstructor.TypeBridge.beam;
-import static bridgeconstructor.TypeBridge.drawbridge;
-import static bridgeconstructor.TypeBridge.hanging;
-import static bridgeconstructor.TypeBridge.shroud;
-import static bridgeconstructor.TypeBridge.vault;
 import expertsystem.AIEngine;
 import expertsystem.Affirmation;
-import static expertsystem.Affirmation.class;
 import expertsystem.FactsBase;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 import java.awt.BorderLayout;
-import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.LINE_END;
-import static java.awt.BorderLayout.PAGE_END;
-import static java.awt.BorderLayout.PAGE_START;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
-import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import static java.lang.System.out;
 import java.text.NumberFormat;
-import static java.text.NumberFormat.getIntegerInstance;
-import static java.text.NumberFormat.getNumberInstance;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import static javax.swing.BorderFactory.createEtchedBorder;
 import javax.swing.BoxLayout;
-import static javax.swing.BoxLayout.Y_AXIS;
 import javax.swing.JButton;
-import static javax.swing.JButton.class;
 import javax.swing.JCheckBox;
-import static javax.swing.JCheckBox.class;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import static javax.swing.JMenuItem.class;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-import static javax.swing.border.EtchedBorder.RAISED;
 
 /**
  * L'interface Graphique est construite à partir de cette classe
@@ -155,7 +110,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 //        this.setLocationByPlatform(true);
 
         //get local graphics environment to get maximum window bounds
-        Rectangle screenSize= getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
         
@@ -166,8 +121,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
     public String getRulesPath() { return rules_path; }
 	
 	private void buildComposants() {
-		float_format = getNumberInstance();
-		int_format = getIntegerInstance();
+		float_format = NumberFormat.getNumberInstance();
+		int_format = NumberFormat.getIntegerInstance();
 		
 		// Menu
 		menuBar = new JMenuBar();
@@ -180,7 +135,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
 		center_panel = new JPanel();
-			center_panel.setLayout(new BoxLayout(center_panel, Y_AXIS));
+			center_panel.setLayout(new BoxLayout(center_panel, BoxLayout.Y_AXIS));
 			traffic_panel = new JPanel(new GridLayout(3, 2));
 			meteo_panel = new JPanel(new GridLayout(0, 1));
 			ground_panel = new JPanel(new GridLayout(2, 2));
@@ -216,11 +171,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		length = new JLabel("Longueur (m) :");
 		length_field = new JFormattedTextField(float_format);
 			length_field.setColumns(10);
-			length_field.setValue(getLength());
+			length_field.setValue(Environment.getLength());
 		lane_number = new JLabel("Nombre de voies : ");
 		lane_number_field = new JFormattedTextField(int_format);
 			lane_number_field.setColumns(10);
-			lane_number_field.setValue(getLane_number());
+			lane_number_field.setValue(Environment.getLane_number());
 		// Bonus
 		bonus = new JLabel("Bonus :");
 		castle_box = new JCheckBox("Château");
@@ -230,7 +185,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	}
 	
 	private void buildInterface() {
-		Border raisedetched = createEtchedBorder(RAISED);
+		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		
 		// Menu
 		file.add(item_close);
@@ -265,34 +220,34 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		field_panel.add(length_field);
 		field_panel.add(lane_number_field);
 		measure_panel.setBorder(raisedetched);
-		measure_panel.add(label_panel, CENTER);
-		measure_panel.add(field_panel, LINE_END);
+		measure_panel.add(label_panel, BorderLayout.CENTER);
+		measure_panel.add(field_panel, BorderLayout.LINE_END);
 		// Bonus Panel
 		bonus_panel.setBorder(raisedetched);
 		bonus_panel.add(castle_box);
 		
 		center_panel.add(traffic);
-			traffic.setAlignmentX(CENTER_ALIGNMENT);
+			traffic.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(traffic_panel);
 		center_panel.add(meteo);
-			meteo.setAlignmentX(CENTER_ALIGNMENT);
+			meteo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(meteo_panel);
 		center_panel.add(ground);
-			ground.setAlignmentX(CENTER_ALIGNMENT);
+			ground.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(ground_panel);
 		center_panel.add(measure);
-			measure.setAlignmentX(CENTER_ALIGNMENT);
+			measure.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(measure_panel);
 		center_panel.add(bonus);
-			bonus.setAlignmentX(CENTER_ALIGNMENT);
+			bonus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		center_panel.add(bonus_panel);
 		
 		down_panel.add(reset_button);
 		down_panel.add(confirm_button);
 		
-		main_panel.add(up_panel, PAGE_START);
-		main_panel.add(center_panel, CENTER);
-		main_panel.add(down_panel, PAGE_END);
+		main_panel.add(up_panel, BorderLayout.PAGE_START);
+		main_panel.add(center_panel, BorderLayout.CENTER);
+		main_panel.add(down_panel, BorderLayout.PAGE_END);
 		
 		this.setContentPane(main_panel);
 		this.reset();
@@ -324,7 +279,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// Boutons
 		this.reset_button.addActionListener(this);
 		this.confirm_button.addActionListener(this);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
     /**
@@ -335,7 +290,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	public void actionPerformed(ActionEvent e) {
         Object source= e.getSource();
         
-        if(source.getClass() == class) {
+        if(source.getClass() == JMenuItem.class) {
             if(source == other_chaining){
                 this.setVisible(false);
                 BackwardInterface BI= new BackwardInterface(this, rules_path);
@@ -348,32 +303,32 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                     this.setVisible(false);
                     RBI.setVisible(true);
             }
-		} else if(source.getClass() == class) {
+		} else if(source.getClass() == JButton.class) {
 			if(source == reset_button) {
 				this.reset();
 			} else if(source == confirm_button) {
 				launchForwardChaining();
 			}
-		} else if(source.getClass() == class) {
+		} else if(source.getClass() == JCheckBox.class) {
 			JCheckBox CB = (JCheckBox) source;
 			if(CB == naval_box) {
-                setNaval_traffic(CB.isSelected());
+                Environment.setNaval_traffic(CB.isSelected());
             } else if(CB == railway_box) {
-                setRailway_traffic(CB.isSelected());
+                Environment.setRailway_traffic(CB.isSelected());
             } else if(CB == pedestrian_box) {
-                setPedestrian_traffic(CB.isSelected());
+                Environment.setPedestrian_traffic(CB.isSelected());
             } else if(CB == road_box) {
-                setRoad_traffic(CB.isSelected());
+                Environment.setRoad_traffic(CB.isSelected());
             } else if(CB == wind_box) {
-                setWind(CB.isSelected());
+                Environment.setWind(CB.isSelected());
             } else if(CB == water_box) {
-                setWater(CB.isSelected());
+                Environment.setWater(CB.isSelected());
             } else if(CB == forest_box) {
-                setForest(CB.isSelected());
+                Environment.setForest(CB.isSelected());
             } else if(CB == mountain_box) {
-                setMountain(CB.isSelected());
+                Environment.setMountain(CB.isSelected());
             } else if(CB == castle_box) {
-                setCastle(CB.isSelected());
+                Environment.setCastle(CB.isSelected());
             }
 		}
 	}
@@ -386,13 +341,13 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
 		if(source == height_field)
-			setHeight(((Number)height_field.getValue()).floatValue());
+			Environment.setHeight(((Number)height_field.getValue()).floatValue());
 		else if(source == length_field)
-			setLength(((Number)length_field.getValue()).floatValue());
+			Environment.setLength(((Number)length_field.getValue()).floatValue());
 		else if(source == daily_traffic_field)
-			setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
+			Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
 		else if(source == lane_number_field)
-			setLane_number(((Number)lane_number_field.getValue()).intValue());
+			Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
 	}
 
 	private void reset() {
@@ -416,26 +371,26 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	 * Effectue le traitement du Chaînage Avant
 	 */
 	private void launchForwardChaining(){
-		ArrayList<Bridge> LB = new ArrayList<>();
-        ArrayList<Material> LM = new ArrayList<>();
+		ArrayList<Bridge> LB = new ArrayList<Bridge>();
+        ArrayList<Material> LM = new ArrayList<Material>();
         
 //        BASE DE FAITS
-		FactsBase FB = getFactsBase();
-		out.println(FB);
+		FactsBase FB = Environment.getFactsBase();
+		System.out.println(FB);
         
 //		BASE DE REGLES
 		RulesBase BR1;	
-        BR1 = initRulesBase(rules_path);
-		out.println(BR1);
+        BR1 = BridgeRules.initRulesBase(rules_path);
+		System.out.println(BR1);
 		
 //		OTHER
 		AIEngine moteur= new AIEngine(BR1);
 		FB = moteur.forwardChaining(FB);
 
-		out.println("\n------------------------");
-		out.println("Résultat :");
-		out.println("------------------------");
-		out.println(FB);
+		System.out.println("\n------------------------");
+		System.out.println("Résultat :");
+		System.out.println("------------------------");
+		System.out.println(FB);
 
 		// TODO dans le traitement, commencé par supprimer les répétitions moteur.purge() ?
 		
@@ -447,60 +402,60 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		USteel = new Affirmation("use steel", true);			 	// Acier
 		UWood = new Affirmation("use wood", true);					// Bois
 		
-		out.println("------------------------");
-		out.println("Choix du matériau :");
-		out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println("Choix du matériau :");
+		System.out.println("------------------------");
 		// 1er cas : la base de fait spécifie de matériaux
 		if(containsMaterial(FB)) {
-			out.println("Matériau(x) spécifié(s)");
+			System.out.println("Matériau(x) spécifié(s)");
 			for(Word w : FB) {
-				if(w.getClass() == class) {
+				if(w.getClass() == Affirmation.class) {
 					Affirmation A = (Affirmation) w;
 					if(A.equals(UCord)) {
-						out.println("Corde");
-						LM.add(Cord);
+						System.out.println("Corde");
+						LM.add(Material.Cord);
 					} else if(A.equals(UConc)) {
-						out.println("Béton");
-						LM.add(Concrete);
+						System.out.println("Béton");
+						LM.add(Material.Concrete);
 					} else if(A.equals(URock)) {
-						out.println("Pierre");
-						LM.add(Stone);
+						System.out.println("Pierre");
+						LM.add(Material.Stone);
 					} else if(A.equals(USteel)) {
-						out.println("Acier");
-						LM.add(Steel);
+						System.out.println("Acier");
+						LM.add(Material.Steel);
 					} else if(A.equals(UWood)) {
-						out.println("Bois");
-						LM.add(Wood);
+						System.out.println("Bois");
+						LM.add(Material.Wood);
 					}
 				}
 			}
 		} else {
-			out.println("Pas de Matériau spécifié");
+			System.out.println("Pas de Matériau spécifié");
 			// 2nd cas : la bas de fait ne spécifie pas de matériaux
-			LM.add(Concrete);
-			LM.add(Cord);
-			LM.add(Steel);
-			LM.add(Stone);
-			LM.add(Wood);
+			LM.add(Material.Concrete);
+			LM.add(Material.Cord);
+			LM.add(Material.Steel);
+			LM.add(Material.Stone);
+			LM.add(Material.Wood);
 			
 			for(Word w : FB) {
-				if(w.getClass() == class) {
+				if(w.getClass() == Affirmation.class) {
 					Affirmation A = (Affirmation) w;
 					if(A.isOpposite(UCord)) {
-						out.println("Pas de Corde");
-						LM.remove(Cord);
+						System.out.println("Pas de Corde");
+						LM.remove(Material.Cord);
 					} else if(A.isOpposite(UConc)) {
-						out.println("Pas de Béton");
-						LM.remove(Concrete);
+						System.out.println("Pas de Béton");
+						LM.remove(Material.Concrete);
 					} else if(A.isOpposite(URock)) {
-						out.println("Pas de Pierre");
-						LM.remove(Stone);
+						System.out.println("Pas de Pierre");
+						LM.remove(Material.Stone);
 					} else if(A.isOpposite(USteel)) {
-						out.println("Pas d'Acier");
-						LM.remove(Steel);
+						System.out.println("Pas d'Acier");
+						LM.remove(Material.Steel);
 					} else if(A.isOpposite(UWood)) {
-						out.println("Pas de Bois");
-						LM.remove(Wood);
+						System.out.println("Pas de Bois");
+						LM.remove(Material.Wood);
 					}
 				}
 			}
@@ -515,36 +470,36 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		BV = new Affirmation("bridge vault considered", true);		// Pont à voûtes (Bridge vault)
         DB = new Affirmation("drawbridge considered", true);		// Pont-levis (Drawbridge)
 
-		out.println("------------------------");
-		out.println("Choix du pont :");
-		out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println("Choix du pont :");
+		System.out.println("------------------------");
 		for(Word w : FB) {
-			if(w.getClass() == class) {
+			if(w.getClass() == Affirmation.class) {
 				Affirmation A = (Affirmation) w;
 				if(A.equals(BA)) {
-					out.println("Pont en Arc");
-					LB.add(new Bridge(Environment.getHeight(), getLane_number(), getLength(), arc));
+					System.out.println("Pont en Arc");
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.arc));
 				} else if(A.equals(BB)) {
-					out.println("Pont à Poutres");
-					LB.add(new Bridge(Environment.getHeight(), getLane_number(), getLength(), beam));
+					System.out.println("Pont à Poutres");
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.beam));
 				} else if(A.equals(BH)) {
-					out.println("Pont Suspendu");
-					LB.add(new Bridge(Environment.getHeight(), getLane_number(), getLength(), hanging));
+					System.out.println("Pont Suspendu");
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.hanging));
 				} else if(A.equals(BS)) {
-					out.println("Pont à hauban");
-					LB.add(new Bridge(Environment.getHeight(), getLane_number(), getLength(), shroud));
+					System.out.println("Pont à hauban");
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.shroud));
 				} else if(A.equals(BV)) {
-					out.println("Pont à Voûtes");
-					LB.add(new Bridge(Environment.getHeight(), getLane_number(), getLength(), vault));
+					System.out.println("Pont à Voûtes");
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.vault));
 				} else if(A.equals(DB)) {
-					out.println("Pont Levis !");
-					LB.add(new Bridge(Environment.getHeight(), getLane_number(), getLength(), drawbridge));
+					System.out.println("Pont Levis !");
+					LB.add(new Bridge(Environment.getHeight(), Environment.getLane_number(), Environment.getLength(), TypeBridge.drawbridge));
 				}
 			}
 		}
 		
 		if(LB.isEmpty()) {
-            showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
         } else {
 			ResponseInterface RI= new ResponseInterface(LB, LM);
             RI.setVisible(true);

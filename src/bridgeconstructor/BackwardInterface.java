@@ -1,36 +1,22 @@
 package bridgeconstructor;
 
-import static bridgeconstructor.BridgeRules.initRulesBase;
-import static bridgeconstructor.Environment.getFactsBase;
 import expertsystem.AIEngine;
 import expertsystem.FactsBase;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 import java.awt.BorderLayout;
-import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.NORTH;
-import static java.awt.BorderLayout.SOUTH;
 import java.awt.Component;
 import java.awt.GraphicsEnvironment;
-import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static java.lang.System.err;
-import static java.lang.System.out;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import static javax.swing.JButton.class;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -84,7 +70,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		setSize(150, 50);
         pack(); // redondant, mais utile car taille différente selon OS
         //get local graphics environment to get maximum window bounds
-        Rectangle screenSize= getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        Rectangle screenSize= GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
 	}
@@ -112,17 +98,17 @@ public class BackwardInterface extends JFrame implements ActionListener {
 				up_up_panel.add(chaining_choice);
 				up_center_panel.add(backward_radio);
 				up_center_panel.add(mixt_radio);
-			up_panel.add(up_up_panel, NORTH);
-			up_panel.add(up_center_panel, CENTER);       
+			up_panel.add(up_up_panel, BorderLayout.NORTH);
+			up_panel.add(up_center_panel, BorderLayout.CENTER);       
 				
 			center_panel.add(fact);
 			center_panel.add(fact_list);
 		
 			bottom_panel.add(confirm);
 		
-		main_panel.add(up_panel, NORTH);
-		main_panel.add(center_panel, CENTER);
-		main_panel.add(bottom_panel, SOUTH);
+		main_panel.add(up_panel, BorderLayout.NORTH);
+		main_panel.add(center_panel, BorderLayout.CENTER);
+		main_panel.add(bottom_panel, BorderLayout.SOUTH);
 		
 		setContentPane(main_panel);
 	}
@@ -134,13 +120,13 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		fact_list.addActionListener(this);
 		confirm.addActionListener(this);
 		
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent E) {
 		Object O = E.getSource();
-		if(O.getClass() == class) {
+		if(O.getClass() == JButton.class) {
 			JButton B = (JButton) O;
 			if(B == confirm) {
 				if(backward_radio.isSelected()) {
@@ -181,13 +167,13 @@ public class BackwardInterface extends JFrame implements ActionListener {
      */
     private AIEngine initChaining(){		
         // Base de Faits
-		FB = getFactsBase();
-		out.println(FB);
+		FB = Environment.getFactsBase();
+		System.out.println(FB);
         
 		// Base de Règles
 		RulesBase BR;	
-        BR = initRulesBase(rules_path);	
-		out.println(BR);
+        BR = BridgeRules.initRulesBase(rules_path);	
+		System.out.println(BR);
         
 		return new AIEngine(BR);
     }
@@ -195,20 +181,20 @@ public class BackwardInterface extends JFrame implements ActionListener {
     private boolean giveResultToUser(Word result){
         if (result != null){
             //Fenetre
-            showMessageDialog(this, "La valeur de "+ result.getName() +" a été trouvée : "+
+            JOptionPane.showMessageDialog(this, "La valeur de "+ result.getName() +" a été trouvée : "+
                     "\n\t"+ result);
             // Terminal
-            out.println("La valeur de "+ result.getName() +" a été trouvée : ");
-            out.println("\t"+ result);
+            System.out.println("La valeur de "+ result.getName() +" a été trouvée : ");
+            System.out.println("\t"+ result);
             
             return true;
         }
         else {
             // Fenetre
-            showMessageDialog(null, "Impossible de déduire le résultat",
-                     "Bridge Constructor - Alert" , ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Impossible de déduire le résultat",
+                     "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
             //Terminal
-             err.println("\n"+
+             System.err.println("\n"+
                     "Impossible de déduire le résultat");
              
             return true;
@@ -222,14 +208,14 @@ public class BackwardInterface extends JFrame implements ActionListener {
         // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
 		if(goalName.isEmpty()) {
-			showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
 		}
         
 		// Lancement du chainage
 		AIEngine moteur = initChaining();
         
-		out.println("Lancement Chaînage Arrière");
+		System.out.println("Lancement Chaînage Arrière");
 //		Word found_value = moteur.backwardChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
         Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker(this), false);
         
@@ -244,14 +230,14 @@ public class BackwardInterface extends JFrame implements ActionListener {
         // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
 		if(goalName.isEmpty()) {
-			showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
         // Lancement du chainage
 		AIEngine moteur = initChaining();
         
-		out.println("Lancement Chaînage Mixte");
+		System.out.println("Lancement Chaînage Mixte");
 //		Word found_value = moteur.mixtChaining(goalName, FB, new TerminalFactAsker()); /*Version dans terminal*/
         Word found_value = moteur.backwardChaining(goalName, FB, new WindowFactAsker(this), true);
         

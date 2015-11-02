@@ -4,22 +4,16 @@ import expertsystem.Affirmation;
 import expertsystem.Comparison;
 import expertsystem.Operator;
 import expertsystem.Operators;
-import static expertsystem.Operators.equal;
 import expertsystem.RulesBase;
 import expertsystem.Word;
 import java.io.File;
-import static java.lang.Float.parseFloat;
-import static java.lang.System.err;
-import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import static javax.xml.parsers.DocumentBuilderFactory.newInstance;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import static org.w3c.dom.Node.ELEMENT_NODE;
 import org.w3c.dom.NodeList;
 
 /**
@@ -38,49 +32,47 @@ public class BridgeRules {
 	public static void parseToList(Node node, List<Word> list, boolean isCons) {
 		// System.out.println("\t\tCurrent Element :" +
 		// consequence.getNodeName());
-		if (node.getNodeType() == ELEMENT_NODE) {
+		if (node.getNodeType() == Node.ELEMENT_NODE) {
 			Element eElement = (Element) node;
 
 			String name = eElement.getAttribute("name");
 			String type = eElement.getAttribute("type");
 
-            switch (type) {
-                case "comparison":
-                    String opString = eElement.getAttribute("operator");
-                    float value = parseFloat(eElement.getAttribute("value"));
-                    if (isCons) {
-                        if (!opString.equals("=") && !opString.isEmpty()) {
-                            err.println("op.equals('=') ?" + opString.equals("=") + " et !op.equals('=') ?"
-                                    + !opString.equals("="));
-                            err.println("op.equals('=') ?" + opString.isEmpty() + " et !op.equals('=') ?"
-                                    + !opString.isEmpty());
-                            err.println("isCons ?" + isCons);
-                            // TODO ajouter des exceptions, ici si l'opérateur est
-                            // différent de '=' ,
-                            // on ne peut pas ajouter de conséquence
-                            err.println("impossible d'ajouter la comparaison -" + name
-                                    + "- comme conséquence (opérateur différent de '=')");
-                        } else {
-                            // une conséquence est forcément une égalité
-                            Comparison comp = new Comparison(name, equal, value);
-                            list.add(comp);
-                        }
-                    } else {
-                        Comparison comp = new Comparison(name, new Operator(opString), value);
+			if (type.equals("comparison")) {
+				String opString = eElement.getAttribute("operator");
+				float value = Float.parseFloat(eElement.getAttribute("value"));
+				if (isCons) {
+					if (!opString.equals("=") && !opString.isEmpty()) {
+						System.err.println("op.equals('=') ?" + opString.equals("=") + " et !op.equals('=') ?"
+								+ !opString.equals("="));
+						System.err.println("op.equals('=') ?" + opString.isEmpty() + " et !op.equals('=') ?"
+								+ !opString.isEmpty());
+						System.err.println("isCons ?" + isCons);
+						// TODO ajouter des exceptions, ici si l'opérateur est
+						// différent de '=' ,
+						// on ne peut pas ajouter de conséquence
+						System.err.println("impossible d'ajouter la comparaison -" + name
+								+ "- comme conséquence (opérateur différent de '=')");
+					} else {
+						// une conséquence est forcément une égalité
+						Comparison comp = new Comparison(name, Operators.equal, value);
+						list.add(comp);
+					}
+				} else {
+					Comparison comp = new Comparison(name, new Operator(opString), value);
 					list.add(comp);
-                    }
-                    break;
-                case "affirmation":
-                    Affirmation aff;
-                    if (eElement.getAttribute("value").equals("true")) {
-                        aff = new Affirmation(name, true);
-                    } else {
+				}
+			} else if (type.equals("affirmation")) {
+				Affirmation aff;
+				if (eElement.getAttribute("value").equals("true")) {
+					aff = new Affirmation(name, true);
+				} else {
                     aff = new Affirmation(name, false);
-                }   list.add(aff);
-                    break;
-                default:
-                    err.println("Type du mot incorrect");
-                    break;
+                }
+
+				list.add(aff);
+			} else {
+                System.err.println("Type du mot incorrect");
             }
 		}
 	}
@@ -92,7 +84,7 @@ public class BridgeRules {
 	 * @return
 	 */
 	public static ArrayList<Word> parseNodeListToList(NodeList nodeList, boolean isCons) {
-		ArrayList<Word> list = new ArrayList<>(); // déclaration de la liste
+		ArrayList<Word> list = new ArrayList<Word>(); // déclaration de la liste
 														// de mots à créer
 
 		// System.out.println("\n\tParcours des mots");
@@ -113,7 +105,7 @@ public class BridgeRules {
 
 		try {
 			File fXmlFile = new File(filename);
-			DocumentBuilderFactory dbFactory = newInstance();
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 
@@ -127,8 +119,8 @@ public class BridgeRules {
 
 			NodeList rules = doc.getElementsByTagName("bridge_rule");
 
-			out.println("---------------------------------------");
-			out.println("Ajout des règles à partir du fichier");
+			System.out.println("---------------------------------------");
+			System.out.println("Ajout des règles à partir du fichier");
 			// BOUCLE sur les Règles
 			for (int i = 0; i < rules.getLength(); ++i) {
 				Node rule = rules.item(i);
@@ -147,7 +139,7 @@ public class BridgeRules {
 			e.printStackTrace();
 		}
 
-		out.println("---------------------------------------");
+		System.out.println("---------------------------------------");
 
 		// return bridge_rules;
 	}
@@ -160,7 +152,7 @@ public class BridgeRules {
 	public static RulesBase initRulesBase(String filename) {
 		bridge_rules = new RulesBase();
 
-		initFromXML(filename);
+		BridgeRules.initFromXML(filename);
 
 		return bridge_rules;
 	}

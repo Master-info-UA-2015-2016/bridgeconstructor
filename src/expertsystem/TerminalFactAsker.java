@@ -5,11 +5,6 @@
  */
 package expertsystem;
 
-import static expertsystem.Operators.equal;
-import static java.lang.Boolean.parseBoolean;
-import static java.lang.Float.parseFloat;
-import static java.lang.System.in;
-import static java.lang.System.out;
 import java.util.Scanner;
 
 /**
@@ -20,18 +15,18 @@ public class TerminalFactAsker implements FactAsker{
 
     @Override
     public Word askFactValueToUser(String factName) {
-        out.println("\n Veuillez entrer la valeur de : "+ factName);
-            Scanner sc; sc= new Scanner(in);           
+        System.out.println("\n Veuillez entrer la valeur de : "+ factName);
+            Scanner sc; sc= new Scanner(System.in);           
             String answerValue= sc.next();
             
-            out.println("\tEst-ce que '"+ answerValue +"' est correcte ? true/false");
+            System.out.println("\tEst-ce que '"+ answerValue +"' est correcte ? true/false");
             boolean answer= sc.nextBoolean();
             if (answer){
                 try{
-                    float res= parseFloat(answerValue);
-                    return new Comparison(factName, equal, res);
+                    float res= Float.parseFloat(answerValue);
+                    return new Comparison(factName, Operators.equal, res);
                 }catch(NumberFormatException NFE){
-                    boolean res= parseBoolean(answerValue);
+                    boolean res= Boolean.parseBoolean(answerValue);
                     return new Affirmation(factName, res);
                 }
             }
