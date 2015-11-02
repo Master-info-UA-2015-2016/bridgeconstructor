@@ -71,7 +71,7 @@ public class AIEngine {
 
 			for (Rule rule : BRcpy) { // parcours de toutes les règles de la
 										// copies => Parcours en Largeur
-				System.out.println("Recherche applicable : " + rule);
+				flux.println("Recherche applicable : " + rule);
 
 				// /*Antécédants des règles*/
 				boolean dec = true;
@@ -95,7 +95,7 @@ public class AIEngine {
 					inf = true;
 					++nbInf;
 					// TODO this.Mémoriser(r,nbInf) /* Pour l'explication ???*/
-					System.out.println("\tRègle appliquée");
+					System.out.println("  '"+ rule +"' appliquée");
 					RB.remove(rule); /* Une règle se déclenche au plus une fois */
 				}
 
