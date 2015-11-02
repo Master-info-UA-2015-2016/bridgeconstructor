@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public class AIEngine {
-	private RulesBase RB;
+	private final RulesBase RB;
 
 	/**
 	 * Constructeur du Systeme Expert
@@ -61,8 +61,9 @@ public class AIEngine {
 
 					Word tmp = BF.contains(wAnt);
 					if (tmp == null || !wAnt.sameValue(tmp
-							.getVal())/* (tmp.getVal()).equals(wAnt.getVal()) */ ) // VF(f)!=VA(wAnt,r)
-						dec = false;
+							.getVal())/* (tmp.getVal()).equals(wAnt.getVal()) */ ) { // VF(f)!=VA(wAnt,r)
+                        dec = false;
+                    }
 				}
 
 				if (dec) {
@@ -98,10 +99,14 @@ public class AIEngine {
 		for (Rule rule : RB) {
 
 			boolean b = false;
-			for (Word W : rule.getAntecedents())
-                if (W.equals(fact)) b = true;// TODO à vérifier
-			if (b)
-				getAntecedent.add(rule);
+			for (Word W : rule.getAntecedents()) {
+                if (W.equals(fact)) {
+                    b = true;// TODO à vérifier
+                }
+            }
+			if (b) {
+                getAntecedent.add(rule);
+            }
 		}
 		System.out.println("\n Règles contenant '" + fact + "' en prémisse : " + getAntecedent);
 		return getAntecedent;
@@ -117,10 +122,11 @@ public class AIEngine {
 		RulesBase getConsequent = new RulesBase();
 		RB.stream().forEach((rule) -> {
 			boolean b = false;
-			for (Word W : rule.getConsequences())
-				if ((W.getName()).equals(factName)){
-					b = true;
+			for (Word W : rule.getConsequences()) {
+                if ((W.getName()).equals(factName)){
+                    b = true;
                 }
+            }
 			if (b) {
 				getConsequent.add(rule);
 			}
@@ -146,8 +152,9 @@ public class AIEngine {
 		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, false);
-			if (!ver.sameValue(word.getVal()))
-				return false;
+			if (!ver.sameValue(word.getVal())) {
+                return false;
+            }
 		}
 		return true;
 	}
@@ -163,8 +170,9 @@ public class AIEngine {
 //		System.out.println("    Recherche de la liste de " + WList.size() + " buts par Chainage mixte");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, true);
-			if (ver == null || !word.sameValue(ver.getVal()))
-				return false;
+			if (ver == null || !word.sameValue(ver.getVal())) {
+                return false;
+            }
 		}
 		return true;
 	}
@@ -182,8 +190,11 @@ public class AIEngine {
 	 * @return boolean
 	 */
 	public Word backwardChaining(String goal, FactsBase FB, FactAsker asker, boolean isMixt) {
-		if (isMixt)	System.out.println("---Recherche de la valeur de -" + goal + "- par chainage mixte---");
-        else System.out.println("---Recherche de la valeur de -" + goal + "- par chainage arrière---");
+		if (isMixt) {
+            System.out.println("---Recherche de la valeur de -" + goal + "- par chainage mixte---");
+        } else {
+            System.out.println("---Recherche de la valeur de -" + goal + "- par chainage arrière---");
+        }
 
 		boolean found = false;
 		Word goal_fact;
@@ -206,13 +217,18 @@ public class AIEngine {
 			for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
 				Rule rule = it.next();
 				System.out.println("Essai pour prouver que la règle " + rule + " est vraie");
-                if (isMixt) found = mixtOnList(rule.getAntecedents(), FB, asker);
-                else found = backwardOnList(rule.getAntecedents(), FB, asker);
+                if (isMixt) {
+                    found = mixtOnList(rule.getAntecedents(), FB, asker);
+                } else {
+                    found = backwardOnList(rule.getAntecedents(), FB, asker);
+                }
                 
 				if (found) {
 					List<Word> conseq = rule.getConsequences();
 					for (Word cons : conseq) {
-                        if ((cons.getName()).equals(goal)) goal_fact= cons;
+                        if ((cons.getName()).equals(goal)) {
+                            goal_fact= cons;
+                        }
 						FB.add(cons);
 						System.out.println("Ajout de " + cons + " dans la base de faits");
 					}
@@ -238,7 +254,9 @@ public class AIEngine {
 		}
         
         // Chainage avant avec le fait trouvé si on est en chainage mixte
-        if (isMixt && goal_fact != null) forwardOnRulesWithAntecedent(goal_fact, FB);
+        if (isMixt && goal_fact != null) {
+            forwardOnRulesWithAntecedent(goal_fact, FB);
+        }
         
 		return goal_fact;
 	}

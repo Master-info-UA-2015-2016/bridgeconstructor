@@ -298,9 +298,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                 BackwardInterface BI= new BackwardInterface(this, rules_path);
                 BI.setVisible(true);
             }
-			if(source == item_close)
-				this.dispose();
-			else if(source == item_show_rules){
+			if(source == item_close) {
+                this.dispose();
+            } else if(source == item_show_rules){
 				RulesBaseInterface RBI= new RulesBaseInterface(this);
                     this.setVisible(false);
                     RBI.setVisible(true);
@@ -313,24 +313,25 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			}
 		} else if(source.getClass() == JCheckBox.class) {
 			JCheckBox CB = (JCheckBox) source;
-			if(CB == naval_box)
-				Environment.setNaval_traffic(CB.isSelected());
-			else if(CB == railway_box)
-				Environment.setRailway_traffic(CB.isSelected());
-			else if(CB == pedestrian_box)
-				Environment.setPedestrian_traffic(CB.isSelected());
-			else if(CB == road_box)
-				Environment.setRoad_traffic(CB.isSelected());
-			else if(CB == wind_box)
-				Environment.setWind(CB.isSelected());
-			else if(CB == water_box)
-				Environment.setWater(CB.isSelected());
-			else if(CB == forest_box)
-				Environment.setForest(CB.isSelected());
-			else if(CB == mountain_box)
-				Environment.setMountain(CB.isSelected());
-			else if(CB == castle_box)
-				Environment.setCastle(CB.isSelected());
+			if(CB == naval_box) {
+                Environment.setNaval_traffic(CB.isSelected());
+            } else if(CB == railway_box) {
+                Environment.setRailway_traffic(CB.isSelected());
+            } else if(CB == pedestrian_box) {
+                Environment.setPedestrian_traffic(CB.isSelected());
+            } else if(CB == road_box) {
+                Environment.setRoad_traffic(CB.isSelected());
+            } else if(CB == wind_box) {
+                Environment.setWind(CB.isSelected());
+            } else if(CB == water_box) {
+                Environment.setWater(CB.isSelected());
+            } else if(CB == forest_box) {
+                Environment.setForest(CB.isSelected());
+            } else if(CB == mountain_box) {
+                Environment.setMountain(CB.isSelected());
+            } else if(CB == castle_box) {
+                Environment.setCastle(CB.isSelected());
+            }
 		}
 	}
 
@@ -341,14 +342,15 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
-		if(source == height_field)
-			Environment.setHeight(((Number)height_field.getValue()).floatValue());
-		else if(source == length_field)
-			Environment.setLength(((Number)length_field.getValue()).floatValue());
-		else if(source == daily_traffic_field)
-			Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
-		else if(source == lane_number_field)
-			Environment.setLane_number(((Integer)lane_number_field.getValue()).intValue());
+		if(source == height_field) {
+            Environment.setHeight(((Number)height_field.getValue()).floatValue());
+        } else if(source == length_field) {
+            Environment.setLength(((Number)length_field.getValue()).floatValue());
+        } else if(source == daily_traffic_field) {
+            Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
+        } else if(source == lane_number_field) {
+            Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
+        }
 	}
 
 	private void reset() {
@@ -500,9 +502,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		// TODO construction d'un pont à partir d'un fait ?
 		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
 		// TODO afficher le pont & le prix sélectionné
-		if(LB.isEmpty())
-			JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
-		else {
+		if(LB.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
+        } else {
 			ResponseInterface RI= new ResponseInterface(LB, LM);
             RI.setVisible(true);
 			this.dispose();
@@ -512,7 +514,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private boolean containsMaterial(FactsBase FB) {
 		boolean B = false;
 		for(Word W : FB) {
-			if(W.getName().startsWith("use") && ((Affirmation)W).isTrue()) return true;
+			if(W.getName().startsWith("use") && ((Affirmation)W).isTrue()) {
+                return true;
+            }
 		}
 		return B;
 	}

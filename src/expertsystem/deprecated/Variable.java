@@ -7,8 +7,8 @@ package expertsystem.deprecated;
  * @deprecated
  */
 public class Variable {
-	private String name;
-	private int value;
+	private final String name;
+	private final int value;
 	
 	/**
 	 * Constructeur

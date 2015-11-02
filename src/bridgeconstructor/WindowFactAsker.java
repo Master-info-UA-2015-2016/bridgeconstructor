@@ -29,8 +29,9 @@ public class WindowFactAsker implements FactAsker {
 		// 1st OptionDialog
 		String answerValue = JOptionPane.showInputDialog(parent, "Veuillez saisir la valeur de " + factName + " : ",
 				"Bridge Contructor Alert", JOptionPane.QUESTION_MESSAGE);
-		if (answerValue == null)
-			return null;
+		if (answerValue == null) {
+            return null;
+        }
 
 		// 2nd OptionDialog
 		int option = JOptionPane.showConfirmDialog(parent, "\tEst-ce que '" + answerValue + "' est correct ?",
@@ -56,8 +57,9 @@ public class WindowFactAsker implements FactAsker {
 				boolean res = Boolean.parseBoolean(answerValue);
 				return new Affirmation(factName, res);
 			}
-		} else
-			return askFactValueToUser(factName);
+		} else {
+            return askFactValueToUser(factName);
+        }
 	}
 
 }

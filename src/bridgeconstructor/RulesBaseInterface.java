@@ -32,7 +32,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
 	private static final String file_path = "./ressources/bridge_rules.xml";
 	
 	private final RulesBase RB;
-    private Component parent;
+    private final Component parent;
 	
 	private JPanel main_panel;
 		private JScrollPane scroll_pane;
@@ -107,9 +107,12 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
     private void openFileInNotepad(String file_path){
     	String OS = System.getProperty("os.name");
         try {
-            if(OS.equals("Linux")) Runtime.getRuntime().exec("gedit " + file_path);
-            else
-                if(OS.startsWith("Windows")) Runtime.getRuntime().exec("notepad " + file_path);
+            if(OS.equals("Linux")) {
+                Runtime.getRuntime().exec("gedit " + file_path);
+            } else
+                if(OS.startsWith("Windows")) {
+                    Runtime.getRuntime().exec("notepad " + file_path);
+            }
       
         } catch (IOException e1) {
             e1.printStackTrace();

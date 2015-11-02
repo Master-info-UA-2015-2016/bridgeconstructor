@@ -118,7 +118,9 @@ public class FactsBase extends ArrayList<Word> {
 	 */
 	public boolean isFactDemandable(String factName) {
 		for (Word fact : this){
-			if( (fact.getName()).equals(factName)) return false;
+			if( (fact.getName()).equals(factName)) {
+                return false;
+            }
 		}
 		return true;
 	}
@@ -182,7 +184,9 @@ public class FactsBase extends ArrayList<Word> {
 					}
 				}
 			}
-			if (!find) ++i;
+			if (!find) {
+                ++i;
+            }
 		}
 		// On supprime les incohérences
 		
@@ -211,5 +215,10 @@ public class FactsBase extends ArrayList<Word> {
 //		
 ////		return facts.contains(fact);
 	// }
+
+    @Override
+    public Object clone() {
+        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
