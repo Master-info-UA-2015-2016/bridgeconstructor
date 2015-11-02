@@ -6,7 +6,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -85,12 +84,12 @@ public class ResponseInterface extends JFrame {
 		listBridge = LB;
 		listMaterial = LM;
 		
-		for(Bridge B : listBridge) {
+        listBridge.stream().forEach((B) -> {
             System.out.println(B);
-        }
-		for(Material M : listMaterial) {
+        });
+        listMaterial.stream().forEach((M) -> {
             System.out.println(M);
-        }
+        });
 		
 		buildComposants();
 		buildInterface();
@@ -157,9 +156,7 @@ public class ResponseInterface extends JFrame {
         } else {
             s = "Matériau envisagé : ";
         } 
-		for(Material M : listMaterial) {
-            s += getStringMaterial(M) + " ";
-        }
+        s = listMaterial.stream().map((M) -> getStringMaterial(M) + " ").reduce(s, String::concat);
 		matter = new JLabel(s);
 		bottom_panel.add(matter);
 	}

@@ -47,9 +47,7 @@ public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
     @Override
 	public String toString(){
 		String chaine= "Base de règles : \n";
-		for (Rule rule : this){
-			chaine += "\t "+ rule.toString() +"\n";
-		}
+        chaine = this.stream().map((rule) -> "\t "+ rule.toString() +"\n").reduce(chaine, String::concat);
 		return chaine;
 	}
 	

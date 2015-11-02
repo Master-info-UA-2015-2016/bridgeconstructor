@@ -1,24 +1,22 @@
 package bridgeconstructor;
 
+import expertsystem.Rule;
+import expertsystem.RulesBase;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import expertsystem.Rule;
-import expertsystem.RulesBase;
-import java.awt.Component;
-import java.awt.Desktop;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-import java.io.File;
 
 /**
  *

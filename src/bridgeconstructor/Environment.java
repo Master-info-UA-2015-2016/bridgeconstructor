@@ -1,6 +1,7 @@
 package bridgeconstructor;
 
-import expertsystem.*;
+import expertsystem.FactsBase;
+import expertsystem.Operators;
 
 /**
  * La classe n'a pas besoin d'être instancié car unique Elle sera remplie par

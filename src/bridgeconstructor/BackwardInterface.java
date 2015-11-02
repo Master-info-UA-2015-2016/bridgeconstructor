@@ -1,10 +1,16 @@
 package bridgeconstructor;
 
+import expertsystem.AIEngine;
+import expertsystem.FactsBase;
+import expertsystem.RulesBase;
+import expertsystem.Word;
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,11 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
-import expertsystem.*;
-import java.awt.Component;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 
 public class BackwardInterface extends JFrame implements ActionListener {
 	

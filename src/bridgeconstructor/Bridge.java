@@ -7,7 +7,7 @@ import expertsystem.AIEngine;
  * 
  * @see AIEngine puis affiché à l'utilisateur
  */
-public class Bridge {
+public final class Bridge {
 
 	private final float size_lane = (float) 2.50;
 	

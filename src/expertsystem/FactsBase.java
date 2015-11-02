@@ -41,9 +41,7 @@ public class FactsBase extends ArrayList<Word> {
 	
 	public String toString(){
 		String chaine= "Base de faits : \n";
-		for (Word fact : this){
-			chaine += "\t "+ fact.toString() +"\n";
-		}
+        chaine = this.stream().map((fact) -> "\t "+ fact.toString() +"\n").reduce(chaine, String::concat);
 		
 		return chaine;
 	}
@@ -117,11 +115,9 @@ public class FactsBase extends ArrayList<Word> {
 	 * @return boolean
 	 */
 	public boolean isFactDemandable(String factName) {
-		for (Word fact : this){
-			if( (fact.getName()).equals(factName)) {
-                return false;
-            }
-		}
+        if (!this.stream().noneMatch((fact) -> ( (fact.getName()).equals(factName)))) {
+            return false;
+        }
 		return true;
 	}
     
@@ -217,7 +213,7 @@ public class FactsBase extends ArrayList<Word> {
 	// }
 
     @Override
-    public Object clone() {
+    public Object clone(){
         return super.clone(); //To change body of generated methods, choose Tools | Templates.
     }
 

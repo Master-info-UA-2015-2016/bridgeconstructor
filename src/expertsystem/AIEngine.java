@@ -67,11 +67,11 @@ public class AIEngine {
 				}
 
 				if (dec) {
-					// On ajoute toutes les conséquences de la règle car elle
-					// est vraie
-					for (Word wCons : rule.getConsequences()) {
-						BF.add(wCons);
-					}
+                    // On ajoute toutes les conséquences de la règle car elle
+                    // est vraie
+                    rule.getConsequences().stream().forEach((wCons) -> {
+                        BF.add(wCons);
+                    });
 					inf = true;
 					++nbInf;
 					// TODO this.Mémoriser(r,nbInf) /* Pour l'explication ???*/
@@ -96,18 +96,17 @@ public class AIEngine {
 	 */
 	private RulesBase getRulesWithAntecedent(Word fact) {
 		RulesBase getAntecedent = new RulesBase();
-		for (Rule rule : RB) {
-
-			boolean b = false;
-			for (Word W : rule.getAntecedents()) {
+        RB.stream().forEach((rule) -> {
+            boolean b = false;
+            for (Word W : rule.getAntecedents()) {
                 if (W.equals(fact)) {
                     b = true;// TODO à vérifier
                 }
             }
-			if (b) {
+            if (b) {
                 getAntecedent.add(rule);
             }
-		}
+        });
 		System.out.println("\n Règles contenant '" + fact + "' en prémisse : " + getAntecedent);
 		return getAntecedent;
 	}

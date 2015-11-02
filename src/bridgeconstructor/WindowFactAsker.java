@@ -5,8 +5,11 @@
  */
 package bridgeconstructor;
 
-import expertsystem.*;
-
+import expertsystem.Affirmation;
+import expertsystem.Comparison;
+import expertsystem.FactAsker;
+import expertsystem.Operators;
+import expertsystem.Word;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
