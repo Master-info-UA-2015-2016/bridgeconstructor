@@ -89,5 +89,19 @@ public class Comparison extends Word{
 		
 		return same;
 	}
+    
+    /**
+     *
+     * @param other
+     * @return
+     */
+    @Override
+    public boolean sameValue(Word other) {
+        if(other.getClass()==Comparison.class){
+            return sameValue(other.getVal());
+        }
+        else return false;
+    }
+    
 
 }

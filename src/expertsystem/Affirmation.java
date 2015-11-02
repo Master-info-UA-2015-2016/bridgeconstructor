@@ -89,4 +89,17 @@ public class Affirmation extends Word {
     public boolean isOpposite(Affirmation A) {
     	return (this.getName().equals(A.getName()) && this.val != A.val);
     }
+
+    /**
+     *
+     * @param other
+     * @return
+     */
+    @Override
+    public boolean sameValue(Word other) {
+        if(other.getClass()==Affirmation.class){
+            return sameValue(other.getVal());
+        }
+        else return false;
+    }
 }

@@ -115,7 +115,7 @@ public class AIEngine {
 		RulesBase getAntecedent = new RulesBase();
         RB.stream().forEach((rule) -> {
             boolean b = false;
-            rule.getAntecedents().stream().filter((W) -> (W.sameValue(fact.getVal()))).forEach((_item) -> {
+            rule.getAntecedents().stream().filter((W) -> (W.sameValue(fact))).forEach((_item) -> {
             // TODO vérifier ordre de sameValue
                 getAntecedent.add(rule);
             });

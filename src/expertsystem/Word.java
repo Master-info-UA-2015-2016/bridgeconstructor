@@ -52,5 +52,7 @@ public abstract class Word {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public abstract boolean sameValue(Word other);
 
 }
