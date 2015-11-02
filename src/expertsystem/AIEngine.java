@@ -94,7 +94,6 @@ public class AIEngine {
                     });
 					inf = true;
 					++nbInf;
-					// TODO this.Mémoriser(r,nbInf) /* Pour l'explication ???*/
 					System.out.println("  '"+ rule +"' appliquée");
 					RB.remove(rule); /* Une règle se déclenche au plus une fois */
 				}
@@ -119,7 +118,7 @@ public class AIEngine {
             boolean b = false;
             for (Word W : rule.getAntecedents()) {
                 if (W.equals(fact)) {
-                    b = true;// TODO à vérifier
+                    b = true;
                 }
             }
             if (b) {
@@ -227,11 +226,6 @@ public class AIEngine {
 			// 2e cas : rechercher si b est déductible à partir de BR u BF
 			flux.println("\tla BF ne contient pas " + goal + ", recherche de sa valeur à partir des règles");
 
-			/*
-			 * TODO attention gestion de la cohérence, si une valeur est
-			 * trouvée, les autres règles qui auraient puent contedire cette
-			 * valeur sont ignorées
-			 */
             RulesBase rules_getting_goal_in_consequence = getRulesWithConsequent(goal);
 			for (Iterator<Rule> it = rules_getting_goal_in_consequence.iterator(); it.hasNext() && !found;) {
 				Rule rule = it.next();

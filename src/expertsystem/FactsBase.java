@@ -75,7 +75,6 @@ public class FactsBase extends ArrayList<Word> {
 	/**
 	 * Teste si le fait F est demandable
 	 * @param factName nom du fait que l'on teste
-     * TODO à revoir, je pense qu'on ne vérifie pas la bonne chose
 	 * @return boolean
 	 */
 	public boolean isFactDemandable(String factName) {
@@ -94,7 +93,6 @@ public class FactsBase extends ArrayList<Word> {
     
 	/**
 	 * Retourne une copie de la BF sans doublons de la BF
-     * TODO supprimer les incohérences ?
      * @return la copie de la BF "purgée"
 	 */
 	public void purge() {

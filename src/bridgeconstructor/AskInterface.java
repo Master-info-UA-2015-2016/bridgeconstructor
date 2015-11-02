@@ -406,8 +406,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		System.out.println("    Résultat :");
 		System.out.println("------------------------");
 		System.out.println(FB);
-
-		// TODO dans le traitement, commencé par supprimer les répétitions purge() ?
 		
 		// Création de l'affirmation correspondant aux matériaux
 		Affirmation UCord, UConc, URock, USteel, UWood;
