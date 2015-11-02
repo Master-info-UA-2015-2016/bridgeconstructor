@@ -70,7 +70,7 @@ public class Affirmation extends Word {
      * @return
      */
     @Override
-    public boolean sameValue(String value) {
+    public boolean respectValue(String value) {
 		AIEngine.flux.print("\t"+this + " == "+ value +" ? ");
 		boolean _val= Boolean.parseBoolean(value);
         if (val == _val){
@@ -96,9 +96,9 @@ public class Affirmation extends Word {
      * @return
      */
     @Override
-    public boolean sameValue(Word other) {
+    public boolean respectValue(Word other) {
         if(other.getClass()==Affirmation.class){
-            return sameValue(other.getVal());
+            return respectValue(other.getVal());
         }
         else return false;
     }

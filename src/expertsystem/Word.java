@@ -37,7 +37,7 @@ public abstract class Word {
      * @param value
      * @return
      */
-    public abstract boolean sameValue(String value);
+    public abstract boolean respectValue(String value);
 
     /**
      * @return the name
@@ -53,6 +53,6 @@ public abstract class Word {
         this.name = name;
     }
     
-    public abstract boolean sameValue(Word other);
+    public abstract boolean respectValue(Word other);
 
 }

@@ -82,7 +82,7 @@ public class Comparison extends Word{
      * @param value
      * @return
      */
-    public boolean sameValue(String value) {
+    public boolean respectValue(String value) {
 		float val = Float.parseFloat(value);
 		boolean same= isTrue(val);
 		AIEngine.flux.println(same);
@@ -96,9 +96,9 @@ public class Comparison extends Word{
      * @return
      */
     @Override
-    public boolean sameValue(Word other) {
+    public boolean respectValue(Word other) {
         if(other.getClass()==Comparison.class){
-            return sameValue(other.getVal());
+            return respectValue(other.getVal());
         }
         else return false;
     }

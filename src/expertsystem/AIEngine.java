@@ -80,7 +80,7 @@ public class AIEngine {
 					Word wAnt = it.next();
 
 					Word tmp = BF.contains(wAnt);
-					if (tmp == null || !wAnt.sameValue(tmp.getVal())) { // VF(f)!=VA(wAnt,r)
+					if (tmp == null || !wAnt.respectValue(tmp.getVal())) { // VF(f)!=VA(wAnt,r)
                         dec = false;
                     }
 				}
@@ -115,8 +115,8 @@ public class AIEngine {
 		RulesBase getAntecedent = new RulesBase();
         RB.stream().forEach((rule) -> {
             boolean b = false;
-            rule.getAntecedents().stream().filter((W) -> (W.sameValue(fact))).forEach((_item) -> {
-            // TODO vérifier ordre de sameValue
+            rule.getAntecedents().stream().filter((W) -> (W.respectValue(fact))).forEach((_item) -> {
+            // TODO vérifier ordre de respectValue
                 getAntecedent.add(rule);
             });
         });
@@ -164,7 +164,7 @@ public class AIEngine {
 		flux.println("    Recherche de la liste de " + WList.size() + " buts par Chainage arrière");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, false);
-			if (!ver.sameValue(word.getVal())) {
+			if (!ver.respectValue(word.getVal())) {
                 return false;
             }
 		}
@@ -182,7 +182,7 @@ public class AIEngine {
 //		flux.println("    Recherche de la liste de " + WList.size() + " buts par Chainage mixte");
 		for (Word word : WList) {
 			Word ver = backwardChaining(word.getName(), FB, asker, true);
-			if (ver == null || !word.sameValue(ver.getVal())) {
+			if (ver == null || !word.respectValue(ver.getVal())) {
                 return false;
             }
 		}
