@@ -219,19 +219,19 @@ public class ResponseInterface extends JFrame {
 		for(Material M : listMaterial) {
 			switch(M) {
 				case Concrete :
-					s += " Béton " + B.getPriceConcrete();
+					s += "| Béton " + String.format("%.2f", B.getPriceConcrete());;
 					break;
 				case Cord :
-					s += " Corde " + B.getPriceCord();
+					s += "| Corde " + String.format("%.2f", B.getPriceCord());
 					break;
 				case Steel :
-					s += " Acier " + B.getPriceSteel();
+					s += "| Acier " + String.format("%.2f", B.getPriceSteel());
 					break;
 				case Stone :
-					s += " Pierre " + B.getPriceStone();
+					s += "| Pierre " + String.format("%.2f", B.getPriceStone());
 					break;
 				case Wood :
-					s += " Bois " + B.getPriceWood();
+					s += "| Bois " + String.format("%.2f", B.getPriceWood());
 					break;
 			}
 		}

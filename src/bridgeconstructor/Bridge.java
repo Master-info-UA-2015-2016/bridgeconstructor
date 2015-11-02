@@ -153,7 +153,7 @@ public final class Bridge {
 	public float getPriceCord() {
 		float price_length = length * Constante.cord_length;
 		float price_width = maxWidth * Constante.cord_width;
-		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_cord;
+		float price = (price_length + price_width) * Constante.coef_height * Constante.coef_cord;
 		
 		return price;
 	}
@@ -164,7 +164,7 @@ public final class Bridge {
 	public float getPriceConcrete() {
 		float price_length = length * Constante.concrete_length;
 		float price_width = maxWidth * Constante.concrete_width;
-		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_concrete;
+		float price = (price_length + price_width) * Constante.coef_height * Constante.coef_concrete;
 		
 		return price;
 	}
@@ -175,7 +175,7 @@ public final class Bridge {
 	public float getPriceSteel() {
 		float price_length = length * Constante.steel_length;
 		float price_width = maxWidth * Constante.steel_width;
-		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_steel;
+		float price = (price_length + price_width) * Constante.coef_height * Constante.coef_steel;
 		
 		return price;
 	}
@@ -186,7 +186,7 @@ public final class Bridge {
 	public float getPriceStone() {
 		float price_length = length * Constante.stone_length;
 		float price_width = maxWidth * Constante.stone_width;
-		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_stone;
+		float price = (price_length + price_width) * Constante.coef_height * Constante.coef_stone;
 		
 		return price;
 	}
@@ -197,7 +197,7 @@ public final class Bridge {
 	public float getPriceWood() {
 		float price_length = length * Constante.wood_length;
 		float price_width = maxWidth * Constante.wood_width;
-		float price = (price_length * price_width) * Constante.coef_height * Constante.coef_wood;
+		float price = (price_length + price_width) * Constante.coef_height * Constante.coef_wood;
 		
 		return price;
 	}
