@@ -4,9 +4,13 @@
 #		et		FOURMOND Jérôme								  		#
 #####################################################################
 
+
 Programme d'Intelligence Artificielle pour choisir
 	le type, les matériaux, et le prix pour la construction d'un pont
 	en fonction de l'Environnement
+
+
+#####################	L'Interface		#############################
 
 Interface Ask :
 	Dans cette interface, l'utilisateur sélectionne et saisie les
@@ -23,4 +27,7 @@ données de l'Environnement correspondant.
 Chaînage Arrière :
 	Dans cette interface, l'utilisateur sélectionne le type de
 chaînage qu'il souhaite ainsi que le but souhaité.
-  
+
+ 
+#####################	L'Implémentation	#########################
+
