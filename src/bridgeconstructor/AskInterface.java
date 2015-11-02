@@ -369,6 +369,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		castle_box.setSelected(false);
 	}
 	
+	/**
+	 * Effectue le traitement du Chaînage Avant
+	 */
 	private void launchForwardChaining(){
 		ArrayList<Bridge> LB = new ArrayList<Bridge>();
         ArrayList<Material> LM = new ArrayList<Material>();
@@ -507,12 +510,11 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	}
 	
 	private boolean containsMaterial(FactsBase FB) {
-		boolean B = false;
 		for(Word W : FB) {
 			if(W.getName().startsWith("use") && ((Affirmation)W).isTrue()) {
                 return true;
             }
 		}
-		return B;
+		return false;
 	}
 }
