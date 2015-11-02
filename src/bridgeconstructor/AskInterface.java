@@ -497,10 +497,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			}
 		}
 		
-		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
-		// TODO construction d'un pont à partir d'un fait ?
-		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
-		// TODO afficher le pont & le prix sélectionné
 		if(LB.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
         } else {
