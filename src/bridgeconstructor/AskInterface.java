@@ -377,8 +377,8 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	 * Effectue le traitement du Chaînage Avant
 	 */
 	private void launchForwardChaining(){
-		ArrayList<Bridge> LB = new ArrayList<Bridge>();
-        ArrayList<Material> LM = new ArrayList<Material>();
+		ArrayList<Bridge> LB = new ArrayList<>();
+        ArrayList<Material> LM = new ArrayList<>();
         
 //        BASE DE FAITS
 		FactsBase FB = Environment.getFactsBase();
