@@ -1,0 +1,1 @@
+start "Exécution de Bridge Constructor" /B "powershell" "java -jar ./bridgeconstructor.jar
