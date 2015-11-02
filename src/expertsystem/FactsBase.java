@@ -94,30 +94,29 @@ public class FactsBase extends ArrayList<Word> {
     
 	/**
 	 * Retourne une copie de la BF sans doublons de la BF
+     * TODO supprimer les incohérences ?
      * @return la copie de la BF "purgée"
 	 */
-	public FactsBase purged() {
-        FactsBase cpy= this; // TODO Jerome: pq utiliser une copie plutot que de modifier la BF ?
-		
+	public void purge() {
 		// On supprime les doublons identiques (name & val)
 		boolean find;
 		Affirmation A;
 		Comparison C;
 		int i = 0;
-		while (i < cpy.size()) {
+		while (i < this.size()) {
 			find = false;
-			Word W = cpy.get(i);
+			Word W = this.get(i);
 			System.out.println(W);
             
 			// Dans le cas : Si c'est une Affirmation
 			if(W.getClass() == Affirmation.class) {
 				A = (Affirmation) W;
 				// int j=i+1;
-				for (int j = i + 1; j < cpy.size(); j++) {
-					if(cpy.get(j).getClass() == Affirmation.class) {
-						Affirmation ANext = (Affirmation) cpy.get(j);
+				for (int j = i + 1; j < this.size(); j++) {
+					if(this.get(j).getClass() == Affirmation.class) {
+						Affirmation ANext = (Affirmation) this.get(j);
 						if (A.equals(ANext)) {
-							cpy.remove(j);
+							this.remove(j);
 							find = true;
 							break;
 						}
@@ -129,11 +128,11 @@ public class FactsBase extends ArrayList<Word> {
 			if(W.getClass() == Comparison.class) {
 				C = (Comparison) W;
 				// int j=i+1;
-				for (int j = i + 1; j < cpy.size(); j++) {
-					if(cpy.get(j).getClass() == Comparison.class) {
-						Comparison CNext = (Comparison) cpy.get(j);
+				for (int j = i + 1; j < this.size(); j++) {
+					if(this.get(j).getClass() == Comparison.class) {
+						Comparison CNext = (Comparison) this.get(j);
 						if (C.equals(CNext)) {
-							cpy.remove(j);
+							this.remove(j);
 							find = true;
 							break;
 						}
@@ -144,9 +143,6 @@ public class FactsBase extends ArrayList<Word> {
                 ++i;
             }
 		}
-		// On supprime les incohérences
-		
-		return cpy;
 	}
 
     /**
