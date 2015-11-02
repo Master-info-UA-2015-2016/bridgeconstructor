@@ -33,30 +33,6 @@ public class Comparison extends Word{
 	public String toString(){
 		return name +" "+ op +" "+ valCondition ;
 	}
-	
-	/**
-	 * TODO A redéfinir pour que contains fasse la bonne vérification
-	 * @param other
-	 * @return
-	 */
-//	public boolean equals(Comparison other){
-//		if (this.var.equals(other.var) ) {
-//			
-//			if (op==Operators.inf){
-//				
-//			}else if (op==Operators.sup){
-//			
-//			}else if (op==Operators.equal){
-//			
-//			}else if (op==Operators.sup_equal){
-//			
-//			}else if (op==Operators.inf_equal){
-//			
-//			}
-//			
-//		}
-//		return false;
-//	}
 
 	/**
 	 * Retourne si la comparaison est exacte ou non
@@ -91,23 +67,6 @@ public class Comparison extends Word{
 //			Cas par défaut
 		return false; 
 	}
-
-//	public boolean respect(Word other) {
-//		System.out.println("Verifie si Comp respecte Word");
-//		return false;
-//	}
-	
-//	public boolean respect(Comparison other){
-//		System.out.println("Verifie si Comp repecte autre Comp");
-//		if (name == other.name){
-//			if ( ( (op.equals("<")) && other.isTrue(other.valCondition))&& ((op == new Operator(">")) && (other.op == new Operator("<")) ))
-//				return false;
-//			else {
-//				return (op == other.op && valCondition == other.valCondition);
-//			}
-//		}
-//		else return false;
-//	}
 
     /**
      *

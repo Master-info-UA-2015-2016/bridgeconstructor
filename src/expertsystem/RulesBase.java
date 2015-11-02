@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Florian
+ * Classe de Gestion de la Base de Règles
  */
-public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
-//	protected List<Rule> rules;
+public class RulesBase extends ArrayList<Rule>{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -18,14 +16,6 @@ public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
 	public RulesBase(){
 		super();
 	}
-
-	/**
-	 * Constructeur par recopie {@link RulesBase}
-     * @param other
-	 */
-//	public RulesBase(RulesBase other){
-//		super(other);
-//	}
 	
 	/**
 	 * Constructeur de {@link RulesBase}
@@ -34,10 +24,6 @@ public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
 	public RulesBase(List<Rule> rules) {
 		super(rules);
 	}
-	
-//	public List<Rule> getRules() {
-//		return this.rules;
-//	}
 	
     /**
      *
@@ -76,31 +62,4 @@ public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
     public Object clone() {
         return super.clone(); //To change body of generated methods, choose Tools | Templates.
     }
-	
-	
-	/**
-	 * Vérifie si une règle est dans la base de règles
-	 * @return vrai si le fait est présent
-	 * 
-	 * TODO vérifier : mm chose que pour les fait pour les </<= et >/>= ?
-	 * TODO vérifier l'exécution
-	 */
-//	public boolean contains(Rule rule){
-//		return rules.contains(rule);
-//	}
-
-	/**
-	 * Supprime une règle est dans la base de règles
-	 * @return vrai si le fait est présent
-	 * 
-	 * TODO vérifier l'exécution
-	 */
-//	public boolean tryRemove(Rule rule){
-//		return rules.remove(rule);
-//	}
-	
-//	public Iterator<Rule> iterator() {
-//		return rules.iterator();
-//	}
-	
 }
