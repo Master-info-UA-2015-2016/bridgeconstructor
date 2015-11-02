@@ -85,8 +85,12 @@ public class ResponseInterface extends JFrame {
 		listBridge = LB;
 		listMaterial = LM;
 		
-		for(Bridge B : listBridge) System.out.println(B);
-		for(Material M : listMaterial) System.out.println(M);
+		for(Bridge B : listBridge) {
+            System.out.println(B);
+        }
+		for(Material M : listMaterial) {
+            System.out.println(M);
+        }
 		
 		buildComposants();
 		buildInterface();
@@ -112,9 +116,11 @@ public class ResponseInterface extends JFrame {
 					list_panel.setLayout(new BoxLayout(list_panel, BoxLayout.X_AXIS));
 			bottom_panel = new JPanel();
 		// Label
-		if(listBridge.size() > 1)
-			order = new JLabel("Les ponts suggérés : ");
-		else order = new JLabel("Le pont suggéré : ");
+		if(listBridge.size() > 1) {
+            order = new JLabel("Les ponts suggérés : ");
+        } else {
+            order = new JLabel("Le pont suggéré : ");
+        }
 		up_panel.add(order);
 		// Bridge
 		for(Bridge B : listBridge) {
@@ -146,11 +152,14 @@ public class ResponseInterface extends JFrame {
 		}
 		scroll_panel.setViewportView(list_panel);
 		String s;
-		if(listMaterial.size() > 1)
-			s = "Matériaux envisagés : ";
-		else s = "Matériau envisagé : "; 
-		for(Material M : listMaterial)
-			s += getStringMaterial(M) + " ";
+		if(listMaterial.size() > 1) {
+            s = "Matériaux envisagés : ";
+        } else {
+            s = "Matériau envisagé : ";
+        } 
+		for(Material M : listMaterial) {
+            s += getStringMaterial(M) + " ";
+        }
 		matter = new JLabel(s);
 		bottom_panel.add(matter);
 	}

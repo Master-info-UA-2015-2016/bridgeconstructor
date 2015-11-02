@@ -5,8 +5,8 @@ package expertsystem;
  * @author Florian
  */
 public class Comparison extends Word{
-	private Operator op;
-	private float valCondition;
+	private final Operator op;
+	private final float valCondition;
 	
 	/**
 	 * Constructeur
@@ -69,15 +69,25 @@ public class Comparison extends Word{
 		System.out.print("  vrai avec : "+ valeurVariable +" ? -> ");
 		
 		if (op.equals(Operators.inf)){
-			if (valeurVariable < valCondition)	return true;
+			if (valeurVariable < valCondition) {
+                return true;
+            }
 		}else if (op.equals(Operators.sup)){
-			if (valeurVariable > valCondition)	return true;
+			if (valeurVariable > valCondition) {
+                return true;
+            }
 		}else if (op.equals(Operators.equal)){
-			if (valeurVariable == valCondition)	return true;
+			if (valeurVariable == valCondition) {
+                return true;
+            }
 		}else if (op.equals(Operators.sup_equal)){
-			if (valeurVariable >= valCondition)	return true;
+			if (valeurVariable >= valCondition) {
+                return true;
+            }
 		}else if (op.equals(Operators.inf_equal)){
-			if (valeurVariable <= valCondition)	return true;
+			if (valeurVariable <= valCondition) {
+                return true;
+            }
 		}
 //			Cas par défaut
 		return false; 

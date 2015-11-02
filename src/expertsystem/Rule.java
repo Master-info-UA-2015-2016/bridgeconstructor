@@ -2,6 +2,7 @@ package expertsystem;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -16,8 +17,8 @@ import java.util.List;
  */
 
 public class Rule {
-	private List<Word> antecedents;
-	private List<Word> consequences;
+	private final List<Word> antecedents;
+	private final List<Word> consequences;
 	
     /**
      *
@@ -36,13 +37,17 @@ public class Rule {
     public String toString(){
 		String s= "IF ";
 		for (int i=0 ; i<antecedents.size() ; i++) {
-			if(i > 0) s+= " AND ";
+			if(i > 0) {
+                s+= " AND ";
+            }
 			Word antecedent = antecedents.get(i);
 			s+= antecedent.toString();
 		}
 		s+= " THEN ";
 		for (int i=0 ; i<consequences.size() ; i++) {
-			if(i > 0) s+= " AND ";
+			if(i > 0) {
+                s+= " AND ";
+            }
 			Word consequence = consequences.get(i);
 			s+= consequence.toString();
 		}
@@ -74,7 +79,7 @@ public class Rule {
      * @return
      */
     public List<Word> getAntecedents() {
-		return antecedents;
+		return Collections.unmodifiableList(antecedents);
 	}
 	
     /**
@@ -82,7 +87,7 @@ public class Rule {
      * @return
      */
     public List<Word> getConsequences() {
-		return consequences;
+		return Collections.unmodifiableList(consequences);
 	}
 	
 }

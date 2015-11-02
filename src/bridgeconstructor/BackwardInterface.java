@@ -128,10 +128,11 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		if(O.getClass() == JButton.class) {
 			JButton B = (JButton) O;
 			if(B == confirm) {
-				if(backward_radio.isSelected())
-					launchBackwardChaining();
-				else if(mixt_radio.isSelected())
-					launchMixtChaining();
+				if(backward_radio.isSelected()) {
+                    launchBackwardChaining();
+                } else if(mixt_radio.isSelected()) {
+                    launchMixtChaining();
+                }
 			}
 		}
 	}
@@ -202,7 +203,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private void launchBackwardChaining() {
         // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
-		if(goalName.equals("")) {
+		if(goalName.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -221,7 +222,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 	private void launchMixtChaining() {
         // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
-		if(goalName.equals("")) {
+		if(goalName.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Aucune saisie effectuée", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
 			return;
 		}

@@ -22,9 +22,11 @@ public class Affirmation extends Word {
      * @return
      */
     public String toString(){
-		if (val)
-			return name;
-		else return "NO "+ name;
+		if (val) {
+            return name;
+        } else {
+            return "NO "+ name;
+        }
 	}
 
     /**

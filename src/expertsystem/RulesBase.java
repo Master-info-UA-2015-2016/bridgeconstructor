@@ -69,6 +69,11 @@ public class RulesBase extends ArrayList<Rule>/*implements Iterable<Rule>*/{
 	public void addRule(Rule r){
 		this.add(r);
 	}
+
+    @Override
+    public Object clone() {
+        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	
 	/**

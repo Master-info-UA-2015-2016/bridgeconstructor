@@ -46,11 +46,11 @@ public class BridgeRules {
 				String opString = eElement.getAttribute("operator");
 				float value = Float.parseFloat(eElement.getAttribute("value"));
 				if (isCons) {
-					if (!opString.equals("=") && !opString.equals("")) {
+					if (!opString.equals("=") && !opString.isEmpty()) {
 						System.err.println("op.equals('=') ?" + opString.equals("=") + " et !op.equals('=') ?"
 								+ !opString.equals("="));
-						System.err.println("op.equals('=') ?" + opString.equals("") + " et !op.equals('=') ?"
-								+ !opString.equals(""));
+						System.err.println("op.equals('=') ?" + opString.isEmpty() + " et !op.equals('=') ?"
+								+ !opString.isEmpty());
 						System.err.println("isCons ?" + isCons);
 						// TODO ajouter des exceptions, ici si l'opérateur est
 						// différent de '=' ,
@@ -70,12 +70,14 @@ public class BridgeRules {
 				Affirmation aff;
 				if (eElement.getAttribute("value").equals("true")) {
 					aff = new Affirmation(name, true);
-				} else
-					aff = new Affirmation(name, false);
+				} else {
+                    aff = new Affirmation(name, false);
+                }
 
 				list.add(aff);
-			} else
-				System.err.println("Type du mot incorrect");
+			} else {
+                System.err.println("Type du mot incorrect");
+            }
 		}
 	}
 
@@ -109,7 +111,7 @@ public class BridgeRules {
 			File fXmlFile = new File(filename);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = (Document) dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(fXmlFile);
 
 			// optional, but recommended
 			// read this -
@@ -119,7 +121,7 @@ public class BridgeRules {
 			// System.out.println("Root element :" +
 			// doc.getDocumentElement().getNodeName());
 
-			NodeList rules = ((org.w3c.dom.Document) doc).getElementsByTagName("bridge_rule");
+			NodeList rules = doc.getElementsByTagName("bridge_rule");
 
 			System.out.println("---------------------------------------");
 			System.out.println("Ajout des règles à partir du fichier");
