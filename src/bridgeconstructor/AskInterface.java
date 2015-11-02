@@ -348,7 +348,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		else if(source == daily_traffic_field)
 			Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
 		else if(source == lane_number_field)
-			Environment.setLane_number(((Integer)lane_number_field.getValue()).intValue());
+			Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
 	}
 
 	private void reset() {
