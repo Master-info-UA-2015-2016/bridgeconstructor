@@ -55,4 +55,5 @@ concises) dans la console.
 
 ################	Autre	##################################
 
-	Les Méta-Règles n'ont pas été implémentées.
+	Les Méta-Règles n'ont pas été implémentées, notre algorithme
+étant généraliste.
