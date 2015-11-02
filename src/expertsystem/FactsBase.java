@@ -115,20 +115,16 @@ public class FactsBase extends ArrayList<Word> {
 	 * @return boolean
 	 */
 	public boolean isFactDemandable(String factName) {
-        if (!this.stream().noneMatch((fact) -> ( (fact.getName()).equals(factName)))) {
-            return false;
-        }
-		return true;
+        return (this.stream().noneMatch((fact) -> ( (fact.getName()).equals(factName))));
 	}
     
 	/**
 	 * Teste si le fait F est demandable
 	 * @param fact fait à tester
 	 * @return boolean
-     * WARNING Pourrait etre récursion infinie si redéfinie dans une sous classe
 	 */
 	public boolean isFactDemandable(Word fact) {
-		return isFactDemandable(fact);
+		return isFactDemandable(fact.getName());
 	}
     
     
@@ -188,29 +184,6 @@ public class FactsBase extends ArrayList<Word> {
 		
 		return cpy;
 	}
-	
-//	public boolean contains(Comparison fact){
-//		System.out.println("recherche si BF contient Comp : "+ fact);
-//		for (Word w : this){
-//			if (w.getName().equals(fact.getName()))
-//				return true;
-//		}
-//		System.out.println("NON ne contient pas");
-//		return false;
-//		
-////		return facts.contains(fact);
-//	}
-//	
-//	public boolean contains(Affirmation fact){
-//		System.out.println("recherche si BF contient Aff : "+ fact);
-//		for (Word w : this){
-//			if (w.getName().equals(fact.getName()))
-//				return true;
-//		}
-//		return false;
-//		
-////		return facts.contains(fact);
-	// }
 
     @Override
     public Object clone(){

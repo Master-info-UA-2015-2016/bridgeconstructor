@@ -508,10 +508,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	}
 	
 	private boolean containsMaterial(FactsBase FB) {
-		boolean B = false;
-        if (FB.stream().anyMatch((W) -> (W.getName().startsWith("use") && ((Affirmation)W).isTrue()))) {
-            return true;
-        }
-		return B;
+        return (FB.stream().anyMatch((W) -> (W.getName().startsWith("use") && ((Affirmation)W).isTrue()))) ;
 	}
 }
