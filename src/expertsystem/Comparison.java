@@ -1,5 +1,13 @@
 package expertsystem;
 
+import static expertsystem.Operators.equal;
+import static expertsystem.Operators.inf;
+import static expertsystem.Operators.inf_equal;
+import static expertsystem.Operators.sup;
+import static expertsystem.Operators.sup_equal;
+import static java.lang.Float.parseFloat;
+import static java.lang.System.out;
+
 /**
  *
  * @author Florian
@@ -66,25 +74,25 @@ public class Comparison extends Word{
      * @return 
 	 */
 	public boolean isTrue(float valeurVariable) {
-		System.out.print("  vrai avec : "+ valeurVariable +" ? -> ");
+		out.print("  vrai avec : "+ valeurVariable +" ? -> ");
 		
-		if (op.equals(Operators.inf)){
+		if (op.equals(inf)){
 			if (valeurVariable < valCondition) {
                 return true;
             }
-		}else if (op.equals(Operators.sup)){
+		}else if (op.equals(sup)){
 			if (valeurVariable > valCondition) {
                 return true;
             }
-		}else if (op.equals(Operators.equal)){
+		}else if (op.equals(equal)){
 			if (valeurVariable == valCondition) {
                 return true;
             }
-		}else if (op.equals(Operators.sup_equal)){
+		}else if (op.equals(sup_equal)){
 			if (valeurVariable >= valCondition) {
                 return true;
             }
-		}else if (op.equals(Operators.inf_equal)){
+		}else if (op.equals(inf_equal)){
 			if (valeurVariable <= valCondition) {
                 return true;
             }
@@ -125,9 +133,9 @@ public class Comparison extends Word{
      * @return
      */
     public boolean sameValue(String value) {
-		float val = Float.parseFloat(value);
+		float val = parseFloat(value);
 		boolean same= isTrue(val);
-		System.out.println(same);
+		out.println(same);
 		
 		return same;
 	}

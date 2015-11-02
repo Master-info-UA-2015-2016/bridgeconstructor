@@ -1,5 +1,8 @@
 package expertsystem;
 
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.System.out;
+
 /**
  *
  * @author Florian
@@ -43,7 +46,7 @@ public class Affirmation extends Word {
      * @return
      */
     public boolean equals(Word other) {
-		System.out.println("Compare Aff avec Word : ");
+		out.println("Compare Aff avec Word : ");
 		return false;
 	}
 	
@@ -71,13 +74,13 @@ public class Affirmation extends Word {
      */
     @Override
     public boolean sameValue(String value) {
-		System.out.print("\t"+this + " == "+ value +" ? ");
-		boolean _val= Boolean.parseBoolean(value);
+		out.print("\t"+this + " == "+ value +" ? ");
+		boolean _val= parseBoolean(value);
         if (val == _val){
-            System.out.println("YES");
+            out.println("YES");
             return true;
         }
-            System.out.println("NO");
+            out.println("NO");
         return false;
 	}
     

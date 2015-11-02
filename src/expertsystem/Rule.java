@@ -3,6 +3,7 @@ package expertsystem;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import static java.util.Collections.unmodifiableList;
 import java.util.List;
 
 /*
@@ -26,8 +27,8 @@ public class Rule {
      * @param consequences
      */
     public Rule(Collection<Word> antecedents, Collection<Word> consequences){
-		this.antecedents= new ArrayList<Word>(antecedents);
-		this.consequences= new ArrayList<Word>(consequences);
+		this.antecedents= new ArrayList<>(antecedents);
+		this.consequences= new ArrayList<>(consequences);
 	}
 	
     /**
@@ -79,7 +80,7 @@ public class Rule {
      * @return
      */
     public List<Word> getAntecedents() {
-		return Collections.unmodifiableList(antecedents);
+		return unmodifiableList(antecedents);
 	}
 	
     /**
@@ -87,7 +88,7 @@ public class Rule {
      * @return
      */
     public List<Word> getConsequences() {
-		return Collections.unmodifiableList(consequences);
+		return unmodifiableList(consequences);
 	}
 	
 }

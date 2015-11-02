@@ -1,5 +1,8 @@
 package expertsystem;
 
+import static expertsystem.Affirmation.class;
+import static expertsystem.Comparison.class;
+import static java.lang.System.out;
 import java.util.ArrayList;
 
 /**
@@ -86,15 +89,15 @@ public class FactsBase extends ArrayList<Word> {
      * @return le fait si on en trouve un, null sinon
      */
     public Word contains(String factName){
-        System.out.print("\tBF contient: "+ factName +" ? ");
+        out.print("\tBF contient: "+ factName +" ? ");
 		for (Word w : this){
 			// On vérifie que l
 			if (w.getName().equals(factName) /* && w.getVal() == fact.getVal()*/ ){
-				System.out.print("=> ");
+				out.print("=> ");
 				return w;
 			}
 		}
-		System.out.println("=> NON");
+		out.println("=> NON");
 		return null;
     }
     
@@ -143,14 +146,14 @@ public class FactsBase extends ArrayList<Word> {
 		while (i < cpy.size()) {
 			find = false;
 			Word W = cpy.get(i);
-			System.out.println(W);
+			out.println(W);
             
 			// Dans le cas : Si c'est une Affirmation
-			if(W.getClass() == Affirmation.class) {
+			if(W.getClass() == class) {
 				A = (Affirmation) W;
 				// int j=i+1;
 				for (int j = i + 1; j < cpy.size(); j++) {
-					if(cpy.get(j).getClass() == Affirmation.class) {
+					if(cpy.get(j).getClass() == class) {
 						Affirmation ANext = (Affirmation) cpy.get(j);
 						if (A.equals(ANext)) {
 							cpy.remove(j);
@@ -162,11 +165,11 @@ public class FactsBase extends ArrayList<Word> {
 			}
             
 			// Dans le cas : Si c'est une Comparaison
-			if(W.getClass() == Comparison.class) {
+			if(W.getClass() == class) {
 				C = (Comparison) W;
 				// int j=i+1;
 				for (int j = i + 1; j < cpy.size(); j++) {
-					if(cpy.get(j).getClass() == Comparison.class) {
+					if(cpy.get(j).getClass() == class) {
 						Comparison CNext = (Comparison) cpy.get(j);
 						if (C.equals(CNext)) {
 							cpy.remove(j);

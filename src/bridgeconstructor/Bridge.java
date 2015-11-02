@@ -1,6 +1,7 @@
 package bridgeconstructor;
 
 import expertsystem.AIEngine;
+import static java.lang.System.out;
 
 /**
  * La classe sera instanciée algorithmiquement grâce à
@@ -29,7 +30,7 @@ public final class Bridge {
 		type = null;
 		price = 0;
 
-		System.out.println("BRIDGE : " + this.toString());
+		out.println("BRIDGE : " + this.toString());
 	}
 
 	/**

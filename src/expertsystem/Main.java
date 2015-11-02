@@ -1,5 +1,7 @@
 package expertsystem;
 
+import static expertsystem.Operators.inf_equal;
+import static java.lang.System.out;
 import java.util.ArrayList;
 
 /**
@@ -17,18 +19,18 @@ public class Main {
 		FactsBase FB= new FactsBase();
 		
 //		BASE DE FAITS
-		Word taille= new Comparison("Taille pont", /*20,*/ Operators.inf_equal, 35);
+		Word taille= new Comparison("Taille pont", /*20,*/ inf_equal, 35);
 		Word cars= new Affirmation("Présence traffic routier", false);
 		FB.add(taille);
 //		FB.addFact(cars);
 		
-		System.out.println(FB);
+		out.println(FB);
 		
 //		BASE DE REGLES
-		ArrayList<Word> listAnt= new ArrayList<Word>();
+		ArrayList<Word> listAnt= new ArrayList<>();
 		listAnt.add(taille);
 		
-		ArrayList<Word> listCons= new ArrayList<Word>();
+		ArrayList<Word> listCons= new ArrayList<>();
 		listCons.add(cars);
 		
 		
@@ -38,12 +40,12 @@ public class Main {
 		BR1.addRule(listAnt, listCons);
 //		BR1.addRule(taille_cars);
 		
-		System.out.println(BR1);
+		out.println(BR1);
 //		OTHER
 		AIEngine moteur= new AIEngine(BR1);
 		FB= moteur.forwardChaining(FB);
 
-		System.out.println(FB);
+		out.println(FB);
 		
 		
 	}
