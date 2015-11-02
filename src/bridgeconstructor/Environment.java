@@ -330,7 +330,6 @@ public class Environment {
 		FB.addFact("length", Operators.equal, length);
 		FB.addFact("height", Operators.equal, height);
 		FB.addFact("lane number", Operators.equal, lane_number);
-		FB.addFact("resistance", Operators.equal, 0);
 		// Bonus
 		FB.addFact("castle", castle);
 		return FB;

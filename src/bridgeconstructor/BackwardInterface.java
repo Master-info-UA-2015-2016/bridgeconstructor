@@ -201,6 +201,9 @@ public class BackwardInterface extends JFrame implements ActionListener {
         }
     }
 	
+    /**
+     * Lance le traitement du Chaînage Arrière
+     */
 	private void launchBackwardChaining() {
         // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());
@@ -220,6 +223,9 @@ public class BackwardInterface extends JFrame implements ActionListener {
         giveResultToUser(found_value);
 	}
 	
+	/**
+	 * Lance le traitement du Chaînage Mixte
+	 */
 	private void launchMixtChaining() {
         // On ne peut pas faire de fonction à cause de "return;"
 		String goalName = getCorrespondingBridge(fact_list.getSelectedItem().toString());

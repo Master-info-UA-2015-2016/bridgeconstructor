@@ -340,15 +340,14 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
-		if(source == height_field) {
-            Environment.setHeight(((Number)height_field.getValue()).floatValue());
-        } else if(source == length_field) {
-            Environment.setLength(((Number)length_field.getValue()).floatValue());
-        } else if(source == daily_traffic_field) {
-            Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
-        } else if(source == lane_number_field) {
-            Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
-        }
+		if(source == height_field)
+			Environment.setHeight(((Number)height_field.getValue()).floatValue());
+		else if(source == length_field)
+			Environment.setLength(((Number)length_field.getValue()).floatValue());
+		else if(source == daily_traffic_field)
+			Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
+		else if(source == lane_number_field)
+			Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
 	}
 
 	private void reset() {
@@ -368,6 +367,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		castle_box.setSelected(false);
 	}
 	
+	/**
+	 * Effectue le traitement du Chaînage Avant
+	 */
 	private void launchForwardChaining(){
 		ArrayList<Bridge> LB = new ArrayList<Bridge>();
         ArrayList<Material> LM = new ArrayList<Material>();
@@ -496,10 +498,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			}
 		}
 		
-		// TODO à partir de FB (Base de Faits), créer des instances des ponts envisagés
-		// TODO construction d'un pont à partir d'un fait ?
-		// TODO Un tableau de Bridge passé en paramètre de l'Interface de Réponse ?
-		// TODO afficher le pont & le prix sélectionné
 		if(LB.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Aucun pont ne répond au critère", "Bridge Constructor - Alert" , JOptionPane.ERROR_MESSAGE);
         } else {

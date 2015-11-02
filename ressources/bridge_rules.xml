@@ -5,7 +5,7 @@
 	traffics possibles :	naval traffic, pedestrian traffic, rail traffic, road traffic
 	variables : daily traffic
 	risques :	flood risk, tempest risk, fire risk
-	matériaux :	use wood, use stone, use steel, use concrete, minimal strength, heavy, light
+	matériaux :	use wood, use stone, use steel, use concrete, use cord
 	pont : 	bridge arc considered, bridge beam considered, bridge hanging considered, bridge shroud considered, bridge vault considered, drawbridge considered
 	
 	resultats (type de pont) : 
@@ -185,13 +185,13 @@
 		</consequences>
 	</bridge_rule>
 		
-	<!-- 15. SI  nbvoies >= 3    ALORS solidité > 180 -->
+	<!-- 15. SI  nbvoies > 2    ALORS matériau NON Bois -->
 	<bridge_rule>
 		<antecedents>
-			<antecedent type="comparison" name="lane number" operator=">=" value="3" />
+			<antecedent type="comparison" name="lane number" operator=">" value="2" />
 		</antecedents>
 		<consequences>
-			<consequence type="comparison" name="resistance" value="180" />
+			<consequence type="affirmation" name="use wood" value="false" />
 		</consequences>
 	</bridge_rule>	
 	
