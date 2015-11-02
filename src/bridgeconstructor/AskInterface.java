@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -63,6 +64,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			private JMenuItem item_show_rules;
             private JMenuItem item_traces;
 		private JMenuItem other_chaining;
+		private JMenuItem about;
 	// Panel
 	private JPanel up_panel;
 	private JPanel center_panel;
@@ -152,6 +154,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 				item_traces= new JCheckBoxMenuItem("Traces abrégées");
                     item_traces.setSelected(false);
             other_chaining = new JMenuItem("Arrière et mixte");
+            about = new JMenuItem("?");
 		// Panel
 		main_panel = new JPanel(new BorderLayout());
 		up_panel = new JPanel();
@@ -218,6 +221,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		menuBar.add(authors);
 		menuBar.add(show);
 		menuBar.add(other_chaining);
+		menuBar.add(about);
 		setJMenuBar(menuBar);
 		
 		up_panel.add(order);
@@ -285,6 +289,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         author_2.addActionListener(this);
 		item_show_rules.addActionListener(this);
 		other_chaining.addActionListener(this);
+		about.addActionListener(this);
 		
 		// CheckBox
 		this.naval_box.addActionListener(this);
@@ -318,6 +323,17 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         Object source= e.getSource();
         
         if(source.getClass() == JMenuItem.class) {
+            if(source == about){
+                Desktop desktop;
+                if (Desktop.isDesktopSupported()) {
+                    desktop = Desktop.getDesktop();
+                    try {
+                        desktop.open(new File("README.txt"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
             if(source == other_chaining){
                 this.setVisible(false);
                 BackwardInterface BI= new BackwardInterface(this, rules_path, item_traces.isSelected());
@@ -327,7 +343,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                 Desktop desktop;
                 if (Desktop.isDesktopSupported()) {
                     desktop = Desktop.getDesktop();
-
                     try {
                         desktop.mail(new URI("mailto:fl.david.53@gmail.com?subject=BridgeConstructor"));
                     } catch (IOException | URISyntaxException ex) {
@@ -338,7 +353,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                 Desktop desktop;
                 if (Desktop.isDesktopSupported()) {
                     desktop = Desktop.getDesktop();
-
                     try {
                         desktop.mail(new URI("mailto:jerome@fourdmond.fr?subject=BridgeConstructor"));
                     } catch (IOException | URISyntaxException ex) {
