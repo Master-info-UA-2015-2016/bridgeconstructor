@@ -11,10 +11,11 @@ Programme d'Intelligence Artificielle pour choisir
 
 
 ####################	L'Installation	########################
+Java 1.8 doit être installé sur le système.
 
 Sous Windows :
 	- Executer le script bridge-constructor.bat
-	- Executer le fichier bridge-constructor.jar
+	- Ou ouvrez l'archive bridge-constructor.jar avec Java (double clic si l'ouverture par défaut est configurée)
 
 Sous Linux :
 	- Donner les droits au script bridge-constructor.sh

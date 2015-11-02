@@ -29,7 +29,17 @@ public class FactsBase extends ArrayList<Word> {
 	 * @param factVal valeur (vrai ou faux) du nouveau fait
 	 */
 	public void addFact(String factName, boolean factVal){
-		this.add(new Affirmation(factName, factVal));
+        Affirmation aff= new Affirmation(factName, factVal);
+        Word old= contains(aff);
+        // GESTION DE LA COHERENCE : On conserve la valeur restrictive (NON mot) TODO adapter si un cas le requiert
+        if (old == null){
+            this.add(aff);
+        } else {
+            if ( !old.getVal().equals("false")){
+                remove(old);
+                add(aff);
+            }
+        }
 	}
 	
 	/**
@@ -37,10 +47,33 @@ public class FactsBase extends ArrayList<Word> {
 	 * @author florian
      * @param name
      * @param op
-     * @param valCondition
+     * @param value
 	 */
-	public void addFact(String name, Operator op, float valCondition){
-		this.add(new Comparison(name, op, valCondition));
+	public void addFact(String name, Operator op, float value){
+        Comparison comp= new Comparison(name, op, value);
+        Word old= contains(comp);
+        // GESTION DE LA COHERENCE : On garde la plus grande valeur TODO adapter si un cas le requiert
+        if (old == null){
+            this.add(comp);
+        } else {
+            float val= Float.parseFloat(old.getVal());
+            if ( val < value){
+                remove(old);
+                add(comp);
+            }
+        }
+	}
+    
+    
+	/**
+	 * Ajoute un fait -comparaison- dans la base de faits, à partir de son nom et de sa valeur
+	 * @author florian
+     * @param name
+     * @param value
+	 */
+	public void addFact(String name, float value){
+        // Forcément des égalités dans la base de fait, donc Operator equal
+		this.add(new Comparison(name, Operators.equal, value));
 	}
 	
     /**

@@ -14,8 +14,8 @@ import java.util.List;
  */
 
 public class AIEngine {
-    static PrintStream flux;
-    static boolean isAbbreviated;
+    public static PrintStream flux= System.out;
+    public static boolean isAbbreviated;
        
 	private final RulesBase RB;
 
@@ -35,8 +35,6 @@ public class AIEngine {
                 System.err.println("Impossible de créer fichier de flux");
                 exit(0);
             }
-        }else {
-            flux= System.out;
         }
         
 		RB = _RB;
