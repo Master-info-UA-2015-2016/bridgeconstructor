@@ -1,69 +1,132 @@
 -------------------------------------------------------
 |   SATURATION DE LA BASE DE FAITS : Chainage avant   |
+Recherche applicable : IF naval traffic THEN water.
 	BF contient: naval traffic ? => 	naval traffic == false ? NO
+Recherche applicable : IF rail traffic THEN high vibration.
 	BF contient: rail traffic ? => 	rail traffic == false ? NO
-	BF contient: road traffic ? => 	road traffic == true ? YES
-	BF contient: daily traffic ? =>   vrai avec : 90.0 ? -> false
-	BF contient: pedestrian traffic ? => 	pedestrian traffic == true ? YES
-	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF road traffic AND daily traffic > 500.0 THEN high vibration.
+	BF contient: road traffic ? => 	road traffic == false ? NO
+Recherche applicable : IF pedestrian traffic AND height > 26.0 THEN NO use wood.
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+Recherche applicable : IF high vibration THEN NO use wood.
 	BF contient: high vibration ? => NON
+Recherche applicable : IF water AND mountain THEN high current.
 	BF contient: water ? => 	water == false ? NO
+Recherche applicable : IF water THEN flood risk.
 	BF contient: water ? => 	water == false ? NO
+Recherche applicable : IF flood risk THEN high current.
 	BF contient: flood risk ? => NON
+Recherche applicable : IF high current THEN NO use wood.
 	BF contient: high current ? => NON
+Recherche applicable : IF forest THEN fire risk.
 	BF contient: forest ? => 	forest == false ? NO
+Recherche applicable : IF fire risk THEN NO use wood AND NO use steel.
 	BF contient: fire risk ? => NON
+Recherche applicable : IF wind THEN tempest risk.
 	BF contient: wind ? => 	wind == false ? NO
+Recherche applicable : IF tempest risk THEN NO use wood AND NO use steel AND NO bridge hanging considered.
 	BF contient: tempest risk ? => NON
+Recherche applicable : IF castle THEN drawbridge considered.
 	BF contient: castle ? => 	castle == false ? NO
-	BF contient: road traffic ? => 	NO road traffic == true ? NO
+Recherche applicable : IF NO road traffic AND NO rail traffic AND pedestrian traffic AND length < 50.0 THEN use cord.
+	BF contient: road traffic ? => 	NO road traffic == false ? YES
+	BF contient: rail traffic ? => 	NO rail traffic == false ? YES
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+Recherche applicable : IF lane number > 2.0 THEN NO use wood.
 	BF contient: lane number ? =>   vrai avec : 2.0 ? -> false
+Recherche applicable : IF height > 85.0 THEN use steel.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF height > 30.0 THEN NO bridge vault considered.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF length > 100.0 THEN NO bridge shroud considered.
 	BF contient: length ? =>   vrai avec : 20.0 ? -> false
+Recherche applicable : IF length < 25.0 THEN NO bridge shroud considered AND NO bridge hanging considered.
 	BF contient: length ? =>   vrai avec : 20.0 ? -> true
+Recherche applicable : IF height > 50.0 THEN NO bridge beam considered.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF height < 50.0 THEN bridge beam considered.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> true
+Recherche applicable : IF length < 50.0 THEN bridge vault considered.
 	BF contient: length ? =>   vrai avec : 20.0 ? -> true
+Recherche applicable : IF use wood THEN NO bridge arc considered AND NO bridge hanging considered AND NO bridge shroud considered.
 	BF contient: use wood ? => NON
+Recherche applicable : IF use stone THEN NO bridge hanging considered AND NO bridge shroud considered.
 	BF contient: use stone ? => NON
+Recherche applicable : IF use stone AND length < 60.0 THEN bridge arc considered.
 	BF contient: use stone ? => NON
+Recherche applicable : IF use concrete THEN NO bridge hanging considered AND NO bridge shroud considered.
 	BF contient: use concrete ? => NON
+Recherche applicable : IF use concrete AND length < 60.0 THEN bridge arc considered.
 	BF contient: use concrete ? => NON
+Recherche applicable : IF use steel AND length < 100.0 THEN bridge arc considered.
 	BF contient: use steel ? => NON
+Recherche applicable : IF use steel AND length > 50.0 AND heigth > 50.0 THEN bridge shroud considered.
 	BF contient: use steel ? => NON
+Recherche applicable : IF use steel THEN bridge hanging considered.
 	BF contient: use steel ? => NON
+Recherche applicable : IF use cord THEN bridge hanging considered.
 	BF contient: use cord ? => NON
+Recherche applicable : IF use cord THEN NO bridge arc considered AND NO bridge beam considered AND NO bridge shroud considered AND NO bridge vault considered.
 	BF contient: use cord ? => NON
+Recherche applicable : IF naval traffic THEN water.
 	BF contient: naval traffic ? => 	naval traffic == false ? NO
+Recherche applicable : IF rail traffic THEN high vibration.
 	BF contient: rail traffic ? => 	rail traffic == false ? NO
-	BF contient: road traffic ? => 	road traffic == true ? YES
-	BF contient: daily traffic ? =>   vrai avec : 90.0 ? -> false
-	BF contient: pedestrian traffic ? => 	pedestrian traffic == true ? YES
-	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF road traffic AND daily traffic > 500.0 THEN high vibration.
+	BF contient: road traffic ? => 	road traffic == false ? NO
+Recherche applicable : IF pedestrian traffic AND height > 26.0 THEN NO use wood.
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+Recherche applicable : IF high vibration THEN NO use wood.
 	BF contient: high vibration ? => NON
+Recherche applicable : IF water AND mountain THEN high current.
 	BF contient: water ? => 	water == false ? NO
+Recherche applicable : IF water THEN flood risk.
 	BF contient: water ? => 	water == false ? NO
+Recherche applicable : IF flood risk THEN high current.
 	BF contient: flood risk ? => NON
+Recherche applicable : IF high current THEN NO use wood.
 	BF contient: high current ? => NON
+Recherche applicable : IF forest THEN fire risk.
 	BF contient: forest ? => 	forest == false ? NO
+Recherche applicable : IF fire risk THEN NO use wood AND NO use steel.
 	BF contient: fire risk ? => NON
+Recherche applicable : IF wind THEN tempest risk.
 	BF contient: wind ? => 	wind == false ? NO
+Recherche applicable : IF tempest risk THEN NO use wood AND NO use steel AND NO bridge hanging considered.
 	BF contient: tempest risk ? => NON
+Recherche applicable : IF castle THEN drawbridge considered.
 	BF contient: castle ? => 	castle == false ? NO
-	BF contient: road traffic ? => 	NO road traffic == true ? NO
+Recherche applicable : IF NO road traffic AND NO rail traffic AND pedestrian traffic AND length < 50.0 THEN use cord.
+	BF contient: road traffic ? => 	NO road traffic == false ? YES
+	BF contient: rail traffic ? => 	NO rail traffic == false ? YES
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+Recherche applicable : IF lane number > 2.0 THEN NO use wood.
 	BF contient: lane number ? =>   vrai avec : 2.0 ? -> false
+Recherche applicable : IF height > 85.0 THEN use steel.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF height > 30.0 THEN NO bridge vault considered.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF length > 100.0 THEN NO bridge shroud considered.
 	BF contient: length ? =>   vrai avec : 20.0 ? -> false
+Recherche applicable : IF height > 50.0 THEN NO bridge beam considered.
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
+Recherche applicable : IF use wood THEN NO bridge arc considered AND NO bridge hanging considered AND NO bridge shroud considered.
 	BF contient: use wood ? => NON
+Recherche applicable : IF use stone THEN NO bridge hanging considered AND NO bridge shroud considered.
 	BF contient: use stone ? => NON
+Recherche applicable : IF use stone AND length < 60.0 THEN bridge arc considered.
 	BF contient: use stone ? => NON
+Recherche applicable : IF use concrete THEN NO bridge hanging considered AND NO bridge shroud considered.
 	BF contient: use concrete ? => NON
+Recherche applicable : IF use concrete AND length < 60.0 THEN bridge arc considered.
 	BF contient: use concrete ? => NON
+Recherche applicable : IF use steel AND length < 100.0 THEN bridge arc considered.
 	BF contient: use steel ? => NON
+Recherche applicable : IF use steel AND length > 50.0 AND heigth > 50.0 THEN bridge shroud considered.
 	BF contient: use steel ? => NON
+Recherche applicable : IF use steel THEN bridge hanging considered.
 	BF contient: use steel ? => NON
+Recherche applicable : IF use cord THEN bridge hanging considered.
 	BF contient: use cord ? => NON
+Recherche applicable : IF use cord THEN NO bridge arc considered AND NO bridge beam considered AND NO bridge shroud considered AND NO bridge vault considered.
 	BF contient: use cord ? => NON
