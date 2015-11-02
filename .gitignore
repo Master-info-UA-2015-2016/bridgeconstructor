@@ -17,3 +17,4 @@ nbproject/project.xml
 nbproject/genfiles.properties
 nbproject/build-impl.xml
 /dist/
+!/Bridge Constructor/bridgeconstructor.jar
