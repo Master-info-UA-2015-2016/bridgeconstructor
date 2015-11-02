@@ -2,8 +2,10 @@
 |   SATURATION DE LA BASE DE FAITS : Chainage avant   |
 	BF contient: naval traffic ? => 	naval traffic == false ? NO
 	BF contient: rail traffic ? => 	rail traffic == false ? NO
-	BF contient: road traffic ? => 	road traffic == false ? NO
-	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: road traffic ? => 	road traffic == true ? YES
+	BF contient: daily traffic ? =>   vrai avec : 90.0 ? -> false
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == true ? YES
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
 	BF contient: high vibration ? => NON
 	BF contient: water ? => 	water == false ? NO
 	BF contient: water ? => 	water == false ? NO
@@ -14,9 +16,7 @@
 	BF contient: wind ? => 	wind == false ? NO
 	BF contient: tempest risk ? => NON
 	BF contient: castle ? => 	castle == false ? NO
-	BF contient: road traffic ? => 	NO road traffic == false ? YES
-	BF contient: rail traffic ? => 	NO rail traffic == false ? YES
-	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: road traffic ? => 	NO road traffic == true ? NO
 	BF contient: lane number ? =>   vrai avec : 2.0 ? -> false
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
@@ -37,8 +37,10 @@
 	BF contient: use cord ? => NON
 	BF contient: naval traffic ? => 	naval traffic == false ? NO
 	BF contient: rail traffic ? => 	rail traffic == false ? NO
-	BF contient: road traffic ? => 	road traffic == false ? NO
-	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: road traffic ? => 	road traffic == true ? YES
+	BF contient: daily traffic ? =>   vrai avec : 90.0 ? -> false
+	BF contient: pedestrian traffic ? => 	pedestrian traffic == true ? YES
+	BF contient: height ? =>   vrai avec : 10.0 ? -> false
 	BF contient: high vibration ? => NON
 	BF contient: water ? => 	water == false ? NO
 	BF contient: water ? => 	water == false ? NO
@@ -49,9 +51,7 @@
 	BF contient: wind ? => 	wind == false ? NO
 	BF contient: tempest risk ? => NON
 	BF contient: castle ? => 	castle == false ? NO
-	BF contient: road traffic ? => 	NO road traffic == false ? YES
-	BF contient: rail traffic ? => 	NO rail traffic == false ? YES
-	BF contient: pedestrian traffic ? => 	pedestrian traffic == false ? NO
+	BF contient: road traffic ? => 	NO road traffic == true ? NO
 	BF contient: lane number ? =>   vrai avec : 2.0 ? -> false
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false
 	BF contient: height ? =>   vrai avec : 10.0 ? -> false

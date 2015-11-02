@@ -1,7 +1,5 @@
 package bridgeconstructor;
 
-// DEFINITION DU STYLE GENERAL DU PROGRAMME
-import java.io.PrintStream;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
