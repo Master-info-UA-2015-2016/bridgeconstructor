@@ -1,8 +1,8 @@
-#####################################################################
-#	BRIDGE-CONSTRUCTOR	- README							  		#
-#		par	DAVID Florian									  		#
-#		et		FOURMOND Jérôme								  		#
-#####################################################################
+##############################################################
+#	BRIDGE-CONSTRUCTOR	- README			  		#
+#		par	DAVID Florian				  		#
+#		et		FOURMOND Jérôme		  		#
+##############################################################
 
 
 Programme d'Intelligence Artificielle pour choisir
@@ -10,7 +10,7 @@ Programme d'Intelligence Artificielle pour choisir
 	pont en fonction de l'Environnement
 
 
-#####################	L'Installation	############################
+####################	L'Installation	########################
 
 Sous Windows :
 	- Executer le script bridge-constructor.bat
@@ -23,7 +23,7 @@ Sous Linux :
 dernière étape mais seulement d'exectuer bridge-constructor.jar
 
 
-#####################	La Présentation	  ###########################
+###################	La Présentation	  ######################
 
 Interface Ask :
 	Dans cette interface, l'utilisateur sélectionne et saisie les
@@ -42,7 +42,7 @@ Chaînage Arrière :
 chaînage qu'il souhaite ainsi que le but souhaité.
 
  
-#####################	L'Implémentation	#########################
+################		L'Implémentation	###################
 
 	Les traces de l'application sont affichées (complètes ou 
 concises) dans la console.
