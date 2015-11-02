@@ -36,7 +36,7 @@ public class TerminalFactAsker implements FactAsker{
                 }
             }
             else {
-                return askFactValueToUser(factName); // récursivité TODO voir si on supprime et retourne null ?
+                return askFactValueToUser(factName); // récursivité @see voir si on peut/doit retourner null ?
         }
     }
 	
