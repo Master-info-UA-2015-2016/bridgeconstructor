@@ -52,6 +52,10 @@ chaînage qu'il souhaite ainsi que le but souhaité.
 	Les traces de l'application sont affichées (complètes ou 
 concises) dans la console.
 
+	Lors de l'ajout d'un fait, si ce dernier a pour valeur faux et 
+est déjà présent, il n'est pas ajouté à la base.
+
+	Dans le cas d'une valeur, la maximale est toujours conservée.
 
 ################	Autre	##################################
 
