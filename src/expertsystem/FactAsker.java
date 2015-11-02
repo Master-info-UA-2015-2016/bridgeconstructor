@@ -10,5 +10,11 @@ package expertsystem;
  * @author Florian
  */
 public interface FactAsker {
+
+    /**
+     *
+     * @param factName
+     * @return
+     */
     public Word askFactValueToUser(String factName);
 }

@@ -13,6 +13,11 @@ import java.util.Scanner;
  */
 public class TerminalFactAsker implements FactAsker{
 
+    /**
+     *
+     * @param factName
+     * @return
+     */
     @Override
     public Word askFactValueToUser(String factName) {
         System.out.println("\n Veuillez entrer la valeur de : "+ factName);

@@ -1,5 +1,9 @@
 package bridgeconstructor;
 
+/**
+ *
+ * @author Florian
+ */
 public enum Material {
 	/**
 	 *

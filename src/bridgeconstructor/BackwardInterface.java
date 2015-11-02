@@ -20,6 +20,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+/**
+ *
+ * @author Florian
+ */
 public class BackwardInterface extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
@@ -123,7 +127,11 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
-	@Override
+    /**
+     *
+     * @param E
+     */
+    @Override
 	public void actionPerformed(ActionEvent E) {
 		Object O = E.getSource();
 		if(O.getClass() == JButton.class) {
@@ -138,6 +146,9 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		}
 	}
     
+    /**
+     *
+     */
     @Override
     public void dispose(){
         parent.setVisible(true);

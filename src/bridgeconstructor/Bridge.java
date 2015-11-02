@@ -39,7 +39,6 @@ public final class Bridge {
 	 * @param maxWidth
 	 * @param length
 	 * @param type
-	 * @param material
 	 * @param price
 	 */
 	public Bridge(float height, float minWidth, float maxWidth, float length, TypeBridge type, float price) {
@@ -51,7 +50,14 @@ public final class Bridge {
 		this.price = price;
 	}
 
-	public Bridge(float height, int lane_number, float length, TypeBridge type) {
+    /**
+     *
+     * @param height
+     * @param lane_number
+     * @param length
+     * @param type
+     */
+    public Bridge(float height, int lane_number, float length, TypeBridge type) {
 		this.height = height;
 		this.length = length;
 		this.type = type;
@@ -161,7 +167,6 @@ public final class Bridge {
 
 	/**
 	 * 
-	 * @param type
 	 * @return
 	 */
 	public String getStringType() {

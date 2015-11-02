@@ -95,6 +95,7 @@ public class Environment {
 
 	/**
 	 *
+     * @param daily_traffic
 	 * @param density
 	 */
 	public static void setDaily_traffic(float daily_traffic) {

@@ -77,6 +77,7 @@ public class ResponseInterface extends JFrame {
     /**
      *
      * @param LB
+     * @param LM
      */
     public ResponseInterface(List<Bridge> LB, List<Material> LM) {
 		super(title);

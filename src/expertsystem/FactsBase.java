@@ -185,6 +185,10 @@ public class FactsBase extends ArrayList<Word> {
 		return cpy;
 	}
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Object clone(){
         return super.clone(); //To change body of generated methods, choose Tools | Templates.

@@ -20,11 +20,20 @@ import javax.swing.JOptionPane;
 public class WindowFactAsker implements FactAsker {
 	JFrame parent;
 
-	public WindowFactAsker(JFrame _parent) {
+    /**
+     *
+     * @param _parent
+     */
+    public WindowFactAsker(JFrame _parent) {
 		this.parent = _parent;
 	}
 
-	@Override
+    /**
+     *
+     * @param factName
+     * @return
+     */
+    @Override
 	public Word askFactValueToUser(String factName) {
 
 		boolean answer = false;

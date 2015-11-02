@@ -186,6 +186,7 @@ public class AIEngine {
 	 * @param asker
 	 *            classe permettant de demander les faits demandables à
 	 *            l'utilisateur
+     * @param isMixt
 	 * @return boolean
 	 */
 	public Word backwardChaining(String goal, FactsBase FB, FactAsker asker, boolean isMixt) {

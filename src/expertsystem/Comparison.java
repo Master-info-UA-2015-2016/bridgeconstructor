@@ -13,7 +13,6 @@ public class Comparison extends Word{
 	 * @author florian
 	 * 
 	 * @param varName
-	 * @param varValue
 	 * @param _op
 	 * @param _valCondition
 	 */

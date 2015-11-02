@@ -98,6 +98,9 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 	private JButton reset_button;
 	private JButton confirm_button;
 	
+    /**
+     *
+     */
     public AskInterface() {
 		super(title);
 		buildComposants();
@@ -116,6 +119,10 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
     
 	}
     
+    /**
+     *
+     * @return
+     */
     public String getRulesPath() { return rules_path; }
 	
 	private void buildComposants() {

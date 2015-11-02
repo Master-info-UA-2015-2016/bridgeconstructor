@@ -81,6 +81,11 @@ public class Affirmation extends Word {
         return false;
 	}
     
+    /**
+     *
+     * @param A
+     * @return
+     */
     public boolean isOpposite(Affirmation A) {
     	return (this.name.equals(A.name) && this.val != A.val);
     }
