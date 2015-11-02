@@ -16,11 +16,12 @@ Testé sous Linux (sur la 14.04)
 Sous le JDK 8 d'Oracle
 
 ####################	L'Installation	########################
-Java 1.8 doit �tre install� sur le syst�me.
+Java 1.8 doit être installé sur le systême.
 
 Sous Windows :
 	- Executer le script launch.bat
-	- Ou ouvrez l'archive bridge-constructor.jar avec Java (double clic si l'ouverture par d�faut est configur�e)
+	- Ou ouvrez l'archive bridge-constructor.jar avec Java
+	(double clic si l'ouverture par défaut est configuree)
 
 Sous Linux :
 	- Donner les droits au script bridge-constructor.sh
@@ -30,9 +31,11 @@ dernière étape mais seulement d'exectuer bridge-constructor.jar
 
 
 ###################	La Présentation	  ######################
-	L'application est enti�rement utilisable avec l'interface graphique, mais si on souhaite avoir des traces, abr�g�es ou non, il faut la lancer avec le script fourni ou depuis un terminal.
+	L'application est entierement utilisable avec l'interface
+ graphique, mais si on souhaite avoir des traces, abrégées
+ ou non, il faut la lancer avec le script fourni ou depuis un terminal.
 
-Fen�tre Ask :
+Fenètre Ask :
 	Dans cette interface, l'utilisateur sélectionne et saisie les
 données de l'Environnement correspondant.
 	Il a également accès aux menus :
@@ -46,7 +49,7 @@ données de l'Environnement correspondant.
 
 Chaînage Arrière :
 	Dans cette interface, l'utilisateur sélectionne le type de
-chaînage arri�re (simple ou mixte) qu'il souhaite ainsi que le but souhaité.
+chaînage arrière (simple ou mixte) qu'il souhaite ainsi que le but souhaité.
 
  
 ################		L'Implémentation	###################
@@ -63,3 +66,5 @@ est déjà présent, il n'est pas ajouté à la base.
 
 	Les Méta-Règles n'ont pas été implémentées, notre algorithme
 étant généraliste.
+
+	Aucun paquet de règle n'a été mis en place.
