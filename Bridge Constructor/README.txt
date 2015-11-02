@@ -19,7 +19,7 @@ Sous le JDK 8 d'Oracle
 Java 1.8 doit être installé sur le système.
 
 Sous Windows :
-	- Executer le script bridge-constructor.bat
+	- Executer le script launch.bat
 	- Ou ouvrez l'archive bridge-constructor.jar avec Java (double clic si l'ouverture par défaut est configurée)
 
 Sous Linux :
@@ -30,8 +30,9 @@ derniÃ¨re Ã©tape mais seulement d'exectuer bridge-constructor.jar
 
 
 ###################	La PrÃ©sentation	  ######################
+	L'application est entièrement utilisable avec l'interface graphique, mais si on souhaite avoir des traces, abrégées ou non, il faut la lancer avec le script fourni ou depuis un terminal.
 
-Interface Ask :
+Fenêtre Ask :
 	Dans cette interface, l'utilisateur sÃ©lectionne et saisie les
 donnÃ©es de l'Environnement correspondant.
 	Il a Ã©galement accÃ¨s aux menus :
@@ -45,7 +46,7 @@ donnÃ©es de l'Environnement correspondant.
 
 ChaÃ®nage ArriÃ¨re :
 	Dans cette interface, l'utilisateur sÃ©lectionne le type de
-chaÃ®nage qu'il souhaite ainsi que le but souhaitÃ©.
+chaÃ®nage arrière (simple ou mixte) qu'il souhaite ainsi que le but souhaitÃ©.
 
  
 ################		L'ImplÃ©mentation	###################
