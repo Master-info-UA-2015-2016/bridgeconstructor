@@ -9,6 +9,11 @@ Programme d'Intelligence Artificielle pour choisir
 	le type, les matériaux, et le prix pour la construction d'un
 	pont en fonction de l'Environnement
 
+Testé sous Windows (à partir de Windows 7 à 10)
+
+Testé sous Linux (sur la 14.04)
+
+Sous le JDK 8 d'Oracle
 
 ####################	L'Installation	########################
 
@@ -46,3 +51,8 @@ chaînage qu'il souhaite ainsi que le but souhaité.
 
 	Les traces de l'application sont affichées (complètes ou 
 concises) dans la console.
+
+
+################	Autre	##################################
+
+	Les Méta-Règles n'ont pas été implémentées.
