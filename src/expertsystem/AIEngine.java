@@ -80,8 +80,7 @@ public class AIEngine {
 					Word wAnt = it.next();
 
 					Word tmp = BF.contains(wAnt);
-					if (tmp == null || !wAnt.sameValue(tmp
-							.getVal())/* (tmp.getVal()).equals(wAnt.getVal()) */ ) { // VF(f)!=VA(wAnt,r)
+					if (tmp == null || !wAnt.sameValue(tmp.getVal())) { // VF(f)!=VA(wAnt,r)
                         dec = false;
                     }
 				}
