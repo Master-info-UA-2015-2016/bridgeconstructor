@@ -342,7 +342,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
-<<<<<<< HEAD
 		if(source == height_field)
 			Environment.setHeight(((Number)height_field.getValue()).floatValue());
 		else if(source == length_field)
@@ -351,17 +350,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 			Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
 		else if(source == lane_number_field)
 			Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
-=======
-		if(source == height_field) {
-            Environment.setHeight(((Number)height_field.getValue()).floatValue());
-        } else if(source == length_field) {
-            Environment.setLength(((Number)length_field.getValue()).floatValue());
-        } else if(source == daily_traffic_field) {
-            Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
-        } else if(source == lane_number_field) {
-            Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
-        }
->>>>>>> branch 'master' of https://github.com/flodavid/bridgeconstructor
 	}
 
 	private void reset() {
