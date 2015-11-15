@@ -128,8 +128,6 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2,
 						 	(int)(screenSize.getHeight() - this.getHeight()) / 2);
         
-		this.setVisible(true);
-    
 	}
     
     /**

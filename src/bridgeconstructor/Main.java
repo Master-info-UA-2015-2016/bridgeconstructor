@@ -1,6 +1,7 @@
 package bridgeconstructor;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -10,10 +11,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Main {
 
+	//<editor-fold defaultstate="collapsed" desc="Definition du style visuel">
 	/**
-	 * Définit le style du système comme style pour l'application
-	 * 
-	 * @author Scr3amer
+     * Définit le style du système comme style pour l'application
+     * @author Scr3amer
 	 */
 	public static void setSystemLookAndFeel() {
 		try {
@@ -31,14 +32,16 @@ public class Main {
 			JOptionPane.showMessageDialog(null, "Look and feel illegal access.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-	// FIN DEFINITION DU STYLE
+    //</editor-fold>
 
 	public static void main(String[] args) {
 
 		setSystemLookAndFeel();
         
-		new AskInterface();
+        /* Créer et affiche l'interface */
+        SwingUtilities.invokeLater(() -> {
+            new AskInterface().setVisible(true);
+        });
 
 	}
 }
