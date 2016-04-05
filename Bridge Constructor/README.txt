@@ -1,7 +1,7 @@
 ##############################################################
-#	BRIDGE-CONSTRUCTOR	- README			  		#
-#		par	DAVID Florian				  		#
-#		et		FOURMOND Jérôme		  		#
+#	BRIDGE-CONSTRUCTOR	- README					  		#
+#		par	DAVID Florian				  					#
+#		et		FOURMOND Jérôme		  						#
 ##############################################################
 
 

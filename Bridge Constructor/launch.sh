@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Add executable permission
-chmod +x bridge-constructor.jar
+chmod +x bridgeconstructor.jar
 
 # Launch
-java -jar bridge-constructor.jar
+java -jar bridgeconstructor.jar
