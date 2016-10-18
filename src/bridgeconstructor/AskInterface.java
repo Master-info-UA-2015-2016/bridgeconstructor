@@ -361,7 +361,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
             } else if(source.equals(item_close)) {
                 this.dispose();
 //                Montrer la base de règles
-            } else if(source == item_show_rules) {
+            } else if(source.equals(item_show_rules)) {
 				RulesBaseInterface RBI= new RulesBaseInterface(this);
                     this.setVisible(false);
                     RBI.setVisible(true);
@@ -369,28 +369,28 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
 		} else if(source.getClass() == JButton.class) {
 			if(source.equals(reset_button)) {
 				this.reset();
-			} else if(source == confirm_button) {
+			} else if(source.equals(confirm_button)) {
 				launchForwardChaining();
 			}
 		} else if(source.getClass() == JCheckBox.class) {
 			JCheckBox CB = (JCheckBox) source;
-			if(CB == naval_box) {
+			if(CB.equals(naval_box)) {
                 Environment.setNaval_traffic(CB.isSelected());
-            } else if(CB == railway_box) {
+            } else if(CB.equals(railway_box)) {
                 Environment.setRailway_traffic(CB.isSelected());
-            } else if(CB == pedestrian_box) {
+            } else if(CB.equals(pedestrian_box)) {
                 Environment.setPedestrian_traffic(CB.isSelected());
-            } else if(CB == road_box) {
+            } else if(CB.equals(road_box)) {
                 Environment.setRoad_traffic(CB.isSelected());
-            } else if(CB == wind_box) {
+            } else if(CB.equals(wind_box)) {
                 Environment.setWind(CB.isSelected());
-            } else if(CB == water_box) {
+            } else if(CB.equals(water_box)) {
                 Environment.setWater(CB.isSelected());
-            } else if(CB == forest_box) {
+            } else if(CB.equals(forest_box)) {
                 Environment.setForest(CB.isSelected());
-            } else if(CB == mountain_box) {
+            } else if(CB.equals(mountain_box)) {
                 Environment.setMountain(CB.isSelected());
-            } else if(CB == castle_box) {
+            } else if(CB.equals(castle_box)) {
                 Environment.setCastle(CB.isSelected());
             }
 		}

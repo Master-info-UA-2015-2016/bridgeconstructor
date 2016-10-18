@@ -24,8 +24,8 @@ public class ResponseInterface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static String title = "Bridge Constructor - Response";
 	
-	List<Bridge> listBridge;
-	List<Material> listMaterial;
+	private List<Bridge> listBridge;
+	private List<Material> listMaterial;
 	
     private final String[] imageFileNames = { "bridge_arc.png", "bridge_beam.png", "bridge_hanging.png", "bridge_shroud.png", "bridge_vault.png", "drawbridge.png"};
     private final String path = "./ressources/";
@@ -242,6 +242,7 @@ public class ResponseInterface extends JFrame {
 					break;
 				default:
 					System.err.println("This material is not known, impossible to get his price");
+					break;
 			}
 		}
 		return s;

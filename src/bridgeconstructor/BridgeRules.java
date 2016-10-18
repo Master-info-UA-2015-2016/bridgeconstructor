@@ -35,7 +35,7 @@ public class BridgeRules {
      */
     private static void addComparison(List<Word> list, String name, String opString, float value, boolean isCons) throws WrongOperatorException{
         if (isCons) {
-            if (!opString.equals("=") && !opString.isEmpty()) {
+            if (!"=".equals(opString) && !opString.isEmpty()) {
                 System.err.println("op.equals('=') ? " + "=".equals(opString) + " et op.equals('') ? " + opString.isEmpty());
                 throw new WrongOperatorException(name, opString);
             } else {
@@ -71,7 +71,7 @@ public class BridgeRules {
                 }catch (WrongOperatorException WOE){
                     WOE.show();
                 }
-			} else if (type.equals("affirmation")) {
+			} else if ("affirmation".equals(type)) {
 				Affirmation aff;
 				if (eElement.getAttribute("value").equals("true")) {
 					aff = new Affirmation(name, true);

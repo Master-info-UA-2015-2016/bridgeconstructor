@@ -5,7 +5,7 @@ package expertsystem;
  * @author Florian
  */
 public class Operator {
-	String chaine;
+	private String chaine;
 	
     /**
      *
