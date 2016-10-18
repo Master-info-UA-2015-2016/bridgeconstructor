@@ -214,6 +214,9 @@ public class ResponseInterface extends JFrame {
 				return "Pierre";
 			case Wood :
 				return "Bois";
+			default:
+				System.err.println("This material is not known");
+				return "";
 		}
 		return "";
 	}
@@ -223,7 +226,7 @@ public class ResponseInterface extends JFrame {
 		for(Material M : listMaterial) {
 			switch(M) {
 				case Concrete :
-					s += "| Béton " + String.format("%.2f", B.getPriceConcrete());;
+					s += "| Béton " + String.format("%.2f", B.getPriceConcrete());
 					break;
 				case Cord :
 					s += "| Corde " + String.format("%.2f", B.getPriceCord());
@@ -237,6 +240,8 @@ public class ResponseInterface extends JFrame {
 				case Wood :
 					s += "| Bois " + String.format("%.2f", B.getPriceWood());
 					break;
+				default:
+					System.err.println("This material is not known, impossible to get his price");
 			}
 		}
 		return s;

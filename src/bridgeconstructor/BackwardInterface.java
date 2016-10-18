@@ -136,7 +136,7 @@ public class BackwardInterface extends JFrame implements ActionListener {
 		Object O = E.getSource();
 		if(O.getClass() == JButton.class) {
 			JButton B = (JButton) O;
-			if(B == confirm) {
+			if(B.equals(confirm)) {
 				if(backward_radio.isSelected()) {
                     launchBackwardChaining();
                 } else if(mixt_radio.isSelected()) {
@@ -167,6 +167,9 @@ public class BackwardInterface extends JFrame implements ActionListener {
 				return "bridge hanging considered";
 			case "Pont-Levis" :		// "Pont-Levis"
 				return "drawbridge considered";
+			default: 
+				System.err.println("Not any bridge correspond to the string");
+				return "";
 		}
 		return s;
 	}

@@ -58,6 +58,9 @@ public class WindowFactAsker implements FactAsker {
 			return null;
 		case JOptionPane.CLOSED_OPTION:
 			return null;
+		default:
+			System.err.println("Invalid option given to the window")
+			return null;
 		}
 
 		if (answer) {

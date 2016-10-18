@@ -104,7 +104,7 @@ public class RulesBaseInterface extends JFrame implements MouseListener {
     private void openFileInNotepad(String file_path){
     	String OS = System.getProperty("os.name");
         try {
-            if(OS.equals("Linux")) {
+            if("Linux".equals(OS)) {
                 Runtime.getRuntime().exec("gedit " + file_path);
             } else
                 if(OS.startsWith("Windows")) {

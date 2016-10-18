@@ -43,7 +43,7 @@ public class BridgeRulesTest {
      */
     @Test
     public void testInitFromXML() {
-        System.out.println("initFromXML");
+        System.out.println("Test initFromXML to implement");
         String filename = "";
         BridgeRules.initFromXML(filename);
     }

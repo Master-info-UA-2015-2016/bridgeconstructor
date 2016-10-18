@@ -5,7 +5,7 @@ package expertsystem;
  * @author Florian
  */
 public class Affirmation extends Word {
-	boolean val;
+	private boolean val;
 
     /**
      *

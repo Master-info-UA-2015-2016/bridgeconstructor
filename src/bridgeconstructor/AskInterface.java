@@ -321,7 +321,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
         Object source= e.getSource();
         
         if(source.getClass() == JMenuItem.class) {
-            if(source == about){
+            if(source.equals(about)){
                 Desktop desktop;
                 if (Desktop.isDesktopSupported()) {
                     desktop = Desktop.getDesktop();
@@ -332,12 +332,12 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                     }
                 }
             }
-            if(source == other_chaining){
+            if(source.equals(other_chaining)) {
                 this.setVisible(false);
                 BackwardInterface BI= new BackwardInterface(this, rules_path, item_traces.isSelected());
                 BI.setVisible(true);
             // Envoi d'e-mail aux auteurs
-            } else if(source == author_1){
+            } else if(source.equals(author_1)) {
                 Desktop desktop;
                 if (Desktop.isDesktopSupported()) {
                     desktop = Desktop.getDesktop();
@@ -347,7 +347,7 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                         Logger.getLogger(AskInterface.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            } else if(source == author_2){
+            } else if(source.equals(author_2)) {
                 Desktop desktop;
                 if (Desktop.isDesktopSupported()) {
                     desktop = Desktop.getDesktop();
@@ -358,16 +358,16 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
                     }
                 }
 //                Fermeture fenetre
-            } else if(source == item_close) {
+            } else if(source.equals(item_close)) {
                 this.dispose();
 //                Montrer la base de règles
-            } else if(source == item_show_rules){
+            } else if(source == item_show_rules) {
 				RulesBaseInterface RBI= new RulesBaseInterface(this);
                     this.setVisible(false);
                     RBI.setVisible(true);
             }
 		} else if(source.getClass() == JButton.class) {
-			if(source == reset_button) {
+			if(source.equals(reset_button)) {
 				this.reset();
 			} else if(source == confirm_button) {
 				launchForwardChaining();
@@ -403,13 +403,13 @@ public class AskInterface extends JFrame implements ActionListener, PropertyChan
     @Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
-		if(source == height_field) {
+		if(source.equals(height_field)) {
             Environment.setHeight(((Number)height_field.getValue()).floatValue());
-        } else if(source == length_field) {
+        } else if(source.equals(length_field)) {
             Environment.setLength(((Number)length_field.getValue()).floatValue());
-        } else if(source == daily_traffic_field) {
+        } else if(source.equals(daily_traffic_field)) {
             Environment.setDaily_traffic(((Number)daily_traffic_field.getValue()).floatValue());
-        } else if(source == lane_number_field) {
+        } else if(source.equals(lane_number_field)) {
             Environment.setLane_number(((Number)lane_number_field.getValue()).intValue());
         }
 	}
