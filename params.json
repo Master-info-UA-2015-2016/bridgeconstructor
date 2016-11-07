@@ -1,0 +1,6 @@
+{
+  "name": "Bridgeconstructor",
+  "tagline": "Programme d'intelligence artificiel pour choisir le type, les matériaux et le prix pour la construction de ponts",
+  "body": "# bridgeconstructor\r\n<h2>Programme d'intelligence artificiel pour choisir le type, les matériaux et le prix pour la construction de ponts</h2>\r\n\r\n<h3>Modélisation Algorithmique : </h3>\r\n  - Une classe Bridge : les caractéristique du pont, définies selon les règles appliquées\r\n  - Une classe Environment : faits décris par l'utilisateur avant l'exécution de la recherche du pont à construire\r\n  - Une classe AIEngine : chargées d'appliquer les règles sur la <i>Base de faits</i> afin d'en déduire les ponts constructibles, et parmi ceux-ci, le meilleur choix (surement le moins cher).\r\n  \r\n \r\n<h3>Modélisation Graphique : </h3>\r\n  <i>Objectif secondaire</i>\r\n  Voir si on fait une version android, ou seulement \"desktop\"\r\n  \r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
